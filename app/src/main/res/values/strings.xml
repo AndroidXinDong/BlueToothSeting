@@ -1,0 +1,171 @@
+<resources>
+    <string name="app_name">USRBleAssistent</string>
+    <string name="devices">BLUE Devices</string>
+    <string name="menu_usr">Official Website</string>
+    <string name="share">Share</string>
+    <string name="share_title">Select app to share</string>
+    <string name="share_ex">Can\'t find share component to share</string>
+    <string name="menu_hex_send" translatable="false">HEX Send</string>
+    <string name="menu_asscii_send" translatable="false">ASSCII Send</string>
+    <string name="menu_clear_display" translatable="false">Clear Display</string>
+    <string name="menu_update" translatable="false">Update</string>
+    <string name="share_text" translatable="false">USRBleAssistent,Let BLE development easier.DownLoad:http://xxx.xxx.xxx</string>
+    <string name="option_fail" translatable="false">Operation failure</string>
+    <string name="alert" translatable="false">Alert</string>
+    <string name="conn_disconnected" translatable="false">Connect disconnect,please back to reconnect</string>
+    <string name="conn_disconnected_home" translatable="false">Connect disconnect,please reconnect</string>
+    <string name="ok" translatable="false">OK</string>
+
+    <string name="connect_fail" translatable="false">Connection failure</string>
+
+    <string name="searching" translatable="false">Searching</string>
+    <string name="search_device_count" translatable="false">Have searched %1$d devices</string>
+
+    <string name="device_ble_not_supported">device ble not supported</string>
+    <string name="pull_down_refresh">Pull down refresh</string>
+    <string name="title_activity_services" translatable="false">Services</string>
+    <string name="title_activity_characteritics" translatable="false">Characteritics</string>
+    <string name="unkonw_service">Unkonw Service</string>
+
+    <string name="gatt_services_read" translatable="false">Read</string>
+    <string name="gatt_services_write" translatable="false">Write</string>
+    <string name="gatt_services_notify" translatable="false">Notify</string>
+    <string name="gatt_services_indicate" translatable="false">Indicate</string>
+
+
+    <!-- Find Me profile elements -->
+    <string name="find_linkloss" translatable="false">Link Loss</string>
+    <string name="find_spinner_prompt" translatable="false">Select</string>
+    <string name="find_immediate_alert" translatable="false">Immediate Alert</string>
+    <string name="find_value_read_toast" translatable="false">Value read from kit: </string>
+    <string name="find_value_written_toast" translatable="false">Written </string>
+    <string name="find_value_success_toast" translatable="false"> successfully </string>
+
+    <!-- Blood pressure profile elements -->
+    <string name="blood_pressure" translatable="false">Blood Pressure</string>
+    <string name="blood_pressure_systolic" translatable="false">SYS</string>
+    <string name="blood_pressure_diastolic" translatable="false">DIA</string>
+    <string name="blood_pressure_start_btn" translatable="false">START</string>
+    <string name="blood_pressure_stop_btn" translatable="false">STOP</string>
+    <string name="blood_pressure_mmHg" translatable="false">mmHg</string>
+    <string name="blood_pressure_kPa" translatable="false"> kPa</string>
+
+    <!-- RSC profile elements -->
+    <string name="rsc_weight" translatable="false">Weight:</string>
+    <string name="rsc_weight_unit" translatable="false">kg</string>
+    <string name="rsc_time" translatable="false">Time:</string>
+    <string name="rsc_graph_title" translatable="false">Average Speed Vs Time</string>
+    <string name="rsc_calories" translatable="false">Calories burnt</string>
+    <string name="rsc_avg_speed" translatable="false">Avg Speed (km/h)</string>
+    <string name="rsc_avg_speed_unit" translatable="false">km/h</string>
+    <string name="rsc_distance_unit" translatable="false">km</string>
+    <string name="rsc_total_distance" translatable="false">Total Distance Ran</string>
+
+    <!-- CSC profile elements -->
+    <string name="csc_cadence" translatable="false">Cadence</string>
+    <string name="csc_cadence_graph" translatable="false">Cadence (rpm)</string>
+    <string name="csc_cadence_unit" translatable="false">rpm</string>
+    <string name="csc_distance_unit" translatable="false">Distance (km)</string>
+    <string name="csc_cadence_graph_title" translatable="false">Cadence Vs Time</string>
+    <string name="csc_cadence_graph_unit" translatable="false">Cadence (rpm)</string>
+    <string name="csc_total_distance" translatable="false">Total Distance Cycled</string>
+    <string name="csc_weight_toast" translatable="false">Enter a valid weight !</string>
+
+    <string name="csc_weight_toast_greater" translatable="false">Warning! The weight entered is greater than 200 kg</string>
+    <string name="csc_weight_toast_zero" translatable="false">Warning! The weight entered is less than 1 kg</string>
+    <string name="csc_weight_toast_empty" translatable="false">Warning!  No value entered in weight field</string>
+
+
+    <!-- Sensorhub profile elements -->
+    <string name="sen_hub" translatable="false">Sensor Hub</string>
+    <string name="sen_hub_locate" translatable="false">Locate Device</string>
+    <string name="sen_hub_locate_stop" translatable="false">Stop Alert</string>
+    <string name="sen_hub_accelerometer" translatable="false">Accelerometer</string>
+    <string name="sen_hub_accelerometer_x" translatable="false">X: </string>
+    <string name="sen_hub_accelerometer_Z" translatable="false">Z: </string>
+    <string name="sen_hub_temperature" translatable="false">Temperature</string>
+    <string name="sen_hub_temperature_unit" translatable="false">°C</string>
+    <string name="sen_hub_battery" translatable="false">Battery Level</string>
+    <string name="sen_hub_battery_unit" translatable="false">%</string>
+    <string name="sen_hub_pressure" translatable="false">Pressure</string>
+    <string name="sen_hub_pressure_unit" translatable="false">Kpa</string>
+    <string name="sen_hub_sensor_scan_interval" translatable="false">Sensor Scan Interval</string>
+    <string name="sen_hub_sensor_type" translatable="false">Sensor Type</string>
+    <string name="sen_hub_threshold" translatable="false">Threshold</string>
+
+    <string-array name="findme_immediate_alert_array">
+        <item>No Alert</item>
+        <item>Mid Alert</item>
+        <item>High Alert</item>
+    </string-array>
+    <string-array name="filter_configuration_alert_array">
+        <item>Select Filter Configuration</item>
+        <item>None</item>
+        <item>Average</item>
+        <item>Medium</item>
+        <item>Custom</item>
+    </string-array>
+
+    <string name="send_to" translatable="false">Send to..</string>
+
+    <!-- Battery profile elements -->
+    <string name="battery_stop_notify" translatable="false">Stop Notify</string>
+    <string name="battery_start_notify" translatable="false">Start Notify</string>
+    <string name="battery_read" translatable="false">Read</string>
+
+    <!-- RDK profile elements -->
+    <string name="rdk_emulator_view" translatable="false">Remote Control RDK</string>
+    <string name="rdk_emulator_view_identifier" translatable="false">CY5672</string>
+    <string name="view_trackpad" translatable="false">VIEW TRACK PAD/MOTION SENSOR DATA</string>
+    <string name="view_microphone" translatable="false">VIEW MICROPHONE DATA</string>
+    <string name="volume" translatable="false">VOL</string>
+    <string name="channel" translatable="false">CH</string>
+    <string name="rdk_microphone" translatable="false">MICROPHONE DATA</string>
+    <string name="rdk_motion" translatable="false">TRACK PAD/MOTION SENSOR DATA</string>
+    <string name="property" translatable="false">PROPERTY</string>
+    <string name="format" translatable="false">FORMAT</string>
+    <string name="value" translatable="false">VALUE</string>
+    <string name="motion_x" translatable="false">X</string>
+    <string name="motion_y" translatable="false">Y</string>
+    <string name="motion_zwheel" translatable="false">Z-Wheel</string>
+    <string name="motion_tilt" translatable="false">Tilt</string>
+    <string name="motion_lcd" translatable="false">Left Click Down</string>
+    <string name="motion_lcu" translatable="false">Left Click Up</string>
+    <string name="motion_rcd" translatable="false">Right Click Down</string>
+    <string name="motion_rcu" translatable="false">Right Click Up</string>
+    <string name="motion_keycode" translatable="false">Keycode</string>
+    <string name="motion_default_value" translatable="false">00</string>
+    <string name="motion_clear" translatable="false">CLEAR COUNTERS</string>
+    <string name="motion_clear_data" translatable="false">CLEAR DATA</string>
+    <string name="speech_text" translatable="false">SPEECH TO TEXT</string>
+    <string name="record" translatable="false">RECORD</string>
+    <string name="hex" translatable="false">HEX</string>
+    <string name="record_stop" translatable="false">STOP</string>
+    <string name="convert" translatable="false">CONVERT</string>
+    <string name="change_api" translatable="false">CHANGE API KEY</string>
+     <string name="apikey_requirement_text" translatable="false">Please enter your developer API Key
+        for voice to text conversion</string>
+    <string name="volume_up" translatable="false">Volume Up</string>
+    <string name="volume_down" translatable="false">Volume Down</string>
+    <string name="channel_up" translatable="false">Channel Up</string>
+    <string name="channel_down" translatable="false">Channel Down</string>
+    <string name="power_on" translatable="false">On</string>
+    <string name="power_off" translatable="false">Off</string>
+    <string name="source" translatable="false">Source</string>
+
+    <string name="tag_running_app" translatable="false">BLE</string>
+    <string name="tag_running_service" translatable="false">SPP</string>
+    <string name="transmittal_length">Max transmittal data is %s</string>
+
+
+
+    <item type="id" name="onTiming"></item>
+    <item type="id" name="outTiming"></item>
+
+
+
+
+
+
+
+</resources>

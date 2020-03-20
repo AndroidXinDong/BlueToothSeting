@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_firmware_filesystem"
+        android:title="FileSystem"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_firmware_checkupdate"
+        android:title="Update"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_firmware_clear"
+        android:title="clear"
+        app:showAsAction="always" />
+</menu>

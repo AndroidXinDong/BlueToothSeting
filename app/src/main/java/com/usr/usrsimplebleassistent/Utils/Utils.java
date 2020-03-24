@@ -76,8 +76,6 @@ public class Utils{
     private static String SHARED_PREF_NAME = "CySmart Shared Preference";
 
 
-
-
     /**
      * Returns the manufacture name from the given characteristic
      *
@@ -586,8 +584,7 @@ public class Utils{
             boolean result = true;
             ConnectivityManager connectivityManager = (ConnectivityManager) context
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connectivityManager
-                    .getActiveNetworkInfo();
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
             if (networkInfo == null || !networkInfo.isConnectedOrConnecting()) {
                 result = false;
             }

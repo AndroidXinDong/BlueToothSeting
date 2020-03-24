@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,6 +37,7 @@ import com.usr.usrsimplebleassistent.Utils.AnimateUtils;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
 import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
+import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MDevice;
 import com.usr.usrsimplebleassistent.bean.MService;
 import com.usr.usrsimplebleassistent.fragments.BleFragment;
@@ -62,8 +62,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     private ViewPager vpContainer;
     private RadioGroup rgTabButtons;
     private int mCurrentFragment;
-    private String[] fragmetns = new String[]{
-            BleFragment.class.getName(),};
+    private String[] fragmetns = new String[]{BleFragment.class.getName(),};
     private MDevice mDevice;
     private String mode;
     /**
@@ -140,7 +139,8 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
             if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
                                 Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE, Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE},
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.READ_PHONE_STATE},
                         1);
             }
         }
@@ -237,7 +237,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      * 初始化动画 与动画的状态监听
      */
     private void initCartoon() {
-
         //动画效果
         collapsingToolbarLayout.setTranslationY(160f);
         toolbar.setTranslationY(-Utils.dpToPx(60));
@@ -245,7 +244,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         AnimateUtils.translationY(collapsingToolbarLayout, 0, 400, 100);
         AnimateUtils.translationY(toolbar, 0, 400, 200);
         AnimateUtils.alpha(collapsingToolbarLayout, 1f, 400, 100);
-
 
         //revealSearchView 动画状态监听
         revealSearchView.setOnStateChangeListener(new RevealSearchView.OnStateChangeListener() {
@@ -322,7 +320,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      */
     private void initbleFragment() {
         //获的recyclerView
-        recyclerView = (RecyclerView) findViewById(R.id.recycleviewble);
+        recyclerView =  findViewById(R.id.recycleviewble);
         //给recyclerView   设置布局样式
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(llm);
@@ -360,9 +358,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      */
     private void showProgressDialog() {
         progressDialog = new MaterialDialog(this);
-        View view = LayoutInflater.from(this)
-                .inflate(R.layout.progressbar_item,
-                        null);
+        View view = LayoutInflater.from(this).inflate(R.layout.progressbar_item, null);
         progressDialog.setView(view).show();
     }
 
@@ -378,7 +374,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     }
 
     /**
-     * 开始扫面入口
+     * 开始扫描入口
      */
     private void startScan() {
         scanPrevious21Version();
@@ -501,16 +497,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
 
 
     /**
-     * 菜单键监听
-     */
-    @Override
-    protected void menuHomeClick() {
-        Uri uri = Uri.parse("http://www.usr.cn/Product/cat-86.html");
-        Intent it = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(it);
-    }
-
-    /**
      * 返回键监听
      */
     @Override
@@ -530,7 +516,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      * 初始化view pager
      */
     private void initComponents() {
-        rgTabButtons = (RadioGroup) findViewById(R.id.rgTabButtons);
+        rgTabButtons =  findViewById(R.id.rgTabButtons);
         KickerFragmentAdapter adpater = new KickerFragmentAdapter(getSupportFragmentManager(), this);
         vpContainer.setOnPageChangeListener(onPageChangeListener);
         vpContainer.setAdapter(adpater);
@@ -549,7 +535,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
 
 
     class KickerFragmentAdapter extends FragmentPagerAdapter {
-
         private Context mContext;
 
         public KickerFragmentAdapter(FragmentManager fm, Context context) {
@@ -599,14 +584,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
                     System.out.println(mode1);
                     new SppFragment().onPause();
                     break;
-//                case R.id.rbRunningService:
-//                    checkedItem = 1;
-//                    editor.putString("mode", "SPP");
-//                    editor.commit();
-//                    String mode = mSharedPreferences.getString("mode", "");
-//                    System.out.println(mode);
-//                    new BleFragment().onPause();
-//                    break;
             }
             vpContainer.setCurrentItem(checkedItem);
             mCurrentFragment = checkedItem;
@@ -624,7 +601,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
             // Status received when connected to GATT Server
             //连接成功
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
-                System.out.println("--------------------->连接成功");
                 //搜索服务
                 BluetoothLeService.discoverServices();
             }

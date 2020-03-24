@@ -29,6 +29,7 @@ import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
 import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
+import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MDevice;
 import com.usr.usrsimplebleassistent.bean.MService;
 import com.usr.usrsimplebleassistent.firmware.bleconnect.BleUtil;

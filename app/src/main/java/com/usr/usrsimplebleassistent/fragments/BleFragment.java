@@ -94,8 +94,7 @@ public class BleFragment extends Fragment  {
         mContext = getActivity();
         mActivityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         mPackageManager =  mContext.getPackageManager();
-        rootView = inflater.inflate(
-                R.layout.ble_fragment, container, false);
+        rootView = inflater.inflate(R.layout.ble_fragment, container, false);
         hander = new Handler();
         return rootView;
     }
@@ -103,7 +102,6 @@ public class BleFragment extends Fragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        System.out.println("-------------->onRefresh");
     }
 
     @Override
@@ -112,7 +110,6 @@ public class BleFragment extends Fragment  {
     }
 
     public void onRefresh() {
-        System.out.println("-------------->onRefresh");
         // Prepare list view and initiate scanning
         if (adapter != null) {
             adapter.clear();
@@ -174,7 +171,6 @@ public class BleFragment extends Fragment  {
     private void initShow() {
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(llm);
-
         adapter = new DevicesAdapter(list, mContext);
         recyclerView.setAdapter(adapter);
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
@@ -200,19 +196,16 @@ public class BleFragment extends Fragment  {
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        System.out.println("-------------->onActivityCreated");
 
     }
 
     public void onStart() {
         super.onStart();
-        System.out.println("RunningAppFragment-------------->onActivityCreated");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("RunningAppFragment-------------->onResume");
         //如果有连接先关闭连接
         disconnectDevice();
     }
@@ -220,30 +213,25 @@ public class BleFragment extends Fragment  {
     @Override
     public void onPause() {
         super.onPause();
-        System.out.println("RunningAppFragment-------------->onPause");
     }
 
     @Override
     public void onStop() {
-        System.out.println("RunningAppFragment-------------->onStop");
         super.onStop();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        System.out.println("RunningAppFragment-------------->onDestroyView");
     }
 
     @Override
     public void onDestroy() {
-        System.out.println("-------------->onDestroyView");
         super.onDestroy();
     }
 
     @Override
     public void onDetach() {
-        System.out.println("-------------->onDestroyView");
         super.onDetach();
     }
 

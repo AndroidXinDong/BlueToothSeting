@@ -13,10 +13,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
-import androidx.annotation.IntDef;
-import androidx.annotation.Nullable;
-
-import com.usr.usrsimplebleassistent.MyApplication;
+import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.Utils.ChangeCharset;
 import com.usr.usrsimplebleassistent.Utils.Utils;
 

@@ -27,7 +27,7 @@ public class MyBaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_36dp);
+//        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_36dp);
         if (Build.VERSION.SDK_INT >= 23) {
             toolbar.setTitleTextColor(getColor(android.R.color.white));
         } else {

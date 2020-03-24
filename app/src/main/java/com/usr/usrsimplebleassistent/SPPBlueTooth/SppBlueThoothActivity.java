@@ -23,7 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.usr.usrsimplebleassistent.BlueToothLeService.SppConnectService;
-import com.usr.usrsimplebleassistent.MyApplication;
+import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.R;
 import com.usr.usrsimplebleassistent.Interface.Initialize;
 import com.usr.usrsimplebleassistent.Utils.Utils;

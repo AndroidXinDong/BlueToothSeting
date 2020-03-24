@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
 import com.usr.usrsimplebleassistent.adapter.CharacteristicsAdapter;
+import com.usr.usrsimplebleassistent.application.MyApplication;
 
 import java.util.ArrayList;
 import java.util.List;

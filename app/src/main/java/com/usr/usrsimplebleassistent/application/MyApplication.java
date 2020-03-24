@@ -1,4 +1,4 @@
-package com.usr.usrsimplebleassistent;
+package com.usr.usrsimplebleassistent.application;
 
 import android.app.Application;
 import android.bluetooth.BluetoothGattCharacteristic;

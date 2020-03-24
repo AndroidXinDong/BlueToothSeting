@@ -38,6 +38,7 @@ import com.usr.usrsimplebleassistent.Utils.GattAttributes;
 import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.adapter.MessagesAdapter;
 import com.usr.usrsimplebleassistent.adapter.OptionsSelectAdapter;
+import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.Message;
 import com.usr.usrsimplebleassistent.bean.Option;
 import com.usr.usrsimplebleassistent.views.OptionsMenuManager;

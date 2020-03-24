@@ -1,5 +1,6 @@
 package com.usr.usrsimplebleassistent;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -62,8 +63,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     private RadioGroup rgTabButtons;
     private int mCurrentFragment;
     private String[] fragmetns = new String[]{
-            BleFragment.class.getName(),
-            SppFragment.class.getName()};
+            BleFragment.class.getName(),};
     private MDevice mDevice;
     private String mode;
     /**
@@ -135,6 +135,15 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // Android M Permission check
+            if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE, Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE},
+                        1);
+            }
+        }
         //必须调用，其在setContentView后面调用
         bindToolBar();
         //标题栏
@@ -299,13 +308,13 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      */
     private void initView() {
         // 获得ViewPager
-        vpContainer = (ViewPager) findViewById(R.id.vpContainer);
-        revealSearchView = (RevealSearchView) findViewById(R.id.realsearchiew);
-        revealBackgroundView = (RevealBackgroundView) findViewById(R.id.reveal_background_view);
-        tvSearchDeviceCount = (TextView) findViewById(R.id.tv_search_device_count);
-        rlSearchInfo = (RelativeLayout) findViewById(R.id.rl_search_info);
-        fabSearch = (FloatingActionButton) findViewById(R.id.fab_search);
-        stopSearching = (Button) findViewById(R.id.btn_stop_searching);
+        vpContainer =  findViewById(R.id.vpContainer);
+        revealSearchView =  findViewById(R.id.realsearchiew);
+        revealBackgroundView =  findViewById(R.id.reveal_background_view);
+        tvSearchDeviceCount =  findViewById(R.id.tv_search_device_count);
+        rlSearchInfo =  findViewById(R.id.rl_search_info);
+        fabSearch =  findViewById(R.id.fab_search);
+        stopSearching =  findViewById(R.id.btn_stop_searching);
     }
 
     /**
@@ -340,7 +349,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
             public void onItemClick(View itemView, int position) {
                 if (!scaning) {
                     showProgressDialog();
-//                    hander.postDelayed(dismssDialogRunnable, 20000);
                     connectDevice(list.get(position).getDevice());
                 }
             }
@@ -591,14 +599,14 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
                     System.out.println(mode1);
                     new SppFragment().onPause();
                     break;
-                case R.id.rbRunningService:
-                    checkedItem = 1;
-                    editor.putString("mode", "SPP");
-                    editor.commit();
-                    String mode = mSharedPreferences.getString("mode", "");
-                    System.out.println(mode);
-                    new BleFragment().onPause();
-                    break;
+//                case R.id.rbRunningService:
+//                    checkedItem = 1;
+//                    editor.putString("mode", "SPP");
+//                    editor.commit();
+//                    String mode = mSharedPreferences.getString("mode", "");
+//                    System.out.println(mode);
+//                    new BleFragment().onPause();
+//                    break;
             }
             vpContainer.setCurrentItem(checkedItem);
             mCurrentFragment = checkedItem;

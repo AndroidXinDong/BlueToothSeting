@@ -7,11 +7,11 @@
             android:id="@+id/menu_firmware"
             android:title="@string/menu_firmware"
             app:showAsAction="always"/>-->
-    <item
-        android:id="@+id/menu_usr"
-        android:icon="@mipmap/update"
-        android:title="@string/menu_usr"
-        app:showAsAction="always"/>
+<!--    <item-->
+<!--        android:id="@+id/menu_usr"-->
+<!--        android:icon="@mipmap/update"-->
+<!--        android:title="@string/menu_usr"-->
+<!--        app:showAsAction="always"/>-->
     <item
         android:id="@+id/menu_share"
         android:icon="@mipmap/ic_share_white_36dp"

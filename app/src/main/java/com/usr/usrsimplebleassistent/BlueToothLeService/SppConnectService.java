@@ -1,14 +1,17 @@
 package com.usr.usrsimplebleassistent.BlueToothLeService;
 
+import android.app.AlertDialog;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
@@ -30,7 +33,7 @@ import java.util.UUID;
 public class SppConnectService extends Service {
 
 
-    private final static String MY_UUID = "00001101-0000-1000-8000-00805F9B34FB";   //SPP服务UUID号
+    private final static String MY_UUID = "00001105-0000-1000-8000-00805f9B34FB";   //SPP服务UUID号
     private final static String CONNECTSUCCEED = "CONNECTSUCCEED";   //SPP服务UUID号
     private final static String CONNECTDEFEATED = "CONNECTDEFEATED";   //SPP服务UUID号
     private final static String MESSAGE = "message";   //SPP服务UUID号
@@ -56,12 +59,13 @@ public class SppConnectService extends Service {
     private String fmsg = "";    //保存用数据缓存
     private int smsglength = 0;
     boolean bThread = false;
-    private BluetoothAdapter _bluetooth = BluetoothAdapter.getDefaultAdapter();    //获取本地蓝牙适配器，即蓝牙设备
+    private BluetoothAdapter _bluetooth =null;    //获取本地蓝牙适配器，即蓝牙设备
     private String address1;
     private MyBinder mBinder = new MyBinder();
     private Intent intent2 = new Intent();
     private Bundle bundle = new Bundle();
     MyApplication application;
+    private String TAG = "Tag";
 
     //onBind
     public IBinder onBind(Intent intent) {
@@ -88,44 +92,75 @@ public class SppConnectService extends Service {
     public void onCreate() {
         System.out.println("SppConnectService生命周期之-----------onCreate");
         application = (MyApplication) SppConnectService.this.getApplication();
-
+        initBluetooth();
         super.onCreate();
     }
+    private void initBluetooth() {
+        _bluetooth = BluetoothAdapter.getDefaultAdapter();
+        if (_bluetooth != null) {
+            //确认开启蓝牙
+            if (!_bluetooth.isEnabled()) {
+                //请求用户开启
+                Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 
+                //使蓝牙设备可见，方便配对
+                Intent in = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+//                20 为蓝牙设备可见时间
+                in.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 20);
+                startActivity(in);
+                //直接开启，不经过提示
+                _bluetooth.enable();
+            }
+        } else {   //Device does not support Bluetooth
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle("没有蓝牙设备");
+            dialog.setMessage("你的设备不支持蓝牙, 请更换设备");
+            dialog.setNegativeButton("取消",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+            dialog.setCancelable(false);
+            dialog.show();
+        }
+    }
     //onStartCommand
     public int onStartCommand(Intent intent, int flags, int startId) {
-        System.out.println("SppConnectService生命周期之-----------onStartCommand");
-        address1 = intent.getStringExtra("设备地址");
-        if (address1 == null) {
-            System.out.println("sadhakslhdjkahdkjahkjsdajkdkjadjhakj");
-        }
-
+        address1 = intent.getStringExtra("address");
+        Log.i(TAG, "address1: "+address1);
         new Thread() {
             @Override
             public void run() {
                 Intent intent1 = new Intent();
-                super.run();
                 //这里是 常规的蓝牙连接   ；类是BluetoothSocket
                 // 得到蓝牙设备句柄
-                _device = _bluetooth.getRemoteDevice(address1);
-                // 用服务号得到socket
                 try {
+                    _device = _bluetooth.getRemoteDevice(address1);
+                // 用服务号得到socket
                     _socket = _device.createRfcommSocketToServiceRecord(UUID.fromString(MY_UUID));
                     _socket.connect();
-                    System.out.println("connect chenggong");
-                    intent1.setAction(CONNECTSUCCEED);
-                    //打开接收线程
-                    try {
-                        is = _socket.getInputStream();   //得到蓝牙数据输入流
-                    } catch (IOException e) {
-                        System.out.println("接收数据失败");
+                    boolean connected = _socket.isConnected();
+                    if (connected){
+                        intent1.setAction(CONNECTSUCCEED);
+                        //打开接收线程
+                        try {
+                            is = _socket.getInputStream();   //得到蓝牙数据输入流
+                        } catch (IOException e) {
+                            Log.i(TAG, "接收数据失败: ");
+                        }
+                        if (bThread == false) {
+                            ReadThread.start();
+                            bThread = true;
+                        } else {
+                            bRun = true;
+                        }
+                    }else {
+                        intent1.setAction(CONNECTDEFEATED);
+                        Log.i(TAG, "连接失败");
                     }
-                    if (bThread == false) {
-                        ReadThread.start();
-                        bThread = true;
-                    } else {
-                        bRun = true;
-                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                     try {
@@ -133,12 +168,12 @@ public class SppConnectService extends Service {
                         _socket = null;
                     } catch (IOException e1) {
                         intent1.setAction(CONNECTDEFEATED);
-                        System.out.println("真遗憾！连接失败");
-                        e1.printStackTrace();
+                        Log.i(TAG, "run: "+e.getMessage());
+
                     }
                     intent1.setAction(CONNECTDEFEATED);
                     sendBroadcast(intent1);
-                    System.out.println("真遗憾！连接失败");
+                    Log.i(TAG, "run: 真遗憾！连接失败"+e.getMessage());
                 } finally {
                     sendBroadcast(intent1);
                 }
@@ -149,7 +184,7 @@ public class SppConnectService extends Service {
 
     //onDestroy
     public void onDestroy() {
-        System.out.println("SppConnectService生命周期之-----------onDestroy");
+
         super.onDestroy();
     }
 

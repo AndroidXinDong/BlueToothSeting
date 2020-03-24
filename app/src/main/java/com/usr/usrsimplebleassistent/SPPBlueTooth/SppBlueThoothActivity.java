@@ -97,7 +97,7 @@ public class SppBlueThoothActivity extends Activity implements View.OnClickListe
         initEvent();
         initParm();
         Intent intent = new Intent(this, SppConnectService.class);
-        intent.putExtra("设备地址", getIntent().getStringExtra("设备地址"));
+        intent.putExtra("address", getIntent().getStringExtra("address"));
         bindService(intent, serviceConnection, BIND_AUTO_CREATE);
         initBroadcast();
         timeMillis = System.currentTimeMillis();

@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,7 +46,7 @@ public class SppFragment extends Fragment {
     private Bundle bundle = new Bundle();
     /***************************************************************************************************************/
     // 返回时数据标签
-    public static String EXTRA_DEVICE_ADDRESS = "设备地址";
+    public static String EXTRA_DEVICE_ADDRESS = "address";
     private final static String CONNECTSUCCEED = "CONNECTSUCCEED";   //SPP服务UUID号
     private final static String CONNECTDEFEATED = "CONNECTDEFEATED";   //SPP服务UUID号
     private MaterialDialog progressDialog;
@@ -61,6 +63,7 @@ public class SppFragment extends Fragment {
     MDevice mDevice = new MDevice();
     private Context mContext;
     ConnnectBroadcastReceiver connnectBroadcastReceiver;
+    private String TAG = "Tag";
 
     //onCreateView
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -107,7 +110,7 @@ public class SppFragment extends Fragment {
                 String address1 = list.get(position).getDevice().getAddress();
                 //得到数量
                 int itemCount = adapter.getItemCount();
-
+                Log.i(TAG, "onItemClick: "+address1);
                 //两秒后关闭连接动画
                 Intent intent1 = new Intent(getActivity(), SppConnectService.class);
                 //启动链接服务

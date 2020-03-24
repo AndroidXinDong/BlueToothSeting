@@ -55,7 +55,6 @@ public class BleFragment extends Fragment  {
     private MaterialDialog progressDialog;
     private RevealSearchView revealSearchView;
     private RevealBackgroundView revealBackgroundView;
-    private int[] fabStartPosition;
     private TextView tvSearchDeviceCount;
     private RelativeLayout rlSearchInfo;
     private boolean scaning;
@@ -94,96 +93,12 @@ public class BleFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = getActivity();
         mActivityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        mPackageManager = (PackageManager) mContext.getPackageManager();
+        mPackageManager =  mContext.getPackageManager();
         rootView = inflater.inflate(
                 R.layout.ble_fragment, container, false);
         hander = new Handler();
-       // initView();
-        //initShow();
-    /*    searchDevice = (FloatingActionButton) getActivity().findViewById(R.id.fab_search);
-        searchDevice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences mSharedPreferences = getActivity().getSharedPreferences("mode", MainActivity.MODE_PRIVATE);
-                mode = mSharedPreferences.getString("mode", "");
-                if (mode.equals("BLE")) {
-                    scaning = true;
-                    //如果有连接先关闭连接
-                    disconnectDevice();
-                    searchAnimate();
-
-                } else {
-                }
-            }
-        });*/
-
-      /*  stopSearching = (Button) getActivity().findViewById(R.id.btn_stop_searching);
-        stopSearching.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scaning = false;
-                stopScan();
-            }
-        });*/
-
-       /* revealSearchView.setOnStateChangeListener(new RevealSearchView.OnStateChangeListener() {
-            @Override
-            public void onStateChange(int state) {
-                if (state == RevealSearchView.STATE_FINISHED) {
-                    revealSearchView.setVisibility(View.GONE);
-                    revealBackgroundView.endFromEdge();
-                }
-            }
-        });
-
-        revealBackgroundView.setOnStateChangeListener(new RevealBackgroundView.OnStateChangeListener() {
-            @Override
-            public void onStateChange(int state) {
-
-                if (state == RevealBackgroundView.STATE_FINISHED) {
-                    revealSearchView.setVisibility(View.VISIBLE);
-                    revealSearchView.startFromLocation(fabStartPosition);
-
-                    tvSearchDeviceCount.setText(getString(R.string.search_device_count, 0));
-                    rlSearchInfo.setVisibility(View.VISIBLE);
-                    rlSearchInfo.setTranslationY(Utils.dpToPx(70));
-                    rlSearchInfo.setAlpha(0);
-                    AnimateUtils.translationY(rlSearchInfo, 0, 300, 0);
-                    AnimateUtils.alpha(rlSearchInfo, 1.0f, 300, 0);
-
-                    onRefresh();
-                }
-
-                if (state == RevealBackgroundView.STATE_END_FINISHED) {
-                    revealBackgroundView.setVisibility(View.GONE);
-                    rlSearchInfo.setVisibility(View.GONE);
-                    scaning = false;
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        });
-*/
-
         return rootView;
     }
-
-    /*private void searchAnimate() {
-        revealBackgroundView.setVisibility(View.VISIBLE);
-
-        int[] position1 = new int[2];
-        fabSearch.getLocationOnScreen(position1);
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            fabStartPosition = new int[]{(position1[0] + fabSearch.getWidth() / 2),
-                    (position1[1] + fabSearch.getHeight() / 4)};
-        } else {
-            fabStartPosition = new int[]{(position1[0] + fabSearch.getWidth() / 2),
-                    position1[1]};
-        }
-
-        revealBackgroundView.startFromLocation(fabStartPosition);
-    }*/
-
 
     @Override
     public void onAttach(Context context) {
@@ -254,14 +169,7 @@ public class BleFragment extends Fragment  {
         hander.removeCallbacks(stopScanRunnable);
     }
 
-    private void initView() {
-       // recyclerView = (RecyclerView) rootView.findViewById(R.id.recycleview);
-        revealSearchView = (RevealSearchView) getActivity().findViewById(R.id.realsearchiew);
-        revealBackgroundView = (RevealBackgroundView) getActivity().findViewById(R.id.reveal_background_view);
-        tvSearchDeviceCount = (TextView) getActivity().findViewById(R.id.tv_search_device_count);
-        rlSearchInfo = (RelativeLayout) getActivity().findViewById(R.id.rl_search_info);
-        fabSearch = (FloatingActionButton) getActivity().findViewById(R.id.fab_search);
-    }
+
 
     private void initShow() {
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
@@ -285,29 +193,8 @@ public class BleFragment extends Fragment  {
 
             }
         });
-/*
-        adapter.setOnItemClickListener(new DevicesAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, int position) {
-                if (!scaning) {
-                    isShowingDialog = true;
-                    showProgressDialog();
-                    hander.postDelayed(dismssDialogRunnable, 20000);
-                    connectDevice(list.get(position).getDevice());
-                }
-            }
-        });*/
-
 
         checkBleSupportAndInitialize();
-
-        /*//注册广播接收者，接收消息
-        mContext.registerReceiver(mGattUpdateReceiver, Utils.makeGattUpdateIntentFilter());
-
-        Intent gattServiceIntent = new Intent(mContext.getApplicationContext(),
-                BluetoothLeService.class);
-        mContext.startService(gattServiceIntent);*/
-
 
     }
 
@@ -352,7 +239,6 @@ public class BleFragment extends Fragment  {
     public void onDestroy() {
         System.out.println("-------------->onDestroyView");
         super.onDestroy();
-        //getActivity().unregisterReceiver(mGattUpdateReceiver);
     }
 
     @Override
@@ -412,96 +298,6 @@ public class BleFragment extends Fragment  {
             mBluetoothAdapter.enable();
         }
     }
-
-
- /*   *//**
-     * BroadcastReceiver for receiving the GATT communication status
-     *//*
-    private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            final String action = intent.getAction();
-            // Status received when connected to GATT Server
-            //连接成功
-            if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
-                System.out.println("--------------------->连接成功");
-                //搜索服务
-                BluetoothLeService.discoverServices();
-            }
-            // Services Discovered from GATT Server
-            else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED
-                    .equals(action)) {
-                hander.removeCallbacks(dismssDialogRunnable);
-                progressDialog.dismiss();
-                prepareGattServices(BluetoothLeService.getSupportedGattServices());
-            } else if (action.equals(BluetoothLeService.ACTION_GATT_DISCONNECTED)) {
-                progressDialog.dismiss();
-                //connect break (连接断开)
-                showDialog(getString(R.string.conn_disconnected_home));
-            }
-
-        }
-    };
-
-    private void showDialog(String info) {
-        if (!isShowingDialog)
-            return;
-        if (alarmDialog != null)
-            return;
-        alarmDialog = new MaterialDialog(mContext);
-        alarmDialog.setTitle(getString(R.string.alert))
-                .setMessage(info)
-                .setPositiveButton(R.string.ok, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alarmDialog.dismiss();
-                        alarmDialog = null;
-                    }
-                });
-        alarmDialog.show();
-    }
-
-    *//**
-     * Getting the GATT Services
-     * 获得服务
-     *
-     * @param gattServices
-     *//*
-    private void prepareGattServices(List<BluetoothGattService> gattServices) {
-        prepareData(gattServices);
-
-        Intent intent = new Intent(mContext, ServicesActivity.class);
-        intent.putExtra("dev_name", currentDevName);
-        intent.putExtra("dev_mac", currentDevAddress);
-        startActivity(intent);
-        getActivity().overridePendingTransition(0, 0);
-    }
-
-    *//**
-     * Prepare GATTServices data.
-     *
-     * @param
-     *//*
-    private void prepareData(List<BluetoothGattService> gattServices) {
-
-        if (gattServices == null)
-            return;
-
-        List<MService> list = new ArrayList<>();
-
-        for (BluetoothGattService gattService : gattServices) {
-            String uuid = gattService.getUuid().toString();
-            if (uuid.equals(GattAttributes.GENERIC_ACCESS_SERVICE) || uuid.equals(GattAttributes.GENERIC_ATTRIBUTE_SERVICE))
-                continue;
-            String name = GattAttributes.lookup(gattService.getUuid().toString(), "UnkonwService");
-            MService mService = new MService(name, gattService);
-            list.add(mService);
-        }
-
-        ((MyApplication) getActivity().getApplication()).setServices(list);
-    }
-*/
-
 
 
     public interface OnRunningAppRefreshListener {

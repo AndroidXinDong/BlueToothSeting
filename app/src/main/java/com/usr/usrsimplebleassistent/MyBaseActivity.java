@@ -25,7 +25,7 @@ public class MyBaseActivity extends AppCompatActivity {
 
     protected void bindToolBar() {
         ButterKnife.bind(this);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_36dp);
         if (Build.VERSION.SDK_INT >= 23) {
@@ -48,15 +48,15 @@ public class MyBaseActivity extends AppCompatActivity {
             case R.id.menu_share:
                 share();
                 break;
-            case R.id.menu_usr:
-                System.out.println("--------------->检查更新");
-                Intent intent = new Intent(this, UpdateActivity.class);
-                startActivity(intent);
-                break;
-            case android.R.id.home:
-                System.out.println("--------------->home");
-                menuHomeClick();
-                break;
+//            case R.id.menu_usr:
+//                System.out.println("--------------->检查更新");
+//                Intent intent = new Intent(this, UpdateActivity.class);
+//                startActivity(intent);
+//                break;
+//            case android.R.id.home:
+//                System.out.println("--------------->home");
+//                menuHomeClick();
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -67,7 +67,6 @@ public class MyBaseActivity extends AppCompatActivity {
         shareIntent.putExtra(Intent.EXTRA_TITLE, getString(R.string.app_name));
         shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text));
         shareIntent.setType("text/plain");
-
         Intent chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_title));
         if (chooserIntent == null) {
             return;

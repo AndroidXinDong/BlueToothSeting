@@ -230,14 +230,21 @@ public class Utils{
 */
 
     public static String ByteArraytoHex(byte[] bytes) {
-        StringBuilder sb = new StringBuilder();
-        for (byte b : bytes) {
-            String bs = String.format("%02X ", b);
-            sb.append(bs);
+//        StringBuilder sb = new StringBuilder();
+//        for (byte b : bytes) {
+//            String bs = String.format("%02X ", b);
+//            sb.append(bs);
+//        }
+        String result = "";
+        for (int i = 0; i < bytes.length; i++) {
+            String hexString = Integer.toHexString(bytes[i] & 0xFF);
+            if (hexString.length() == 1) {
+                hexString = '0' + hexString;
+            }
+            result += hexString.toUpperCase();
         }
-
-
-        return sb.toString();
+//        return sb.toString();
+        return result;
     }
 
 
@@ -299,18 +306,15 @@ public class Utils{
     }
 
     public static String byteToASCII(byte[] array) {
-
         StringBuffer sb = new StringBuffer();
         for (byte byteChar : array) {
             if (byteChar >= 32 && byteChar < 127) {
                 sb.append(String.format("%c", byteChar));
             } else {
                 sb.append(String.format("%d ", byteChar & 0xFF)); // to convert
-                // >127 to
-                // positive
-                // value
             }
         }
+
         return sb.toString();
     }
 

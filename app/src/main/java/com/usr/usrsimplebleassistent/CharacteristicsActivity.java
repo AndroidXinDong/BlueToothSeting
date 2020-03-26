@@ -29,10 +29,8 @@ public class CharacteristicsActivity extends MyBaseActivity {
     ListView lvCharacteristics;
     @BindView(R.id.view_shadow)
     View viewShadow;
-
     private final List<BluetoothGattCharacteristic> list = new ArrayList<>();
     private CharacteristicsAdapter adapter;
-
     private MyApplication myApplication;
 
     @Override
@@ -40,19 +38,15 @@ public class CharacteristicsActivity extends MyBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_characteristics);
         bindToolBar();
-
         myApplication = (MyApplication) getApplication();
-
         List<BluetoothGattCharacteristic> characteristics = ((MyApplication)getApplication()).getCharacteristics();
         list.addAll(characteristics);
 
         //we create a virtual BluetoothGattCharacteristic just for debug
         if (getIntent().getBooleanExtra("is_usr_service",false)){
-            BluetoothGattCharacteristic usrVirtualCharacteristic =
-                    new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE),-1,-1);
+            BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE),-1,-1);
             list.add(usrVirtualCharacteristic);
         }
-
 
         adapter = new CharacteristicsAdapter(this,list);
         lvCharacteristics.setAdapter(adapter);

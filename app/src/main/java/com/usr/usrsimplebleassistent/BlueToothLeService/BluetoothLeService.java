@@ -110,9 +110,7 @@ public class BluetoothLeService extends Service {
      */
     private static final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
-        public void onConnectionStateChange(BluetoothGatt gatt, int status,
-                                            int newState) {
-
+        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
             String intentAction;
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 // GATT Server connected
@@ -504,8 +502,6 @@ public class BluetoothLeService extends Service {
 
         @Override
         public void onMtuChanged(BluetoothGatt gatt, int mtu, int status) {
-//            super.onMtuChanged(gatt, mtu, status);
-
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 Log.i(TAG, "onMtuChanged: 设置成功");
             }
@@ -830,15 +826,14 @@ public class BluetoothLeService extends Service {
      * @param byteArray
      */
 
-    public static void writeCharacteristicGattDb(
-            BluetoothGattCharacteristic characteristic, byte[] byteArray) {
-
+    public static void writeCharacteristicGattDb(BluetoothGattCharacteristic characteristic, byte[] byteArray) {
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             return;
         } else {
             byte[] valueByte = byteArray;
             characteristic.setValue(valueByte);
-            mBluetoothGatt.writeCharacteristic(characteristic);
+            boolean b = mBluetoothGatt.writeCharacteristic(characteristic);
+            Log.i(TAG, "writeCharacteristicGattDb: "+b);
         }
     }
 

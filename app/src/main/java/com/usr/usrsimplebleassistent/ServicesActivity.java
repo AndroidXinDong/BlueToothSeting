@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
@@ -51,6 +52,7 @@ public class ServicesActivity extends MyBaseActivity {
 
     private ServicesAdapter adapter;
     private MyApplication myApplication;
+    private String TAG = "Tag";
 
 
     @Override
@@ -68,22 +70,16 @@ public class ServicesActivity extends MyBaseActivity {
         tvServiceName.setText("NAME:"+intent.getStringExtra("dev_name"));
         tvServiceMac.setText("MAC:"+intent.getStringExtra("dev_mac"));
         tvServiceCount.setText("SERVICES:"+String.valueOf(list.size()));
-
-
         lvServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MService mService = list.get(position);
                 BluetoothGattService service = mService.getService();
-
-                System.out.println("service---------------->"+service.getUuid().toString());
-
+                Log.i(TAG, "service---------------->"+service.getUuid().toString());
                 myApplication.setCharacteristics(service.getCharacteristics());
-
                 Intent intent = new Intent(ServicesActivity.this, CharacteristicsActivity.class);
                 if (service.getUuid().toString().equals(GattAttributes.USR_SERVICE)) {
                     intent.putExtra("is_usr_service", true);
-
                     //这里为了方便暂时直接用Application serviceType 来标记当前的服务，应该是和上面的代码合并
                     MyApplication.serviceType = MyApplication.SERVICE_TYPE.TYPE_USR_DEBUG;
                 }

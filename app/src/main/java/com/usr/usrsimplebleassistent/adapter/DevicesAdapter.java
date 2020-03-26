@@ -13,8 +13,6 @@ import com.usr.usrsimplebleassistent.R;
 import com.usr.usrsimplebleassistent.bean.MDevice;
 
 import java.util.List;
-
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

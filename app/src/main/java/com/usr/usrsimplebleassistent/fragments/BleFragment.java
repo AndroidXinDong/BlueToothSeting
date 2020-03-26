@@ -22,15 +22,12 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
 import com.usr.usrsimplebleassistent.R;
 import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
 import com.usr.usrsimplebleassistent.bean.MDevice;
 import com.usr.usrsimplebleassistent.views.RevealBackgroundView;
 import com.usr.usrsimplebleassistent.views.RevealSearchView;
-
 import java.util.ArrayList;
 import java.util.List;
 

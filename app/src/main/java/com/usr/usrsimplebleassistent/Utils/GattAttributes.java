@@ -304,7 +304,6 @@ public class GattAttributes {
     private static HashMap<String, String> descriptorAttributes = new HashMap<String, String>();
 
     static {
-
         // Services.
         attributes.put(USR_SERVICE, "USR Service");
         attributes.put(HEART_RATE_SERVICE, "Heart Rate Service");

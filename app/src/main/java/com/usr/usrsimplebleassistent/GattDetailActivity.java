@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -58,7 +57,6 @@ public class GattDetailActivity extends MyBaseActivity {
     private BluetoothGattCharacteristic notifyCharacteristic;
     private BluetoothGattCharacteristic readCharacteristic;
     private BluetoothGattCharacteristic writeCharacteristic;
-    private BluetoothGattCharacteristic indicateCharacteristic;
     private MyApplication myApplication;
     private String properties;
     private List<Option> options = new ArrayList<>();
@@ -146,7 +144,6 @@ public class GattDetailActivity extends MyBaseActivity {
                     notifyCharacteristic = c;
                     continue;
                 }
-
                 if (Utils.getPorperties(this,c).equals("Write")){
                     writeCharacteristic = c;
                     continue;
@@ -159,7 +156,6 @@ public class GattDetailActivity extends MyBaseActivity {
             notifyCharacteristic = characteristic;
             readCharacteristic = characteristic;
             writeCharacteristic = characteristic;
-            indicateCharacteristic = characteristic;
         }
     }
 
@@ -340,14 +336,12 @@ public class GattDetailActivity extends MyBaseActivity {
         return false;
     }
 
-
     /**
      * Preparing Broadcast receiver to broadcast read characteristics
      *
      * @param characteristic
      */
-    void prepareBroadcastDataRead(
-            BluetoothGattCharacteristic characteristic) {
+    void prepareBroadcastDataRead(BluetoothGattCharacteristic characteristic) {
         final int charaProp = characteristic.getProperties();
         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
             BluetoothLeService.readCharacteristic(characteristic);
@@ -359,38 +353,10 @@ public class GattDetailActivity extends MyBaseActivity {
      *
      * @param characteristic
      */
-    void prepareBroadcastDataNotify(
-            BluetoothGattCharacteristic characteristic) {
+    void prepareBroadcastDataNotify(BluetoothGattCharacteristic characteristic) {
         final int charaProp = characteristic.getProperties();
         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
             BluetoothLeService.setCharacteristicNotification(characteristic, true);
-        }
-
-    }
-
-    /**
-     * Stopping Broadcast receiver to broadcast notify characteristics
-     *
-     * @param characteristic
-     */
-    void stopBroadcastDataNotify(BluetoothGattCharacteristic characteristic) {
-        final int charaProp = characteristic.getProperties();
-        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
-            BluetoothLeService.setCharacteristicNotification(characteristic, false);
-        }
-    }
-
-
-
-    /**
-     * Stopping Broadcast receiver to broadcast indicate characteristics
-     *
-     * @param characteristic
-     */
-    void stopBroadcastDataIndicate(BluetoothGattCharacteristic characteristic) {
-        final int charaProp = characteristic.getProperties();
-        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_INDICATE) > 0) {
-            BluetoothLeService.setCharacteristicIndication(characteristic, false);
         }
 
     }

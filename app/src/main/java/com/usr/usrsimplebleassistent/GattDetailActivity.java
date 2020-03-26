@@ -1,35 +1,22 @@
 package com.usr.usrsimplebleassistent;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
@@ -38,14 +25,9 @@ import com.usr.usrsimplebleassistent.Utils.Constants;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
 import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.adapter.MessagesAdapter;
-import com.usr.usrsimplebleassistent.adapter.OptionsSelectAdapter;
 import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.Message;
 import com.usr.usrsimplebleassistent.bean.Option;
-import com.usr.usrsimplebleassistent.views.OptionsMenuManager;
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,28 +40,18 @@ import me.drakeet.materialdialog.MaterialDialog;
 
 public class GattDetailActivity extends MyBaseActivity {
     private final String TAG = "Tag";
-    @BindView(R.id.btn_options)
-    ImageButton btnOptions;
     @BindView(R.id.btn_option)
     Button btnOption;
     @BindView(R.id.lv_msg)
     RecyclerView rvMsg;
-    @BindView(R.id.tv_properties)
-    TextView tvProperties;
     @BindView(R.id.et_write)
     EditText etWrite;
     @BindView(R.id.btn_send)
     Button btnSend;
     @BindView(R.id.rl_write)
     RelativeLayout rlWrite;
-    @BindView(R.id.rl_content)
-    RelativeLayout rlContent;
     @BindView(R.id.rl_bottom)
     RelativeLayout rlBottom;
-    @BindView(R.id.view_bottom_shadow)
-    View bottomShadow;
-    @BindView(R.id.view_top_shadow)
-    View topShadow;
 
     private final List<Message> list = new ArrayList<>();
     private MessagesAdapter adapter;
@@ -89,12 +61,10 @@ public class GattDetailActivity extends MyBaseActivity {
     private BluetoothGattCharacteristic indicateCharacteristic;
     private MyApplication myApplication;
     private String properties;
-    private OptionsMenuManager optionsMenuManager;
     private List<Option> options = new ArrayList<>();
     private Option currentOption;
     private boolean isHexSend;
     private boolean nofityEnable;
-    private boolean indicateEnable;
     private boolean isDebugMode;
 
 
@@ -124,14 +94,6 @@ public class GattDetailActivity extends MyBaseActivity {
                     }
                 }
             }
-            if (action.equals(BluetoothLeService.ACTION_GATT_DESCRIPTORWRITE_RESULT)){
-                if (extras.containsKey(Constants.EXTRA_DESCRIPTOR_WRITE_RESULT)){
-                    int status = extras.getInt(Constants.EXTRA_DESCRIPTOR_WRITE_RESULT);
-                    if (status != BluetoothGatt.GATT_SUCCESS){
-                        Snackbar.make(rlContent,R.string.option_fail,Snackbar.LENGTH_LONG).show();
-                    }
-                }
-            }
 
             //write characteristics succcess
             if (action.equals(BluetoothLeService.ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS)){
@@ -154,7 +116,6 @@ public class GattDetailActivity extends MyBaseActivity {
         ButterKnife.bind(this);
         bindToolBar();
         myApplication = (MyApplication) getApplication();
-        optionsMenuManager = OptionsMenuManager.getInstance();
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rvMsg.setLayoutManager(llm);
         adapter = new MessagesAdapter(this, list);
@@ -162,8 +123,6 @@ public class GattDetailActivity extends MyBaseActivity {
         initCharacteristics();
         initProperties();
         registerReceiver(mGattUpdateReceiver, Utils.makeGattUpdateIntentFilter());
-
-
 
         int sdkInt = Build.VERSION.SDK_INT;
         if (sdkInt>=21){
@@ -207,11 +166,8 @@ public class GattDetailActivity extends MyBaseActivity {
     private void initProperties() {
         if (TextUtils.isEmpty(properties))
             return;
-        tvProperties.setText(properties);
         String[] property = properties.split("&");
-
         if (property.length == 1) {
-            btnOptions.setVisibility(View.GONE);
             Option option = new Option(properties.trim(),Option.OPTIONS_MAP.get(properties.trim()));
             setOption(option);
         } else {
@@ -236,53 +192,19 @@ public class GattDetailActivity extends MyBaseActivity {
                     btnOption.setText(Option.NOTIFY);
                 else
                     btnOption.setText(Option.STOP_NOTIFY);
-                showViewIsEdit(false);
                 break;
-            case PROPERTY_READ:
-                btnOption.setText(Option.READ);
-                showViewIsEdit(false);
-                break;
-            case PROPERTY_INDICATE:
-                if (!indicateEnable)
-                   btnOption.setText(Option.INDICATE);
-                else
-                   btnOption.setText(Option.STOP_INDICATE);
-                showViewIsEdit(false);
-                break;
-            case PROPERTY_WRITE:
-                showViewIsEdit(true);
-                break;
-        }
-    }
 
-    private void showViewIsEdit(boolean isEdit){
-        if (isEdit){
-            btnOption.setVisibility(View.GONE);
-            rlWrite.setVisibility(View.VISIBLE);
-        }else {
-            btnOption.setVisibility(View.VISIBLE);
-            rlWrite.setVisibility(View.GONE);
         }
-    }
-
-    @OnClick(R.id.btn_options)
-    public void onOptionsClick() {
-        optionsMenuManager.toggleContextMenuFromView(options, btnOptions, new OptionsSelectAdapter.OptionsOnItemSelectedListener() {
-            @Override
-            public void onItemSelected(int position) {
-                setOption(options.get(position));
-            }
-        });
     }
 
     @OnClick(R.id.btn_option)
     public void onOptionClick() {
-        switch (currentOption.getPropertyType()){
+        Option.OPTION_PROPERTY propertyType = currentOption.getPropertyType();
+        switch (propertyType){
             case PROPERTY_NOTIFY:
                 notifyOption();
                 break;
             case PROPERTY_INDICATE:
-                indicateOption();
                 break;
             case PROPERTY_READ:
                 readOption();
@@ -298,36 +220,12 @@ public class GattDetailActivity extends MyBaseActivity {
     }
 
     private void notifyOption(){
-       if (nofityEnable){
-           nofityEnable = false;
-           btnOption.setText(Option.NOTIFY);
-           stopBroadcastDataNotify(notifyCharacteristic);
-           Message msg = new Message(Message.MESSAGE_TYPE.SEND,Option.STOP_NOTIFY);
-           notifyAdapter(msg);
-       }else {
            nofityEnable = true;
            btnOption.setText(Option.STOP_NOTIFY);
            prepareBroadcastDataNotify(notifyCharacteristic);
            Message msg = new Message(Message.MESSAGE_TYPE.SEND,Option.NOTIFY);
            notifyAdapter(msg);
        }
-    }
-
-    private void indicateOption(){
-        if (indicateEnable){
-            indicateEnable = false;
-            btnOption.setText(Option.INDICATE);
-            stopBroadcastDataIndicate(indicateCharacteristic);
-            Message msg = new Message(Message.MESSAGE_TYPE.SEND,Option.STOP_INDICATE);
-            notifyAdapter(msg);
-        }else {
-            nofityEnable = true;
-            btnOption.setText(Option.STOP_INDICATE);
-            prepareBroadcastDataIndicate(indicateCharacteristic);
-            Message msg = new Message(Message.MESSAGE_TYPE.SEND,Option.INDICATE);
-            notifyAdapter(msg);
-        }
-    }
 
     private void readOption(){
         Message msg = new Message(Message.MESSAGE_TYPE.SEND,Option.READ);
@@ -482,17 +380,7 @@ public class GattDetailActivity extends MyBaseActivity {
         }
     }
 
-    /**
-     * Preparing Broadcast receiver to broadcast indicate characteristics
-     *
-     * @param characteristic
-     */
-    void prepareBroadcastDataIndicate(BluetoothGattCharacteristic characteristic) {
-        final int charaProp = characteristic.getProperties();
-        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_INDICATE) > 0) {
-            BluetoothLeService.setCharacteristicIndication(characteristic, true);
-        }
-    }
+
 
     /**
      * Stopping Broadcast receiver to broadcast indicate characteristics
@@ -529,18 +417,11 @@ public class GattDetailActivity extends MyBaseActivity {
         dialog.show();
     }
 
-    private void stopNotifyOrIndicate(){
-        if (nofityEnable)
-            stopBroadcastDataNotify(notifyCharacteristic);
-        if (indicateEnable)
-            stopBroadcastDataIndicate(indicateCharacteristic);
-    }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopNotifyOrIndicate();
         unregisterReceiver(mGattUpdateReceiver);
     }
 }

@@ -52,13 +52,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/tag_running_app" />
-<!--            <RadioButton-->
-<!--                android:id="@+id/rbRunningService"-->
-<!--                style="@style/MainTags"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="@string/tag_running_service" />-->
         </RadioGroup>
         <androidx.viewpager.widget.ViewPager
             android:layout_marginTop="50dp"

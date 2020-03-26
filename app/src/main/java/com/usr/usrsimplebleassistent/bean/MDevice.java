@@ -10,7 +10,6 @@ public class MDevice {
     private int rssi;
 
     public MDevice(){
-
     }
 
     public BluetoothDevice getDevice() {

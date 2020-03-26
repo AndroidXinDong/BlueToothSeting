@@ -14,30 +14,17 @@
         android:fitsSystemWindows="true"
         android:titleTextColor="@android:color/white"
         android:background="#009688"
+        app:title="通讯界面"
+        app:titleTextColor="@color/white"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
     </androidx.appcompat.widget.Toolbar>
 
-
-    <RelativeLayout
-        android:id="@+id/rl_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lv_msg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
-
-
-        <TextView
-            android:id="@+id/tv_properties"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="@android:color/white"
-            android:background="#00796B"
-            android:text="Properties: Notify &amp; Write &amp; Read &amp; Indicate"
-            android:visibility="gone"/>
-
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
 
         <RelativeLayout
             android:id="@+id/rl_bottom"
@@ -49,42 +36,30 @@
             android:background="#009688">
 
 
-            <ImageButton
-                android:id="@+id/btn_options"
-                android:layout_width="50dp"
+            <Button
+                android:id="@+id/btn_option"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
-                android:src="@mipmap/ic_option_more"
-                android:background="@drawable/selector_btn_options"/>
-
+                android:textSize="18sp"
+                android:text="Notify"
+                android:textColor="@android:color/white"
+                />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
-                android:layout_alignRight="@id/btn_options"
+                android:layout_alignRight="@id/btn_option"
                 android:background="@android:color/white"
                 android:alpha="0.5"/>
-
-
-            <Button
-                android:id="@+id/btn_option"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="3dp"
-                android:textSize="18sp"
-                android:layout_toRightOf="@id/btn_options"
-                android:text="Notify"
-                android:textColor="@android:color/white"
-                android:background="@drawable/selector_btn_options"/>
-
 
             <RelativeLayout
                 android:id="@+id/rl_write"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:layout_toRightOf="@id/btn_options">
+                android:layout_toRightOf="@id/btn_option">
                 <Button
                     android:id="@+id/btn_send"
                     android:layout_width="wrap_content"
@@ -114,30 +89,4 @@
             </RelativeLayout>
 
         </RelativeLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lv_msg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/rl_bottom"
-            android:layout_below="@id/tv_properties"
-            />
-
-        <View
-            android:id="@+id/view_top_shadow"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@id/tv_properties"
-            android:background="@drawable/shape_shade_bottom" />
-
-        <View
-            android:id="@+id/view_bottom_shadow"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_alignBottom="@id/lv_msg"
-            android:alpha="0.3"
-            android:background="@drawable/shape_shade_top" />
-
-
-    </RelativeLayout>
 </LinearLayout>

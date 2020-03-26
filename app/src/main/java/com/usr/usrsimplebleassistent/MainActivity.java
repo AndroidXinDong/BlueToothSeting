@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
@@ -36,6 +37,7 @@ import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
 import com.usr.usrsimplebleassistent.Utils.AnimateUtils;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
 import com.usr.usrsimplebleassistent.Utils.Utils;
+import com.usr.usrsimplebleassistent.adapter.CharacteristicsAdapter;
 import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
 import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MDevice;
@@ -46,6 +48,7 @@ import com.usr.usrsimplebleassistent.views.RevealSearchView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 import butterknife.BindView;
@@ -81,7 +84,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     private String currentDevName;
 
     private MaterialDialog alarmDialog;
-
+    private MyApplication myApplication;
 
     //停止扫描
     private Runnable stopScanRunnable = new Runnable() {
@@ -124,7 +127,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         disconnectDevice();
     }
 
-
     /**
      * onCreate 入口
      *
@@ -143,6 +145,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
                         1);
             }
         }
+        myApplication = (MyApplication) getApplication();
         //必须调用，其在setContentView后面调用
         bindToolBar();
         //标题栏
@@ -635,14 +638,27 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      *
      * @param gattServices
      */
+    private final List<BluetoothGattCharacteristic> cList = new ArrayList<>();
     private void prepareGattServices(List<BluetoothGattService> gattServices) {
         prepareData(gattServices);
-
-        Intent intent = new Intent(this, ServicesActivity.class);
-        intent.putExtra("dev_name", currentDevName);
-        intent.putExtra("dev_mac", currentDevAddress);
+        List<MService> services = myApplication.getServices();
+        Intent intent = new Intent(this, GattDetailActivity.class);
+        if (services.size()>0){
+            MService mService = services.get(0);
+            BluetoothGattService service = mService.getService();
+            myApplication.setCharacteristics(service.getCharacteristics());
+                //这里为了方便暂时直接用Application serviceType 来标记当前的服务，应该是和上面的代码合并
+            MyApplication.serviceType = MyApplication.SERVICE_TYPE.TYPE_USR_DEBUG;
+            List<BluetoothGattCharacteristic> characteristics = myApplication.getCharacteristics();
+            cList.addAll(characteristics);
+            BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE),-1,-1);
+            cList.add(usrVirtualCharacteristic);
+            myApplication.setCharacteristic(cList.get(2));
+        }else {
+            Toast.makeText(myApplication, "未能获得通信服务", Toast.LENGTH_SHORT).show();
+        }
         startActivity(intent);
-        overridePendingTransition(0, 0);
+
     }
 
     /**

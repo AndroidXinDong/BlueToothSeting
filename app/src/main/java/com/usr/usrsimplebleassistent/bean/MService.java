@@ -9,7 +9,6 @@ public class MService {
     private String name;
     private BluetoothGattService service;
 
-
     public MService() {
     }
 

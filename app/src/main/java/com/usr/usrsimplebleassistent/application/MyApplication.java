@@ -8,9 +8,6 @@ import com.usr.usrsimplebleassistent.bean.MService;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by USR_LJQ on 2015-11-17.
- */
 public class MyApplication extends Application {
 
     private boolean clearflag;

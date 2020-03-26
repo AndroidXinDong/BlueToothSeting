@@ -41,7 +41,6 @@ import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MDevice;
 import com.usr.usrsimplebleassistent.bean.MService;
 import com.usr.usrsimplebleassistent.fragments.BleFragment;
-import com.usr.usrsimplebleassistent.fragments.SppFragment;
 import com.usr.usrsimplebleassistent.views.RevealBackgroundView;
 import com.usr.usrsimplebleassistent.views.RevealSearchView;
 
@@ -525,12 +524,9 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         ((RadioButton) rgTabButtons.getChildAt(0)).setChecked(true);
     }
 
-    /***/
+    @Override
     public void onRunningAppRefreshed() {
-        SppFragment fragment = (SppFragment) getSupportFragmentManager().getFragments().get(1);
-        if (fragment != null) {
-//             fragment.refresh();
-        }
+
     }
 
 
@@ -582,7 +578,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
                     editor.commit();
                     String mode1 = mSharedPreferences.getString("mode", "");
                     System.out.println(mode1);
-                    new SppFragment().onPause();
                     break;
             }
             vpContainer.setCurrentItem(checkedItem);

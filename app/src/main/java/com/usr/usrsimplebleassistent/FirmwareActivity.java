@@ -392,12 +392,6 @@ public class FirmwareActivity extends MyBaseActivity implements View.OnClickList
     private void prepareGattServices(List<BluetoothGattService> gattServices) {
         prepareData(gattServices);
 
-        Intent intent = new Intent(this, FirmwareUpdActivity.class);
-        intent.putExtra("dev_name", currentDevName);
-        intent.putExtra("dev_mac", currentDevAddress);
-        intent.putExtra("firmware", filePath);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
     }
 
 

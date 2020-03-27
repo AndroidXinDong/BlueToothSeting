@@ -23,6 +23,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -57,28 +59,18 @@ import me.drakeet.materialdialog.MaterialDialog;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MainActivity extends MyBaseActivity implements BleFragment.OnRunningAppRefreshListener, View.OnClickListener {
-    @BindView(R.id.coll_toolbar)
-    CollapsingToolbarLayout collapsingToolbarLayout;
     private static BluetoothAdapter mBluetoothAdapter;
     private Handler hander;
     private ViewPager vpContainer;
     private RadioGroup rgTabButtons;
     private int mCurrentFragment;
     private String[] fragmetns = new String[]{BleFragment.class.getName(),};
-    private MDevice mDevice;
     private String mode;
     /**
      * BLE  // 成员域
      */
-    private boolean scaning;
     private MaterialDialog progressDialog;
-    private RevealSearchView revealSearchView;
-    private RevealBackgroundView revealBackgroundView;
     private FloatingActionButton fabSearch;
-    private int[] fabStartPosition;
-    private TextView tvSearchDeviceCount;
-    private RelativeLayout rlSearchInfo;
-    private Button stopSearching;
     private RecyclerView recyclerView;
     private String currentDevAddress;
     private String currentDevName;
@@ -117,7 +109,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      */
     public MainActivity() {
         hander = new Handler();
-        mDevice = new MDevice();
     }
 
     @Override
@@ -135,35 +126,14 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            // Android M Permission check
-            if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
-                                Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE, Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION,
-                                Manifest.permission.READ_PHONE_STATE},
-                        1);
-            }
-        }
         myApplication = (MyApplication) getApplication();
         //必须调用，其在setContentView后面调用
         bindToolBar();
-        //标题栏
-        toolbar.setNavigationIcon(R.mipmap.ic_bluetooth_disabled_white_48dp);
-        collapsingToolbarLayout.setTitle(getString(R.string.devices));
-        //设置一个监听，否则会报错，support library design的bug
-        collapsingToolbarLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
         //检查蓝牙
         checkBleSupportAndInitialize();
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         initView(); //初始化视图
         initComponents(); //初始化view pager; 默认选中的为0
-        initCartoon();//初始化动画
         initEvent();//初始化事件
     }
 
@@ -177,22 +147,14 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
                 mode = mSharedPreferences.getString("mode", "");
                  if (mode.equals("BLE")) {
                     ((RadioButton) rgTabButtons.getChildAt(0)).setChecked(true);
-                    scaning = true;
                     //如果有连接先关闭连接
                     disconnectDevice();
-                    //开始扫面动画
-                    searchAnimate();
                     //初始化blefragment
                     initbleFragment();
+                    startScan();
                 }
                 break;
-            //停止搜索按钮点击事件
-            case R.id.btn_stop_searching:
-                scaning = false;
-                stopScan();
-                //停止扫描
-                mBtAdapter.cancelDiscovery();
-                break;
+
 
         }
 
@@ -228,72 +190,14 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     private void initEvent() {
         //搜索按钮点击事件
         fabSearch.setOnClickListener(this);
-        //停止搜索按钮点击事件
-        stopSearching.setOnClickListener(this);
     }
 
-    /**
-     * 初始化动画 与动画的状态监听
-     */
-    private void initCartoon() {
-        //动画效果
-        collapsingToolbarLayout.setTranslationY(160f);
-        toolbar.setTranslationY(-Utils.dpToPx(60));
-        collapsingToolbarLayout.setAlpha(0.0f);
-        AnimateUtils.translationY(collapsingToolbarLayout, 0, 400, 100);
-        AnimateUtils.translationY(toolbar, 0, 400, 200);
-        AnimateUtils.alpha(collapsingToolbarLayout, 1f, 400, 100);
-
-        //revealSearchView 动画状态监听
-        revealSearchView.setOnStateChangeListener(new RevealSearchView.OnStateChangeListener() {
-            public void onStateChange(int state) {
-                if (state == RevealSearchView.STATE_FINISHED) {
-                    revealSearchView.setVisibility(View.GONE);
-                    revealBackgroundView.endFromEdge();
-                }
-            }
-        });
-        // revealBackgroundView 动画状态监听
-        revealBackgroundView.setOnStateChangeListener(new RevealBackgroundView.OnStateChangeListener() {
-            public void onStateChange(int state) {
-                if (state == RevealBackgroundView.STATE_FINISHED) {
-                    revealSearchView.setVisibility(View.VISIBLE);
-                    revealSearchView.startFromLocation(fabStartPosition);
-                    tvSearchDeviceCount.setText(getString(R.string.search_device_count, 0));
-                    rlSearchInfo.setVisibility(View.VISIBLE);
-                    rlSearchInfo.setTranslationY(Utils.dpToPx(70));
-                    rlSearchInfo.setAlpha(0);
-                    AnimateUtils.translationY(rlSearchInfo, 0, 300, 0);
-                    AnimateUtils.alpha(rlSearchInfo, 1.0f, 300, 0);
-                    //准备列表视图并开始扫描
-                   if (mode.equals("BLE")) {
-                        onRefresh();
-                    }
-                }
-                if (state == RevealBackgroundView.STATE_END_FINISHED) {
-                    revealBackgroundView.setVisibility(View.GONE);
-                    rlSearchInfo.setVisibility(View.GONE);
-                    scaning = false;
-                    if (mode.equals("BLE")) {
-                        adapter.notifyDataSetChanged();
-                    }
-
-                }
-            }
-        });
-
-
-    }
 
     /**
      * ble 停止扫描
      */
     private void stopScan() {
-        revealSearchView.setVisibility(View.GONE);
-        //停止雷达动画
-        revealSearchView.stopAnimate();
-        //涟漪动画回缩
-        revealBackgroundView.endFromEdge();
+        mBtAdapter.cancelDiscovery();
         mBluetoothAdapter.stopLeScan(mLeScanCallback);
         hander.removeCallbacks(stopScanRunnable);
     }
@@ -304,12 +208,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     private void initView() {
         // 获得ViewPager
         vpContainer =  findViewById(R.id.vpContainer);
-        revealSearchView =  findViewById(R.id.realsearchiew);
-        revealBackgroundView =  findViewById(R.id.reveal_background_view);
-        tvSearchDeviceCount =  findViewById(R.id.tv_search_device_count);
-        rlSearchInfo =  findViewById(R.id.rl_search_info);
         fabSearch =  findViewById(R.id.fab_search);
-        stopSearching =  findViewById(R.id.btn_stop_searching);
     }
 
     /**
@@ -342,10 +241,9 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         //adapter 点击事件
         adapter.setOnItemClickListener(new DevicesAdapter.OnItemClickListener() {
             public void onItemClick(View itemView, int position) {
-                if (!scaning) {
+                    stopScan();
                     showProgressDialog();
                     connectDevice(list.get(position).getDevice());
-                }
             }
         });
     }
@@ -374,33 +272,24 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      * 开始扫描入口
      */
     private void startScan() {
-        scanPrevious21Version();
-    }
-
-    /**
-     * 版本号21之前的调用该方法搜索
-     */
-    private void scanPrevious21Version() {
         //10秒后停止扫描
         hander.postDelayed(stopScanRunnable, 10000);
         mBluetoothAdapter.startLeScan(mLeScanCallback);
     }
-
     /**
      * 发现设备时 处理方法
      */
     private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
 
         @Override
-        public void onLeScan(final BluetoothDevice device, final int rssi,
-                             byte[] scanRecord) {
+        public void onLeScan(final BluetoothDevice device, final int rssi, byte[] scanRecord) {
             runOnUiThread(new Runnable() {
                 public void run() {
                     MDevice mDev = new MDevice(device, rssi);
                     if (list.contains(mDev))
                         return;
                     list.add(mDev);
-                    tvSearchDeviceCount.setText(getString(R.string.search_device_count, list.size()));
+                     adapter.notifyDataSetChanged();
                 }
             });
         }
@@ -433,43 +322,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
             mBluetoothAdapter.enable();
         }
 
-
-    }
-
-    /**
-     * ble 搜索动画启动
-     */
-    private void searchAnimate() {
-        revealBackgroundView.setVisibility(View.VISIBLE);
-        int[] position1 = new int[2];
-        fabSearch.getLocationOnScreen(position1);
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            fabStartPosition = new int[]{(position1[0] + fabSearch.getWidth() / 2),
-                    (position1[1] + fabSearch.getHeight() / 4)};
-        } else {
-            fabStartPosition = new int[]{(position1[0] + fabSearch.getWidth() / 2),
-                    position1[1]};
-        }
-        revealBackgroundView.startFromLocation(fabStartPosition);
-    }
-
-    /**
-     * spp 搜索启动事件
-     */
-    public void doDiscovery() {
-        // 在窗口显示查找中信息
-        //getActivity().setProgressBarIndeterminateVisibility(true);
-        //getActivity().setTitle("查找设备中...");
-        // 显示其它设备（未配对设备）列表
-        //rootView.findViewById(R.id.title_new_devices).setVisibility(View.VISIBLE);
-
-        // 关闭再进行的服务查找
-        if (mBtAdapter.isDiscovering()) {
-            mBtAdapter.cancelDiscovery();
-        }
-        //并重新开始
-        mBtAdapter.startDiscovery();
     }
 
     /**
@@ -661,10 +513,8 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      * @param gattServices
      */
     private void prepareData(List<BluetoothGattService> gattServices) {
-
         if (gattServices == null)
             return;
-
         List<MService> list = new ArrayList<>();
         for (BluetoothGattService gattService : gattServices) {
             String uuid = gattService.getUuid().toString();

@@ -6,7 +6,6 @@ public class Message {
     //option success (e.g:write option success)
     private boolean done;
 
-    public Message(){};
 
     public Message(MESSAGE_TYPE type, String content) {
         this.type = type;

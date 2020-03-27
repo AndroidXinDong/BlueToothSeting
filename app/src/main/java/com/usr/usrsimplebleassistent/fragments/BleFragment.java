@@ -80,8 +80,7 @@ public class BleFragment extends Fragment  {
         try {
             onRunningAppRefreshListener = (OnRunningAppRefreshListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnRunningAppRefreshListener");
+            throw new ClassCastException(activity.toString() + " must implement OnRunningAppRefreshListener");
         }
     }
 

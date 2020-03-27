@@ -604,22 +604,17 @@ public class Utils{
         /**
          * Checking the various GattCharacteristics and listing in the ListView
          */
-        if (getGattCharacteristicsPropertices(item.getProperties(),
-                BluetoothGattCharacteristic.PROPERTY_READ)) {
+        if (getGattCharacteristicsPropertices(item.getProperties(), BluetoothGattCharacteristic.PROPERTY_READ)) {
             read = context.getString(R.string.gatt_services_read);
         }
-        if (getGattCharacteristicsPropertices(item.getProperties(),
-                BluetoothGattCharacteristic.PROPERTY_WRITE)
-                | getGattCharacteristicsPropertices(item.getProperties(),
+        if (getGattCharacteristicsPropertices(item.getProperties(), BluetoothGattCharacteristic.PROPERTY_WRITE) | getGattCharacteristicsPropertices(item.getProperties(),
                 BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE)) {
             write = context.getString(R.string.gatt_services_write);
         }
-        if (getGattCharacteristicsPropertices(item.getProperties(),
-                BluetoothGattCharacteristic.PROPERTY_NOTIFY)) {
+        if (getGattCharacteristicsPropertices(item.getProperties(), BluetoothGattCharacteristic.PROPERTY_NOTIFY)) {
             notify = context.getString(R.string.gatt_services_notify);
         }
-        if (getGattCharacteristicsPropertices(item.getProperties(),
-                BluetoothGattCharacteristic.PROPERTY_INDICATE)) {
+        if (getGattCharacteristicsPropertices(item.getProperties(), BluetoothGattCharacteristic.PROPERTY_INDICATE)) {
             notify = context.getString(R.string.gatt_services_indicate);
         }
         // Handling multiple properties listing in the ListView

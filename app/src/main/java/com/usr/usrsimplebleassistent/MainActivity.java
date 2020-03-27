@@ -1,6 +1,5 @@
 package com.usr.usrsimplebleassistent;
 
-import android.Manifest;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -10,17 +9,13 @@ import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,53 +23,37 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
-import com.usr.usrsimplebleassistent.Utils.AnimateUtils;
+import com.usr.usrsimplebleassistent.Utils.Constants;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
 import com.usr.usrsimplebleassistent.Utils.Utils;
-import com.usr.usrsimplebleassistent.adapter.CharacteristicsAdapter;
 import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
 import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MDevice;
 import com.usr.usrsimplebleassistent.bean.MService;
-import com.usr.usrsimplebleassistent.fragments.BleFragment;
-import com.usr.usrsimplebleassistent.views.RevealBackgroundView;
-import com.usr.usrsimplebleassistent.views.RevealSearchView;
+import com.usr.usrsimplebleassistent.bean.Message;
+import com.usr.usrsimplebleassistent.firmware.bleconnect.BleUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
 import butterknife.BindView;
 import me.drakeet.materialdialog.MaterialDialog;
 
-
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class MainActivity extends MyBaseActivity implements BleFragment.OnRunningAppRefreshListener, View.OnClickListener {
+public class MainActivity extends MyBaseActivity implements  View.OnClickListener {
     private static BluetoothAdapter mBluetoothAdapter;
     private Handler hander;
-    private ViewPager vpContainer;
-    private RadioGroup rgTabButtons;
-    private int mCurrentFragment;
-    private String[] fragmetns = new String[]{BleFragment.class.getName(),};
-    private String mode;
-    /**
-     * BLE  // 成员域
-     */
     private MaterialDialog progressDialog;
-    private FloatingActionButton fabSearch;
-    private RecyclerView recyclerView;
+    @BindView(R.id.fab_search)
+    FloatingActionButton fabSearch;
+    @BindView(R.id.rcy_ble)
+    RecyclerView recyclerView;
     private String currentDevAddress;
     private String currentDevName;
-
     private MaterialDialog alarmDialog;
     private MyApplication myApplication;
 
@@ -94,12 +73,9 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
             disconnectDevice();
         }
     };
-
-
     /**
      * spp
      */
-
     private BluetoothAdapter mBtAdapter;
     private final List<MDevice> list = new ArrayList<>();
     private DevicesAdapter adapter;
@@ -114,8 +90,11 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     @Override
     protected void onResume() {
         super.onResume();
-        //如果有连接先关闭连接
-        disconnectDevice();
+        int state = BluetoothLeService.getConnectionState();
+        if (state==0){
+            startScan();
+        }
+
     }
 
     /**
@@ -132,9 +111,8 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         //检查蓝牙
         checkBleSupportAndInitialize();
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
-        initView(); //初始化视图
-        initComponents(); //初始化view pager; 默认选中的为0
         initEvent();//初始化事件
+        initbleFragment();
     }
 
 
@@ -143,16 +121,9 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         switch (view.getId()) {
             //搜索按钮点击事件
             case R.id.fab_search:
-                SharedPreferences mSharedPreferences = getSharedPreferences("mode", MainActivity.MODE_PRIVATE);
-                mode = mSharedPreferences.getString("mode", "");
-                 if (mode.equals("BLE")) {
-                    ((RadioButton) rgTabButtons.getChildAt(0)).setChecked(true);
-                    //如果有连接先关闭连接
-                    disconnectDevice();
-                    //初始化blefragment
-                    initbleFragment();
-                    startScan();
-                }
+                //如果有连接先关闭连接
+                disconnectDevice();
+                onRefresh();
                 break;
 
 
@@ -171,8 +142,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      * 初始化服务
      */
     private void initService() {
-        Intent gattServiceIntent = new Intent(getApplicationContext(),
-                BluetoothLeService.class);
+        Intent gattServiceIntent = new Intent(getApplicationContext(), BluetoothLeService.class);
         startService(gattServiceIntent);
     }
 
@@ -203,20 +173,9 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
     }
 
     /**
-     * 初始化视图
-     */
-    private void initView() {
-        // 获得ViewPager
-        vpContainer =  findViewById(R.id.vpContainer);
-        fabSearch =  findViewById(R.id.fab_search);
-    }
-
-    /**
      * 初始化blefragment
      */
     private void initbleFragment() {
-        //获的recyclerView
-        recyclerView =  findViewById(R.id.recycleviewble);
         //给recyclerView   设置布局样式
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(llm);
@@ -241,9 +200,9 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         //adapter 点击事件
         adapter.setOnItemClickListener(new DevicesAdapter.OnItemClickListener() {
             public void onItemClick(View itemView, int position) {
-                    stopScan();
-                    showProgressDialog();
-                    connectDevice(list.get(position).getDevice());
+                stopScan();
+                showProgressDialog();
+                connectDevice(list.get(position).getDevice());
             }
         });
     }
@@ -276,6 +235,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         hander.postDelayed(stopScanRunnable, 10000);
         mBluetoothAdapter.startLeScan(mLeScanCallback);
     }
+
     /**
      * 发现设备时 处理方法
      */
@@ -289,7 +249,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
                     if (list.contains(mDev))
                         return;
                     list.add(mDev);
-                     adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 }
             });
         }
@@ -361,80 +321,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         super.onDestroy();
     }
 
-    /**
-     * 初始化view pager
-     */
-    private void initComponents() {
-        rgTabButtons =  findViewById(R.id.rgTabButtons);
-        KickerFragmentAdapter adpater = new KickerFragmentAdapter(getSupportFragmentManager(), this);
-        vpContainer.setOnPageChangeListener(onPageChangeListener);
-        vpContainer.setAdapter(adpater);
-        vpContainer.setCurrentItem(mCurrentFragment);
-        rgTabButtons.setOnCheckedChangeListener(onCheckedChangeListener);
-        ((RadioButton) rgTabButtons.getChildAt(0)).setChecked(true);
-    }
-
-    @Override
-    public void onRunningAppRefreshed() {
-
-    }
-
-
-    class KickerFragmentAdapter extends FragmentPagerAdapter {
-        private Context mContext;
-
-        public KickerFragmentAdapter(FragmentManager fm, Context context) {
-            super(fm);
-            mContext = context;
-        }
-
-        public Fragment getItem(int arg0) {
-            return Fragment.instantiate(mContext, fragmetns[arg0]);
-        }
-
-        public int getCount() {
-            return fragmetns.length;
-        }
-
-    }
-
-    private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageSelected(int arg0) {
-            mCurrentFragment = arg0;
-            ((RadioButton) rgTabButtons.getChildAt(arg0)).setChecked(true);
-        }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-
-        }
-    };
-
-    private RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            SharedPreferences mSharedPreferences = getSharedPreferences("mode", MainActivity.MODE_PRIVATE);
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            int checkedItem = 0;
-            switch (checkedId) {
-                case R.id.rbRunningApp:
-                    checkedItem = 0;
-                    editor.putString("mode", "BLE");
-                    editor.commit();
-                    String mode1 = mSharedPreferences.getString("mode", "");
-                    System.out.println(mode1);
-                    break;
-            }
-            vpContainer.setCurrentItem(checkedItem);
-            mCurrentFragment = checkedItem;
-        }
-    };
-
 
     /**
      * BroadcastReceiver for receiving the GATT communication status
@@ -443,15 +329,25 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
+            Bundle extras = intent.getExtras();
+            if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+                // Data Received
+                if (extras.containsKey(Constants.EXTRA_BYTE_VALUE)) {
+                    if (extras.containsKey(Constants.EXTRA_BYTE_UUID_VALUE)) {
+                        if (myApplication != null) {
+                            byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
+                            Log.i("Tag", "main: "+Utils.byteToASCII(array));
+                        }
+                    }
+                }
+            }
             // Status received when connected to GATT Server
             //连接成功
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 //搜索服务
                 BluetoothLeService.discoverServices();
-            }
-            // Services Discovered from GATT Server
-            else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED
-                    .equals(action)) {
+            } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
+                // Services Discovered from GATT Server
                 hander.removeCallbacks(dismssDialogRunnable);
                 progressDialog.dismiss();
                 prepareGattServices(BluetoothLeService.getSupportedGattServices());
@@ -486,11 +382,12 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
      * @param gattServices
      */
     private final List<BluetoothGattCharacteristic> cList = new ArrayList<>();
+
     private void prepareGattServices(List<BluetoothGattService> gattServices) {
         prepareData(gattServices);
         List<MService> services = myApplication.getServices();
         Intent intent = new Intent(this, GattDetailActivity.class);
-        if (services.size()>0){
+        if (services.size() > 0) {
             MService mService = services.get(0);
             BluetoothGattService service = mService.getService();
             myApplication.setCharacteristics(service.getCharacteristics());
@@ -498,11 +395,11 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
             MyApplication.serviceType = MyApplication.SERVICE_TYPE.TYPE_USR_DEBUG;
             List<BluetoothGattCharacteristic> characteristics = myApplication.getCharacteristics();
             cList.addAll(characteristics);
-            BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE),-1,-1);
+            BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE), -1, -1);
             cList.add(usrVirtualCharacteristic);
             myApplication.setCharacteristic(cList.get(2));
             startActivity(intent);
-        }else {
+        } else {
             Toast.makeText(myApplication, "未能获得通信服务", Toast.LENGTH_SHORT).show();
         }
     }

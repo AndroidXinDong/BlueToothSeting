@@ -51,7 +51,6 @@
 
         <activity
             android:name=".GattDetailActivity"
-            android:label=""
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity

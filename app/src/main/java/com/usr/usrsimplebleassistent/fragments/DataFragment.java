@@ -17,13 +17,13 @@ import butterknife.ButterKnife;
  * on 2020-03-27 14:59
  * by xinDong
  **/
-public class BleFragment extends Fragment {
+public class DataFragment extends Fragment {
 
-    public BleFragment() {
+    public DataFragment() {
     }
 
-    public static BleFragment getInstance(){
-        BleFragment fragment = new BleFragment();
+    public static DataFragment getInstance(){
+        DataFragment fragment = new DataFragment();
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
         return fragment;
@@ -32,8 +32,8 @@ public class BleFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ble,container,false);
-        ButterKnife.bind(BleFragment.this,view);
+        View view = inflater.inflate(R.layout.fragment_data,container,false);
+        ButterKnife.bind(DataFragment.this,view);
         return view;
     }
 }

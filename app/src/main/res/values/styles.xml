@@ -64,4 +64,8 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+
+    <style name="Theme.DialogActivity" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@drawable/back</item>
+    </style>
 </resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">USRBleAssistent</string>
+    <string name="app_name">BLE调试助手</string>
     <string name="devices">BLUE Devices</string>
     <string name="menu_usr">Official Website</string>
     <string name="share">Share</string>

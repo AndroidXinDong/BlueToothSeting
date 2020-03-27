@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,6 @@ import me.drakeet.materialdialog.MaterialDialog;
 
 public class GattDetailActivity extends MyBaseActivity {
     private final String TAG = "Tag";
-
     @BindView(R.id.lv_msg)
     RecyclerView rvMsg;
     @BindView(R.id.et_write)
@@ -60,6 +60,7 @@ public class GattDetailActivity extends MyBaseActivity {
                     if (extras.containsKey(Constants.EXTRA_BYTE_UUID_VALUE)) {
                         if (myApplication != null) {
                             byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
+                            Log.i("Tag", "Gatt: "+Utils.byteToASCII(array));
                             Message msg = new Message(Message.MESSAGE_TYPE.RECEIVE, formatMsgContent(array));
                             notifyAdapter(msg);
                         }

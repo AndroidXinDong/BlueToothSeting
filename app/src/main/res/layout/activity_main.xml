@@ -5,37 +5,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-
-    <TextView
-        android:id="@+id/tv_title"
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@android:color/darker_gray"
-        android:gravity="center"
-        android:text="请选择目标蓝牙进行连接"
-        android:textColor="@color/white"
-        android:textSize="18sp"/>
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorAccent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:padding="3dp"
+        android:weightSum="3">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcy_ble"
+        <RadioButton
+            android:id="@+id/radiobutton1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="3dp"
+            android:onClick="click"
+            android:textSize="16sp"
+            android:checked="true"
+            android:drawableTop="@drawable/ble_selector"
+            android:text="设备连接"
+            android:textColor="@drawable/text_color_radiobutton"/>
+        <RadioButton
+            android:id="@+id/radiobutton2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/data_selector"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="实时数据"
+            android:onClick="click"
+            android:textColor="@drawable/text_color_radiobutton"
+            android:textSize="16sp"/>
+        <RadioButton
+            android:id="@+id/radiobutton3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/set_selector"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="参数设置"
+            android:onClick="click"
+            android:textColor="@drawable/text_color_radiobutton"
+            android:textSize="16sp"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/ll_tihuan"
+        android:layout_above="@id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tv_title"
-        android:background="@android:color/white" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="5dp"
-        android:src="@mipmap/ic_search_white_36dp"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp" />
-
-
+        android:orientation="vertical">
+    </LinearLayout>
 </RelativeLayout>
 
 

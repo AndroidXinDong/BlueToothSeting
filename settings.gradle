@@ -1,1 +1,1 @@
-include ':app', ':MaterialDesignDialoglibrary', ':bottomtabbar2'
+include ':app', ':MaterialDesignDialoglibrary'

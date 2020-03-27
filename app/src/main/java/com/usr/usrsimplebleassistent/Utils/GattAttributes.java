@@ -326,30 +326,22 @@ public class GattAttributes {
         attributes.put(RSC_SERVICE, "Running Speed & Cadence Service");
         attributes.put(BAROMETER_SERVICE, "Barometer Service");
         attributes.put(ACCELEROMETER_SERVICE, "Accelerometer Service");
-        attributes
-                .put(ANALOG_TEMPERATURE_SERVICE, "Analog Temperature Service");
+        attributes.put(ANALOG_TEMPERATURE_SERVICE, "Analog Temperature Service");
         attributes.put(CSC_SERVICE, "Cycling Speed & Cadence Service");
 
         // Unused Services
-        attributes
-                .put(ALERT_NOTIFICATION_SERVICE, "Alert notification Service");
+        attributes.put(ALERT_NOTIFICATION_SERVICE, "Alert notification Service");
         attributes.put(BODY_COMPOSITION_SERVICE, "Body Composition Service");
         attributes.put(BOND_MANAGEMENT_SERVICE, "Bond Management Service");
-        attributes.put(CONTINUOUS_GLUCOSE_MONITORING_SERVICE,
-                "Continuous Glucose Monitoring Service");
+        attributes.put(CONTINUOUS_GLUCOSE_MONITORING_SERVICE, "Continuous Glucose Monitoring Service");
         attributes.put(CURRENT_TIME_SERVICE, "Current Time Service");
         attributes.put(CYCLING_POWER_SERVICE, "Cycling Power Service");
-        attributes.put(ENVIRONMENTAL_SENSING_SERVICE,
-                "Environmental Sensing Service");
-        attributes.put(HUMAN_INTERFACE_DEVICE_SERVICE,
-                "Human Interface device Service");
-        attributes.put(LOCATION_NAVIGATION_SERVICE,
-                "Location and Navigation Service");
+        attributes.put(ENVIRONMENTAL_SENSING_SERVICE, "Environmental Sensing Service");
+        attributes.put(HUMAN_INTERFACE_DEVICE_SERVICE, "Human Interface device Service");
+        attributes.put(LOCATION_NAVIGATION_SERVICE, "Location and Navigation Service");
         attributes.put(NEXT_DST_CHANGE_SERVICE, "Next DST Change Service");
-        attributes
-                .put(PHONE_ALERT_STATUS_SERVICE, "Phone Alert Status Service");
-        attributes.put(REFERENCE_TIME_UPDATE_SERVICE,
-                "Reference Time Update Service");
+        attributes.put(PHONE_ALERT_STATUS_SERVICE, "Phone Alert Status Service");
+        attributes.put(REFERENCE_TIME_UPDATE_SERVICE, "Reference Time Update Service");
         attributes.put(SCAN_PARAMETERS_SERVICE, "Scan Paramenters Service");
         attributes.put(USER_DATA_SERVICE, "User Data Service");
         attributes.put(WEIGHT_SCALE_SERVICE, "Weight Scale Service");
@@ -360,12 +352,10 @@ public class GattAttributes {
         attributes.put(HEART_RATE_CONTROL_POINT, "Heart Rate Control Point");
 
         // Health thermometer Characteristics.
-        attributes.put(HEALTH_TEMP_MEASUREMENT,
-                "Health Thermometer Measurement");
+        attributes.put(HEALTH_TEMP_MEASUREMENT, "Health Thermometer Measurement");
         attributes.put(TEMPERATURE_TYPE, "Temperature Type");
         attributes.put(TEMPERATURE_INTERMEDIATE, "Intermediate Temperature");
-        attributes
-                .put(TEMPERATURE_MEASUREMENT_INTERVAL, "Measurement Interval");
+        attributes.put(TEMPERATURE_MEASUREMENT_INTERVAL, "Measurement Interval");
 
         // Device Information Characteristics
         attributes.put(SYSTEM_ID, "System ID");
@@ -376,8 +366,7 @@ public class GattAttributes {
         attributes.put(SOFTWARE_REVISION_STRING, "Software Revision String");
         attributes.put(MANUFACTURER_NAME_STRING, "Manufacturer Name String");
         attributes.put(PNP_ID, "PnP ID");
-        attributes.put(IEEE,
-                "IEEE 11073-20601 Regulatory Certification Data List");
+        attributes.put(IEEE, "IEEE 11073-20601 Regulatory Certification Data List");
 
         // Battery service characteristics
         attributes.put(BATTERY_LEVEL, "Battery Level");
@@ -400,41 +389,30 @@ public class GattAttributes {
 
         // Glucose Characteristics
         attributes.put(GLUCOSE_COCNTRN, "Glucose Measurement");
-        attributes.put(GLUCOSE_MESUREMENT_CONTEXT,
-                "Glucose Measurement Context");
+        attributes.put(GLUCOSE_MESUREMENT_CONTEXT, "Glucose Measurement Context");
         attributes.put(GLUCOSE_FEATURE, "Glucose Feature");
-        attributes.put(RECORD_ACCESS_CONTROL_POINT,
-                "Record Access Control Point");
+        attributes.put(RECORD_ACCESS_CONTROL_POINT, "Record Access Control Point");
 
         // Blood pressure service characteristics
-        attributes.put(BLOOD_INTERMEDIATE_CUFF_PRESSURE,
-                "Intermediate Cuff Pressure");
+        attributes.put(BLOOD_INTERMEDIATE_CUFF_PRESSURE, "Intermediate Cuff Pressure");
         attributes.put(BLOOD_PRESSURE_FEATURE, "Blood Pressure Feature");
-        attributes
-                .put(BLOOD_PRESSURE_MEASUREMENT, "Blood Pressure Measurement");
+        attributes.put(BLOOD_PRESSURE_MEASUREMENT, "Blood Pressure Measurement");
 
         // SensorHub Characteristics
-        attributes.put(ACCELEROMETER_ANALOG_SENSOR,
-                "Accelerometer Analog Sensor");
-        attributes.put(ACCELEROMETER_DATA_ACCUMULATION,
-                "Accelerometer Data Accumulation");
+        attributes.put(ACCELEROMETER_ANALOG_SENSOR, "Accelerometer Analog Sensor");
+        attributes.put(ACCELEROMETER_DATA_ACCUMULATION, "Accelerometer Data Accumulation");
         attributes.put(ACCELEROMETER_READING_X, "Accelerometer X Reading");
         attributes.put(ACCELEROMETER_READING_Y, "Accelerometer Y Reading");
         attributes.put(ACCELEROMETER_READING_Z, "Accelerometer Z Reading");
-        attributes.put(ACCELEROMETER_SENSOR_SCAN_INTERVAL,
-                "Accelerometer Sensor Scan Interval");
-        attributes.put(BAROMETER_DATA_ACCUMULATION,
-                "Barometer Data Accumulation");
+        attributes.put(ACCELEROMETER_SENSOR_SCAN_INTERVAL, "Accelerometer Sensor Scan Interval");
+        attributes.put(BAROMETER_DATA_ACCUMULATION, "Barometer Data Accumulation");
         attributes.put(BAROMETER_DIGITAL_SENSOR, "Barometer Digital Sensor");
         attributes.put(BAROMETER_READING, "Barometer Reading");
-        attributes.put(BAROMETER_SENSOR_SCAN_INTERVAL,
-                "Barometer Sensor Scan Interval");
-        attributes.put(BAROMETER_THRESHOLD_FOR_INDICATION,
-                "Barometer Threshold for Indication");
+        attributes.put(BAROMETER_SENSOR_SCAN_INTERVAL, "Barometer Sensor Scan Interval");
+        attributes.put(BAROMETER_THRESHOLD_FOR_INDICATION, "Barometer Threshold for Indication");
         attributes.put(TEMPERATURE_ANALOG_SENSOR, "Temperature Analog Sensor");
         attributes.put(TEMPERATURE_READING, "Temperature Reading");
-        attributes.put(TEMPERATURE_SENSOR_SCAN_INTERVAL,
-                "Temperature Sensor Scan Interval");
+        attributes.put(TEMPERATURE_SENSOR_SCAN_INTERVAL, "Temperature Sensor Scan Interval");
 
         //HID Characteristics
         attributes.put(PROTOCOL_MODE, "Protocol Mode");
@@ -451,19 +429,14 @@ public class GattAttributes {
         attributes.put(OTA_CHARACTERISTIC, "Bootloader Data Characteristic");
 
         // Unused Characteristics
-        attributes.put(AEROBIC_HEART_RATE_LOWER_LIMIT,
-                "Aerobic Heart Rate Lower Limit");
-        attributes.put(AEROBIC_HEART_RATE_UPPER_LIMIT,
-                "Aerobic Heart Rate Upper Limit");
+        attributes.put(AEROBIC_HEART_RATE_LOWER_LIMIT, "Aerobic Heart Rate Lower Limit");
+        attributes.put(AEROBIC_HEART_RATE_UPPER_LIMIT, "Aerobic Heart Rate Upper Limit");
         attributes.put(AGE, "Age");
         attributes.put(ALERT_CATEGORY_ID, "Alert Category Id");
-        attributes
-                .put(ALERT_CATEGORY_ID_BIT_MASK, "Alert Category_id_Bit_Mask");
+        attributes.put(ALERT_CATEGORY_ID_BIT_MASK, "Alert Category_id_Bit_Mask");
         attributes.put(ALERT_STATUS, "Alert_Status");
-        attributes.put(ANAEROBIC_HEART_RATE_LOWER_LIMIT,
-                "Anaerobic Heart Rate Lower Limit");
-        attributes.put(ANAEROBIC_HEART_RATE_UPPER_LIMIT,
-                "Anaerobic Heart Rate Upper Limit");
+        attributes.put(ANAEROBIC_HEART_RATE_LOWER_LIMIT, "Anaerobic Heart Rate Lower Limit");
+        attributes.put(ANAEROBIC_HEART_RATE_UPPER_LIMIT, "Anaerobic Heart Rate Upper Limit");
         attributes.put(ANAEROBIC_THRESHOLD, "Anaerobic Threshold");
         attributes.put(APPARENT_WIND_DIRECTION, "Apparent Wind Direction");
         attributes.put(APPARENT_WIND_SPEED, "Apparent Wind Speed");

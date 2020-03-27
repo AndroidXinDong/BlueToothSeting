@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +29,7 @@ import com.usr.usrsimplebleassistent.adapter.MessagesAdapter;
 import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.Message;
 import com.usr.usrsimplebleassistent.bean.Option;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,15 +58,10 @@ public class GattDetailActivity extends MyBaseActivity {
     private final List<Message> list = new ArrayList<>();
     private MessagesAdapter adapter;
     private BluetoothGattCharacteristic notifyCharacteristic;
-    private BluetoothGattCharacteristic readCharacteristic;
     private BluetoothGattCharacteristic writeCharacteristic;
     private MyApplication myApplication;
     private String properties;
-    private List<Option> options = new ArrayList<>();
-    private Option currentOption;
     private boolean isHexSend;
-    private boolean nofityEnable;
-    private boolean isDebugMode;
 
 
     private BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
@@ -76,30 +74,21 @@ public class GattDetailActivity extends MyBaseActivity {
                 if (extras.containsKey(Constants.EXTRA_BYTE_VALUE)) {
                     if (extras.containsKey(Constants.EXTRA_BYTE_UUID_VALUE)) {
                         if (myApplication != null) {
-                            BluetoothGattCharacteristic requiredCharacteristic = myApplication.getCharacteristic();
-                            String uuidRequired = requiredCharacteristic.getUuid().toString();
-                            String receivedUUID = intent.getStringExtra(Constants.EXTRA_BYTE_UUID_VALUE);
                             byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
-                            Log.i(TAG, "收到消息: "+Utils.ByteArraytoHex(array));
-                            if (isDebugMode){
-                                Message msg = new Message(Message.MESSAGE_TYPE.RECEIVE,formatMsgContent(array));
-                                notifyAdapter(msg);
-                            }else if (uuidRequired.equalsIgnoreCase(receivedUUID)) {
-                                Message msg = new Message(Message.MESSAGE_TYPE.RECEIVE,formatMsgContent(array,MyApplication.serviceType));
-                                notifyAdapter(msg);
-                            }
+                            Log.i(TAG, "收到消息: " + Utils.ByteArraytoHex(array));
+                            Message msg = new Message(Message.MESSAGE_TYPE.RECEIVE, formatMsgContent(array));
+                            notifyAdapter(msg);
                         }
                     }
                 }
             }
-
-            //write characteristics succcess
-            if (action.equals(BluetoothLeService.ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS)){
-                list.get(list.size()-1).setDone(true);
-                adapter.notifyItemChanged(list.size()-1);
+            // 数据发送成功
+            if (action.equals(BluetoothLeService.ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS)) {
+                list.get(list.size() - 1).setDone(true);
+                adapter.notifyItemChanged(list.size() - 1);
             }
             //connect break (连接断开)
-            if (action.equals(BluetoothLeService.ACTION_GATT_DISCONNECTED)){
+            if (action.equals(BluetoothLeService.ACTION_GATT_DISCONNECTED)) {
                 showDialog(getString(R.string.conn_disconnected));
             }
         }
@@ -119,140 +108,72 @@ public class GattDetailActivity extends MyBaseActivity {
         adapter = new MessagesAdapter(this, list);
         rvMsg.setAdapter(adapter);
         initCharacteristics();
-        initProperties();
         registerReceiver(mGattUpdateReceiver, Utils.makeGattUpdateIntentFilter());
-
-        int sdkInt = Build.VERSION.SDK_INT;
-        if (sdkInt>=21){
-            //设置最大发包、收包的长度为512个字节
-            if(BluetoothLeService.requestMtu(512)){
-                Toast.makeText(this,getString(R.string.transmittal_length,"512"),Toast.LENGTH_LONG).show();
-            }else
-                Toast.makeText(this,getString(R.string.transmittal_length,"20"),Toast.LENGTH_LONG).show();
-        }else {
-            Toast.makeText(this,getString(R.string.transmittal_length,"20"),Toast.LENGTH_LONG).show();
-        }
     }
 
-    private void initCharacteristics(){
+    private void initCharacteristics() {
         BluetoothGattCharacteristic characteristic = myApplication.getCharacteristic();
-        if (characteristic.getUuid().toString().equals(GattAttributes.USR_SERVICE)){
-            isDebugMode = true;
-            List<BluetoothGattCharacteristic> characteristics = ((MyApplication)getApplication()).getCharacteristics();
-            for (BluetoothGattCharacteristic c :characteristics){
-                if (Utils.getPorperties(this,c).equals("Notify")){
+        String uuid = characteristic.getUuid().toString();
+        if (uuid.equals(GattAttributes.USR_SERVICE)) {
+            List<BluetoothGattCharacteristic> characteristics = ((MyApplication) getApplication()).getCharacteristics();
+            for (BluetoothGattCharacteristic c : characteristics) {
+                if (Utils.getPorperties(this, c).equals("Notify")) {
                     notifyCharacteristic = c;
                     continue;
                 }
-                if (Utils.getPorperties(this,c).equals("Write")){
+                if (Utils.getPorperties(this, c).equals("Write")) {
                     writeCharacteristic = c;
                     continue;
                 }
             }
             properties = "Notify & Write";
-
-        }else {
+        } else {
             properties = Utils.getPorperties(this, characteristic);
             notifyCharacteristic = characteristic;
-            readCharacteristic = characteristic;
             writeCharacteristic = characteristic;
-        }
-    }
-
-    private void initProperties() {
-        if (TextUtils.isEmpty(properties))
-            return;
-        String[] property = properties.split("&");
-        if (property.length == 1) {
-            Option option = new Option(properties.trim(),Option.OPTIONS_MAP.get(properties.trim()));
-            setOption(option);
-        } else {
-            for (int i=0;i<property.length;i++){
-                String p = property[i];
-                Option option = new Option();
-                option.setName(p.trim());
-                option.setPropertyType(Option.OPTIONS_MAP.get(p.trim()));
-                options.add(option);
-                if (i==0){
-                  setOption(option);
-                }
-            }
-        }
-    }
-
-    private void setOption(Option option){
-        currentOption = option;
-        switch (option.getPropertyType()){
-            case PROPERTY_NOTIFY:
-                if (!nofityEnable)
-                    btnOption.setText(Option.NOTIFY);
-                else
-                    btnOption.setText(Option.STOP_NOTIFY);
-                break;
-
         }
     }
 
     @OnClick(R.id.btn_option)
     public void onOptionClick() {
-        Option.OPTION_PROPERTY propertyType = currentOption.getPropertyType();
-        switch (propertyType){
-            case PROPERTY_NOTIFY:
-                notifyOption();
-                break;
-            case PROPERTY_INDICATE:
-                break;
-            case PROPERTY_READ:
-                readOption();
-                break;
-            case PROPERTY_WRITE:
-                break;
-        }
+        notifyOption();
     }
 
     @OnClick(R.id.btn_send)
-    public void onSendClick(){
+    public void onSendClick() {
         writeOption();
     }
 
-    private void notifyOption(){
-           nofityEnable = true;
-           btnOption.setText(Option.STOP_NOTIFY);
-           prepareBroadcastDataNotify(notifyCharacteristic);
-           Message msg = new Message(Message.MESSAGE_TYPE.SEND,Option.NOTIFY);
-           notifyAdapter(msg);
-       }
-
-    private void readOption(){
-        Message msg = new Message(Message.MESSAGE_TYPE.SEND,Option.READ);
+    private void notifyOption() {
+        prepareBroadcastDataNotify(notifyCharacteristic);
+        Message msg = new Message(Message.MESSAGE_TYPE.SEND, Option.NOTIFY);
         notifyAdapter(msg);
-        prepareBroadcastDataRead(readCharacteristic);
     }
 
     /**
      * 向BLE蓝牙发送数据
      */
-    private void writeOption(){
+    private void writeOption() {
         String text = etWrite.getText().toString();
-        if (TextUtils.isEmpty(text)){
+        if (TextUtils.isEmpty(text)) {
             AnimateUtils.shake(etWrite);
             return;
         }
-        if (isHexSend){
-            text = text.replace(" ","");
-            if (!Utils.isRightHexStr(text)){
+        if (isHexSend) {
+            text = text.replace(" ", "");
+            if (!Utils.isRightHexStr(text)) {
                 AnimateUtils.shake(etWrite);
                 return;
             }
             byte[] array = Utils.hexStringToByteArray(text);
             writeCharacteristic(writeCharacteristic, array);
-        }else {
+        } else {
             // AT+指令
-            if(Utils.isAtCmd(text))
+            if (Utils.isAtCmd(text))
                 text = text + "\r\n";
             try {
                 byte[] array = text.getBytes("US-ASCII");
-                writeCharacteristic(writeCharacteristic,array);
+                writeCharacteristic(writeCharacteristic, array);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 return;
@@ -260,43 +181,23 @@ public class GattDetailActivity extends MyBaseActivity {
 
         }
 
-        Message msg = new Message(Message.MESSAGE_TYPE.SEND,text);
+        Message msg = new Message(Message.MESSAGE_TYPE.SEND, text);
         notifyAdapter(msg);
     }
 
 
-    private void notifyAdapter(Message msg){
+    private void notifyAdapter(Message msg) {
         list.add(msg);
         adapter.notifyLastItem();
         rvMsg.smoothScrollToPosition(adapter.getItemCount() - 1);
     }
 
-    private String formatMsgContent(byte[] data){
+    private String formatMsgContent(byte[] data) {
         String s = Utils.ByteArraytoHex(data);
-        Log.i(TAG, "formatMsgContent1: "+s);
         String s1 = Utils.byteToASCII(data);
-        return "HEX:"+ s +"  (ASSCII:"+ s1 +")";
+        return "HEX:" + s + "  (ASSCII:" + s1 + ")";
     }
 
-    private String formatMsgContent(byte[] data,MyApplication.SERVICE_TYPE type){
-        Log.i(TAG, "formatMsgContent2: "+new String(data));
-        String res = "ASSCII:"+Utils.byteToASCII(data);
-        switch (type){
-            case TYPE_STR:
-                res += "  (ASSCII:"+Utils.byteToASCII(data)+")";
-                break;
-            case TYPE_USR_DEBUG:
-                res += "  (ASSCII:"+Utils.byteToASCII(data)+")";
-                break;
-            case TYPE_NUMBER:
-                res+= "  (int:"+Utils.ByteArrToIntStr(data)+")";
-                break;
-            case TYPE_OTHER:
-                res += " (HEX:"+Utils.ByteArraytoHex(data)+")";
-                break;
-        }
-        return  res;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -310,11 +211,11 @@ public class GattDetailActivity extends MyBaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         String text = etWrite.getText().toString();
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_hex_send:
                 isHexSend = true;
-                if (!TextUtils.isEmpty(text)){
-                    if(Utils.isAtCmd(text))
+                if (!TextUtils.isEmpty(text)) {
+                    if (Utils.isAtCmd(text))
                         text = text + "\r\n";
                     try {
                         etWrite.setText(Utils.ByteArraytoHex(text.getBytes("US-ASCII")));
@@ -336,17 +237,6 @@ public class GattDetailActivity extends MyBaseActivity {
         return false;
     }
 
-    /**
-     * Preparing Broadcast receiver to broadcast read characteristics
-     *
-     * @param characteristic
-     */
-    void prepareBroadcastDataRead(BluetoothGattCharacteristic characteristic) {
-        final int charaProp = characteristic.getProperties();
-        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
-            BluetoothLeService.readCharacteristic(characteristic);
-        }
-    }
 
     /**
      * Preparing Broadcast receiver to broadcast notify characteristics
@@ -370,11 +260,11 @@ public class GattDetailActivity extends MyBaseActivity {
         }
     }
 
-    private void showDialog(String info){
+    private void showDialog(String info) {
         final MaterialDialog dialog = new MaterialDialog(this);
         dialog.setTitle(getString(R.string.alert))
                 .setMessage(info)
-                .setPositiveButton(R.string.ok,new View.OnClickListener(){
+                .setPositiveButton(R.string.ok, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
@@ -382,8 +272,6 @@ public class GattDetailActivity extends MyBaseActivity {
                 });
         dialog.show();
     }
-
-
 
     @Override
     protected void onDestroy() {

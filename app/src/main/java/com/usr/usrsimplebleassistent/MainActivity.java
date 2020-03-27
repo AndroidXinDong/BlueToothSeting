@@ -175,10 +175,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
             case R.id.fab_search:
                 SharedPreferences mSharedPreferences = getSharedPreferences("mode", MainActivity.MODE_PRIVATE);
                 mode = mSharedPreferences.getString("mode", "");
-                if (mode.equals("SPP")) {
-                    ((RadioButton) rgTabButtons.getChildAt(1)).setChecked(true);
-                    searchAnimate();
-                } else if (mode.equals("BLE")) {
+                 if (mode.equals("BLE")) {
                     ((RadioButton) rgTabButtons.getChildAt(0)).setChecked(true);
                     scaning = true;
                     //如果有连接先关闭连接
@@ -269,9 +266,7 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
                     AnimateUtils.translationY(rlSearchInfo, 0, 300, 0);
                     AnimateUtils.alpha(rlSearchInfo, 1.0f, 300, 0);
                     //准备列表视图并开始扫描
-                    if (mode.equals("SPP")) {
-                        doDiscovery();
-                    } else if (mode.equals("BLE")) {
+                   if (mode.equals("BLE")) {
                         onRefresh();
                     }
                 }
@@ -647,18 +642,17 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
             MService mService = services.get(0);
             BluetoothGattService service = mService.getService();
             myApplication.setCharacteristics(service.getCharacteristics());
-                //这里为了方便暂时直接用Application serviceType 来标记当前的服务，应该是和上面的代码合并
+            //这里为了方便暂时直接用Application serviceType 来标记当前的服务，应该是和上面的代码合并
             MyApplication.serviceType = MyApplication.SERVICE_TYPE.TYPE_USR_DEBUG;
             List<BluetoothGattCharacteristic> characteristics = myApplication.getCharacteristics();
             cList.addAll(characteristics);
             BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE),-1,-1);
             cList.add(usrVirtualCharacteristic);
             myApplication.setCharacteristic(cList.get(2));
+            startActivity(intent);
         }else {
             Toast.makeText(myApplication, "未能获得通信服务", Toast.LENGTH_SHORT).show();
         }
-        startActivity(intent);
-
     }
 
     /**
@@ -672,7 +666,6 @@ public class MainActivity extends MyBaseActivity implements BleFragment.OnRunnin
             return;
 
         List<MService> list = new ArrayList<>();
-
         for (BluetoothGattService gattService : gattServices) {
             String uuid = gattService.getUuid().toString();
             if (uuid.equals(GattAttributes.GENERIC_ACCESS_SERVICE) || uuid.equals(GattAttributes.GENERIC_ATTRIBUTE_SERVICE))

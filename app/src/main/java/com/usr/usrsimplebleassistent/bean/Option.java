@@ -3,9 +3,6 @@ package com.usr.usrsimplebleassistent.bean;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by liu on 15/11/23.
- */
 public class Option {
     public static final String NOTIFY = "Notify";
     public static final String STOP_NOTIFY = "Stop Notify";

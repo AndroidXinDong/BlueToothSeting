@@ -149,10 +149,7 @@ public class BluetoothLeService extends Service {
         }
 
         @Override
-        public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor,
-                                      int status) {
-
-
+        public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 System.out.println("onDescriptorWrite GATT_SUCCESS------------------->SUCCESS");
             } else if (status == BluetoothGatt.GATT_FAILURE) {
@@ -165,12 +162,8 @@ public class BluetoothLeService extends Service {
         }
 
         @Override
-        public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor,
-                                     int status) {
-
-
+        public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
             System.out.println("onDescriptorRead ------------------->GATT_SUCC");
-
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 UUID descriptorUUID = descriptor.getUuid();
                 final Intent intent = new Intent(ACTION_DATA_AVAILABLE);
@@ -932,8 +925,7 @@ public class BluetoothLeService extends Service {
 
     public static boolean getBondedState() {
         Boolean bonded;
-        BluetoothDevice device = mBluetoothAdapter
-                .getRemoteDevice(mBluetoothDeviceAddress);
+        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(mBluetoothDeviceAddress);
         bonded = device.getBondState() == BluetoothDevice.BOND_BONDED;
         return bonded;
     }

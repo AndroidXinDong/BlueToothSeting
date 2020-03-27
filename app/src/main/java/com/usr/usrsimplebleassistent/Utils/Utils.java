@@ -223,8 +223,7 @@ public class Utils{
      *
      * @param
      * @return
-*/
-
+     * */
     public static String ByteArraytoHex(byte[] bytes) {
 //        StringBuilder sb = new StringBuilder();
 //        for (byte b : bytes) {
@@ -243,7 +242,11 @@ public class Utils{
         return result;
     }
 
-
+    /**
+     * 字节数组转字符串
+     * @param bytes
+     * @return
+     */
     public static String ByteArrToIntStr(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
@@ -253,14 +256,17 @@ public class Utils{
     }
 
 
+    /**
+     * 十六进制数转字节数组
+     * @param s
+     * @return
+     */
     public static byte[] hexStringToByteArray(String s) {
         if (s.length() % 2 != 0) {
             StringBuilder stringBuilder = new StringBuilder(s);
             stringBuilder.insert(s.length() - 1, "0");
             s = stringBuilder.toString();
         }
-
-
         int len = s.length();
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2) {
@@ -270,7 +276,11 @@ public class Utils{
         return data;
     }
 
-
+    /**
+     * 检查是否是标准格式的hex数据
+     * @param str
+     * @return
+     */
     public static boolean isRightHexStr(String str) {
         String reg = "^[0-9a-fA-F]+$";
         return str.matches(reg);
@@ -468,8 +478,7 @@ public class Utils{
      */
     public static final void setStringSharedPreference(Context context,
                                                        String key, String value) {
-        SharedPreferences goaPref = context.getSharedPreferences(
-                SHARED_PREF_NAME, MODE_PRIVATE);
+        SharedPreferences goaPref = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = goaPref.edit();
         editor.putString(key, value);
         editor.apply();
@@ -483,12 +492,9 @@ public class Utils{
      * @param key
      * @return
      */
-    public static final String getStringSharedPreference(Context context,
-                                                         String key) {
+    public static final String getStringSharedPreference(Context context, String key) {
         if (context != null) {
-
-            SharedPreferences Pref = context.getSharedPreferences(
-                    SHARED_PREF_NAME, MODE_PRIVATE);
+            SharedPreferences Pref = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
             String value = Pref.getString(key, "");
             return value;
 
@@ -504,10 +510,8 @@ public class Utils{
      * @param key
      * @param value
      */
-    public static final void setIntSharedPreference(Context context,
-                                                    String key, int value) {
-        SharedPreferences goaPref = context.getSharedPreferences(
-                SHARED_PREF_NAME, MODE_PRIVATE);
+    public static final void setIntSharedPreference(Context context, String key, int value) {
+        SharedPreferences goaPref = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = goaPref.edit();
         editor.putInt(key, value);
         editor.apply();
@@ -521,15 +525,12 @@ public class Utils{
      * @param key
      * @return
      */
-    public static final int getIntSharedPreference(Context context,
-                                                   String key) {
+    public static final int getIntSharedPreference(Context context, String key) {
         if (context != null) {
-
             SharedPreferences Pref = context.getSharedPreferences(
                     SHARED_PREF_NAME, MODE_PRIVATE);
             int value = Pref.getInt(key, 0);
             return value;
-
         } else {
             return 0;
         }
@@ -548,11 +549,9 @@ public class Utils{
             v1.buildDrawingCache(true);
             bitmap = Bitmap.createBitmap(v1.getDrawingCache());
             v1.setDrawingCacheEnabled(false);
-
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-            File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                    + File.separator + "CySmart" + File.separator + "file.jpg");
+            File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "CySmart" + File.separator + "file.jpg");
             try {
                 FileOutputStream fo = new FileOutputStream(f);
                 fo.write(bytes.toByteArray());
@@ -582,8 +581,7 @@ public class Utils{
     public static final boolean checkNetwork(Context context) {
         if (context != null) {
             boolean result = true;
-            ConnectivityManager connectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
             if (networkInfo == null || !networkInfo.isConnectedOrConnecting()) {
                 result = false;
@@ -676,7 +674,6 @@ public class Utils{
      * @return String 每个Byte之间空格分隔，如: [61 6C 6B]
      */
     public static String str2HexStr(String str) {
-
         char[] chars = "0123456789ABCDEF".toCharArray();
         StringBuilder sb = new StringBuilder("");
         byte[] bs = str.getBytes();

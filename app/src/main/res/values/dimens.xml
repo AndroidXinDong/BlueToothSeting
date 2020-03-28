@@ -16,4 +16,5 @@
     <dimen name="size_text_larger">18sp</dimen>
     <dimen name="size_text_max">20sp</dimen>
     <dimen name="acitvity_margin">16sp</dimen>
+    <dimen name="setTv">48dp</dimen>
 </resources>

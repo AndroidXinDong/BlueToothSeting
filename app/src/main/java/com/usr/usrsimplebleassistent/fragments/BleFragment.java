@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -127,7 +128,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     }
     @OnClick(R.id.btn_set)
     public void setCmd(){
-        byte[] bytes = DataUtils.sendCrCCMD("20", "66", "");
+        byte[] bytes = DataUtils.sendCrCCMD("20", "66", "XG202003110001");
         writeOption(bytes);
     }
 
@@ -143,6 +144,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         initEvent();//初始化事件
         initbleFragment();
+
         return view;
     }
 
@@ -414,7 +416,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             cList.addAll(characteristics);
             BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE), -1, -1);
             cList.add(usrVirtualCharacteristic);
-            if (cList.size()>=2){
+            if (cList.size()>2){
                 myApplication.setCharacteristic(cList.get(2));
                 initCharacteristics();
                 prepareBroadcastDataNotify(notifyCharacteristic);

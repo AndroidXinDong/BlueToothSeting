@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
 import com.usr.usrsimplebleassistent.Utils.AnimateUtils;
@@ -124,7 +125,21 @@ public class MainActivity extends MyBaseActivity {
             }
             if (action.equals(BluetoothLeService.ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS)) {
 
+            }else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
+                // Services Discovered from GATT Server
+                int sdkInt = Build.VERSION.SDK_INT;
+                if (sdkInt>=21){
+                    //设置最大发包、收包的长度为512个字节
+                    boolean b = BluetoothLeService.requestMtu(512);
+                    if(b){
+                        Toast.makeText(MainActivity.this,getString(R.string.transmittal_length,"512"),Toast.LENGTH_LONG).show();
+                    }else
+                        Toast.makeText(MainActivity.this,getString(R.string.transmittal_length,"20"),Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(MainActivity.this,getString(R.string.transmittal_length,"20"),Toast.LENGTH_LONG).show();
+                }
             }
+
         }
     };
     @Subscribe(threadMode = ThreadMode.MAIN)

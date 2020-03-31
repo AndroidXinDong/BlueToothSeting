@@ -24,15 +24,13 @@ public class DataUtils {
         String tail = "7D7D";
         String datas = Utils.str2HexStr(data).replaceAll(" ","");
         int length = data.length();
-        String dataSize = Utils.str2HexStr(""+length).replaceAll(" ","");
+        String dataSize = intToHex(length);
         String temp =cmd+extension+dataSize+datas; // 所有校验数据组成临时字符串
-        Log.i(TAG, "temp: "+ Arrays.toString(temp.getBytes()));
         String crc16 = intToHex(CRC.calcCrc16(temp.getBytes(), 0, temp.getBytes().length, 0xffff));
-        Log.i(TAG, "hex dataSize: "+dataSize);
-        Log.i(TAG, "crc16: "+crc16+"====="+Utils.str2HexStr(""+crc16));
         result = header+cmd+extension+dataSize+datas+crc16+tail;
-        Log.i(TAG, "data: "+result);
+        Log.i(TAG, "sendCrCCMD: "+result);
         byte[] bytes = Utils.hexStringToByteArray(result);
+        Log.i(TAG, "bytes: "+Arrays.toString(bytes));
         return bytes;
     }
 
@@ -64,6 +62,14 @@ public class DataUtils {
             n = n/16;
         }
         a = s.reverse().toString();
-        return a;
+        if(a.length()==1) {
+            return "000".concat(a);
+        }else if (a.length() == 2){
+            return "00".concat(a);
+        }else if(a.length() == 3){
+            return "0".concat(a);
+        }else {
+            return a;
+        }
     }
 }

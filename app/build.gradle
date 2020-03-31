@@ -38,4 +38,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation 'no.nordicsemi.android:dfu:0.6.2'
     implementation project(':MaterialDesignDialoglibrary')
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

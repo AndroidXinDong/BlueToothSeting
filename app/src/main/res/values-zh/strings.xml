@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">BLE调试助手</string>
+    <string name="app_name">火焰检测</string>
     <string name="devices">BlueDevice</string>
     <string name="menu_usr">官网</string>
     <string name="menu_firmware" tools:ignore="ExtraTranslation">固件升级</string>

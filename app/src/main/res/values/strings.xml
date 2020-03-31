@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BLE调试助手</string>
+    <string name="app_name">火焰检测</string>
     <string name="devices">BLUE Devices</string>
     <string name="menu_usr">Official Website</string>
     <string name="share">Share</string>
@@ -162,7 +162,11 @@
     <item type="id" name="onTiming"></item>
     <item type="id" name="outTiming"></item>
 
-
+    <array name="machineType">
+        <item>类型一</item>
+        <item>类型二</item>
+        <item>类型三</item>
+    </array>
 
 
 

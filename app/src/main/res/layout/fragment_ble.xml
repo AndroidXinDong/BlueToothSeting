@@ -12,7 +12,7 @@
         android:layout_height="48dp"
         android:background="@android:color/darker_gray"
         android:gravity="center"
-        android:text="蓝牙列表"
+        android:text="火焰检测"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
@@ -23,7 +23,8 @@
         android:layout_alignParentRight="true"
         android:textColor="@color/white"
         android:gravity="center"
-        android:textSize="18sp"
+        android:layout_marginRight="5dp"
+        android:textSize="16sp"
         android:text="未连接" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -40,9 +41,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:src="@mipmap/ic_search_white_36dp"
         app:elevation="6dp"
         app:pressedTranslationZ="12dp" />
+
+    <include
+        android:layout_below="@id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/ble_connect" />
 
 </RelativeLayout>

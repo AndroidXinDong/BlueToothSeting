@@ -1,57 +1,35 @@
 package com.usr.usrsimplebleassistent;
 
 import android.annotation.TargetApi;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattService;
-import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
+import com.usr.usrsimplebleassistent.Utils.AnimateUtils;
 import com.usr.usrsimplebleassistent.Utils.Constants;
-import com.usr.usrsimplebleassistent.Utils.GattAttributes;
 import com.usr.usrsimplebleassistent.Utils.Utils;
-import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
-import com.usr.usrsimplebleassistent.application.MyApplication;
-import com.usr.usrsimplebleassistent.bean.MDevice;
-import com.usr.usrsimplebleassistent.bean.MService;
-import com.usr.usrsimplebleassistent.bean.Message;
-import com.usr.usrsimplebleassistent.firmware.bleconnect.BleUtil;
+import com.usr.usrsimplebleassistent.bean.MessageEvent;
 import com.usr.usrsimplebleassistent.fragments.BleFragment;
 import com.usr.usrsimplebleassistent.fragments.DataFragment;
 import com.usr.usrsimplebleassistent.fragments.SetFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import butterknife.BindView;
-import me.drakeet.materialdialog.MaterialDialog;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class MainActivity extends MyBaseActivity  {
-
+public class MainActivity extends MyBaseActivity {
     /*
      * onCreate 入口
      *
@@ -64,6 +42,8 @@ public class MainActivity extends MyBaseActivity  {
         //必须调用，其在setContentView后面调用
         bindToolBar();
         initFragment();
+        EventBus.getDefault().register(this);
+        registerReceiver(mReceiver,Utils.makeGattUpdateIntentFilter());
     }
 
     private void initFragment() {
@@ -79,6 +59,7 @@ public class MainActivity extends MyBaseActivity  {
     private SetFragment mSetFragment;
     private FragmentManager mManager;
     private Fragment currentFragment;
+
     public void click(View view) {
         switch (view.getId()) {
             case R.id.radiobutton1:
@@ -126,5 +107,34 @@ public class MainActivity extends MyBaseActivity  {
             }
             currentFragment = fragment;
         }
+    }
+
+    /**
+     * BroadcastReceiver for receiving the GATT communication status
+     */
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            Bundle extras = intent.getExtras();
+            if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+                // Data Received
+                 byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
+                EventBus.getDefault().post(new MessageEvent(""+Utils.ByteArraytoHex(array)));
+            }
+            if (action.equals(BluetoothLeService.ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS)) {
+
+            }
+        }
+    };
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getMessageEvent(MessageEvent event){
+
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
+        EventBus.getDefault().unregister(this);
     }
 }

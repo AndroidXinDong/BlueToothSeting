@@ -2,11 +2,15 @@ package com.usr.usrsimplebleassistent.Utils;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 
+import com.usr.usrsimplebleassistent.GattDetailActivity;
 import com.usr.usrsimplebleassistent.R;
+
+import me.drakeet.materialdialog.MaterialDialog;
 
 
 /**
@@ -124,5 +128,19 @@ public class AnimateUtils {
 
     public static void shake(View view){
         view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.shake));
+    }
+
+
+    public static void showDialog(String info,Context context) {
+        final MaterialDialog dialog = new MaterialDialog(context);
+        dialog.setTitle(context.getString(R.string.alert))
+                .setMessage(info)
+                .setPositiveButton(R.string.ok, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+        dialog.show();
     }
 }

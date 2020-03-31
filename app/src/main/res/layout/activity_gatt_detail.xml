@@ -19,13 +19,6 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lv_msg"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
         <RelativeLayout
             android:id="@+id/rl_bottom"
             android:layout_width="match_parent"
@@ -34,10 +27,6 @@
             android:paddingRight="2dp"
             android:layout_alignParentBottom="true"
             android:background="#009688">
-
-
-
-
 
             <RelativeLayout
                 android:id="@+id/rl_write"
@@ -72,6 +61,5 @@
                     android:textCursorDrawable="@android:color/white"
                     android:hint="input content"/>
             </RelativeLayout>
-
         </RelativeLayout>
 </LinearLayout>

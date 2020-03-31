@@ -6,6 +6,7 @@
     android:background="@drawable/window_bg"
     android:orientation="vertical"
     android:weightSum="6"
+    android:visibility="gone"
     android:gravity="center">
     <LinearLayout
         android:layout_width="match_parent"
@@ -136,11 +137,12 @@
             android:layout_weight="2"
             android:textSize="18sp"
             android:textColor="@color/black"
-            android:background="@drawable/et_shape" />
+            android:background="@drawable/et_shape"
+            android:entries="@array/machineType"/>
     </LinearLayout>
     <Button
         android:id="@+id/btn_set"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="@color/black"

@@ -714,8 +714,7 @@ public class BluetoothLeService extends Service {
             return;
         }
 
-        BluetoothDevice device = mBluetoothAdapter
-                .getRemoteDevice(address);
+        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         if (device == null) {
             return;
         }
@@ -826,7 +825,7 @@ public class BluetoothLeService extends Service {
             byte[] valueByte = byteArray;
             characteristic.setValue(valueByte);
             boolean b = mBluetoothGatt.writeCharacteristic(characteristic);
-            Log.i(TAG, "writeCharacteristicGattDb: "+b);
+//            Log.i(TAG, "writeCharacteristicGattDb: "+b);
         }
     }
 

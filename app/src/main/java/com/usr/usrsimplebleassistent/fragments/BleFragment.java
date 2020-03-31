@@ -1,5 +1,6 @@
 package com.usr.usrsimplebleassistent.fragments;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
@@ -16,13 +17,18 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
 import com.usr.usrsimplebleassistent.GattDetailActivity;
 import com.usr.usrsimplebleassistent.R;
+import com.usr.usrsimplebleassistent.Utils.AnimateUtils;
 import com.usr.usrsimplebleassistent.Utils.Constants;
+import com.usr.usrsimplebleassistent.Utils.DataUtils;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
 import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
@@ -41,6 +47,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.drakeet.materialdialog.MaterialDialog;
 
 /**
@@ -49,17 +56,6 @@ import me.drakeet.materialdialog.MaterialDialog;
  * by xinDong
  **/
 public class BleFragment extends Fragment implements View.OnClickListener {
-
-    public BleFragment() {
-    }
-
-    public static BleFragment getInstance(){
-        BleFragment fragment = new BleFragment();
-        Bundle bundle = new Bundle();
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
     private static BluetoothAdapter mBluetoothAdapter;
     private Handler hander = new Handler();
     private MaterialDialog progressDialog;
@@ -71,13 +67,41 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     private String currentDevName;
     private MaterialDialog alarmDialog;
     private MyApplication myApplication;
+    @BindView(R.id.ll_ble)
+    LinearLayout ll_ble;
+    @BindView(R.id.btn_set)
+    Button btn_set;
+    @BindView(R.id.et_machine)
+    TextView et_machine;
+    @BindView(R.id.et_bleName)
+    TextView et_bleName;
+    @BindView(R.id.et_blePass)
+    TextView et_blePass;
+    @BindView(R.id.et_machineDate)
+    TextView et_machineDate;
+
+    @BindView(R.id.ble_state)
+    TextView ble_state;
+    public BleFragment() {
+    }
+
+    public static BleFragment getInstance(){
+        BleFragment fragment = new BleFragment();
+        Bundle bundle = new Bundle();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+
 
     //停止扫描
     private Runnable stopScanRunnable = new Runnable() {
         @Override
         public void run() {
-            if (mBluetoothAdapter != null)
+            if (mBluetoothAdapter != null){
                 mBluetoothAdapter.startLeScan(mLeScanCallback);
+            }
+
         }
     };
     private Runnable dismssDialogRunnable = new Runnable() {
@@ -88,9 +112,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             disconnectDevice();
         }
     };
-    /**
-     * spp
-     */
     private BluetoothAdapter mBtAdapter;
     private final List<MDevice> list = new ArrayList<>();
     private DevicesAdapter adapter;
@@ -103,7 +124,11 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         if (state==0){
             startScan();
         }
-
+    }
+    @OnClick(R.id.btn_set)
+    public void setCmd(){
+        byte[] bytes = DataUtils.sendCrCCMD("20", "66", "");
+        writeOption(bytes);
     }
 
     @Nullable
@@ -113,6 +138,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         ButterKnife.bind(BleFragment.this,view);
         myApplication = (MyApplication)getActivity(). getApplication();
         //检查蓝牙
+        ll_ble.setVisibility(View.GONE);
         checkBleSupportAndInitialize();
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         initEvent();//初始化事件
@@ -165,7 +191,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         //搜索按钮点击事件
         fabSearch.setOnClickListener(this);
     }
-
 
     /**
      * ble 停止扫描
@@ -236,7 +261,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
      */
     private void startScan() {
         //10秒后停止扫描
-        hander.postDelayed(stopScanRunnable, 10000);
+        hander.postDelayed(stopScanRunnable, 20000);
         mBluetoothAdapter.startLeScan(mLeScanCallback);
     }
 
@@ -292,8 +317,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         currentDevAddress = device.getAddress();
         currentDevName = device.getName();
         //如果是连接状态，断开，重新连接
-        if (BluetoothLeService.getConnectionState() != BluetoothLeService.STATE_DISCONNECTED)
-            BluetoothLeService.disconnect();
+//        if (BluetoothLeService.getConnectionState() != BluetoothLeService.STATE_DISCONNECTED) BluetoothLeService.disconnect();
         BluetoothLeService.connect(currentDevAddress, currentDevName, getActivity());
     }
 
@@ -305,22 +329,11 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         BluetoothLeService.disconnect();
     }
 
-
-
-
-    /**
-     * 销毁MainActivity 的方法
-     */
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-
     /**
      * BroadcastReceiver for receiving the GATT communication status
      */
     private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+        @SuppressLint("RestrictedApi")
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
@@ -331,7 +344,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                     if (extras.containsKey(Constants.EXTRA_BYTE_UUID_VALUE)) {
                         if (myApplication != null) {
                             byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
-                            Log.i("Tag", "main: "+Utils.byteToASCII(array));
+                            Log.i("Tag", "BLE: "+Utils.ByteArraytoHex(array));
                         }
                     }
                 }
@@ -340,13 +353,22 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             //连接成功
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 //搜索服务
+                progressDialog.dismiss();
                 BluetoothLeService.discoverServices();
+                ble_state.setText("已连接");
+                fabSearch.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+                ll_ble.setVisibility(View.VISIBLE);
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Services Discovered from GATT Server
                 hander.removeCallbacks(dismssDialogRunnable);
                 progressDialog.dismiss();
                 prepareGattServices(BluetoothLeService.getSupportedGattServices());
             } else if (action.equals(BluetoothLeService.ACTION_GATT_DISCONNECTED)) {
+                ble_state.setText("未连接");
+                fabSearch.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.VISIBLE);
+                ll_ble.setVisibility(View.GONE);
                 progressDialog.dismiss();
                 //connect break (连接断开)
                 showDialog(getString(R.string.conn_disconnected_home));
@@ -381,7 +403,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     private void prepareGattServices(List<BluetoothGattService> gattServices) {
         prepareData(gattServices);
         List<MService> services = myApplication.getServices();
-        Intent intent = new Intent(getActivity(), GattDetailActivity.class);
+
         if (services.size() > 0) {
             MService mService = services.get(0);
             BluetoothGattService service = mService.getService();
@@ -392,9 +414,16 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             cList.addAll(characteristics);
             BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE), -1, -1);
             cList.add(usrVirtualCharacteristic);
-            myApplication.setCharacteristic(cList.get(2));
-            startActivity(intent);
+            if (cList.size()>=2){
+                myApplication.setCharacteristic(cList.get(2));
+                initCharacteristics();
+                prepareBroadcastDataNotify(notifyCharacteristic);
+            }else {
+                progressDialog.dismiss();
+                Toast.makeText(myApplication, "未能获得通信服务", Toast.LENGTH_SHORT).show();
+            }
         } else {
+            progressDialog.dismiss();
             Toast.makeText(myApplication, "未能获得通信服务", Toast.LENGTH_SHORT).show();
         }
     }
@@ -425,6 +454,58 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         super.onStop();
         if (mGattUpdateReceiver != null) {
            getActivity().unregisterReceiver(mGattUpdateReceiver);
+        }
+    }
+    private BluetoothGattCharacteristic notifyCharacteristic;
+    private BluetoothGattCharacteristic writeCharacteristic;
+    /**
+     * 向BLE蓝牙发送数据
+     */
+    private void writeOption(byte[] hexString) {
+
+//        byte[] array = Utils.hexStringToByteArray(hexString);
+        writeCharacteristic(writeCharacteristic, hexString);
+    }
+    /**
+     * Preparing Broadcast receiver to broadcast notify characteristics
+     *
+     * @param characteristic
+     */
+    void prepareBroadcastDataNotify(BluetoothGattCharacteristic characteristic) {
+        final int charaProp = characteristic.getProperties();
+        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
+            BluetoothLeService.setCharacteristicNotification(characteristic, true);
+        }
+
+    }
+    // Writing the hexValue to the characteristics
+    private void writeCharacteristic(BluetoothGattCharacteristic characteristic, byte[] bytes) {
+        try {
+            BluetoothLeService.writeCharacteristicGattDb(characteristic, bytes);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initCharacteristics() {
+        BluetoothGattCharacteristic characteristic = myApplication.getCharacteristic();
+        String uuid = characteristic.getUuid().toString();
+        if (uuid.equals(GattAttributes.USR_SERVICE)) {
+            List<BluetoothGattCharacteristic> characteristics = myApplication.getCharacteristics();
+            for (BluetoothGattCharacteristic c : characteristics) {
+                String porpertie = Utils.getPorperties(getActivity(), c);
+                if (porpertie.equals("Notify")) {
+                    notifyCharacteristic = c;
+                    continue;
+                }
+                if (porpertie.equals("Write")) {
+                    writeCharacteristic = c;
+                    continue;
+                }
+            }
+        } else {
+            notifyCharacteristic = characteristic;
+            writeCharacteristic = characteristic;
         }
     }
 }

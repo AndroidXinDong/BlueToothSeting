@@ -13,6 +13,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -36,6 +38,11 @@ import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
 import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MDevice;
 import com.usr.usrsimplebleassistent.bean.MService;
+import com.usr.usrsimplebleassistent.bean.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,9 +87,37 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     TextView et_blePass;
     @BindView(R.id.et_machineDate)
     TextView et_machineDate;
+    @BindView(R.id.tv_version)
+    TextView tv_version;
 
     @BindView(R.id.ble_state)
     TextView ble_state;
+    private BluetoothAdapter mBtAdapter;
+    private final List<MDevice> list = new ArrayList<>();
+    private DevicesAdapter adapter;
+    private Handler msgHandler = new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            String obj = (String) msg.obj;
+            switch (msg.what){
+                case 20:
+                    String readIDResponse = DataUtils.getReadIDResponse(obj);
+                    et_machine.setText(readIDResponse);
+                    break;
+                case 21:
+                    String s = DataUtils.getReadVersionResponse(obj);
+                    tv_version.setText(s);
+                    break;
+                case 0:
+                    writeOption(DataUtils.sendReadIDCMD());
+
+                    writeOption(DataUtils.sendReadVersionCMD());
+                    break;
+            }
+        }
+    };
+    private String TAG = "Tag";
+
     public BleFragment() {
     }
 
@@ -113,9 +148,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             disconnectDevice();
         }
     };
-    private BluetoothAdapter mBtAdapter;
-    private final List<MDevice> list = new ArrayList<>();
-    private DevicesAdapter adapter;
 
 
     @Override
@@ -128,7 +160,18 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     }
     @OnClick(R.id.btn_set)
     public void setCmd(){
-        byte[] bytes = DataUtils.sendCrCCMD("20", "66", "XG202003110001");
+        String trim = et_machine.getText().toString().trim();
+        int length = trim.length();
+        if (length==14){
+            byte[] bytes = DataUtils.sendWriteIDCMD(trim);
+            writeOption(bytes);
+        }else {
+            Toast.makeText(myApplication, "请输入14位标准长度ID", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @OnClick(R.id.tv_version)
+    public void getVersion(){
+        byte[] bytes = DataUtils.sendReadVersionCMD();
         writeOption(bytes);
     }
 
@@ -144,7 +187,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         initEvent();//初始化事件
         initbleFragment();
-
+        EventBus.getDefault().register(BleFragment.this);
         return view;
     }
 
@@ -346,7 +389,33 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                     if (extras.containsKey(Constants.EXTRA_BYTE_UUID_VALUE)) {
                         if (myApplication != null) {
                             byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
-                            Log.i("Tag", "BLE: "+Utils.ByteArraytoHex(array));
+                            String response = Utils.ByteArraytoHex(array);
+                            String cmd = response.substring(4, 6);
+                            String ex = response.substring(6, 8);
+//                            Log.i("Tag", "cmd: "+cmd);
+                            if (cmd.equals(DataUtils.CMD_ID_CODE)){
+                                if (ex.equals(DataUtils.EXTEND_WRITE_RESPONSE_CODE)){
+                                    boolean writeResponse = DataUtils.getWriteResponse(response);
+                                    if (writeResponse){
+                                        Toast.makeText(context, "设备ID设置完成", Toast.LENGTH_SHORT).show();
+                                    }
+                                }else if (ex.equals(DataUtils.EXTEND_READ_RESPONSE_CODE)){
+                                    Message msg = new Message();
+                                    msg.obj = response;
+                                    msg.what = 20;
+                                    msgHandler.sendMessage(msg);
+                                }
+
+                            }else if (cmd.equals(DataUtils.CMD_VERSION_CODE)){
+                                if (ex.equals(DataUtils.EXTEND_WRITE_RESPONSE_CODE)){
+
+                                }else if (ex.equals(DataUtils.EXTEND_READ_RESPONSE_CODE)){
+                                    Message msg = new Message();
+                                    msg.obj = response;
+                                    msg.what = 21;
+                                    msgHandler.sendMessage(msg);
+                                }
+                            }
                         }
                     }
                 }
@@ -361,6 +430,9 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 fabSearch.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.GONE);
                 ll_ble.setVisibility(View.VISIBLE);
+                et_bleName.setText(currentDevName);
+                et_machineDate.setText(Utils.GetDate());
+                msgHandler.sendEmptyMessageDelayed(0,5000);
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Services Discovered from GATT Server
                 hander.removeCallbacks(dismssDialogRunnable);
@@ -400,9 +472,9 @@ public class BleFragment extends Fragment implements View.OnClickListener {
      *
      * @param gattServices
      */
-    private final List<BluetoothGattCharacteristic> cList = new ArrayList<>();
+    public final List<BluetoothGattCharacteristic> cList = new ArrayList<>();
 
-    private void prepareGattServices(List<BluetoothGattService> gattServices) {
+    public void prepareGattServices(List<BluetoothGattService> gattServices) {
         prepareData(gattServices);
         List<MService> services = myApplication.getServices();
 
@@ -422,11 +494,9 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 prepareBroadcastDataNotify(notifyCharacteristic);
             }else {
                 progressDialog.dismiss();
-                Toast.makeText(myApplication, "未能获得通信服务", Toast.LENGTH_SHORT).show();
             }
         } else {
             progressDialog.dismiss();
-            Toast.makeText(myApplication, "未能获得通信服务", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -435,7 +505,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
      *
      * @param gattServices
      */
-    private void prepareData(List<BluetoothGattService> gattServices) {
+    public void prepareData(List<BluetoothGattService> gattServices) {
         if (gattServices == null)
             return;
         List<MService> list = new ArrayList<>();
@@ -463,7 +533,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     /**
      * 向BLE蓝牙发送数据
      */
-    private void writeOption(byte[] hexString) {
+    public void writeOption(byte[] hexString) {
 
 //        byte[] array = Utils.hexStringToByteArray(hexString);
         writeCharacteristic(writeCharacteristic, hexString);
@@ -473,7 +543,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
      *
      * @param characteristic
      */
-    void prepareBroadcastDataNotify(BluetoothGattCharacteristic characteristic) {
+    public void prepareBroadcastDataNotify(BluetoothGattCharacteristic characteristic) {
         final int charaProp = characteristic.getProperties();
         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
             BluetoothLeService.setCharacteristicNotification(characteristic, true);
@@ -481,15 +551,16 @@ public class BleFragment extends Fragment implements View.OnClickListener {
 
     }
     // Writing the hexValue to the characteristics
-    private void writeCharacteristic(BluetoothGattCharacteristic characteristic, byte[] bytes) {
+    public void writeCharacteristic(BluetoothGattCharacteristic characteristic, byte[] bytes) {
         try {
             BluetoothLeService.writeCharacteristicGattDb(characteristic, bytes);
         } catch (NullPointerException e) {
+            Log.i(TAG, "writeCharacteristic: "+e.getMessage());
             e.printStackTrace();
         }
     }
 
-    private void initCharacteristics() {
+    public void initCharacteristics() {
         BluetoothGattCharacteristic characteristic = myApplication.getCharacteristic();
         String uuid = characteristic.getUuid().toString();
         if (uuid.equals(GattAttributes.USR_SERVICE)) {
@@ -509,5 +580,18 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             notifyCharacteristic = characteristic;
             writeCharacteristic = characteristic;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(BleFragment.this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getBleReceiverData(MessageEvent event) {
+        String message = event.getMessage();
+        Log.i(TAG, "getBleReceiverData: "+message);
+        writeOption(Utils.hexStringToByteArray(message));
     }
 }

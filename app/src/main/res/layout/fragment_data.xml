@@ -19,7 +19,7 @@
             android:gravity="center"
             android:padding="3dp"
             android:textSize="16sp"
-            android:checked="true"
+            android:checked="false"
             android:drawableTop="@drawable/circle_selector"
             android:text="连接状态"
             android:textColor="@drawable/text_color_state"/>
@@ -103,6 +103,7 @@
             android:layout_height="match_parent"
             android:background="@color/white"/>
         <TextView
+            android:id="@+id/tv_purple"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -134,6 +135,7 @@
             android:layout_height="match_parent"
             android:background="@color/white"/>
         <TextView
+            android:id="@+id/tv_light"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -165,6 +167,7 @@
             android:layout_height="match_parent"
             android:background="@color/white"/>
         <TextView
+            android:id="@+id/tv_red"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"

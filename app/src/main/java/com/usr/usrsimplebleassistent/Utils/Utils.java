@@ -269,8 +269,7 @@ public class Utils{
         int len = s.length();
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i + 1), 16));
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character.digit(s.charAt(i + 1), 16));
         }
         return data;
     }
@@ -400,7 +399,7 @@ public class Utils{
      * @return {@link String}
      */
     public static String GetDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM");
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
 
@@ -743,9 +742,6 @@ public class Utils{
         }
         return s;
     }
-
-
-
 
 
 

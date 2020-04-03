@@ -56,7 +56,7 @@ public class SetFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowEventMessage(MessageEvent event){
-        Log.i(TAG, "onShowEventMessage: "+event.getMessage());
+//        Log.i(TAG, "onShowEventMessage: "+event.getMessage());
     }
 
     @Override

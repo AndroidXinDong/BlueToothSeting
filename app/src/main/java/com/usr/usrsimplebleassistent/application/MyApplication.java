@@ -4,6 +4,7 @@ import android.app.Application;
 import android.bluetooth.BluetoothGattCharacteristic;
 
 import com.usr.usrsimplebleassistent.bean.MService;
+import com.usr.usrsimplebleassistent.views.CrashHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +58,13 @@ public class MyApplication extends Application {
 
     public BluetoothGattCharacteristic getCharacteristic() {
         return characteristic;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // 添加异常打印反馈回执
+        CrashHandler handler = CrashHandler.getInstance();
+        handler.init(this);
     }
 }

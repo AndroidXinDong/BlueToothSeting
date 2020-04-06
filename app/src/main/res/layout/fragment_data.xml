@@ -20,6 +20,7 @@
             android:padding="3dp"
             android:textSize="16sp"
             android:checked="false"
+            android:clickable="false"
             android:drawableTop="@drawable/circle_selector"
             android:text="连接状态"
             android:textColor="@drawable/text_color_state"/>
@@ -31,6 +32,7 @@
             android:button="@null"
             android:gravity="center"
             android:padding="3dp"
+            android:clickable="false"
             android:textSize="16sp"
             android:drawableTop="@drawable/circle_selector"
             android:text="异常"
@@ -43,6 +45,7 @@
             android:button="@null"
             android:gravity="center"
             android:padding="3dp"
+            android:clickable="false"
             android:textSize="16sp"
             android:drawableTop="@drawable/circle_selector"
             android:text="报警"
@@ -167,7 +170,7 @@
             android:layout_height="match_parent"
             android:background="@color/white"/>
         <TextView
-            android:id="@+id/tv_red"
+            android:id="@+id/tv_red1"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -200,6 +203,7 @@
             android:layout_height="match_parent"
             android:background="@color/white"/>
         <TextView
+            android:id="@+id/tv_red2"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -231,6 +235,7 @@
             android:layout_height="match_parent"
             android:background="@color/white"/>
         <TextView
+            android:id="@+id/tv_red3"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"

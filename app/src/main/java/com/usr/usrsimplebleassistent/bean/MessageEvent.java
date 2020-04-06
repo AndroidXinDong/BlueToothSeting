@@ -7,9 +7,11 @@ package com.usr.usrsimplebleassistent.bean;
  **/
 public class MessageEvent {
     private String message;
+    private Boolean isSend;
 
-    public MessageEvent(String message) {
+    public MessageEvent(String message, Boolean isSend) {
         this.message = message;
+        this.isSend = isSend;
     }
 
     public String getMessage() {
@@ -18,5 +20,13 @@ public class MessageEvent {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Boolean getSend() {
+        return isSend;
+    }
+
+    public void setSend(Boolean send) {
+        isSend = send;
     }
 }

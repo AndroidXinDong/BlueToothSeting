@@ -141,7 +141,7 @@ public class BluetoothLeService extends Service {
             // GATT Services discovered
             //发现新的服务
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                System.out.println("---------------------------->发现服务");
+//                System.out.println("---------------------------->发现服务");
                 broadcastConnectionUpdate(ACTION_GATT_SERVICES_DISCOVERED);
             } else {
 
@@ -151,9 +151,9 @@ public class BluetoothLeService extends Service {
         @Override
         public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                System.out.println("onDescriptorWrite GATT_SUCCESS------------------->SUCCESS");
+//                System.out.println("onDescriptorWrite GATT_SUCCESS------------------->SUCCESS");
             } else if (status == BluetoothGatt.GATT_FAILURE) {
-                System.out.println("onDescriptorWrite GATT_FAIL------------------->FAIL");
+//                System.out.println("onDescriptorWrite GATT_FAIL------------------->FAIL");
                 Intent intent = new Intent(ACTION_GATT_DESCRIPTORWRITE_RESULT);
                 intent.putExtra(Constants.EXTRA_DESCRIPTOR_WRITE_RESULT, status);
                 mContext.sendBroadcast(intent);
@@ -163,7 +163,7 @@ public class BluetoothLeService extends Service {
 
         @Override
         public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
-            System.out.println("onDescriptorRead ------------------->GATT_SUCC");
+//            System.out.println("onDescriptorRead ------------------->GATT_SUCC");
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 UUID descriptorUUID = descriptor.getUuid();
                 final Intent intent = new Intent(ACTION_DATA_AVAILABLE);
@@ -226,7 +226,7 @@ public class BluetoothLeService extends Service {
                  */
                 mContext.sendBroadcast(intent);
             } else {
-                System.out.println("onDescriptorRead ------------------->GATT_FAIL");
+//                System.out.println("onDescriptorRead ------------------->GATT_FAIL");
             }
 
         }
@@ -236,7 +236,7 @@ public class BluetoothLeService extends Service {
                 characteristic, int status) {
             //write操作会调用此方法
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                System.out.println("onCharacteristicWrite ------------------->write success");
+//                System.out.println("onCharacteristicWrite ------------------->write success");
                 Intent intent = new Intent(ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS);
                 mContext.sendBroadcast(intent);
             } else {
@@ -250,7 +250,7 @@ public class BluetoothLeService extends Service {
         public void onCharacteristicRead(BluetoothGatt gatt,
                                          BluetoothGattCharacteristic characteristic, int status) {
 
-            System.out.println("onCharacteristicWrite ------------------->read");
+//            System.out.println("onCharacteristicWrite ------------------->read");
             // GATT Characteristic read (读操作会调用该方法)
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 UUID charUuid = characteristic.getUuid();
@@ -262,7 +262,7 @@ public class BluetoothLeService extends Service {
                 mBundle.putString(Constants.EXTRA_BYTE_UUID_VALUE,
                         characteristic.getUuid().toString());
 
-                System.out.println("onCharacteristicRead------------------->GATT_SUCC");
+//                System.out.println("onCharacteristicRead------------------->GATT_SUCC");
 
                 // Body sensor location read value
                 if (charUuid.equals(UUIDDatabase.UUID_BODY_SENSOR_LOCATION)) {
@@ -488,7 +488,7 @@ public class BluetoothLeService extends Service {
              * Sending lots of data is possible, but usually ends up being less efficient than classic
              * Bluetooth when trying to achieve maximum throughput.
              */
-            System.out.println("onCharacteristicChanged -------------------> changed");
+//            System.out.println("onCharacteristicChanged -------------------> changed");
             //notify 会回调用此方法
             broadcastNotifyUpdate(characteristic);
         }
@@ -738,7 +738,7 @@ public class BluetoothLeService extends Service {
                 return (Boolean) localMethod.invoke(localBluetoothGatt);
             }
         } catch (Exception localException) {
-            System.out.println("An exception occured while refreshing device");
+//            System.out.println("An exception occured while refreshing device");
         }
         return false;
     }
@@ -825,7 +825,7 @@ public class BluetoothLeService extends Service {
             byte[] valueByte = byteArray;
             characteristic.setValue(valueByte);
             boolean b = mBluetoothGatt.writeCharacteristic(characteristic);
-            Log.i(TAG, "writeCharacteristicGattDb: "+b);
+//            Log.i(TAG, "writeCharacteristicGattDb: "+b);
         }
     }
 
@@ -948,7 +948,7 @@ public class BluetoothLeService extends Service {
      * @return Return true if the initialization is successful.
      */
     public boolean initialize() {
-        System.out.println("BLEService----------------->initialize");
+//        System.out.println("BLEService----------------->initialize");
         // For API level 18 and above, get a reference to BluetoothAdapter
         // through
         // BluetoothManager.

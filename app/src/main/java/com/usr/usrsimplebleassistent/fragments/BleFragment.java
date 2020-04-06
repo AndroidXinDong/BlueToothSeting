@@ -432,7 +432,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 ll_ble.setVisibility(View.VISIBLE);
                 et_bleName.setText(currentDevName);
                 et_machineDate.setText(Utils.GetDate());
-                msgHandler.sendEmptyMessageDelayed(0,5000);
+//                msgHandler.sendEmptyMessageDelayed(0,5000);
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Services Discovered from GATT Server
                 hander.removeCallbacks(dismssDialogRunnable);
@@ -591,7 +591,12 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getBleReceiverData(MessageEvent event) {
         String message = event.getMessage();
-        Log.i(TAG, "getBleReceiverData: "+message);
-        writeOption(Utils.hexStringToByteArray(message));
+
+        Boolean send = event.getSend();
+        if (send){
+//            Log.i(TAG, "getBleReceiverData: "+message);
+            writeOption(Utils.hexStringToByteArray(message));
+        }
+
     }
 }

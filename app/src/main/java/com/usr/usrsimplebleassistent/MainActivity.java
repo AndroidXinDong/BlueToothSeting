@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -31,6 +32,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MainActivity extends MyBaseActivity {
+
     /*
      * onCreate 入口
      *
@@ -110,6 +112,7 @@ public class MainActivity extends MyBaseActivity {
         }
     }
 
+    private String TAG = "Tag";
     /**
      * BroadcastReceiver for receiving the GATT communication status
      */
@@ -121,7 +124,9 @@ public class MainActivity extends MyBaseActivity {
             if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 // Data Received
                  byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
-                EventBus.getDefault().post(new MessageEvent(""+Utils.ByteArraytoHex(array)));
+                EventBus.getDefault().post(new MessageEvent(""+Utils.ByteArraytoHex(array),false));
+
+                Log.i(TAG, "main: "+Utils.ByteArraytoHex(array));
             }
             if (action.equals(BluetoothLeService.ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS)) {
 

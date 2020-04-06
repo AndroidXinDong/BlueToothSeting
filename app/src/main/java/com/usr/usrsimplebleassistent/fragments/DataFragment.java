@@ -1,31 +1,15 @@
 package com.usr.usrsimplebleassistent.fragments;
 
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattService;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
-import com.usr.usrsimplebleassistent.GattDetailActivity;
 import com.usr.usrsimplebleassistent.R;
-import com.usr.usrsimplebleassistent.Utils.AnimateUtils;
-import com.usr.usrsimplebleassistent.Utils.Constants;
 import com.usr.usrsimplebleassistent.Utils.DataUtils;
-import com.usr.usrsimplebleassistent.Utils.GattAttributes;
-import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.application.MyApplication;
-import com.usr.usrsimplebleassistent.bean.MService;
 import com.usr.usrsimplebleassistent.bean.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,7 +18,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,8 +25,6 @@ import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.drakeet.materialdialog.MaterialDialog;
-
 /**
  * create
  * on 2020-03-27 14:59
@@ -56,8 +37,12 @@ public class DataFragment extends Fragment {
     TextView tv_purple;
     @BindView(R.id.tv_light)
     TextView tv_light;
-    @BindView(R.id.tv_red)
-    TextView tv_red;
+    @BindView(R.id.tv_red1)
+    TextView tv_red1;
+    @BindView(R.id.tv_red2)
+    TextView tv_red2;
+    @BindView(R.id.tv_red3)
+    TextView tv_red3;
     private String sendMoreParameterCMD;
     Handler handler = new Handler();
     private Runnable runable;
@@ -80,19 +65,21 @@ public class DataFragment extends Fragment {
         EventBus.getDefault().register(DataFragment.this);
         mList.add(tv_purple);
         mList.add(tv_light);
-        mList.add(tv_red);
+        mList.add(tv_red1);
+        mList.add(tv_red2);
+        mList.add(tv_red3);
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        sendMoreParameterCMD = DataUtils.sendMoreParameterCMD("03");
+        sendMoreParameterCMD = DataUtils.sendMoreParameterCMD("05");
         runable = new Runnable() {
             @Override
             public void run() {
 
-                EventBus.getDefault().post(new MessageEvent(sendMoreParameterCMD));
+                EventBus.getDefault().post(new MessageEvent(sendMoreParameterCMD,true));
 
                 handler.postDelayed(this, 3000);
             }
@@ -102,13 +89,13 @@ public class DataFragment extends Fragment {
 
     @OnClick(R.id.tv_purple)
     public void getTest() {
-        EventBus.getDefault().post(new MessageEvent(sendMoreParameterCMD));
+        EventBus.getDefault().post(new MessageEvent(sendMoreParameterCMD,true));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getReceiverData(MessageEvent event) {
         String message = event.getMessage();
-        if (message.length()>50){
+        try{
             String substring = message.substring(4, 6);
             if (substring.equals(DataUtils.CMD_MOREDATA_CODE)){
                 List<String> list = DataUtils.getReadMoreFloatResponse(message);
@@ -116,7 +103,10 @@ public class DataFragment extends Fragment {
                     mList.get(i).setText(list.get(i));
                 }
             }
+        }catch (Exception e){
+          e.getMessage();
         }
+
 
 
     }

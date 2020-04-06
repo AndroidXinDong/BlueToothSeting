@@ -3,7 +3,6 @@ package com.usr.usrsimplebleassistent.Utils;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -82,10 +81,16 @@ public class DataUtils {
      * @return
      */
     public static byte[] sendReadIDCMD() {
-        String temp = CMD_ID_CODE + EXTEND_READ_CODE + "0000";
-        byte[] bytes = Utils.hexStringToByteArray(temp);
-        String crc = CRC.getCRC(bytes).replaceAll(" ", "");
-        String result = HEADER + temp + crc + TAIL;
+        String result = null;
+        try{
+            String temp = CMD_ID_CODE + EXTEND_READ_CODE + "0000";
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ", "");
+             result = HEADER + temp + crc + TAIL;
+        }catch (Exception e){
+            Log.i(TAG, "sendReadIDCMD: "+e.getMessage());
+            return null;
+        }
         return result.getBytes();
     }
 
@@ -95,13 +100,18 @@ public class DataUtils {
      * @param hex
      */
     public static String getReadIDResponse(String hex) {
-        boolean b = responseCheck(hex);
-        if (b) {
-            int length = hex.length();
-            String hexID = hex.substring(length - 36, length - 8);
-            String result = Utils.hexStringToString(hexID);
-            return result;
+        try{
+            boolean b = responseCheck(hex);
+            if (b) {
+                int length = hex.length();
+                String hexID = hex.substring(length - 36, length - 8);
+                String result = Utils.hexStringToString(hexID);
+                return result;
+            }
+        }catch (Exception e){
+            return null;
         }
+
         return null;
     }
 
@@ -112,18 +122,23 @@ public class DataUtils {
      * @return
      */
     public static boolean responseCheck(String hex) {
-        String upperCase = hex.toUpperCase().replaceAll(" ", "");
-        int length = upperCase.length();
-        String header = upperCase.substring(0, 4); // 帧头
-        String tail = upperCase.substring(length - 4, length); // 帧尾
+        try {
+            String upperCase = hex.toUpperCase().replaceAll(" ", "");
+            int length = upperCase.length();
+            String header = upperCase.substring(0, 4); // 帧头
+            String tail = upperCase.substring(length - 4, length); // 帧尾
 
-        String check = upperCase.substring(4, length - 8); // 校验内容
-        String crc = upperCase.substring(length - 8, length - 4);
-        byte[] crc_bytes = Utils.hexStringToByteArray(check);
-        String crc16 = CRC.getCRC(crc_bytes).replaceAll(" ", "");
-        if (crc.equals(crc16)) {
-            return true;
+            String check = upperCase.substring(4, length - 8); // 校验内容
+            String crc = upperCase.substring(length - 8, length - 4);
+            byte[] crc_bytes = Utils.hexStringToByteArray(check);
+            String crc16 = CRC.getCRC(crc_bytes).replaceAll(" ", "");
+            if (crc.equals(crc16)) {
+                return true;
+            }
+        }catch (Exception e){
+            return false;
         }
+
         return false;
     }
 
@@ -155,10 +170,15 @@ public class DataUtils {
      * @return
      */
     public static byte[] sendReadVersionCMD() {
-        String temp = CMD_VERSION_CODE + EXTEND_READ_CODE + "0000";
-        byte[] bytes = Utils.hexStringToByteArray(temp);
-        String crc = CRC.getCRC(bytes).replaceAll(" ", "");
-        String result = HEADER + temp + crc + TAIL;
+        String result = null;
+        try{
+            String temp = CMD_VERSION_CODE + EXTEND_READ_CODE + "0000";
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ", "");
+             result = HEADER + temp + crc + TAIL;
+        }catch (Exception e){
+            return null;
+        }
         return result.getBytes();
     }
 
@@ -168,13 +188,18 @@ public class DataUtils {
      * @param hex
      */
     public static String getReadVersionResponse(String hex) {
-        boolean b = responseCheck(hex);
-        if (b) {
-            int length = hex.length();
-            String hexID = hex.substring(length - 24, length - 8);
-            String result = Utils.hexStringToString(hexID);
-            return result;
+        try{
+            boolean b = responseCheck(hex);
+            if (b) {
+                int length = hex.length();
+                String hexID = hex.substring(length - 24, length - 8);
+                String result = Utils.hexStringToString(hexID);
+                return result;
+            }
+        }catch (Exception e){
+            return null;
         }
+
         return null;
     }
     /*****************************实时紫外 、红外 、可见光信号********************************/
@@ -185,23 +210,31 @@ public class DataUtils {
      * @return
      */
     public static byte[] sendReadPurpleCMD(String lightType) {
-        String temp = lightType + EXTEND_READ_CODE + "0000";
-        byte[] bytes = Utils.hexStringToByteArray(temp);
-        String crc = CRC.getCRC(bytes).replaceAll(" ", "");
-        String result = HEADER + temp + crc + TAIL;
-        return result.getBytes();
+        try{
+            String temp = lightType + EXTEND_READ_CODE + "0000";
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ", "");
+            String result = HEADER + temp + crc + TAIL;
+            return result.getBytes();
+        }catch (Exception e){
+            return null;
+        }
     }
 
 
 
     public static String getReadFloatResponse(String hex) {
         boolean b = responseCheck(hex);
-        if (b) {
-            int length = hex.length();
-            String hexID = hex.substring(length - 16, length - 8);
-            String result = Utils.hexStringToString(hexID);
-            String aFloat = C2JUtils.hex2Float(result,4);
-            return aFloat;
+        try{
+            if (b) {
+                int length = hex.length();
+                String hexID = hex.substring(length - 16, length - 8);
+                String result = Utils.hexStringToString(hexID);
+                String aFloat = C2JUtils.hex2Float(result,4);
+                return aFloat;
+            }
+        }catch (Exception e){
+            return "0.0";
         }
         return "0.0";
     }
@@ -222,19 +255,23 @@ public class DataUtils {
     public static List<String> getReadMoreFloatResponse(String hex) {
         boolean b = responseCheck(hex);
         List<String> list = new ArrayList<>();
-        if (b) {
-            int length = hex.length();
-            String substring = hex.substring(12, length - 8); // 参数个数 和 所有返回float数
-            String data = hex.substring(14, length - 8); //  所有返回float数
-            int  count = Integer.parseInt(substring.substring(0, 2),16); // 参数个数
-            for (int i = 0; i < count; i++) {
-                String s = data.substring(i * 8, 8 * (i + 1));
-                String hex2Float = C2JUtils.hex2Float(s, 4);
-                list.add(hex2Float);
+        try{
+            if (b) {
+                int length = hex.length();
+                String substring = hex.substring(12, length - 8); // 参数个数 和 所有返回float数
+                String data = hex.substring(14, length - 8); //  所有返回float数
+                int  count = Integer.parseInt(hex.substring(12, 14),16); // 参数个数
+                for (int i = 0; i < count; i++) {
+                    String s = data.substring(i * 8, 8 * (i + 1));
+                    String hex2Float = C2JUtils.hex2Float(s, 4);
+                    list.add(hex2Float);
+                }
+                return list;
             }
-
-            return list;
+        }catch (Exception e){
+            Log.i(TAG, "getReadMoreFloatResponse error: "+e.getMessage());
         }
+
         return list;
     }
     /*****************************继电器状态********************************/
@@ -308,7 +345,7 @@ public class DataUtils {
             String result = HEADER + temp + crc + TAIL;
             return result;
         } catch (Exception e) {
-            return null;
+            return "0";
         }
     }
 
@@ -319,22 +356,28 @@ public class DataUtils {
      * @return
      */
     private static String intToHex(int n) {
-        StringBuffer s = new StringBuffer();
-        String a;
-        char[] b = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-        while (n != 0) {
-            s = s.append(b[n % 16]);
-            n = n / 16;
+        try{
+            StringBuffer s = new StringBuffer();
+            String a;
+            char[] b = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+            while (n != 0) {
+                s = s.append(b[n % 16]);
+                n = n / 16;
+            }
+            a = s.reverse().toString();
+            if (a.length() == 1) {
+                return "000".concat(a);
+            } else if (a.length() == 2) {
+                return "00".concat(a);
+            } else if (a.length() == 3) {
+                return "0".concat(a);
+            } else {
+                return a;
+            }
+        }catch (Exception e){
+            Log.i(TAG, "intToHex: "+e.getMessage());
+            return "0";
         }
-        a = s.reverse().toString();
-        if (a.length() == 1) {
-            return "000".concat(a);
-        } else if (a.length() == 2) {
-            return "00".concat(a);
-        } else if (a.length() == 3) {
-            return "0".concat(a);
-        } else {
-            return a;
-        }
+
     }
 }

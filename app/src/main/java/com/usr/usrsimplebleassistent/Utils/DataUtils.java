@@ -269,7 +269,7 @@ public class DataUtils {
                 return list;
             }
         }catch (Exception e){
-            Log.i(TAG, "getReadMoreFloatResponse error: "+e.getMessage());
+            e.getMessage();
         }
 
         return list;

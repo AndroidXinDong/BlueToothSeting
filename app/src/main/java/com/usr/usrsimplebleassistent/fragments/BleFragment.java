@@ -10,12 +10,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,9 +25,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
-import com.usr.usrsimplebleassistent.GattDetailActivity;
 import com.usr.usrsimplebleassistent.R;
-import com.usr.usrsimplebleassistent.Utils.AnimateUtils;
 import com.usr.usrsimplebleassistent.Utils.Constants;
 import com.usr.usrsimplebleassistent.Utils.DataUtils;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
@@ -53,6 +49,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -95,11 +92,11 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     private BluetoothAdapter mBtAdapter;
     private final List<MDevice> list = new ArrayList<>();
     private DevicesAdapter adapter;
-    private Handler msgHandler = new Handler(Looper.getMainLooper()){
+    private Handler msgHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             String obj = (String) msg.obj;
-            switch (msg.what){
+            switch (msg.what) {
                 case 20:
                     String readIDResponse = DataUtils.getReadIDResponse(obj);
                     et_machine.setText(readIDResponse);
@@ -121,7 +118,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     public BleFragment() {
     }
 
-    public static BleFragment getInstance(){
+    public static BleFragment getInstance() {
         BleFragment fragment = new BleFragment();
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
@@ -129,12 +126,11 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
     //停止扫描
     private Runnable stopScanRunnable = new Runnable() {
         @Override
         public void run() {
-            if (mBluetoothAdapter != null){
+            if (mBluetoothAdapter != null) {
                 mBluetoothAdapter.startLeScan(mLeScanCallback);
             }
 
@@ -154,23 +150,25 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         int state = BluetoothLeService.getConnectionState();
-        if (state==0){
+        if (state == 0) {
             startScan();
         }
     }
+
     @OnClick(R.id.btn_set)
-    public void setCmd(){
+    public void setCmd() {
         String trim = et_machine.getText().toString().trim();
         int length = trim.length();
-        if (length==14){
+        if (length == 14) {
             byte[] bytes = DataUtils.sendWriteIDCMD(trim);
             writeOption(bytes);
-        }else {
+        } else {
             Toast.makeText(myApplication, "请输入14位标准长度ID", Toast.LENGTH_SHORT).show();
         }
     }
+
     @OnClick(R.id.tv_version)
-    public void getVersion(){
+    public void getVersion() {
         byte[] bytes = DataUtils.sendReadVersionCMD();
         writeOption(bytes);
     }
@@ -178,9 +176,9 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ble,container,false);
-        ButterKnife.bind(BleFragment.this,view);
-        myApplication = (MyApplication)getActivity(). getApplication();
+        View view = inflater.inflate(R.layout.fragment_ble, container, false);
+        ButterKnife.bind(BleFragment.this, view);
+        myApplication = (MyApplication) getActivity().getApplication();
         //检查蓝牙
         ll_ble.setVisibility(View.GONE);
         checkBleSupportAndInitialize();
@@ -306,8 +304,9 @@ public class BleFragment extends Fragment implements View.OnClickListener {
      */
     private void startScan() {
         //10秒后停止扫描
-        hander.postDelayed(stopScanRunnable, 20000);
+        hander.postDelayed(stopScanRunnable, 10000);
         mBluetoothAdapter.startLeScan(mLeScanCallback);
+
     }
 
     /**
@@ -382,41 +381,33 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
-            Bundle extras = intent.getExtras();
             if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
-                // Data Received
-                if (extras.containsKey(Constants.EXTRA_BYTE_VALUE)) {
-                    if (extras.containsKey(Constants.EXTRA_BYTE_UUID_VALUE)) {
-                        if (myApplication != null) {
-                            byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
-                            String response = Utils.ByteArraytoHex(array);
-                            String cmd = response.substring(4, 6);
-                            String ex = response.substring(6, 8);
+                byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
+                String response = Utils.ByteArraytoHex(array);
+                String cmd = response.substring(4, 6);
+                String ex = response.substring(6, 8);
 //                            Log.i("Tag", "cmd: "+cmd);
-                            if (cmd.equals(DataUtils.CMD_ID_CODE)){
-                                if (ex.equals(DataUtils.EXTEND_WRITE_RESPONSE_CODE)){
-                                    boolean writeResponse = DataUtils.getWriteResponse(response);
-                                    if (writeResponse){
-                                        Toast.makeText(context, "设备ID设置完成", Toast.LENGTH_SHORT).show();
-                                    }
-                                }else if (ex.equals(DataUtils.EXTEND_READ_RESPONSE_CODE)){
-                                    Message msg = new Message();
-                                    msg.obj = response;
-                                    msg.what = 20;
-                                    msgHandler.sendMessage(msg);
-                                }
-
-                            }else if (cmd.equals(DataUtils.CMD_VERSION_CODE)){
-                                if (ex.equals(DataUtils.EXTEND_WRITE_RESPONSE_CODE)){
-
-                                }else if (ex.equals(DataUtils.EXTEND_READ_RESPONSE_CODE)){
-                                    Message msg = new Message();
-                                    msg.obj = response;
-                                    msg.what = 21;
-                                    msgHandler.sendMessage(msg);
-                                }
-                            }
+                if (cmd.equals(DataUtils.CMD_ID_CODE)) {
+                    if (ex.equals(DataUtils.EXTEND_WRITE_RESPONSE_CODE)) {
+                        boolean writeResponse = DataUtils.getWriteResponse(response);
+                        if (writeResponse) {
+                            Toast.makeText(context, "设备ID设置完成", Toast.LENGTH_SHORT).show();
                         }
+                    } else if (ex.equals(DataUtils.EXTEND_READ_RESPONSE_CODE)) {
+                        Message msg = new Message();
+                        msg.obj = response;
+                        msg.what = 20;
+                        msgHandler.sendMessage(msg);
+                    }
+
+                } else if (cmd.equals(DataUtils.CMD_VERSION_CODE)) {
+                    if (ex.equals(DataUtils.EXTEND_WRITE_RESPONSE_CODE)) {
+
+                    } else if (ex.equals(DataUtils.EXTEND_READ_RESPONSE_CODE)) {
+                        Message msg = new Message();
+                        msg.obj = response;
+                        msg.what = 21;
+                        msgHandler.sendMessage(msg);
                     }
                 }
             }
@@ -432,9 +423,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 ll_ble.setVisibility(View.VISIBLE);
                 et_bleName.setText(currentDevName);
                 et_machineDate.setText(Utils.GetDate());
-//                msgHandler.sendEmptyMessageDelayed(0,5000);
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
-                // Services Discovered from GATT Server
                 hander.removeCallbacks(dismssDialogRunnable);
                 progressDialog.dismiss();
                 prepareGattServices(BluetoothLeService.getSupportedGattServices());
@@ -477,7 +466,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     public void prepareGattServices(List<BluetoothGattService> gattServices) {
         prepareData(gattServices);
         List<MService> services = myApplication.getServices();
-
         if (services.size() > 0) {
             MService mService = services.get(0);
             BluetoothGattService service = mService.getService();
@@ -488,11 +476,11 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             cList.addAll(characteristics);
             BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE), -1, -1);
             cList.add(usrVirtualCharacteristic);
-            if (cList.size()>2){
+            if (cList.size() > 2) {
                 myApplication.setCharacteristic(cList.get(2));
                 initCharacteristics();
                 prepareBroadcastDataNotify(notifyCharacteristic);
-            }else {
+            } else {
                 progressDialog.dismiss();
             }
         } else {
@@ -525,19 +513,21 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     public void onStop() {
         super.onStop();
         if (mGattUpdateReceiver != null) {
-           getActivity().unregisterReceiver(mGattUpdateReceiver);
+            getActivity().unregisterReceiver(mGattUpdateReceiver);
         }
     }
+
     private BluetoothGattCharacteristic notifyCharacteristic;
     private BluetoothGattCharacteristic writeCharacteristic;
+
     /**
      * 向BLE蓝牙发送数据
      */
     public void writeOption(byte[] hexString) {
 
-//        byte[] array = Utils.hexStringToByteArray(hexString);
         writeCharacteristic(writeCharacteristic, hexString);
     }
+
     /**
      * Preparing Broadcast receiver to broadcast notify characteristics
      *
@@ -550,12 +540,12 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         }
 
     }
+
     // Writing the hexValue to the characteristics
     public void writeCharacteristic(BluetoothGattCharacteristic characteristic, byte[] bytes) {
         try {
             BluetoothLeService.writeCharacteristicGattDb(characteristic, bytes);
         } catch (NullPointerException e) {
-            Log.i(TAG, "writeCharacteristic: "+e.getMessage());
             e.printStackTrace();
         }
     }
@@ -591,10 +581,8 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getBleReceiverData(MessageEvent event) {
         String message = event.getMessage();
-
         Boolean send = event.getSend();
-        if (send){
-//            Log.i(TAG, "getBleReceiverData: "+message);
+        if (send) {
             writeOption(Utils.hexStringToByteArray(message));
         }
 

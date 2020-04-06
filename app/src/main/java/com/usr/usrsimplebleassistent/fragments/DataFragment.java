@@ -2,14 +2,12 @@ package com.usr.usrsimplebleassistent.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.usr.usrsimplebleassistent.R;
 import com.usr.usrsimplebleassistent.Utils.DataUtils;
-import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,14 +22,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 /**
  * create
  * on 2020-03-27 14:59
  * by xinDong
  **/
 public class DataFragment extends Fragment {
-    private MyApplication myApplication;
     private String TAG = "Tag";
     @BindView(R.id.tv_purple)
     TextView tv_purple;
@@ -74,23 +70,22 @@ public class DataFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        sendMoreParameterCMD = DataUtils.sendMoreParameterCMD("05");
-        runable = new Runnable() {
-            @Override
-            public void run() {
+        try{
+            sendMoreParameterCMD = DataUtils.sendMoreParameterCMD("05");
+            runable = new Runnable() {
+                @Override
+                public void run() {
+                    EventBus.getDefault().post(new MessageEvent(sendMoreParameterCMD,true));
+                    handler.postDelayed(this, 1000);
+                }
+            };
+            handler.post(runable);
+        }catch (Exception e){
+            e.getMessage();
+        }
 
-                EventBus.getDefault().post(new MessageEvent(sendMoreParameterCMD,true));
-
-                handler.postDelayed(this, 3000);
-            }
-        };
-        handler.post(runable);
     }
 
-    @OnClick(R.id.tv_purple)
-    public void getTest() {
-        EventBus.getDefault().post(new MessageEvent(sendMoreParameterCMD,true));
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getReceiverData(MessageEvent event) {
@@ -106,9 +101,6 @@ public class DataFragment extends Fragment {
         }catch (Exception e){
           e.getMessage();
         }
-
-
-
     }
 
     @Override

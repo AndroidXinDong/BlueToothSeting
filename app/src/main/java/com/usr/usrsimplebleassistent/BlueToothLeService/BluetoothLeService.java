@@ -141,19 +141,14 @@ public class BluetoothLeService extends Service {
             // GATT Services discovered
             //发现新的服务
             if (status == BluetoothGatt.GATT_SUCCESS) {
-//                System.out.println("---------------------------->发现服务");
                 broadcastConnectionUpdate(ACTION_GATT_SERVICES_DISCOVERED);
-            } else {
-
             }
         }
 
         @Override
         public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
-//                System.out.println("onDescriptorWrite GATT_SUCCESS------------------->SUCCESS");
             } else if (status == BluetoothGatt.GATT_FAILURE) {
-//                System.out.println("onDescriptorWrite GATT_FAIL------------------->FAIL");
                 Intent intent = new Intent(ACTION_GATT_DESCRIPTORWRITE_RESULT);
                 intent.putExtra(Constants.EXTRA_DESCRIPTOR_WRITE_RESULT, status);
                 mContext.sendBroadcast(intent);
@@ -163,20 +158,14 @@ public class BluetoothLeService extends Service {
 
         @Override
         public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
-//            System.out.println("onDescriptorRead ------------------->GATT_SUCC");
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 UUID descriptorUUID = descriptor.getUuid();
                 final Intent intent = new Intent(ACTION_DATA_AVAILABLE);
                 Bundle mBundle = new Bundle();
                 // Putting the byte value read for GATT Db
-                mBundle.putByteArray(Constants.EXTRA_DESCRIPTOR_BYTE_VALUE,
-                        descriptor.getValue());
-
-
-                mBundle.putString(Constants.EXTRA_DESCRIPTOR_BYTE_VALUE_UUID,
-                        descriptor.getUuid().toString());
-                mBundle.putString(Constants.EXTRA_DESCRIPTOR_BYTE_VALUE_CHARACTERISTIC_UUID,
-                        descriptor.getCharacteristic().getUuid().toString());
+                mBundle.putByteArray(Constants.EXTRA_DESCRIPTOR_BYTE_VALUE, descriptor.getValue());
+                mBundle.putString(Constants.EXTRA_DESCRIPTOR_BYTE_VALUE_UUID, descriptor.getUuid().toString());
+                mBundle.putString(Constants.EXTRA_DESCRIPTOR_BYTE_VALUE_CHARACTERISTIC_UUID, descriptor.getCharacteristic().getUuid().toString());
                 if (descriptorUUID.equals(UUIDDatabase.UUID_CLIENT_CHARACTERISTIC_CONFIG)) {
                     String valueReceived = DescriptorParser
                             .getClientCharacteristicConfiguration(descriptor);
@@ -225,8 +214,6 @@ public class BluetoothLeService extends Service {
                  * registered receivers
                  */
                 mContext.sendBroadcast(intent);
-            } else {
-//                System.out.println("onDescriptorRead ------------------->GATT_FAIL");
             }
 
         }
@@ -247,33 +234,21 @@ public class BluetoothLeService extends Service {
         }
 
         @Override
-        public void onCharacteristicRead(BluetoothGatt gatt,
-                                         BluetoothGattCharacteristic characteristic, int status) {
-
-//            System.out.println("onCharacteristicWrite ------------------->read");
+        public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
             // GATT Characteristic read (读操作会调用该方法)
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 UUID charUuid = characteristic.getUuid();
                 final Intent intent = new Intent(ACTION_DATA_AVAILABLE);
                 Bundle mBundle = new Bundle();
-                // Putting the byte value read for GATT Db
-                mBundle.putByteArray(Constants.EXTRA_BYTE_VALUE,
-                        characteristic.getValue());
-                mBundle.putString(Constants.EXTRA_BYTE_UUID_VALUE,
-                        characteristic.getUuid().toString());
-
-//                System.out.println("onCharacteristicRead------------------->GATT_SUCC");
-
+                mBundle.putByteArray(Constants.EXTRA_BYTE_VALUE, characteristic.getValue());
+                mBundle.putString(Constants.EXTRA_BYTE_UUID_VALUE, characteristic.getUuid().toString());
                 // Body sensor location read value
                 if (charUuid.equals(UUIDDatabase.UUID_BODY_SENSOR_LOCATION)) {
-                    mBundle.putString(Constants.EXTRA_BSL_VALUE,
-                            HRMParser.getBodySensorLocation(characteristic));
+                    mBundle.putString(Constants.EXTRA_BSL_VALUE, HRMParser.getBodySensorLocation(characteristic));
                 }
                 // Manufacture name read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_MANUFATURE_NAME_STRING)) {
-                    mBundle.putString(Constants.EXTRA_MNS_VALUE,
-                            Utils.getManufacturerNameString(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_MANUFATURE_NAME_STRING)) {
+                    mBundle.putString(Constants.EXTRA_MNS_VALUE, Utils.getManufacturerNameString(characteristic));
                 }
                 // Model number read value
                 else if (charUuid.equals(UUIDDatabase.UUID_MODEL_NUMBER_STRING)) {
@@ -469,10 +444,7 @@ public class BluetoothLeService extends Service {
                  * Sending the broad cast so that it can be received on
                  * registered receivers
                  */
-
                 mContext.sendBroadcast(intent);
-
-            } else {
 
             }
         }
@@ -819,14 +791,18 @@ public class BluetoothLeService extends Service {
      */
 
     public static void writeCharacteristicGattDb(BluetoothGattCharacteristic characteristic, byte[] byteArray) {
-        if (mBluetoothAdapter == null || mBluetoothGatt == null) {
-            return;
-        } else {
-            byte[] valueByte = byteArray;
-            characteristic.setValue(valueByte);
-            boolean b = mBluetoothGatt.writeCharacteristic(characteristic);
-//            Log.i(TAG, "writeCharacteristicGattDb: "+b);
+        try{
+            if (mBluetoothAdapter == null || mBluetoothGatt == null) {
+                return;
+            } else {
+                byte[] valueByte = byteArray;
+                characteristic.setValue(valueByte);
+                mBluetoothGatt.writeCharacteristic(characteristic);
+            }
+        }catch (Exception e){
+            e.getMessage();
         }
+
     }
 
 

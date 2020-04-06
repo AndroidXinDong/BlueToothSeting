@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 
-import com.usr.usrsimplebleassistent.GattDetailActivity;
 import com.usr.usrsimplebleassistent.R;
 
 import me.drakeet.materialdialog.MaterialDialog;

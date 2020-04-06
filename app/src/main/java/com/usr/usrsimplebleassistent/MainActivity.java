@@ -4,12 +4,10 @@ import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -18,7 +16,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
-import com.usr.usrsimplebleassistent.Utils.AnimateUtils;
 import com.usr.usrsimplebleassistent.Utils.Constants;
 import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.bean.MessageEvent;
@@ -32,12 +29,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MainActivity extends MyBaseActivity {
-
-    /*
-     * onCreate 入口
-     *
-     * @param savedInstanceState
-     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -120,12 +111,10 @@ public class MainActivity extends MyBaseActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
-            Bundle extras = intent.getExtras();
             if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 // Data Received
                  byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
                 EventBus.getDefault().post(new MessageEvent(""+Utils.ByteArraytoHex(array),false));
-
                 Log.i(TAG, "main: "+Utils.ByteArraytoHex(array));
             }
             if (action.equals(BluetoothLeService.ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS)) {

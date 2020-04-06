@@ -12,7 +12,7 @@ import java.util.List;
 public class MyApplication extends Application {
 
     private boolean clearflag;
-
+    private boolean isConnect = false;
     public boolean isClearflag() {
         return clearflag;
     }
@@ -66,5 +66,13 @@ public class MyApplication extends Application {
         // 添加异常打印反馈回执
         CrashHandler handler = CrashHandler.getInstance();
         handler.init(this);
+    }
+
+    public boolean isConnect() {
+        return isConnect;
+    }
+
+    public void setConnect(boolean connect) {
+        isConnect = connect;
     }
 }

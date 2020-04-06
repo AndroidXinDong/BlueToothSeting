@@ -25,7 +25,6 @@
             android:button="@null"
             android:gravity="center"
             android:padding="3dp"
-            android:onClick="click"
             android:textSize="16sp"
             android:checked="true"
             android:drawableTop="@drawable/ble_selector"
@@ -41,7 +40,7 @@
             android:gravity="center"
             android:padding="3dp"
             android:text="实时数据"
-            android:onClick="click"
+            android:clickable="false"
             android:textColor="@drawable/text_color_radiobutton"
             android:textSize="16sp"/>
         <RadioButton
@@ -53,8 +52,8 @@
             android:drawableTop="@drawable/set_selector"
             android:gravity="center"
             android:padding="3dp"
+            android:clickable="false"
             android:text="参数设置"
-            android:onClick="click"
             android:textColor="@drawable/text_color_radiobutton"
             android:textSize="16sp"/>
     </RadioGroup>

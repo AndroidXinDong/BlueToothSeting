@@ -13,11 +13,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
 import com.usr.usrsimplebleassistent.Utils.Constants;
 import com.usr.usrsimplebleassistent.Utils.Utils;
+import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MessageEvent;
 import com.usr.usrsimplebleassistent.fragments.BleFragment;
 import com.usr.usrsimplebleassistent.fragments.DataFragment;
@@ -27,14 +29,27 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.BindView;
+
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class MainActivity extends MyBaseActivity {
+public class MainActivity extends MyBaseActivity implements View.OnClickListener {
+    private MyApplication mMyApplication;
+    @BindView(R.id.radiobutton1)
+    RadioButton radiobutton1;
+    @BindView(R.id.radiobutton2)
+    RadioButton radiobutton2;
+    @BindView(R.id.radiobutton3)
+    RadioButton radiobutton3;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mMyApplication = (MyApplication) this.getApplication();
         mManager = getSupportFragmentManager();
         //必须调用，其在setContentView后面调用
         bindToolBar();
+        radiobutton1.setOnClickListener(this);
+        radiobutton2.setOnClickListener(this);
+        radiobutton3.setOnClickListener(this);
         initFragment();
         EventBus.getDefault().register(this);
         registerReceiver(mReceiver,Utils.makeGattUpdateIntentFilter());
@@ -54,7 +69,9 @@ public class MainActivity extends MyBaseActivity {
     private FragmentManager mManager;
     private Fragment currentFragment;
 
-    public void click(View view) {
+    @Override
+    public void onClick(View view) {
+        boolean connect = mMyApplication.isConnect();
         switch (view.getId()) {
             case R.id.radiobutton1:
                 if (mBleFragment == null) {
@@ -63,16 +80,30 @@ public class MainActivity extends MyBaseActivity {
                 addFragment(mBleFragment);
                 break;
             case R.id.radiobutton2:
-                if (mDataFragment == null) {
-                    mDataFragment = new DataFragment();
-                }
-                addFragment(mDataFragment);
+               if (connect){
+                   if (mDataFragment == null) {
+                       mDataFragment = new DataFragment();
+                   }
+                   addFragment(mDataFragment);
+               }else {
+                   radiobutton2.setChecked(false);
+                   radiobutton1.setChecked(true);
+                   Toast.makeText(mMyApplication, "请连接蓝牙之后再操作", Toast.LENGTH_SHORT).show();
+               }
+
                 break;
             case R.id.radiobutton3:
-                if (mSetFragment == null) {
-                    mSetFragment = new SetFragment();
+                if (connect){
+                    if (mSetFragment == null) {
+                        mSetFragment = new SetFragment();
+                    }
+                    addFragment(mSetFragment);
+                }else {
+                    radiobutton1.setChecked(true);
+                    radiobutton3.setChecked(false);
+                    Toast.makeText(mMyApplication, "请连接蓝牙之后再操作", Toast.LENGTH_SHORT).show();
                 }
-                addFragment(mSetFragment);
+
                 break;
 
         }
@@ -146,4 +177,6 @@ public class MainActivity extends MyBaseActivity {
         unregisterReceiver(mReceiver);
         EventBus.getDefault().unregister(this);
     }
+
+
 }

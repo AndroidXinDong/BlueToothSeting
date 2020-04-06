@@ -423,12 +423,14 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 ll_ble.setVisibility(View.VISIBLE);
                 et_bleName.setText(currentDevName);
                 et_machineDate.setText(Utils.GetDate());
+                myApplication.setConnect(true);
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 hander.removeCallbacks(dismssDialogRunnable);
                 progressDialog.dismiss();
                 prepareGattServices(BluetoothLeService.getSupportedGattServices());
             } else if (action.equals(BluetoothLeService.ACTION_GATT_DISCONNECTED)) {
                 ble_state.setText("未连接");
+                myApplication.setConnect(false);
                 fabSearch.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.VISIBLE);
                 ll_ble.setVisibility(View.GONE);

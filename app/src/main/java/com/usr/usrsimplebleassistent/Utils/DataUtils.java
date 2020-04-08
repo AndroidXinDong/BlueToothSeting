@@ -283,9 +283,8 @@ public class DataUtils {
      */
     public static byte[] sendWriteJIDIANQICMD(String data) {
         try {
-            String dataSize = intToHex(data.length());
             // crc 校验字符串
-            String temp = CMD_JIDIANQI_CODE + EXTEND_WRITE_CODE + dataSize + data;
+            String temp = CMD_JIDIANQI_CODE + EXTEND_WRITE_CODE + "0002" + data;
             byte[] crc_bytes = Utils.hexStringToByteArray(temp);
             String crc16 = CRC.getCRC(crc_bytes).replaceAll(" ", "");
             String result = HEADER + temp + crc16 + TAIL;
@@ -345,7 +344,7 @@ public class DataUtils {
             String result = HEADER + temp + crc + TAIL;
             return result;
         } catch (Exception e) {
-            return "0";
+            return "0000";
         }
     }
 

@@ -224,20 +224,19 @@ public class Utils{
      * @return
      * */
     public static String ByteArraytoHex(byte[] bytes) {
-//        StringBuilder sb = new StringBuilder();
-//        for (byte b : bytes) {
-//            String bs = String.format("%02X ", b);
-//            sb.append(bs);
-//        }
         String result = "";
-        for (int i = 0; i < bytes.length; i++) {
-            String hexString = Integer.toHexString(bytes[i] & 0xFF);
-            if (hexString.length() == 1) {
-                hexString = '0' + hexString;
+        try {
+            for (int i = 0; i < bytes.length; i++) {
+                String hexString = Integer.toHexString(bytes[i] & 0xFF);
+                if (hexString.length() == 1) {
+                    hexString = '0' + hexString;
+                }
+                result += hexString.toUpperCase();
             }
-            result += hexString.toUpperCase();
+            return result;
+        }catch (Exception e){
+
         }
-//        return sb.toString();
         return result;
     }
 

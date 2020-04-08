@@ -2,6 +2,7 @@ package com.usr.usrsimplebleassistent.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,7 @@ public class DataFragment extends Fragment {
             runable = new Runnable() {
                 @Override
                 public void run() {
+                    Log.i(TAG, "onResume: ");
                     EventBus.getDefault().post(new MessageEvent(sendMoreParameterCMD,true));
                     handler.postDelayed(this, 1000);
                 }
@@ -83,20 +85,24 @@ public class DataFragment extends Fragment {
         }catch (Exception e){
             e.getMessage();
         }
-
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getReceiverData(MessageEvent event) {
         String message = event.getMessage();
         try{
-            String substring = message.substring(4, 6);
-            if (substring.equals(DataUtils.CMD_MOREDATA_CODE)){
-                List<String> list = DataUtils.getReadMoreFloatResponse(message);
-                for (int i = 0; i < list.size(); i++) {
-                    mList.get(i).setText(list.get(i));
+            if (message.contains("7D7B")&& message.contains("7D7D")){
+                String substring = message.substring(4, 6);
+                if (substring.equals(DataUtils.CMD_MOREDATA_CODE)){
+                    List<String> list = DataUtils.getReadMoreFloatResponse(message);
+                    for (int i = 0; i < list.size(); i++) {
+                        mList.get(i).setText(list.get(i));
+                    }
                 }
+            }else if (message.equals("start")){
+                handler.post(runable);
+            }else if (message.equals("stop")){
+                handler.removeCallbacks(runable);
             }
         }catch (Exception e){
           e.getMessage();

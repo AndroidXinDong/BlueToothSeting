@@ -1,262 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/window_bg"
-    android:layout_height="match_parent">
-     <RadioGroup
-         android:layout_width="match_parent"
-         android:layout_height="48dp"
-         android:orientation="horizontal"
-         android:layout_margin="2dp"
-         android:gravity="center_vertical"
-         android:weightSum="4">
-         <RadioButton
-             android:id="@+id/rBtn_set_ziwai"
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:button="@null"
-             android:gravity="center"
-             android:padding="3dp"
-             android:textSize="16sp"
-             android:checked="true"
-             android:text="紫外参数"
-             android:background="@drawable/color_selector"
-             android:textColor="@drawable/text_color_set"/>
-         <View
-             android:layout_width="1dp"
-             android:layout_height="40dp"
-             android:background="@color/white"/>
-         <RadioButton
-             android:id="@+id/rBtn_set_kejian"
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:button="@null"
-             android:gravity="center"
-             android:padding="3dp"
-             android:textSize="16sp"
-             android:checked="false"
-             android:text="可见光参数"
-             android:background="@drawable/color_selector"
-             android:textColor="@drawable/text_color_set"/>
-         <View
-             android:layout_width="1dp"
-             android:layout_height="40dp"
-             android:background="@color/white"/>
-         <RadioButton
-             android:id="@+id/rBtn_set_red"
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:button="@null"
-             android:gravity="center"
-             android:padding="3dp"
-             android:textSize="16sp"
-             android:checked="false"
-             android:text="红外参数"
-             android:background="@drawable/color_selector"
-             android:textColor="@drawable/text_color_set"/>
-         <View
-             android:layout_width="1dp"
-             android:layout_height="40dp"
-             android:background="@color/white"/>
-         <RadioButton
-             android:id="@+id/rBtn_set_harderware"
-             android:layout_width="0dp"
-             android:layout_height="match_parent"
-             android:layout_weight="1"
-             android:button="@null"
-             android:gravity="center"
-             android:padding="3dp"
-             android:textSize="16sp"
-             android:checked="false"
-             android:text="硬件测试"
-             android:background="@drawable/color_selector"
-             android:textColor="@drawable/text_color_set"/>
-     </RadioGroup>
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <RadioButton
+            android:id="@+id/rBtn_set_ziwai"
+            style="@style/rBtn_style"
+            android:checked="true"
+            android:text="紫外参数"
+            />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="35dp"
+            android:background="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rBtn_set_kejian"
+            style="@style/rBtn_style"
+            android:checked="false"
+            android:text="可见光参数" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="35dp"
+            android:background="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rBtn_set_red"
+            style="@style/rBtn_style"
+            android:checked="false"
+            android:text="红外参数" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="35dp"
+            android:background="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rBtn_set_harderware"
+            style="@style/rBtn_style"
+            android:checked="false"
+            android:text="硬件测试" />
+    </RadioGroup>
+
     <View
         android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:background="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:weightSum="4">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_height="match_parent">
+
+        <LinearLayout style="@style/ll_style">
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text=""/>
+                style="@style/tv_style"
+                android:text="" />
+
             <TextView
                 android:id="@+id/bgcanshu"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="背景参数"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="灵敏度"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="零点标定"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="满点标定"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="原数据"/>
+                style="@style/tv_style"
+                android:text="背景参数" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:text=""
-                android:textColor="@color/black" />
+                style="@style/tv_style"
+                android:text="灵敏度" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text=""/>
+                style="@style/tv_style"
+                android:text="零点标定" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text=""/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text=""/>
+                style="@style/tv_style"
+                android:text="满点标定" />
+
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_height="match_parent">
+
+        <LinearLayout style="@style/ll_style">
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="标定数据"/>
+                style="@style/tv_style"
+                android:text="原数据" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text=""/>
+                android:id="@+id/tv_y_bg"
+                style="@style/tv_style"
+                android:text="" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text=""/>
+                android:id="@+id/tv_y_lmd"
+                style="@style/tv_style"
+                android:text="" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text=""/>
+                android:id="@+id/tv_y_ldbd"
+                style="@style/tv_style"
+                android:text="" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text=""/>
+                android:id="@+id/tv_y_mdbd"
+                style="@style/tv_style"
+                android:text="" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_height="match_parent">
+
+        <LinearLayout style="@style/ll_style">
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/et_set_shape"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="操作"/>
+                style="@style/tv_style"
+                android:text="标定数据" />
+
+            <EditText
+                android:id="@+id/et_b_bg"
+                style="@style/et_style"
+                android:text="" />
+
+            <EditText
+                android:id="@+id/et_b_lmd"
+                style="@style/et_style"
+                android:text="" />
+
+            <EditText
+                android:id="@+id/et_b_ldbd"
+                style="@style/et_style"
+                android:text="" />
+
+            <EditText
+                android:id="@+id/et_b_mdbd"
+                style="@style/et_style"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/ll_style">
+
+            <TextView
+                style="@style/tv_style"
+                android:text="操作" />
+
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/btn_selector"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:text="标定"/>
+                android:id="@+id/btn_bg"
+                style="@style/btn_style"
+                android:text="标定" />
+
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/btn_selector"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:text="标定"/>
+                android:id="@+id/btn_lmd"
+                style="@style/btn_style"
+                android:text="标定" />
+
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/btn_selector"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:text="标定"/>
+                android:id="@+id/btn_ldbd"
+                style="@style/btn_style"
+                android:text="标定" />
+
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setTv"
-                android:background="@drawable/btn_selector"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:text="标定"/>
+                android:id="@+id/btn_mdbd"
+                style="@style/btn_style"
+                android:text="标定" />
         </LinearLayout>
 
     </LinearLayout>

@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -73,12 +75,18 @@ public class MyBaseActivity extends AppCompatActivity {
         overridePendingTransition(0, R.anim.slide_top_to_bottom);
     }
 
+    private long end = 0;
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(0, R.anim.slide_top_to_bottom);
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+            long timeMillis = System.currentTimeMillis();
+            if ((timeMillis - end) < 2000) {
+                this.finish();
+            } else {
+                end = timeMillis;
+                Toast.makeText(this, "再按返回键退出当前程序", Toast.LENGTH_SHORT).show();
+        }
+        return false;
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

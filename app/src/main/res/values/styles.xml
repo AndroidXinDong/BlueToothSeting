@@ -68,4 +68,48 @@
     <style name="Theme.DialogActivity" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowBackground">@drawable/back</item>
     </style>
+    <style name="tv_style" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/setTv</item>
+        <item name="android:background">@drawable/et_set_shape</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="et_style" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/setTv</item>
+        <item name="android:background">@drawable/et_set_shape</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLength">15</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="btn_style" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/setTv</item>
+        <item name="android:background">@drawable/btn_selector</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="ll_style" parent="AppTheme">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="rBtn_style" parent="AppTheme">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/color_selector</item>
+        <item name="android:button">@null</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textColor">@drawable/text_color_set</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

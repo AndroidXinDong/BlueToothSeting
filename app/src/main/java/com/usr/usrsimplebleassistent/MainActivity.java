@@ -40,6 +40,8 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
     RadioButton radiobutton2;
     @BindView(R.id.radiobutton3)
     RadioButton radiobutton3;
+    private int isChoose = 0;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -52,7 +54,7 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
         radiobutton3.setOnClickListener(this);
         initFragment();
         EventBus.getDefault().register(this);
-        registerReceiver(mReceiver,Utils.makeGattUpdateIntentFilter());
+        registerReceiver(mReceiver, Utils.makeGattUpdateIntentFilter());
     }
 
     private void initFragment() {
@@ -74,31 +76,42 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
         boolean connect = mMyApplication.isConnect();
         switch (view.getId()) {
             case R.id.radiobutton1:
+                isChoose = 0;
                 if (mBleFragment == null) {
                     mBleFragment = new BleFragment();
                 }
                 addFragment(mBleFragment);
+                if (connect) {
+                    EventBus.getDefault().post(new MessageEvent("stop", false));
+                }
                 break;
             case R.id.radiobutton2:
-               if (connect){
-                   if (mDataFragment == null) {
-                       mDataFragment = new DataFragment();
-                   }
-                   addFragment(mDataFragment);
-               }else {
-                   radiobutton2.setChecked(false);
-                   radiobutton1.setChecked(true);
-                   Toast.makeText(mMyApplication, "请连接蓝牙之后再操作", Toast.LENGTH_SHORT).show();
-               }
+                if (connect) {
+                    if (mDataFragment == null) {
+                        mDataFragment = new DataFragment();
+                    }
+                    addFragment(mDataFragment);
+                    if (isChoose == 0) {
+                        EventBus.getDefault().post(new MessageEvent("start", false));
+                        isChoose++;
+                    }
+
+                } else {
+                    radiobutton2.setChecked(false);
+                    radiobutton1.setChecked(true);
+                    Toast.makeText(mMyApplication, "请连接蓝牙之后再操作", Toast.LENGTH_SHORT).show();
+                }
 
                 break;
             case R.id.radiobutton3:
-                if (connect){
+                if (connect) {
+                    isChoose = 0;
+                    EventBus.getDefault().post(new MessageEvent("stop", false));
                     if (mSetFragment == null) {
                         mSetFragment = new SetFragment();
                     }
                     addFragment(mSetFragment);
-                }else {
+                } else {
                     radiobutton1.setChecked(true);
                     radiobutton3.setChecked(false);
                     Toast.makeText(mMyApplication, "请连接蓝牙之后再操作", Toast.LENGTH_SHORT).show();
@@ -144,39 +157,38 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
             final String action = intent.getAction();
             if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 // Data Received
-                 byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
-                EventBus.getDefault().post(new MessageEvent(""+Utils.ByteArraytoHex(array),false));
-                Log.i(TAG, "main: "+Utils.ByteArraytoHex(array));
+                byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
+                EventBus.getDefault().post(new MessageEvent("" + Utils.ByteArraytoHex(array), false));
             }
             if (action.equals(BluetoothLeService.ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS)) {
 
-            }else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
+            } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Services Discovered from GATT Server
                 int sdkInt = Build.VERSION.SDK_INT;
-                if (sdkInt>=21){
+                if (sdkInt >= 21) {
                     //设置最大发包、收包的长度为512个字节
                     boolean b = BluetoothLeService.requestMtu(512);
-                    if(b){
-                        Toast.makeText(MainActivity.this,getString(R.string.transmittal_length,"512"),Toast.LENGTH_LONG).show();
-                    }else
-                        Toast.makeText(MainActivity.this,getString(R.string.transmittal_length,"20"),Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(MainActivity.this,getString(R.string.transmittal_length,"20"),Toast.LENGTH_LONG).show();
+                    if (b) {
+                        Toast.makeText(MainActivity.this, getString(R.string.transmittal_length, "512"), Toast.LENGTH_LONG).show();
+                    } else
+                        Toast.makeText(MainActivity.this, getString(R.string.transmittal_length, "20"), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, getString(R.string.transmittal_length, "20"), Toast.LENGTH_LONG).show();
                 }
             }
 
         }
     };
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getMessageEvent(MessageEvent event){
+    public void getMessageEvent(MessageEvent event) {
 
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(mReceiver);
         EventBus.getDefault().unregister(this);
     }
-
-
 }

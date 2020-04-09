@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
 import com.usr.usrsimplebleassistent.R;
+import com.usr.usrsimplebleassistent.Utils.C2JUtils;
 import com.usr.usrsimplebleassistent.Utils.Constants;
 import com.usr.usrsimplebleassistent.Utils.DataUtils;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
@@ -172,14 +173,20 @@ public class BleFragment extends Fragment implements View.OnClickListener {
 
     @OnClick(R.id.btn_set)
     public void setCmd() {
-        String trim = et_machine.getText().toString().trim();
-        int length = trim.length();
-        if (length == 14) {
-            byte[] bytes = DataUtils.sendWriteIDCMD(trim);
-            writeOption(bytes);
-        } else {
-            Toast.makeText(myApplication, "请输入14位标准长度ID", Toast.LENGTH_SHORT).show();
+        boolean currentModel = myApplication.isCurrentModel();
+        if (currentModel){
+            String trim = et_machine.getText().toString().trim();
+            int length = trim.length();
+            if (length == 14) {
+                byte[] bytes = DataUtils.sendWriteIDCMD(trim);
+                writeOption(bytes);
+            } else {
+                Toast.makeText(myApplication, "请输入14位标准长度ID", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            Toast.makeText(myApplication, "当前为测量模式，请切换维护模式操作", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @OnClick(R.id.tv_version)
@@ -543,7 +550,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
      * 向BLE蓝牙发送数据
      */
     public void writeOption(byte[] hexString) {
-
         writeCharacteristic(writeCharacteristic, hexString);
     }
 
@@ -604,11 +610,25 @@ public class BleFragment extends Fragment implements View.OnClickListener {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getBleReceiverData(MessageEvent event) {
-        String message = event.getMessage();
-        Boolean send = event.getSend();
-        if (send) {
-            writeOption(Utils.hexStringToByteArray(message));
+        try{
+            String message = event.getMessage();
+            Boolean send = event.getSend();
+            boolean currentModel = myApplication.isCurrentModel();
+            if (send) {
+                Log.i(TAG, "currentModel: "+currentModel);
+                String model = message.substring(4, 6);
+                String s = message.substring(6, 8);
+                boolean equals = DataUtils.EXTEND_READ_CODE.equals(s);
+                if (currentModel || equals || model.equals(DataUtils.CMD_MODEL_CODE)){
+                    writeCharacteristic(writeCharacteristic, Utils.hexStringToByteArray(message));
+                }else {
+                    Toast.makeText(myApplication, "当前为测量模式，请切换维护模式操作", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }catch (Exception e){
+            e.getMessage();
         }
+
 
     }
 }

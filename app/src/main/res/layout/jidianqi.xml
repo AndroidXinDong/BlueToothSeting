@@ -3,33 +3,84 @@
     android:id="@+id/ll_jidianqi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:background="#D5D5D5"
     android:gravity="center_vertical"
-    android:background="@color/white"
+    android:orientation="vertical"
     android:visibility="gone">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setTv"
+        android:gravity="center_vertical"
+        android:layout_margin="3dp"
+        android:orientation="horizontal"
+        android:background="#F1F1F1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="模式切换"
+            android:padding="3dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"/>
 
-    <CheckBox
-        android:id="@+id/cb_one"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="@dimen/setTv"
-        android:text="继电器1"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        <Switch
+            android:id="@+id/sBtn_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:switchMinWidth="20dp"
+            android:textOn="on"
+            android:textOff="off"
+            android:showText="true"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track" />
 
-    <CheckBox
-        android:id="@+id/cb_two"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="@dimen/setTv"
-        android:text="继电器1"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
-    <Button
-        android:id="@+id/btn_jdqset"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/setTv"
-        android:background="@drawable/btn_selector"
-        android:textColor="@color/white"
-        android:text="设置"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="#F1F1F1"
+        android:layout_margin="3dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_one"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_weight="1"
+            android:text="报警继电器"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/cb_two"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_weight="1"
+            android:text="异常继电器"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_jdqset"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:background="@drawable/btn_selector"
+            android:text="设置"
+            android:textColor="@color/white" />
+
+        <ImageButton
+            android:id="@+id/iBtn_reference"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_selector"
+            android:src="@mipmap/reference_white"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
 </LinearLayout>

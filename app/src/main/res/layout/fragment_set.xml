@@ -11,13 +11,13 @@
         android:layout_margin="2dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:weightSum="6">
 
         <RadioButton
             android:id="@+id/rBtn_set_ziwai"
             style="@style/rBtn_style"
             android:checked="true"
-            android:text="紫外参数"
+            android:text="紫外"
             />
 
         <View
@@ -29,7 +29,7 @@
             android:id="@+id/rBtn_set_kejian"
             style="@style/rBtn_style"
             android:checked="false"
-            android:text="可见光参数" />
+            android:text="可见光" />
 
         <View
             android:layout_width="1dp"
@@ -40,8 +40,27 @@
             android:id="@+id/rBtn_set_red"
             style="@style/rBtn_style"
             android:checked="false"
-            android:text="红外参数" />
+            android:text="红外A" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="35dp"
+            android:background="@color/white" />
 
+        <RadioButton
+            android:id="@+id/rBtn_set_red2"
+            style="@style/rBtn_style"
+            android:checked="false"
+            android:text="红外B" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="35dp"
+            android:background="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rBtn_set_red3"
+            style="@style/rBtn_style"
+            android:checked="false"
+            android:text="红外C" />
         <View
             android:layout_width="1dp"
             android:layout_height="35dp"
@@ -64,6 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:background="#D5D5D5"
         android:weightSum="4">
 
         <LinearLayout style="@style/ll_style">

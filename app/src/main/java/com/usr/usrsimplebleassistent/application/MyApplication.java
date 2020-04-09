@@ -13,6 +13,7 @@ public class MyApplication extends Application {
 
     private boolean clearflag;
     private boolean isConnect = false;
+    private boolean currentModel = false;
     public boolean isClearflag() {
         return clearflag;
     }
@@ -74,5 +75,13 @@ public class MyApplication extends Application {
 
     public void setConnect(boolean connect) {
         isConnect = connect;
+    }
+
+    public boolean isCurrentModel() {
+        return currentModel;
+    }
+
+    public void setCurrentModel(boolean currentModel) {
+        this.currentModel = currentModel;
     }
 }

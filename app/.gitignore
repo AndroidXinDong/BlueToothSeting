@@ -2,3 +2,4 @@
 /src/androidTest/
 /src/test/
 *.iml
+/release/

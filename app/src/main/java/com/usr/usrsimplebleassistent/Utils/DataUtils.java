@@ -31,9 +31,9 @@ public class DataUtils {
     // 参数标定读取与设置
     public static String CMD_PARAMETER_SET_CODE = "27";
     // 电流转换量 输入读取
-    public static String CMD_ELECTRICTRANSTE_CODE = "28";
+    public static String CMD_ELECTRICTRANSLATE_CODE = "28";
     // 写入当前电流
-    public static String CMD_WRITECURRENTELECTIC_CODE = "29";
+    public static String CMD_CURRENTELECTIC_CODE = "29";
     // 模式切换
     public static String CMD_MODEL_CODE = "40";
     // 扩展码
@@ -530,8 +530,141 @@ public class DataUtils {
         }
         return false;
     }
+    /*****************************电流转换********************************/
 
+    public static String sendWriteTranslate(String hex){
+        try {
+            String temp = CMD_ELECTRICTRANSLATE_CODE + EXTEND_WRITE_CODE + "0002"+hex;
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ","");
+            String result = HEADER + temp + crc + TAIL;
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    /**
+     * 读取当前转换量
+     * @return
+     */
+    public static String sendReadTranslate() {
+        try {
+            String temp = CMD_ELECTRICTRANSLATE_CODE + EXTEND_READ_CODE + "0000";
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ", "");
+            String result = HEADER + temp + crc + TAIL;
+            return result;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 
+    public static boolean getWriteTranslateResponse(String hex){
+        try {
+            String temp = CMD_ELECTRICTRANSLATE_CODE + EXTEND_WRITE_RESPONSE_CODE + "0000";
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ","");
+            String result = HEADER + temp + crc + TAIL;
+            if (result.equals(hex)){
+                return true;
+            }else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static String getReadTranslateResponse(String hex){
+
+        try {
+            String translate = hex.substring(12, 16);
+            return C2JUtils.hex2Float(translate,2);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null ;
+        }
+
+    }
+
+    /*****************************电流写入********************************/
+
+    /**
+     * 四字节浮点数转换的hex
+     * @param hex
+     * @return
+     */
+    public static String sendWriteCurrentElectric(String hex){
+        try {
+            String temp = CMD_CURRENTELECTIC_CODE + EXTEND_WRITE_CODE + "0004"+hex;
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ","");
+            String result = HEADER + temp + crc + TAIL;
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    /**
+     * 读取当前转换量
+     * @return
+     */
+    public static String sendReadCurrentElectric() {
+        try {
+            String temp = CMD_CURRENTELECTIC_CODE + EXTEND_READ_CODE + "0000";
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ", "");
+            String result = HEADER + temp + crc + TAIL;
+            return result;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    /**
+     * 获取读当前值的响应
+     * @param hex
+     * @return
+     */
+    public static boolean getWriteCurrentResponse(String hex){
+        try {
+            String temp = CMD_CURRENTELECTIC_CODE + EXTEND_WRITE_RESPONSE_CODE + "0000";
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ","");
+            String result = HEADER + temp + crc + TAIL;
+            if (result.equals(hex)){
+                return true;
+            }else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 获取读当前电流的响应
+     * @param hex
+     * @return
+     */
+    public static String getReadCurrentResponse(String hex){
+        try {
+            boolean b = responseCheck(hex);
+            if (b){
+                String translate = hex.substring(12, 20);
+                String hex2Float = C2JUtils.hex2Float(translate, 4);
+                return hex2Float;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null ;
+        }
+            return null;
+    }
     /**
      * 十进制转标准格式十六进制
      *

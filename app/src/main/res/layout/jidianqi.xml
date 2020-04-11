@@ -7,43 +7,169 @@
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:visibility="gone">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/setTv"
-        android:gravity="center_vertical"
         android:layout_margin="3dp"
-        android:orientation="horizontal"
-        android:background="#F1F1F1">
+        android:background="#F1F1F1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="模式切换"
-            android:padding="3dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text="模式切换"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_height="wrap_content"/>
+            android:textSize="16sp" />
 
         <Switch
             android:id="@+id/sBtn_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:switchMinWidth="20dp"
-            android:textOn="on"
-            android:textOff="off"
             android:showText="true"
+            android:switchMinWidth="20dp"
+            android:textOff="off"
+            android:textOn="on"
             android:thumb="@drawable/thumb"
             android:track="@drawable/track" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setTv"
+        android:layout_margin="3dp"
+        android:background="#F1F1F1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="3dp"
+            android:text="电流转换量"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_translate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text=""
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_translate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            android:maxLength="10"
+            android:background="@drawable/et_shape"
+            android:padding="3dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_translate_du"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:background="@drawable/btn_selector"
+            android:text="读取"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_translate_write"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:background="@drawable/btn_selector"
+            android:text="写入"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setTv"
+        android:layout_margin="3dp"
+        android:background="#F1F1F1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="3dp"
+            android:text="当前电流值( mA )"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_currentElectric"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:text=""
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_currentElectric"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/et_shape"
+            android:padding="3dp"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            android:maxLength="10"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_dianliu_du"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:background="@drawable/btn_selector"
+            android:text="读取"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_dianliu_write"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:background="@drawable/btn_selector"
+            android:text="写入"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="3dp"
         android:layout_marginTop="15dp"
         android:background="#F1F1F1"
-        android:layout_margin="3dp"
         android:orientation="horizontal">
 
         <CheckBox
@@ -70,6 +196,7 @@
             android:layout_height="@dimen/setTv"
             android:background="@drawable/btn_selector"
             android:text="设置"
+            android:layout_marginLeft="5dp"
             android:textColor="@color/white" />
 
         <ImageButton

@@ -1,7 +1,9 @@
 package com.usr.usrsimplebleassistent.fragments;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +95,22 @@ public class SetFragment extends Fragment {
     RadioButton rBtnSetRed3;
     @BindView(R.id.sBtn_switch)
     Switch sBtnSwitch;
+    @BindView(R.id.tv_translate)
+    TextView tvTranslate;
+    @BindView(R.id.et_translate)
+    EditText etTranslate;
+    @BindView(R.id.btn_translate_du)
+    Button btnTranslateDu;
+    @BindView(R.id.btn_translate_write)
+    Button btnTranslateWrite;
+    @BindView(R.id.tv_currentElectric)
+    TextView tvCurrentElectric;
+    @BindView(R.id.et_currentElectric)
+    EditText etCurrentElectric;
+    @BindView(R.id.btn_dianliu_du)
+    Button btnDianliuDu;
+    @BindView(R.id.btn_dianliu_write)
+    Button btnDianliuWrite;
     private boolean jdqOne = false;
     private boolean jdqTwo = false;
     private String zlOne = "00";
@@ -100,6 +118,8 @@ public class SetFragment extends Fragment {
     private String TAG = "Tag";
     private String type = "01";
     private MyApplication mApplication;
+    private CountDownTimer mTimer;
+
     public SetFragment() {
     }
 
@@ -127,24 +147,42 @@ public class SetFragment extends Fragment {
                 jdqTwo = isChecked;
             }
         });
+        mTimer = new CountDownTimer(300000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // 启动倒计时
+//                Log.i(TAG, "onTick: "+millisUntilFinished/1000);
+            }
+
+            @Override
+            public void onFinish() {
+                // 倒计时结束之后发送关闭维护模式命令
+                String cmd = DataUtils.sendWriteModelCmd("00");
+                EventBus.getDefault().post(new MessageEvent(cmd, true));
+                sBtnSwitch.setChecked(false);
+            }
+        };
         sBtnSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 String modelCmd = null;
-                if (isChecked){
-                   modelCmd = "01";
-                }else {
-                    modelCmd = "00" ;
+                if (isChecked) {
+                    modelCmd = "01";
+                } else {
+                    modelCmd = "00";
+                    mTimer.cancel();
                 }
                 String cmd = DataUtils.sendWriteModelCmd(modelCmd);
-                EventBus.getDefault().post(new MessageEvent(cmd,true));
+                EventBus.getDefault().post(new MessageEvent(cmd, true));
             }
         });
+
     }
 
     @OnClick({R.id.rBtn_set_ziwai, R.id.rBtn_set_kejian, R.id.rBtn_set_red, R.id.rBtn_set_harderware,
             R.id.btn_bg, R.id.btn_lmd, R.id.btn_ldbd, R.id.btn_mdbd, R.id.btn_jdqset, R.id.iBtn_reference
-            , R.id.rBtn_set_red2, R.id.rBtn_set_red3})
+            , R.id.rBtn_set_red2, R.id.rBtn_set_red3, R.id.btn_translate_du, R.id.btn_translate_write,
+            R.id.btn_dianliu_du, R.id.btn_dianliu_write})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rBtn_set_ziwai:
@@ -181,7 +219,7 @@ public class SetFragment extends Fragment {
                 llSet.setVisibility(View.GONE);
                 llJidianqi.setVisibility(View.VISIBLE);
                 String readModelCmd = DataUtils.sendReadModelCmd();
-                EventBus.getDefault().post(new MessageEvent(readModelCmd,true));
+                EventBus.getDefault().post(new MessageEvent(readModelCmd, true));
                 break;
             case R.id.btn_bg:
                 sendMessage(etBBg, "01");
@@ -213,7 +251,26 @@ public class SetFragment extends Fragment {
                 String s1 = DataUtils.sendReadJIDIANQICMD();
                 EventBus.getDefault().post(new MessageEvent(s1, true));
                 break;
-
+            case R.id.btn_translate_du:
+                String readTranslate = DataUtils.sendReadTranslate();
+                EventBus.getDefault().post(new MessageEvent(readTranslate, true));
+                break;
+            case R.id.btn_translate_write:
+                String trim = etTranslate.getText().toString().trim();
+                String value = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim))).toUpperCase()).replaceAll(" ","");
+                String writeTranslate = DataUtils.sendWriteTranslate(value.replaceAll(" ", ""));
+                EventBus.getDefault().post(new MessageEvent(writeTranslate, true));
+                break;
+            case R.id.btn_dianliu_du:
+                String ss = DataUtils.sendReadCurrentElectric();
+                EventBus.getDefault().post(new MessageEvent(ss, true));
+                break;
+            case R.id.btn_dianliu_write:
+                String trim1 = etCurrentElectric.getText().toString().trim();
+                String value1 = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim1))).toUpperCase()).replaceAll(" ","");
+                String currentElectric = DataUtils.sendWriteCurrentElectric(value1);
+                EventBus.getDefault().post(new MessageEvent(currentElectric, true));
+                break;
         }
     }
 
@@ -227,7 +284,7 @@ public class SetFragment extends Fragment {
         String trim = et.getText().toString().trim();
         if (!TextUtils.isEmpty(trim)) {
             // 传感器类型 参数类型 float
-            String intToMinByteArray = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim))).toUpperCase());
+            String intToMinByteArray = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim))).toUpperCase()).replaceAll(" ","");
             String writeParameter = DataUtils.sendWriteParameter(type.concat(parameter).concat(intToMinByteArray));
             EventBus.getDefault().post(new MessageEvent(writeParameter, true));
         } else {
@@ -255,15 +312,16 @@ public class SetFragment extends Fragment {
 
     /**
      * EventBus 接收消息处理方法
+     *
      * @param message
      */
     private void handleMessage(String message) {
         if (message.contains("7D7B") && message.contains("7D7D")) {
+            String response = message.substring(6, 8);// 响应码
             String substring = message.substring(4, 6);
             if (substring.equals(DataUtils.CMD_JIDIANQI_CODE)) {
                 llSet.setVisibility(View.GONE);
                 llJidianqi.setVisibility(View.VISIBLE);
-                String response = message.substring(6, 8);// 响应码
                 if (DataUtils.EXTEND_WRITE_RESPONSE_CODE.equals(response)) { // 写的回应
                     boolean b = DataUtils.getWriteJIDIANQIResponse(message);
                     if (b) {
@@ -288,7 +346,6 @@ public class SetFragment extends Fragment {
                 }
             } else if (substring.equals(DataUtils.CMD_PARAMETER_SET_CODE)) { // 参数标定
                 hideJDQ();
-                String response = message.substring(6, 8);// 响应码
                 if (DataUtils.EXTEND_WRITE_RESPONSE_CODE.equals(response)) { // 写的回应
                     boolean parameterResponse = DataUtils.getWriteParameterResponse(message);
                     if (parameterResponse) {
@@ -324,30 +381,50 @@ public class SetFragment extends Fragment {
                     tvYMdbd.setText(mdbd);
 
                 }
-            }else if (substring.equals(DataUtils.CMD_MODEL_CODE)){
-                String response = message.substring(6, 8);// 响应码
+            } else if (substring.equals(DataUtils.CMD_MODEL_CODE)) {
                 if (DataUtils.EXTEND_WRITE_RESPONSE_CODE.equals(response)) { // 写的回应
                     boolean modelResponse = DataUtils.getCmdWriteModelResponse(message);
-                    if (modelResponse){
+                    if (modelResponse) {
                         boolean checked = sBtnSwitch.isChecked();
-                        if (checked){
+                        if (checked) {
                             mApplication.setCurrentModel(true);
-                        }else {
+                            mTimer.start();
+                        } else {
                             mApplication.setCurrentModel(false);
                         }
                         Toast.makeText(getContext(), "设备模式已切换", Toast.LENGTH_SHORT).show();
                     }
                 } else if (DataUtils.EXTEND_READ_RESPONSE_CODE.equals(response)) { // 读的回应
                     boolean modelResponse = DataUtils.getCmdReadModelResponse(message);
-                    if (modelResponse){
+                    if (modelResponse) {
                         // 维护模式
                         sBtnSwitch.setChecked(true);
                         mApplication.setCurrentModel(true);
-                    }else {
+                    } else {
                         // 测量模式
                         sBtnSwitch.setChecked(false);
                         mApplication.setCurrentModel(false);
                     }
+                }
+            } else if (substring.equals(DataUtils.CMD_ELECTRICTRANSLATE_CODE)) { // 电流转换
+                if (DataUtils.EXTEND_WRITE_RESPONSE_CODE.equals(response)) { // 写的回应
+                    boolean writeTranslateResponse = DataUtils.getWriteTranslateResponse(message);
+                    if (writeTranslateResponse){
+                        Toast.makeText(mApplication, "电流转换量输入完成", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (DataUtils.EXTEND_READ_RESPONSE_CODE.equals(response)) { // 读的回应
+                    String readTranslateResponse = DataUtils.getReadTranslateResponse(message);
+                    tvTranslate.setText(readTranslateResponse);
+                }
+            } else if (substring.equals(DataUtils.CMD_CURRENTELECTIC_CODE)) { // 电流写入
+                if (DataUtils.EXTEND_WRITE_RESPONSE_CODE.equals(response)) { // 写的回应
+                    boolean writeCurrentResponse = DataUtils.getWriteCurrentResponse(message);
+                    if (writeCurrentResponse){
+                        Toast.makeText(mApplication, "电流写入完成", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (DataUtils.EXTEND_READ_RESPONSE_CODE.equals(response)) { // 读的回应
+                    String readCurrentResponse = DataUtils.getReadCurrentResponse(message);
+                    tvCurrentElectric.setText(readCurrentResponse);
                 }
             }
         }
@@ -356,6 +433,7 @@ public class SetFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mTimer.cancel();
         EventBus.getDefault().unregister(SetFragment.this);
     }
 

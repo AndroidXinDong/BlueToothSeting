@@ -303,7 +303,7 @@ public class SetFragment extends Fragment {
         }else {
             boolean b1 = mDbUtil.updateTargetParameter(saveBean);
             if (b1){
-                Toast.makeText(mApplication, "保存数据更新完成", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mApplication, "保存更新数据完成", Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -1,24 +1,9 @@
 package com.usr.usrsimplebleassistent.Utils;
 
-import android.content.Context;
-import android.os.Environment;
-import android.text.TextUtils;
 import android.util.Log;
-import android.widget.TextView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.Formatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by dongXin on 2017/7/3.
- */
 
 public class C2JUtils {
     /**
@@ -55,6 +40,25 @@ public class C2JUtils {
 
 
     /**
+     * 十六进制数转字节数组
+     * @param s
+     * @return
+     */
+    public static byte[] hexStringToByteArray(String s) {
+        if (s.length() % 2 != 0) {
+            StringBuilder stringBuilder = new StringBuilder(s);
+            stringBuilder.insert(s.length() - 1, "0");
+            s = stringBuilder.toString();
+        }
+        int len = s.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character.digit(s.charAt(i + 1), 16));
+        }
+        return data;
+    }
+
+    /**
      * 16进制转10进制
      *
      * @param str
@@ -62,8 +66,13 @@ public class C2JUtils {
      */
     public static int hexString2Decimal(String str) {
 
-        int in = Integer.parseInt(str, 16);
-        return in;
+        try {
+            int in = Integer.parseInt(str, 16);
+            return in;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
 
@@ -123,6 +132,16 @@ public class C2JUtils {
             e.printStackTrace();
         }
         return bytes;
+    }
+
+    /**
+     * 检查是否是标准格式的hex数据
+     * @param str
+     * @return
+     */
+    public static boolean isRightHexStr(String str) {
+        String reg = "^[0-9a-fA-F]+$";
+        return str.matches(reg);
     }
 
     /**
@@ -318,10 +337,8 @@ public class C2JUtils {
             // 转成float类型
             try {
                 Float value = Float.intBitsToFloat(Integer.valueOf(little.replaceAll(" ",""), 16));
-//                Log.i("Tag", "value: "+value);
                 return String.valueOf(value);
             } catch (Exception e) {
-//                Log.i("Tag", "hex2Float: "+e.getMessage());
             }
         } else if (length == 2) {
             i = Integer.parseInt(hex, 16);

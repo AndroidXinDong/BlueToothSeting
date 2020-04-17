@@ -797,7 +797,10 @@ public class BluetoothLeService extends Service {
             } else {
                 byte[] valueByte = byteArray;
                 characteristic.setValue(valueByte);
-                mBluetoothGatt.writeCharacteristic(characteristic);
+                boolean isWrite = mBluetoothGatt.writeCharacteristic(characteristic);
+                if (!isWrite){
+
+                }
             }
         }catch (Exception e){
             e.getMessage();

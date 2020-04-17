@@ -282,10 +282,8 @@ public class Utils{
      * @param characteristics
      * @return {@link String}
      */
-    public static String getBatteryLevel(
-            BluetoothGattCharacteristic characteristics) {
-        int battery_level = characteristics.getIntValue(
-                BluetoothGattCharacteristic.FORMAT_UINT8, 0);
+    public static String getBatteryLevel(BluetoothGattCharacteristic characteristics) {
+        int battery_level = characteristics.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         return String.valueOf(battery_level);
     }
 
@@ -295,8 +293,7 @@ public class Utils{
      * @param characteristics
      * @return {@link String}
      */
-    public static String getAlertLevel(
-            BluetoothGattCharacteristic characteristics) {
+    public static String getAlertLevel(BluetoothGattCharacteristic characteristics) {
         int alert_level = characteristics.getIntValue(
                 BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         return String.valueOf(alert_level);

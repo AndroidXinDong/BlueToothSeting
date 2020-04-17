@@ -13,7 +13,7 @@
     <string name="option_fail" translatable="false">Operation failure</string>
     <string name="alert" translatable="false">Alert</string>
     <string name="conn_disconnected" translatable="false">Connect disconnect,please back to reconnect</string>
-    <string name="conn_disconnected_home" translatable="false">Connect disconnect,please reconnect</string>
+    <string name="conn_disconnected_home" translatable="false">连接断开，请重新连接</string>
     <string name="ok" translatable="false">OK</string>
 
     <string name="connect_fail" translatable="false">Connection failure</string>

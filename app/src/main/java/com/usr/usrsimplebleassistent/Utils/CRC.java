@@ -137,65 +137,6 @@ public class CRC {
         return ret;
     }
 
-    /**
-     * 任意进制数转为十进制数,a为16进制字符串，b=16
-     */
-    public static String toDecimal(String a, int b) {
-        int r = 0;
-        for (int i = 0; i < a.length(); i++) {
-            r = (int) (r + formatting(a.substring(i, i + 1))
-                    * Math.pow(b, a.length() - i - 1));
-        }
-        return String.valueOf(r);
-    }
-
-    /**
-     * 将十六进制中的字母转为对应的数字
-     */
-    public static int formatting(String a) {
-        int i = 0;
-        for (int u = 0; u < 10; u++) {
-            if (a.equals(String.valueOf(u))) {
-                i = u;
-            }
-        }
-        if (a.equals("a")) {
-            i = 10;
-        }
-        if (a.equals("b")) {
-            i = 11;
-        }
-        if (a.equals("c")) {
-            i = 12;
-        }
-        if (a.equals("d")) {
-            i = 13;
-        }
-        if (a.equals("e")) {
-            i = 14;
-        }
-        if (a.equals("f")) {
-            i = 15;
-        }
-        return i;
-    }
-
-    /**
-     *      * 16进制表示的字符串转换为字节数组
-     *      *
-     *      * @param s 16进制表示的字符串
-     *      * @return byte[] 字节数组
-     *      
-     */
-    public static byte[] hexStringToByteArray(String s) {
-        int len = s.length();
-        byte[] b = new byte[len / 2];
-        for (int i = 0; i < len; i += 2) {
-            // 两位一组，表示一个字节,把这样表示的16进制字符串，还原成一个字节
-            b[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character.digit(s.charAt(i + 1), 16));
-        }
-        return b;
-    }
 
     /**
      * 计算CRC16校验码

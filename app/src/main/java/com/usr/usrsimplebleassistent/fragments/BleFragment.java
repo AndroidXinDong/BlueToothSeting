@@ -401,6 +401,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
+//            Log.i(TAG, "onReceive: "+action);
             if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 byte[] array = intent.getByteArrayExtra(Constants.EXTRA_BYTE_VALUE);
                 String response = Utils.ByteArraytoHex(array);
@@ -419,7 +420,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                             msg.what = 20;
                             msgHandler.sendMessage(msg);
                         }
-
                     } else if (cmd.equals(DataUtils.CMD_VERSION_CODE)) {
                         if (ex.equals(DataUtils.EXTEND_WRITE_RESPONSE_CODE)) {
 
@@ -437,6 +437,10 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             //连接成功
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 //搜索服务
+                if (alarmDialog != null){
+                    alarmDialog.dismiss();
+                    alarmDialog = null;
+                }
                 progressDialog.dismiss();
                 BluetoothLeService.discoverServices();
                 ble_state.setText("已连接");
@@ -453,16 +457,22 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 progressDialog.dismiss();
                 prepareGattServices(BluetoothLeService.getSupportedGattServices());
             } else if (action.equals(BluetoothLeService.ACTION_GATT_DISCONNECTED)) {
-                ble_state.setText("未连接");
-                fabSearch.setVisibility(View.VISIBLE);
-                recyclerView.setVisibility(View.VISIBLE);
-                ll_ble.setVisibility(View.GONE);
-                progressDialog.dismiss();
-                //connect break (连接断开)
-                showDialog(getString(R.string.conn_disconnected_home));
+                dissAndReconnect();
+            }else if(action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)){
+                dissAndReconnect();
             }
         }
     };
+
+    private void dissAndReconnect() {
+        ble_state.setText("未连接");
+        fabSearch.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.VISIBLE);
+        ll_ble.setVisibility(View.GONE);
+        progressDialog.dismiss();
+        //connect break (连接断开)
+        showDialog(getString(R.string.conn_disconnected_home));
+    }
 
     private void showDialog(String info) {
         myApplication.setConnect(false);
@@ -615,7 +625,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             Boolean send = event.getSend();
             boolean currentModel = myApplication.isCurrentModel();
             if (send) {
-                Log.i(TAG, "currentModel: "+currentModel);
+//                Log.i(TAG, "currentModel: "+currentModel);
                 String model = message.substring(4, 6);
                 String s = message.substring(6, 8);
                 boolean equals = DataUtils.EXTEND_READ_CODE.equals(s);

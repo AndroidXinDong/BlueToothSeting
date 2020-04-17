@@ -3,9 +3,6 @@ package com.usr.usrsimplebleassistent.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by Administrator on 2016/9/12.
- */
 public class SharedPreference {
     // 文件名
     private static final String FILE_NAME = "Ying";
@@ -36,8 +33,7 @@ public class SharedPreference {
     }
 
     // 获取float值
-    public static float getFloat(Context context, String key,
-                                 float defValue) {
+    public static float getFloat(Context context, String key, float defValue) {
         if (sp == null) {
             sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         }
@@ -53,8 +49,7 @@ public class SharedPreference {
     }
 
     // 获取boolean值
-    public static boolean getBoolean(Context context, String key,
-                                     boolean defValue) {
+    public static boolean getBoolean(Context context, String key, boolean defValue) {
         if (sp == null) {
             sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         }

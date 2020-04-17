@@ -1,9 +1,9 @@
 package com.usr.usrsimplebleassistent.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +21,11 @@ import android.widget.Toast;
 import com.usr.usrsimplebleassistent.R;
 import com.usr.usrsimplebleassistent.Utils.C2JUtils;
 import com.usr.usrsimplebleassistent.Utils.DataUtils;
+import com.usr.usrsimplebleassistent.Utils.DbUtil;
+import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MessageEvent;
+import com.usr.usrsimplebleassistent.bean.SaveBean;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -111,6 +114,8 @@ public class SetFragment extends Fragment {
     Button btnDianliuDu;
     @BindView(R.id.btn_dianliu_write)
     Button btnDianliuWrite;
+    @BindView(R.id.btn_save)
+    Button btnSave;
     private boolean jdqOne = false;
     private boolean jdqTwo = false;
     private String zlOne = "00";
@@ -119,6 +124,7 @@ public class SetFragment extends Fragment {
     private String type = "01";
     private MyApplication mApplication;
     private CountDownTimer mTimer;
+    private DbUtil mDbUtil;
 
     public SetFragment() {
     }
@@ -130,6 +136,7 @@ public class SetFragment extends Fragment {
         mApplication = (MyApplication) getActivity().getApplication();
         ButterKnife.bind(SetFragment.this, view);
         EventBus.getDefault().register(SetFragment.this);
+        mDbUtil = new DbUtil(getContext());
         initCb();
         return view;
     }
@@ -176,44 +183,34 @@ public class SetFragment extends Fragment {
                 EventBus.getDefault().post(new MessageEvent(cmd, true));
             }
         });
-
+        setParameter();
     }
 
     @OnClick({R.id.rBtn_set_ziwai, R.id.rBtn_set_kejian, R.id.rBtn_set_red, R.id.rBtn_set_harderware,
             R.id.btn_bg, R.id.btn_lmd, R.id.btn_ldbd, R.id.btn_mdbd, R.id.btn_jdqset, R.id.iBtn_reference
             , R.id.rBtn_set_red2, R.id.rBtn_set_red3, R.id.btn_translate_du, R.id.btn_translate_write,
-            R.id.btn_dianliu_du, R.id.btn_dianliu_write})
+            R.id.btn_dianliu_du, R.id.btn_dianliu_write, R.id.btn_save})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rBtn_set_ziwai:
                 type = "01";
-                String s2 = DataUtils.sendReadParameter(type);
-                EventBus.getDefault().post(new MessageEvent(s2, true));
-                hideJDQ();
+                setParameter();
                 break;
             case R.id.rBtn_set_kejian:
                 type = "02";
-                String s3 = DataUtils.sendReadParameter(type);
-                EventBus.getDefault().post(new MessageEvent(s3, true));
-                hideJDQ();
+                setParameter();
                 break;
             case R.id.rBtn_set_red:
                 type = "03";
-                String s4 = DataUtils.sendReadParameter(type);
-                EventBus.getDefault().post(new MessageEvent(s4, true));
-                hideJDQ();
+                setParameter();
                 break;
             case R.id.rBtn_set_red2:
                 type = "04";
-                String s5 = DataUtils.sendReadParameter(type);
-                EventBus.getDefault().post(new MessageEvent(s5, true));
-                hideJDQ();
+                setParameter();
                 break;
             case R.id.rBtn_set_red3:
-                hideJDQ();
                 type = "05";
-                String s6 = DataUtils.sendReadParameter(type);
-                EventBus.getDefault().post(new MessageEvent(s6, true));
+                setParameter();
                 break;
             case R.id.rBtn_set_harderware:
                 llSet.setVisibility(View.GONE);
@@ -257,7 +254,7 @@ public class SetFragment extends Fragment {
                 break;
             case R.id.btn_translate_write:
                 String trim = etTranslate.getText().toString().trim();
-                String value = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim))).toUpperCase()).replaceAll(" ","");
+                String value = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim))).toUpperCase()).replaceAll(" ", "");
                 String writeTranslate = DataUtils.sendWriteTranslate(value.replaceAll(" ", ""));
                 EventBus.getDefault().post(new MessageEvent(writeTranslate, true));
                 break;
@@ -267,11 +264,76 @@ public class SetFragment extends Fragment {
                 break;
             case R.id.btn_dianliu_write:
                 String trim1 = etCurrentElectric.getText().toString().trim();
-                String value1 = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim1))).toUpperCase()).replaceAll(" ","");
+                String value1 = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim1))).toUpperCase()).replaceAll(" ", "");
                 String currentElectric = DataUtils.sendWriteCurrentElectric(value1);
                 EventBus.getDefault().post(new MessageEvent(currentElectric, true));
                 break;
+            case R.id.btn_save:
+                saveParameter();
+                break;
         }
+    }
+
+    /**
+     * 保存标定参数
+     */
+    private void saveParameter() {
+        String t = "0.0";
+        String t1 = etBBg.getText().toString().trim();
+        String bg = t1.isEmpty() ? t : t1;
+        String t2 = etBLmd.getText().toString().trim();
+        String lmd = t2.isEmpty() ? t : t2;
+        String t3 = etBLdbd.getText().toString().trim();
+        String ldbd = t3.isEmpty() ? t : t3;
+        String t4 = etBMdbd.getText().toString().trim();
+        String mdbd = t4.isEmpty() ? t : t4;
+        long id = Integer.parseInt(type, 16);
+        String date = Utils.GetTimeandDateUpdate();
+        SaveBean saveBean = new SaveBean();
+        saveBean.setId(id);
+        saveBean.setType(type);
+        saveBean.setBg(bg);
+        saveBean.setLmd(lmd);
+        saveBean.setLdbd(ldbd);
+        saveBean.setMdbd(mdbd);
+        saveBean.setDate(date);
+        boolean b = mDbUtil.insertTargetParameter(saveBean);
+        if (b) {
+            Toast.makeText(mApplication, "保存成功", Toast.LENGTH_SHORT).show();
+        }else {
+            boolean b1 = mDbUtil.updateTargetParameter(saveBean);
+            if (b1){
+                Toast.makeText(mApplication, "保存数据更新完成", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    /**
+     * 设置标定参数，发送请求数据 隐藏继电器
+     */
+    private void setParameter() {
+        etBBg.setText(null);
+        etBLmd.setText(null);
+        etBLdbd.setText(null);
+        etBMdbd.setText(null);
+        hideJDQ();
+        String s = DataUtils.sendReadParameter(type);
+        EventBus.getDefault().post(new MessageEvent(s, true));
+        SaveBean bean = mDbUtil.loadTargetParameter(Integer.parseInt(type, 16));
+        try {
+            String bg1 = bean.getBg();
+            String lmd1 = bean.getLmd();
+            String ldbd1 = bean.getLdbd();
+            String mdbd1 = bean.getMdbd();
+            etBBg.setText(bg1);
+            etBLmd.setText(lmd1);
+            etBLdbd.setText(ldbd1);
+            etBMdbd.setText(mdbd1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -284,7 +346,7 @@ public class SetFragment extends Fragment {
         String trim = et.getText().toString().trim();
         if (!TextUtils.isEmpty(trim)) {
             // 传感器类型 参数类型 float
-            String intToMinByteArray = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim))).toUpperCase()).replaceAll(" ","");
+            String intToMinByteArray = C2JUtils.intToMinByteArray(Integer.toHexString(Float.floatToIntBits(Float.parseFloat(trim))).toUpperCase()).replaceAll(" ", "");
             String writeParameter = DataUtils.sendWriteParameter(type.concat(parameter).concat(intToMinByteArray));
             EventBus.getDefault().post(new MessageEvent(writeParameter, true));
         } else {
@@ -409,7 +471,7 @@ public class SetFragment extends Fragment {
             } else if (substring.equals(DataUtils.CMD_ELECTRICTRANSLATE_CODE)) { // 电流转换
                 if (DataUtils.EXTEND_WRITE_RESPONSE_CODE.equals(response)) { // 写的回应
                     boolean writeTranslateResponse = DataUtils.getWriteTranslateResponse(message);
-                    if (writeTranslateResponse){
+                    if (writeTranslateResponse) {
                         Toast.makeText(mApplication, "电流转换量输入完成", Toast.LENGTH_SHORT).show();
                     }
                 } else if (DataUtils.EXTEND_READ_RESPONSE_CODE.equals(response)) { // 读的回应
@@ -419,7 +481,7 @@ public class SetFragment extends Fragment {
             } else if (substring.equals(DataUtils.CMD_CURRENTELECTIC_CODE)) { // 电流写入
                 if (DataUtils.EXTEND_WRITE_RESPONSE_CODE.equals(response)) { // 写的回应
                     boolean writeCurrentResponse = DataUtils.getWriteCurrentResponse(message);
-                    if (writeCurrentResponse){
+                    if (writeCurrentResponse) {
                         Toast.makeText(mApplication, "电流写入完成", Toast.LENGTH_SHORT).show();
                     }
                 } else if (DataUtils.EXTEND_READ_RESPONSE_CODE.equals(response)) { // 读的回应

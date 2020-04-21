@@ -45,44 +45,29 @@ import java.util.UUID;
  * hosted on a given BlueTooth LE device.
  */
 public class BluetoothLeService extends Service {
-
     /**
      * GATT Status constants
      */
     //连接成功
-    public final static String ACTION_GATT_CONNECTED =
-            "com.usr.bluetooth.le.ACTION_GATT_CONNECTED";
-    public final static String ACTION_GATT_DISCONNECTED =
-            "com.usr.bluetooth.le.ACTION_GATT_DISCONNECTED";
-    public final static String ACTION_GATT_DISCONNECTED_CAROUSEL =
-            "com.usr.bluetooth.le.ACTION_GATT_DISCONNECTED_CAROUSEL";
-    public final static String ACTION_GATT_SERVICES_DISCOVERED =
-            "com.usr.bluetooth.le.ACTION_GATT_SERVICES_DISCOVERED";
-    public final static String ACTION_DATA_AVAILABLE =
-            "com.usr.bluetooth.le.ACTION_DATA_AVAILABLE";
-
-    public final static String ACTION_GATT_CHARACTERISTIC_ERROR =
-            "com.usr.bluetooth.le.ACTION_GATT_CHARACTERISTIC_ERROR";
-
+    public final static String ACTION_GATT_CONNECTED = "com.usr.bluetooth.le.ACTION_GATT_CONNECTED";
+    public final static String ACTION_GATT_DISCONNECTED = "com.usr.bluetooth.le.ACTION_GATT_DISCONNECTED";
+    public final static String ACTION_GATT_DISCONNECTED_CAROUSEL = "com.usr.bluetooth.le.ACTION_GATT_DISCONNECTED_CAROUSEL";
+    public final static String ACTION_GATT_SERVICES_DISCOVERED = "com.usr.bluetooth.le.ACTION_GATT_SERVICES_DISCOVERED";
+    public final static String ACTION_DATA_AVAILABLE = "com.usr.bluetooth.le.ACTION_DATA_AVAILABLE";
+    public final static String ACTION_GATT_CHARACTERISTIC_ERROR = "com.usr.bluetooth.le.ACTION_GATT_CHARACTERISTIC_ERROR";
     public final static String GATT_STATUS_133 = "133";
-
     /**
      * add by usr_ljq
      */
-    public final static String ACTION_GATT_DESCRIPTORWRITE_RESULT =
-            "com.usr.bluetooth.le.ACTION_GATT_DESCRIPTORWRITE_RESULT";
-    public final static String ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS =
-            "com.usr.bluetooth.le.ACTION_GATT_CHARACTERISTIC_SUCCESS";
-
+    public final static String ACTION_GATT_DESCRIPTORWRITE_RESULT = "com.usr.bluetooth.le.ACTION_GATT_DESCRIPTORWRITE_RESULT";
+    public final static String ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS = "com.usr.bluetooth.le.ACTION_GATT_CHARACTERISTIC_SUCCESS";
     /**
      * Connection status Constants
      */
     public static final int STATE_DISCONNECTED = 0;
-    private final static String ACTION_GATT_DISCONNECTING =
-            "com.usr.bluetooth.le.ACTION_GATT_DISCONNECTING";
     private static final int STATE_CONNECTING = 1;
     private static final int STATE_CONNECTED = 2;
-    private static final int STATE_DISCONNECTING = 4;
+
 
     /**
      * BluetoothAdapter for handling connections
@@ -167,26 +152,21 @@ public class BluetoothLeService extends Service {
                 mBundle.putString(Constants.EXTRA_DESCRIPTOR_BYTE_VALUE_UUID, descriptor.getUuid().toString());
                 mBundle.putString(Constants.EXTRA_DESCRIPTOR_BYTE_VALUE_CHARACTERISTIC_UUID, descriptor.getCharacteristic().getUuid().toString());
                 if (descriptorUUID.equals(UUIDDatabase.UUID_CLIENT_CHARACTERISTIC_CONFIG)) {
-                    String valueReceived = DescriptorParser
-                            .getClientCharacteristicConfiguration(descriptor);
+                    String valueReceived = DescriptorParser.getClientCharacteristicConfiguration(descriptor);
                     mBundle.putString(Constants.EXTRA_DESCRIPTOR_VALUE, valueReceived);
                 }
                 if (descriptorUUID.equals(UUIDDatabase.UUID_CHARACTERISTIC_EXTENDED_PROPERTIES)) {
-                    HashMap<String, String> receivedValuesMap = DescriptorParser
-                            .getCharacteristicExtendedProperties(descriptor);
+                    HashMap<String, String> receivedValuesMap = DescriptorParser.getCharacteristicExtendedProperties(descriptor);
                     String reliableWriteStatus = receivedValuesMap.get(Constants.firstBitValueKey);
                     String writeAuxillaryStatus = receivedValuesMap.get(Constants.secondBitValueKey);
-                    mBundle.putString(Constants.EXTRA_DESCRIPTOR_VALUE, reliableWriteStatus + "\n"
-                            + writeAuxillaryStatus);
+                    mBundle.putString(Constants.EXTRA_DESCRIPTOR_VALUE, reliableWriteStatus + "\n" + writeAuxillaryStatus);
                 }
                 if (descriptorUUID.equals(UUIDDatabase.UUID_CHARACTERISTIC_USER_DESCRIPTION)) {
-                    String description = DescriptorParser
-                            .getCharacteristicUserDescription(descriptor);
+                    String description = DescriptorParser.getCharacteristicUserDescription(descriptor);
                     mBundle.putString(Constants.EXTRA_DESCRIPTOR_VALUE, description);
                 }
                 if (descriptorUUID.equals(UUIDDatabase.UUID_SERVER_CHARACTERISTIC_CONFIGURATION)) {
-                    String broadcastStatus = DescriptorParser.
-                            getServerCharacteristicConfiguration(descriptor);
+                    String broadcastStatus = DescriptorParser.getServerCharacteristicConfiguration(descriptor);
                     mBundle.putString(Constants.EXTRA_DESCRIPTOR_VALUE, broadcastStatus);
                 }
                 if (descriptorUUID.equals(UUIDDatabase.UUID_REPORT_REFERENCE)) {
@@ -198,15 +178,13 @@ public class BluetoothLeService extends Service {
                         reportReferenceType = reportReferencealues.get(1);
                         mBundle.putString(Constants.EXTRA_DESCRIPTOR_REPORT_REFERENCE_ID, reportReference);
                         mBundle.putString(Constants.EXTRA_DESCRIPTOR_REPORT_REFERENCE_TYPE, reportReferenceType);
-                        mBundle.putString(Constants.EXTRA_DESCRIPTOR_VALUE, reportReference + "\n" +
-                                reportReferenceType);
+                        mBundle.putString(Constants.EXTRA_DESCRIPTOR_VALUE, reportReference + "\n" + reportReferenceType);
                     }
 
                 }
                 if (descriptorUUID.equals(UUIDDatabase.UUID_CHARACTERISTIC_PRESENTATION_FORMAT)) {
                     String value = DescriptorParser.getCharacteristicPresentationFormat(descriptor);
-                    mBundle.putString(Constants.EXTRA_DESCRIPTOR_VALUE,
-                            value);
+                    mBundle.putString(Constants.EXTRA_DESCRIPTOR_VALUE, value);
                 }
                 intent.putExtras(mBundle);
                 /**
@@ -219,11 +197,9 @@ public class BluetoothLeService extends Service {
         }
 
         @Override
-        public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic
-                characteristic, int status) {
+        public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
             //write操作会调用此方法
             if (status == BluetoothGatt.GATT_SUCCESS) {
-//                System.out.println("onCharacteristicWrite ------------------->write success");
                 Intent intent = new Intent(ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS);
                 mContext.sendBroadcast(intent);
             } else {
@@ -252,191 +228,131 @@ public class BluetoothLeService extends Service {
                 }
                 // Model number read value
                 else if (charUuid.equals(UUIDDatabase.UUID_MODEL_NUMBER_STRING)) {
-                    mBundle.putString(Constants.EXTRA_MONS_VALUE,
-                            Utils.getModelNumberString(characteristic));
+                    mBundle.putString(Constants.EXTRA_MONS_VALUE, Utils.getModelNumberString(characteristic));
                 }
                 // Serial number read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_SERIAL_NUMBER_STRING)) {
-                    mBundle.putString(Constants.EXTRA_SNS_VALUE,
-                            Utils.getSerialNumberString(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_SERIAL_NUMBER_STRING)) {
+                    mBundle.putString(Constants.EXTRA_SNS_VALUE, Utils.getSerialNumberString(characteristic));
                 }
                 // Hardware revision read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_HARDWARE_REVISION_STRING)) {
-                    mBundle.putString(Constants.EXTRA_HRS_VALUE,
-                            Utils.getHardwareRevisionString(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_HARDWARE_REVISION_STRING)) {
+                    mBundle.putString(Constants.EXTRA_HRS_VALUE, Utils.getHardwareRevisionString(characteristic));
                 }
                 // Firmware revision read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_FIRWARE_REVISION_STRING)) {
-                    mBundle.putString(Constants.EXTRA_FRS_VALUE,
-                            Utils.getFirmwareRevisionString(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_FIRWARE_REVISION_STRING)) {
+                    mBundle.putString(Constants.EXTRA_FRS_VALUE, Utils.getFirmwareRevisionString(characteristic));
                 }
                 // Software revision read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_SOFTWARE_REVISION_STRING)) {
-                    mBundle.putString(Constants.EXTRA_SRS_VALUE,
-                            Utils.getSoftwareRevisionString(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_SOFTWARE_REVISION_STRING)) {
+                    mBundle.putString(Constants.EXTRA_SRS_VALUE, Utils.getSoftwareRevisionString(characteristic));
                 }
                 // Battery level read value
                 else if (charUuid.equals(UUIDDatabase.UUID_BATTERY_LEVEL)) {
-                    mBundle.putString(Constants.EXTRA_BTL_VALUE,
-                            Utils.getBatteryLevel(characteristic));
+                    mBundle.putString(Constants.EXTRA_BTL_VALUE, Utils.getBatteryLevel(characteristic));
                 }
                 // PNP ID read value
                 else if (charUuid.equals(UUIDDatabase.UUID_PNP_ID)) {
-                    mBundle.putString(Constants.EXTRA_PNP_VALUE,
-                            Utils.getPNPID(characteristic));
+                    mBundle.putString(Constants.EXTRA_PNP_VALUE, Utils.getPNPID(characteristic));
                 }
                 // System ID read value
                 else if (charUuid.equals(UUIDDatabase.UUID_SYSTEM_ID)) {
-                    mBundle.putString(Constants.EXTRA_SID_VALUE,
-                            Utils.getSYSID(characteristic));
+                    mBundle.putString(Constants.EXTRA_SID_VALUE, Utils.getSYSID(characteristic));
                 }
                 // Regulatory data read value
                 else if (charUuid.equals(UUIDDatabase.UUID_IEEE)) {
-                    mBundle.putString(Constants.EXTRA_RCDL_VALUE,
-                            Utils.ByteArraytoHex(characteristic.getValue()));
+                    mBundle.putString(Constants.EXTRA_RCDL_VALUE, Utils.ByteArraytoHex(characteristic.getValue()));
                 }
                 // Health thermometer sensor location read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_HEALTH_THERMOMETER_SENSOR_LOCATION)) {
-                    mBundle.putString(Constants.EXTRA_HSL_VALUE, HTMParser
-                            .getHealthThermoSensorLocation(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_HEALTH_THERMOMETER_SENSOR_LOCATION)) {
+                    mBundle.putString(Constants.EXTRA_HSL_VALUE, HTMParser.getHealthThermoSensorLocation(characteristic));
                 }
                 // CapSense proximity read value
-                else if (charUuid.equals(UUIDDatabase.UUID_CAPSENSE_PROXIMITY) ||
-                        charUuid.equals(UUIDDatabase.UUID_CAPSENSE_PROXIMITY_CUSTOM)) {
-                    mBundle.putInt(Constants.EXTRA_CAPPROX_VALUE,
-                            CapSenseParser.getCapSenseProximity(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_CAPSENSE_PROXIMITY) || charUuid.equals(UUIDDatabase.UUID_CAPSENSE_PROXIMITY_CUSTOM)) {
+                    mBundle.putInt(Constants.EXTRA_CAPPROX_VALUE, CapSenseParser.getCapSenseProximity(characteristic));
                 }
                 // CapSense slider read value
-                else if (charUuid.equals(UUIDDatabase.UUID_CAPSENSE_SLIDER) ||
-                        charUuid.equals(UUIDDatabase.UUID_CAPSENSE_SLIDER_CUSTOM)) {
-                    mBundle.putInt(Constants.EXTRA_CAPSLIDER_VALUE,
-                            CapSenseParser.getCapSenseSlider(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_CAPSENSE_SLIDER) || charUuid.equals(UUIDDatabase.UUID_CAPSENSE_SLIDER_CUSTOM)) {
+                    mBundle.putInt(Constants.EXTRA_CAPSLIDER_VALUE, CapSenseParser.getCapSenseSlider(characteristic));
                 }
                 // CapSense buttons read value
-                else if (charUuid.equals(UUIDDatabase.UUID_CAPSENSE_BUTTONS) ||
-                        charUuid.equals(UUIDDatabase.UUID_CAPSENSE_BUTTONS_CUSTOM)) {
+                else if (charUuid.equals(UUIDDatabase.UUID_CAPSENSE_BUTTONS) || charUuid.equals(UUIDDatabase.UUID_CAPSENSE_BUTTONS_CUSTOM)) {
                     mBundle.putIntegerArrayList(
-                            Constants.EXTRA_CAPBUTTONS_VALUE,
-                            CapSenseParser.getCapSenseButtons(characteristic));
+                            Constants.EXTRA_CAPBUTTONS_VALUE, CapSenseParser.getCapSenseButtons(characteristic));
                 }
                 // Alert level read value
                 else if (charUuid.equals(UUIDDatabase.UUID_ALERT_LEVEL)) {
-                    mBundle.putString(Constants.EXTRA_ALERT_VALUE,
-                            Utils.getAlertLevel(characteristic));
+                    mBundle.putString(Constants.EXTRA_ALERT_VALUE, Utils.getAlertLevel(characteristic));
                 }
                 // Transmission power level read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_TRANSMISSION_POWER_LEVEL)) {
-                    mBundle.putInt(Constants.EXTRA_POWER_VALUE,
-                            Utils.getTransmissionPower(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_TRANSMISSION_POWER_LEVEL)) {
+                    mBundle.putInt(Constants.EXTRA_POWER_VALUE, Utils.getTransmissionPower(characteristic));
                 }
                 // RGB Led read value
-                else if (charUuid.equals(UUIDDatabase.UUID_RGB_LED) ||
-                        charUuid.equals(UUIDDatabase.UUID_RGB_LED_CUSTOM)) {
-                    mBundle.putString(Constants.EXTRA_RGB_VALUE,
-                            RGBParser.getRGBValue(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_RGB_LED) || charUuid.equals(UUIDDatabase.UUID_RGB_LED_CUSTOM)) {
+                    mBundle.putString(Constants.EXTRA_RGB_VALUE, RGBParser.getRGBValue(characteristic));
                 }
                 // Glucose read value
                 else if (charUuid.equals(UUIDDatabase.UUID_GLUCOSE)) {
-                    mBundle.putStringArrayList(Constants.EXTRA_GLUCOSE_VALUE,
-                            GlucoseParser.getGlucoseHealth(characteristic));
+                    mBundle.putStringArrayList(Constants.EXTRA_GLUCOSE_VALUE, GlucoseParser.getGlucoseHealth(characteristic));
                 }
                 // Running speed read value
                 else if (charUuid.equals(UUIDDatabase.UUID_RSC_MEASURE)) {
-                    mBundle.putStringArrayList(Constants.EXTRA_RSC_VALUE,
-                            RSCParser.getRunningSpeednCadence(characteristic));
+                    mBundle.putStringArrayList(Constants.EXTRA_RSC_VALUE, RSCParser.getRunningSpeednCadence(characteristic));
                 }
                 // Accelerometer X read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_ACCELEROMETER_READING_X)) {
-                    mBundle.putInt(Constants.EXTRA_ACCX_VALUE, SensorHubParser
-                            .getAcceleroMeterXYZReading(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_ACCELEROMETER_READING_X)) {
+                    mBundle.putInt(Constants.EXTRA_ACCX_VALUE, SensorHubParser.getAcceleroMeterXYZReading(characteristic));
                 }
                 // Accelerometer Y read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_ACCELEROMETER_READING_Y)) {
-                    mBundle.putInt(Constants.EXTRA_ACCY_VALUE, SensorHubParser
-                            .getAcceleroMeterXYZReading(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_ACCELEROMETER_READING_Y)) {
+                    mBundle.putInt(Constants.EXTRA_ACCY_VALUE, SensorHubParser.getAcceleroMeterXYZReading(characteristic));
                 }
                 // Accelerometer Z read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_ACCELEROMETER_READING_Z)) {
-                    mBundle.putInt(Constants.EXTRA_ACCZ_VALUE, SensorHubParser
-                            .getAcceleroMeterXYZReading(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_ACCELEROMETER_READING_Z)) {
+                    mBundle.putInt(Constants.EXTRA_ACCZ_VALUE, SensorHubParser.getAcceleroMeterXYZReading(characteristic));
                 }
                 // Temperature read value
                 else if (charUuid.equals(UUIDDatabase.UUID_TEMPERATURE_READING)) {
-                    mBundle.putFloat(Constants.EXTRA_STEMP_VALUE,
-                            SensorHubParser
-                                    .getThermometerReading(characteristic));
+                    mBundle.putFloat(Constants.EXTRA_STEMP_VALUE, SensorHubParser.getThermometerReading(characteristic));
                 }
                 // Barometer read value
                 else if (charUuid.equals(UUIDDatabase.UUID_BAROMETER_READING)) {
-                    mBundle.putInt(Constants.EXTRA_SPRESSURE_VALUE,
-                            SensorHubParser.getBarometerReading(characteristic));
+                    mBundle.putInt(Constants.EXTRA_SPRESSURE_VALUE, SensorHubParser.getBarometerReading(characteristic));
                 }
                 // Accelerometer scan interval read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_ACCELEROMETER_SENSOR_SCAN_INTERVAL)) {
+                else if (charUuid.equals(UUIDDatabase.UUID_ACCELEROMETER_SENSOR_SCAN_INTERVAL)) {
                     mBundle.putInt(
-                            Constants.EXTRA_ACC_SENSOR_SCAN_VALUE,
-                            SensorHubParser
-                                    .getSensorScanIntervalReading(characteristic));
+                            Constants.EXTRA_ACC_SENSOR_SCAN_VALUE, SensorHubParser.getSensorScanIntervalReading(characteristic));
                 }
                 // Accelerometer analog sensor read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_ACCELEROMETER_ANALOG_SENSOR)) {
-                    mBundle.putInt(Constants.EXTRA_ACC_SENSOR_TYPE_VALUE,
-                            SensorHubParser
-                                    .getSensorTypeReading(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_ACCELEROMETER_ANALOG_SENSOR)) {
+                    mBundle.putInt(Constants.EXTRA_ACC_SENSOR_TYPE_VALUE, SensorHubParser.getSensorTypeReading(characteristic));
                 }
                 // Accelerometer data accumulation read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_ACCELEROMETER_DATA_ACCUMULATION)) {
-                    mBundle.putInt(Constants.EXTRA_ACC_FILTER_VALUE,
-                            SensorHubParser
-                                    .getFilterConfiguration(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_ACCELEROMETER_DATA_ACCUMULATION)) {
+                    mBundle.putInt(Constants.EXTRA_ACC_FILTER_VALUE, SensorHubParser.getFilterConfiguration(characteristic));
                 }
                 // Temperature sensor scan read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_TEMPERATURE_SENSOR_SCAN_INTERVAL)) {
+                else if (charUuid.equals(UUIDDatabase.UUID_TEMPERATURE_SENSOR_SCAN_INTERVAL)) {
                     mBundle.putInt(
-                            Constants.EXTRA_STEMP_SENSOR_SCAN_VALUE,
-                            SensorHubParser
-                                    .getSensorScanIntervalReading(characteristic));
+                            Constants.EXTRA_STEMP_SENSOR_SCAN_VALUE, SensorHubParser.getSensorScanIntervalReading(characteristic));
                 }
                 // Temperature analog sensor read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_TEMPERATURE_ANALOG_SENSOR)) {
-                    mBundle.putInt(Constants.EXTRA_STEMP_SENSOR_TYPE_VALUE,
-                            SensorHubParser
-                                    .getSensorTypeReading(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_TEMPERATURE_ANALOG_SENSOR)) {
+                    mBundle.putInt(Constants.EXTRA_STEMP_SENSOR_TYPE_VALUE, SensorHubParser.getSensorTypeReading(characteristic));
                 }
                 // Barometer sensor scan interval read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_BAROMETER_SENSOR_SCAN_INTERVAL)) {
+                else if (charUuid.equals(UUIDDatabase.UUID_BAROMETER_SENSOR_SCAN_INTERVAL)) {
                     mBundle.putInt(
-                            Constants.EXTRA_SPRESSURE_SENSOR_SCAN_VALUE,
-                            SensorHubParser
-                                    .getSensorScanIntervalReading(characteristic));
+                            Constants.EXTRA_SPRESSURE_SENSOR_SCAN_VALUE, SensorHubParser.getSensorScanIntervalReading(characteristic));
                 }
                 // Barometer digital sensor
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_BAROMETER_DIGITAL_SENSOR)) {
-                    mBundle.putInt(Constants.EXTRA_SPRESSURE_SENSOR_TYPE_VALUE,
-                            SensorHubParser
-                                    .getSensorTypeReading(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_BAROMETER_DIGITAL_SENSOR)) {
+                    mBundle.putInt(Constants.EXTRA_SPRESSURE_SENSOR_TYPE_VALUE, SensorHubParser.getSensorTypeReading(characteristic));
                 }
                 // Barometer threshold for indication read value
-                else if (charUuid
-                        .equals(UUIDDatabase.UUID_BAROMETER_THRESHOLD_FOR_INDICATION)) {
-                    mBundle.putInt(Constants.EXTRA_SPRESSURE_THRESHOLD_VALUE,
-                            SensorHubParser.getThresholdValue(characteristic));
+                else if (charUuid.equals(UUIDDatabase.UUID_BAROMETER_THRESHOLD_FOR_INDICATION)) {
+                    mBundle.putInt(Constants.EXTRA_SPRESSURE_THRESHOLD_VALUE, SensorHubParser.getThresholdValue(characteristic));
                 }
                 intent.putExtras(mBundle);
 
@@ -502,83 +418,56 @@ public class BluetoothLeService extends Service {
     private static void broadcastNotifyUpdate(final BluetoothGattCharacteristic characteristic) {
         final Intent intent = new Intent(BluetoothLeService.ACTION_DATA_AVAILABLE);
         Bundle mBundle = new Bundle();
-        mBundle.putByteArray(Constants.EXTRA_BYTE_VALUE,
-                characteristic.getValue());
+        mBundle.putByteArray(Constants.EXTRA_BYTE_VALUE, characteristic.getValue());
         mBundle.putString(Constants.EXTRA_BYTE_UUID_VALUE, characteristic.getUuid().toString());
         // Heart rate Measurement notify value
-        if (UUIDDatabase.UUID_HEART_RATE_MEASUREMENT.equals(characteristic
-                .getUuid())) {
+        if (UUIDDatabase.UUID_HEART_RATE_MEASUREMENT.equals(characteristic.getUuid())) {
             String heart_rate = HRMParser.getHeartRate(characteristic);
-            String energy_expended = HRMParser
-                    .getEnergyExpended(characteristic);
-            ArrayList<Integer> rrintervel = HRMParser
-                    .getRRInterval(characteristic);
+            String energy_expended = HRMParser.getEnergyExpended(characteristic);
+            ArrayList<Integer> rrintervel = HRMParser.getRRInterval(characteristic);
             mBundle.putString(Constants.EXTRA_HRM_VALUE, heart_rate);
             mBundle.putString(Constants.EXTRA_HRM_EEVALUE, energy_expended);
             mBundle.putIntegerArrayList(Constants.EXTRA_HRM_RRVALUE, rrintervel);
         }
         // Health thermometer notify value
-        if (UUIDDatabase.UUID_HEALTH_THERMOMETER.equals(characteristic
-                .getUuid())) {
+        if (UUIDDatabase.UUID_HEALTH_THERMOMETER.equals(characteristic.getUuid())) {
             ArrayList<String> health_temp = HTMParser.getHealthThermo(characteristic);
             mBundle.putStringArrayList(Constants.EXTRA_HTM_VALUE, health_temp);
         }
 
         // CapSense Proximity notify value
-        if (UUIDDatabase.UUID_CAPSENSE_PROXIMITY.equals(characteristic.getUuid()) ||
-                UUIDDatabase.UUID_CAPSENSE_PROXIMITY_CUSTOM.equals(characteristic.getUuid())) {
-            int capsense_proximity = CapSenseParser
-                    .getCapSenseProximity(characteristic);
+        if (UUIDDatabase.UUID_CAPSENSE_PROXIMITY.equals(characteristic.getUuid()) || UUIDDatabase.UUID_CAPSENSE_PROXIMITY_CUSTOM.equals(characteristic.getUuid())) {
+            int capsense_proximity = CapSenseParser.getCapSenseProximity(characteristic);
             mBundle.putInt(Constants.EXTRA_CAPPROX_VALUE, capsense_proximity);
         }
         // CapSense slider notify value
-        if (UUIDDatabase.UUID_CAPSENSE_SLIDER.equals(characteristic.getUuid()) ||
-                UUIDDatabase.UUID_CAPSENSE_SLIDER_CUSTOM.equals(characteristic.getUuid())) {
-            int capsense_slider = CapSenseParser
-                    .getCapSenseSlider(characteristic);
+        if (UUIDDatabase.UUID_CAPSENSE_SLIDER.equals(characteristic.getUuid()) || UUIDDatabase.UUID_CAPSENSE_SLIDER_CUSTOM.equals(characteristic.getUuid())) {
+            int capsense_slider = CapSenseParser.getCapSenseSlider(characteristic);
             mBundle.putInt(Constants.EXTRA_CAPSLIDER_VALUE, capsense_slider);
 
         }
         // CapSense buttons notify value
-        if (UUIDDatabase.UUID_CAPSENSE_BUTTONS.equals(characteristic.getUuid()) ||
-                UUIDDatabase.UUID_CAPSENSE_BUTTONS_CUSTOM.equals(characteristic.getUuid())) {
-            ArrayList<Integer> capsense_buttons = CapSenseParser
-                    .getCapSenseButtons(characteristic);
-            mBundle.putIntegerArrayList(Constants.EXTRA_CAPBUTTONS_VALUE,
-                    capsense_buttons);
+        if (UUIDDatabase.UUID_CAPSENSE_BUTTONS.equals(characteristic.getUuid()) || UUIDDatabase.UUID_CAPSENSE_BUTTONS_CUSTOM.equals(characteristic.getUuid())) {
+            ArrayList<Integer> capsense_buttons = CapSenseParser.getCapSenseButtons(characteristic);
+            mBundle.putIntegerArrayList(Constants.EXTRA_CAPBUTTONS_VALUE, capsense_buttons);
 
         }
         // Glucose notify value
         if (UUIDDatabase.UUID_GLUCOSE.equals(characteristic.getUuid())) {
-            ArrayList<String> glucose_values = GlucoseParser
-                    .getGlucoseHealth(characteristic);
-            mBundle.putStringArrayList(Constants.EXTRA_GLUCOSE_VALUE,
-                    glucose_values);
+            ArrayList<String> glucose_values = GlucoseParser.getGlucoseHealth(characteristic);
+            mBundle.putStringArrayList(Constants.EXTRA_GLUCOSE_VALUE, glucose_values);
 
         }
         // Blood pressure measurement notify value
-        if (UUIDDatabase.UUID_BLOOD_PRESSURE_MEASUREMENT.equals(characteristic
-                .getUuid())) {
-            String blood_pressure_systolic = BloodPressureParser
-                    .getSystolicBloodPressure(characteristic);
-            String blood_pressure_diastolic = BloodPressureParser
-                    .getDiaStolicBloodPressure(characteristic);
-            String blood_pressure_systolic_unit = BloodPressureParser
-                    .getSystolicBloodPressureUnit(characteristic, mContext);
-            String blood_pressure_diastolic_unit = BloodPressureParser
-                    .getDiaStolicBloodPressureUnit(characteristic, mContext);
-            mBundle.putString(
-                    Constants.EXTRA_PRESURE_SYSTOLIC_UNIT_VALUE,
-                    blood_pressure_systolic_unit);
-            mBundle.putString(
-                    Constants.EXTRA_PRESURE_DIASTOLIC_UNIT_VALUE,
-                    blood_pressure_diastolic_unit);
-            mBundle.putString(
-                    Constants.EXTRA_PRESURE_SYSTOLIC_VALUE,
-                    blood_pressure_systolic);
-            mBundle.putString(
-                    Constants.EXTRA_PRESURE_DIASTOLIC_VALUE,
-                    blood_pressure_diastolic);
+        if (UUIDDatabase.UUID_BLOOD_PRESSURE_MEASUREMENT.equals(characteristic.getUuid())) {
+            String blood_pressure_systolic = BloodPressureParser.getSystolicBloodPressure(characteristic);
+            String blood_pressure_diastolic = BloodPressureParser.getDiaStolicBloodPressure(characteristic);
+            String blood_pressure_systolic_unit = BloodPressureParser.getSystolicBloodPressureUnit(characteristic, mContext);
+            String blood_pressure_diastolic_unit = BloodPressureParser.getDiaStolicBloodPressureUnit(characteristic, mContext);
+            mBundle.putString(Constants.EXTRA_PRESURE_SYSTOLIC_UNIT_VALUE, blood_pressure_systolic_unit);
+            mBundle.putString(Constants.EXTRA_PRESURE_DIASTOLIC_UNIT_VALUE, blood_pressure_diastolic_unit);
+            mBundle.putString(Constants.EXTRA_PRESURE_SYSTOLIC_VALUE, blood_pressure_systolic);
+            mBundle.putString(Constants.EXTRA_PRESURE_DIASTOLIC_VALUE, blood_pressure_diastolic);
 
         }
         // Running speed measurement notify value
@@ -696,7 +585,7 @@ public class BluetoothLeService extends Service {
         mBluetoothGatt = device.connectGatt(context, false, mGattCallback);
         //  refreshDeviceCache(mBluetoothGatt);
         mBluetoothDeviceAddress = address;
-        reConnectAddress  = address;
+        reConnectAddress = address;
         mBluetoothDeviceName = devicename;
 
         mConnectionState = STATE_CONNECTING;
@@ -791,18 +680,18 @@ public class BluetoothLeService extends Service {
      */
 
     public static void writeCharacteristicGattDb(BluetoothGattCharacteristic characteristic, byte[] byteArray) {
-        try{
+        try {
             if (mBluetoothAdapter == null || mBluetoothGatt == null) {
                 return;
             } else {
                 byte[] valueByte = byteArray;
                 characteristic.setValue(valueByte);
                 boolean isWrite = mBluetoothGatt.writeCharacteristic(characteristic);
-                if (!isWrite){
+                if (!isWrite) {
 
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.getMessage();
         }
 
@@ -822,13 +711,11 @@ public class BluetoothLeService extends Service {
         }
         if (characteristic.getDescriptor(UUID.fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG)) != null) {
             if (enabled == true) {
-                BluetoothGattDescriptor descriptor = characteristic
-                        .getDescriptor(UUID.fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
+                BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUID.fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
                 descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
                 mBluetoothGatt.writeDescriptor(descriptor);
             } else {
-                BluetoothGattDescriptor descriptor = characteristic
-                        .getDescriptor(UUID.fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
+                BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUID.fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
                 descriptor.setValue(BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);
                 mBluetoothGatt.writeDescriptor(descriptor);
             }
@@ -849,16 +736,13 @@ public class BluetoothLeService extends Service {
             return;
         }
 
-        if (characteristic.getDescriptor(UUID
-                .fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG)) != null) {
+        if (characteristic.getDescriptor(UUID.fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG)) != null) {
             if (enabled == true) {
-                BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUID
-                        .fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
+                BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUID.fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
                 descriptor.setValue(BluetoothGattDescriptor.ENABLE_INDICATION_VALUE);
                 mBluetoothGatt.writeDescriptor(descriptor);
             } else {
-                BluetoothGattDescriptor descriptor = characteristic
-                        .getDescriptor(UUID.fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
+                BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUID.fromString(GattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
                 descriptor.setValue(BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE);
                 mBluetoothGatt.writeDescriptor(descriptor);
             }
@@ -892,7 +776,6 @@ public class BluetoothLeService extends Service {
     public static List<BluetoothGattService> getSupportedGattServices() {
         if (mBluetoothGatt == null)
             return null;
-
         return mBluetoothGatt.getServices();
     }
 
@@ -927,7 +810,6 @@ public class BluetoothLeService extends Service {
      * @return Return true if the initialization is successful.
      */
     public boolean initialize() {
-//        System.out.println("BLEService----------------->initialize");
         // For API level 18 and above, get a reference to BluetoothAdapter
         // through
         // BluetoothManager.

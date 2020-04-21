@@ -44,7 +44,8 @@
         android:layout_below="@id/tv_title"
         android:background="@android:color/white" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+    <com.usr.usrsimplebleassistent.views.DragFloatBtn
         android:id="@+id/fab_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,7 +55,7 @@
         android:layout_marginBottom="10dp"
         android:src="@mipmap/ic_search_white_36dp"
         app:elevation="6dp"
-        app:pressedTranslationZ="12dp" />
+        app:pressedTranslationZ="12dp"/>
 
     <include
         android:layout_below="@id/tv_title"

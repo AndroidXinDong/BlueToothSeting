@@ -80,7 +80,7 @@ public class MyBaseActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
             long timeMillis = System.currentTimeMillis();
             if ((timeMillis - end) < 2000) {
-                this.finish();
+                System.exit(0);
             } else {
                 end = timeMillis;
                 Toast.makeText(this, "再按返回键退出当前程序", Toast.LENGTH_SHORT).show();

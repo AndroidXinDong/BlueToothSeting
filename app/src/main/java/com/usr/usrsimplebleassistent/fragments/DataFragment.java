@@ -2,6 +2,7 @@ package com.usr.usrsimplebleassistent.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,6 @@ public class DataFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         try {
             sendMoreParameterCMD = DataUtils.sendMoreParameterCMD("05");
             runable = new Runnable() {
@@ -91,10 +91,17 @@ public class DataFragment extends Fragment {
                     handler.postDelayed(this, 1000);
                 }
             };
+            handler.removeCallbacks(runable);
             handler.post(runable);
         } catch (Exception e) {
             e.getMessage();
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+         handler.removeCallbacks(runable);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

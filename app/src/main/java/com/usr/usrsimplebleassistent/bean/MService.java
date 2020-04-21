@@ -2,9 +2,6 @@ package com.usr.usrsimplebleassistent.bean;
 
 import android.bluetooth.BluetoothGattService;
 
-/**
- * Created by Administrator on 2015-11-20.
- */
 public class MService {
     private String name;
     private BluetoothGattService service;

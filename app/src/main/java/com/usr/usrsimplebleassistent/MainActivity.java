@@ -95,7 +95,6 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
                         EventBus.getDefault().post(new MessageEvent("start", false));
                         isChoose++;
                     }
-
                 } else {
                     radiobutton2.setChecked(false);
                     radiobutton1.setChecked(true);
@@ -126,7 +125,6 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
      * fragment的切换 不通过replace的方式将fragment进行替换，禁止fragment页面重新加载
      */
     private void addFragment(Fragment fragment) {
-//        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = mManager.beginTransaction();
         if (currentFragment == null) {
             fragmentTransaction.add(R.id.ll_tihuan, fragment).commit();
@@ -136,12 +134,10 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
             // 先判断是否被add过
             if (!fragment.isAdded()) {
                 // 隐藏当前的fragment，add下一个到Activity中
-                fragmentTransaction.hide(currentFragment)
-                        .add(R.id.ll_tihuan, fragment).commit();
+                fragmentTransaction.hide(currentFragment).add(R.id.ll_tihuan, fragment).commit();
             } else {
                 // 隐藏当前的fragment，显示下一个
-                fragmentTransaction.hide(currentFragment).show(fragment)
-                        .commit();
+                fragmentTransaction.hide(currentFragment).show(fragment).commit();
             }
             currentFragment = fragment;
         }

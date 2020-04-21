@@ -141,6 +141,12 @@ public class SetFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setParameter();
+    }
+
     private void initCb() {
         cbOne.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -183,7 +189,6 @@ public class SetFragment extends Fragment {
                 EventBus.getDefault().post(new MessageEvent(cmd, true));
             }
         });
-        setParameter();
     }
 
     @OnClick({R.id.rBtn_set_ziwai, R.id.rBtn_set_kejian, R.id.rBtn_set_red, R.id.rBtn_set_harderware,
@@ -322,14 +327,16 @@ public class SetFragment extends Fragment {
         EventBus.getDefault().post(new MessageEvent(s, true));
         SaveBean bean = mDbUtil.loadTargetParameter(Integer.parseInt(type, 16));
         try {
-            String bg1 = bean.getBg();
-            String lmd1 = bean.getLmd();
-            String ldbd1 = bean.getLdbd();
-            String mdbd1 = bean.getMdbd();
-            etBBg.setText(bg1);
-            etBLmd.setText(lmd1);
-            etBLdbd.setText(ldbd1);
-            etBMdbd.setText(mdbd1);
+            if (bean != null) {
+                String bg1 = bean.getBg();
+                String lmd1 = bean.getLmd();
+                String ldbd1 = bean.getLdbd();
+                String mdbd1 = bean.getMdbd();
+                etBBg.setText(bg1);
+                etBLmd.setText(lmd1);
+                etBLdbd.setText(ldbd1);
+                etBMdbd.setText(mdbd1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

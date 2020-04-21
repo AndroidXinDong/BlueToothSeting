@@ -46,10 +46,6 @@
             android:enabled="true" />
 
 
-        <activity
-            android:name=".FirmwareActivity"
-            android:theme="@style/AppTheme"></activity>
-
     </application>
 
 </manifest>

@@ -27,7 +27,6 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.usr.usrsimplebleassistent.BlueToothLeService.BluetoothLeService;
 import com.usr.usrsimplebleassistent.R;
-import com.usr.usrsimplebleassistent.Utils.C2JUtils;
 import com.usr.usrsimplebleassistent.Utils.Constants;
 import com.usr.usrsimplebleassistent.Utils.DataUtils;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
@@ -36,9 +35,7 @@ import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
 import com.usr.usrsimplebleassistent.application.MyApplication;
 import com.usr.usrsimplebleassistent.bean.MDevice;
-import com.usr.usrsimplebleassistent.bean.MService;
 import com.usr.usrsimplebleassistent.bean.MessageEvent;
-import com.usr.usrsimplebleassistent.views.DragFloatBtn;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -69,7 +66,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     private Handler hander = new Handler();
     private MaterialDialog progressDialog;
     @BindView(R.id.fab_search)
-    DragFloatBtn fabSearch;
+    FloatingActionButton fabSearch;
     @BindView(R.id.rcy_ble)
     RecyclerView recyclerView;
     private String currentDevAddress;
@@ -96,6 +93,8 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     private BluetoothAdapter mBtAdapter;
     private final List<MDevice> list = new ArrayList<>();
     private DevicesAdapter adapter;
+    private BluetoothGattCharacteristic notifyCharacteristic = null;
+    private BluetoothGattCharacteristic writeCharacteristic = null;
     private Handler msgHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -274,6 +273,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 adapter.setDelayStartAnimation(false);
                 return false;
             }
+
             public void onTouchEvent(RecyclerView rv, MotionEvent e) {
 
             }
@@ -470,16 +470,16 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         ll_ble.setVisibility(View.GONE);
         progressDialog.dismiss();
         //connect break (连接断开)
-        showDialog(getString(R.string.conn_disconnected_home));
+        showDialog();
     }
 
-    private void showDialog(String info) {
+    private void showDialog() {
         myApplication.setConnect(false);
         if (alarmDialog != null)
             return;
         alarmDialog = new MaterialDialog(getActivity());
         alarmDialog.setTitle(getString(R.string.alert))
-                .setMessage(info)
+                .setMessage("当前连接已经断开，请重新连接？")
                 .setPositiveButton(R.string.ok, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -498,54 +498,39 @@ public class BleFragment extends Fragment implements View.OnClickListener {
      */
 
     public void prepareGattServices(List<BluetoothGattService> gattServices) {
-        List<MService> services = prepareData(gattServices);
-        if (services.size() > 0) {
-            MService mService = services.get(0);
-            BluetoothGattService service = mService.getService();
-            List<BluetoothGattCharacteristic> characteristics = service.getCharacteristics();
-            BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE), -1, -1);
-            String uuid = usrVirtualCharacteristic.getUuid().toString();
-            if (uuid.equals(GattAttributes.USR_SERVICE)) {
-                for (BluetoothGattCharacteristic c : characteristics) {
-                    String porpertie = Utils.getPorperties(getActivity(), c);
-                    if (porpertie.equals("Notify")) {
-                        notifyCharacteristic = c;
-                        continue;
-                    }
-                    if (porpertie.equals("Write")) {
-                        writeCharacteristic = c;
-                        continue;
-                    }
-                }
+        if (gattServices == null)
+            return;
+        BluetoothGattService service = null;
+        for (BluetoothGattService gattService : gattServices) {
+            String uuid = gattService.getUuid().toString();
+            Log.i(TAG, "prepareGattServices: "+uuid + "-----" +gattServices);
+            if (uuid.equals(GattAttributes.GENERIC_ACCESS_SERVICE) || uuid.equals(GattAttributes.GENERIC_ATTRIBUTE_SERVICE))
+                continue;
+            String name = GattAttributes.lookup(uuid, "UnkonwService");
+            Log.i(TAG, "serviceName: " + name);
+            service =  gattService;
+        }
+        List<BluetoothGattCharacteristic> characteristics = service.getCharacteristics();
+        BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE), -1, -1);
+        for (BluetoothGattCharacteristic c : characteristics) {
+            String porpertie = Utils.getPorperties(getActivity(), c);
+            if (porpertie.equals("Notify")) {
+                notifyCharacteristic = c;
+                continue;
+            }
+            if (porpertie.equals("Write")) {
+                writeCharacteristic = c;
+                continue;
             } else {
                 notifyCharacteristic = usrVirtualCharacteristic;
                 writeCharacteristic = usrVirtualCharacteristic;
+                continue;
             }
-            BluetoothLeService.setCharacteristicNotification(notifyCharacteristic, true);
-        } else {
-            progressDialog.dismiss();
         }
+        BluetoothLeService.setCharacteristicNotification(notifyCharacteristic, true);
+
     }
 
-    /**
-     * Prepare GATTServices data.
-     *
-     * @param gattServices
-     */
-    public List<MService> prepareData(List<BluetoothGattService> gattServices) {
-        if (gattServices == null)
-            return null;
-        List<MService> list = new ArrayList<>();
-        for (BluetoothGattService gattService : gattServices) {
-            String uuid = gattService.getUuid().toString();
-            if (uuid.equals(GattAttributes.GENERIC_ACCESS_SERVICE) || uuid.equals(GattAttributes.GENERIC_ATTRIBUTE_SERVICE))
-                continue;
-            String name = GattAttributes.lookup(gattService.getUuid().toString(), "UnkonwService");
-            MService mService = new MService(name, gattService);
-            list.add(mService);
-        }
-        return list;
-    }
 
     @Override
     public void onStop() {
@@ -555,14 +540,17 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private BluetoothGattCharacteristic notifyCharacteristic;
-    private BluetoothGattCharacteristic writeCharacteristic;
 
     /**
      * 向BLE蓝牙发送数据
      */
     public void writeOption(byte[] hexString) {
-        writeCharacteristic(writeCharacteristic, hexString);
+        if (writeCharacteristic != null) {
+            writeCharacteristic(writeCharacteristic, hexString);
+        } else {
+            Log.i(TAG, "writeCharacteristic为空: ");
+        }
+
     }
 
     // Writing the hexValue to the characteristics
@@ -598,7 +586,12 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 String s = message.substring(6, 8);
                 boolean equals = DataUtils.EXTEND_READ_CODE.equals(s);
                 if (currentModel || equals || model.equals(DataUtils.CMD_MODEL_CODE)) {
-                    writeCharacteristic(writeCharacteristic, Utils.hexStringToByteArray(message));
+                    if (writeCharacteristic != null) {
+                        writeCharacteristic(writeCharacteristic, Utils.hexStringToByteArray(message));
+                    } else {
+                        BluetoothLeService.closeAndDisconnect();
+//                        Toast.makeText(myApplication, "writeCharacteristic为空，写入失败", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(myApplication, "当前为测量模式，请切换维护模式操作", Toast.LENGTH_SHORT).show();
                 }

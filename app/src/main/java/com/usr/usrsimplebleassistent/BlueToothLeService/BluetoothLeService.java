@@ -96,28 +96,32 @@ public class BluetoothLeService extends Service {
     private static final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
-            String intentAction;
-            if (status == BluetoothGatt.GATT_SUCCESS) {
-                // GATT Server connected
-                if (newState == BluetoothProfile.STATE_CONNECTED) {
-                    intentAction = ACTION_GATT_CONNECTED;
-                    mConnectionState = STATE_CONNECTED;
-                    broadcastConnectionUpdate(intentAction);
-
-                }
-                // GATT Server disconnected
-                else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                    intentAction = ACTION_GATT_DISCONNECTED;
+            try {
+                String intentAction = null;
+                if (status == BluetoothGatt.GATT_SUCCESS) {
+                    // GATT Server connected
+                    if (newState == BluetoothProfile.STATE_CONNECTED) {
+                        intentAction = ACTION_GATT_CONNECTED;
+                        mConnectionState = STATE_CONNECTED;
+                        broadcastConnectionUpdate(intentAction);
+                    }
+                    // GATT Server disconnected
+                    else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                        intentAction = ACTION_GATT_DISCONNECTED;
+                        mConnectionState = STATE_DISCONNECTED;
+                        close();
+                        broadcastConnectionUpdate(intentAction);
+                    }
+                } else {
+                    Log.i(TAG, "state: GATT_FAILED ");
+                    intentAction = GATT_STATUS_133;
                     mConnectionState = STATE_DISCONNECTED;
-                    close();
                     broadcastConnectionUpdate(intentAction);
+                    close();
+                    connect(reConnectAddress);
                 }
-            } else {
-                intentAction = GATT_STATUS_133;
-                mConnectionState = STATE_DISCONNECTED;
-                broadcastConnectionUpdate(intentAction);
-                close();
-                connect(reConnectAddress);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -472,61 +476,46 @@ public class BluetoothLeService extends Service {
         }
         // Running speed measurement notify value
         if (UUIDDatabase.UUID_RSC_MEASURE.equals(characteristic.getUuid())) {
-            ArrayList<String> rsc_values = RSCParser
-                    .getRunningSpeednCadence(characteristic);
+            ArrayList<String> rsc_values = RSCParser.getRunningSpeednCadence(characteristic);
             mBundle.putStringArrayList(Constants.EXTRA_RSC_VALUE, rsc_values);
 
         }
         // Cycling speed Measurement notify value
         if (UUIDDatabase.UUID_CSC_MEASURE.equals(characteristic.getUuid())) {
-            ArrayList<String> csc_values = CSCParser
-                    .getCyclingSpeednCadence(characteristic);
+            ArrayList<String> csc_values = CSCParser.getCyclingSpeednCadence(characteristic);
             mBundle.putStringArrayList(Constants.EXTRA_CSC_VALUE, csc_values);
 
         }
         // Accelerometer x notify value
-        if (UUIDDatabase.UUID_ACCELEROMETER_READING_X.equals(characteristic
-                .getUuid())) {
-            mBundle.putInt(Constants.EXTRA_ACCX_VALUE,
-                    SensorHubParser.getAcceleroMeterXYZReading(characteristic));
+        if (UUIDDatabase.UUID_ACCELEROMETER_READING_X.equals(characteristic.getUuid())) {
+            mBundle.putInt(Constants.EXTRA_ACCX_VALUE, SensorHubParser.getAcceleroMeterXYZReading(characteristic));
 
         }
         // Accelerometer Y notify value
-        if (UUIDDatabase.UUID_ACCELEROMETER_READING_Y.equals(characteristic
-                .getUuid())) {
-            mBundle.putInt(Constants.EXTRA_ACCY_VALUE,
-                    SensorHubParser.getAcceleroMeterXYZReading(characteristic));
+        if (UUIDDatabase.UUID_ACCELEROMETER_READING_Y.equals(characteristic.getUuid())) {
+            mBundle.putInt(Constants.EXTRA_ACCY_VALUE, SensorHubParser.getAcceleroMeterXYZReading(characteristic));
         }
         // Accelerometer Z notify value
-        if (UUIDDatabase.UUID_ACCELEROMETER_READING_Z.equals(characteristic
-                .getUuid())) {
-            mBundle.putInt(Constants.EXTRA_ACCZ_VALUE,
-                    SensorHubParser.getAcceleroMeterXYZReading(characteristic));
+        if (UUIDDatabase.UUID_ACCELEROMETER_READING_Z.equals(characteristic.getUuid())) {
+            mBundle.putInt(Constants.EXTRA_ACCZ_VALUE, SensorHubParser.getAcceleroMeterXYZReading(characteristic));
 
         }
         // Temperature notify value
-        if (UUIDDatabase.UUID_TEMPERATURE_READING.equals(characteristic
-                .getUuid())) {
-            mBundle.putFloat(Constants.EXTRA_STEMP_VALUE,
-                    SensorHubParser.getThermometerReading(characteristic));
+        if (UUIDDatabase.UUID_TEMPERATURE_READING.equals(characteristic.getUuid())) {
+            mBundle.putFloat(Constants.EXTRA_STEMP_VALUE, SensorHubParser.getThermometerReading(characteristic));
 
         }
         // Barometer notify value
-        if (UUIDDatabase.UUID_BAROMETER_READING
-                .equals(characteristic.getUuid())) {
-            mBundle.putInt(Constants.EXTRA_SPRESSURE_VALUE,
-                    SensorHubParser.getBarometerReading(characteristic));
+        if (UUIDDatabase.UUID_BAROMETER_READING.equals(characteristic.getUuid())) {
+            mBundle.putInt(Constants.EXTRA_SPRESSURE_VALUE, SensorHubParser.getBarometerReading(characteristic));
         }
         // Battery level read value
-        if (UUIDDatabase.UUID_BATTERY_LEVEL
-                .equals(characteristic.getUuid())) {
-            mBundle.putString(Constants.EXTRA_BTL_VALUE,
-                    Utils.getBatteryLevel(characteristic));
+        if (UUIDDatabase.UUID_BATTERY_LEVEL.equals(characteristic.getUuid())) {
+            mBundle.putString(Constants.EXTRA_BTL_VALUE, Utils.getBatteryLevel(characteristic));
         }
         //RDK characteristic
         if (UUIDDatabase.UUID_REP0RT.equals(characteristic.getUuid())) {
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor
-                    (UUIDDatabase.UUID_REPORT_REFERENCE);
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUIDDatabase.UUID_REPORT_REFERENCE);
             if (descriptor != null) {
                 BluetoothLeService.readDescriptor(characteristic.getDescriptor(
                         UUIDDatabase.UUID_REPORT_REFERENCE));
@@ -574,7 +563,6 @@ public class BluetoothLeService extends Service {
         if (mBluetoothAdapter == null || address == null) {
             return;
         }
-
         BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         if (device == null) {
             return;
@@ -583,11 +571,10 @@ public class BluetoothLeService extends Service {
         // autoConnect
         // parameter to false.
         mBluetoothGatt = device.connectGatt(context, false, mGattCallback);
-        //  refreshDeviceCache(mBluetoothGatt);
+        refreshDeviceCache(mBluetoothGatt);
         mBluetoothDeviceAddress = address;
         reConnectAddress = address;
         mBluetoothDeviceName = devicename;
-
         mConnectionState = STATE_CONNECTING;
     }
 
@@ -687,8 +674,8 @@ public class BluetoothLeService extends Service {
                 byte[] valueByte = byteArray;
                 characteristic.setValue(valueByte);
                 boolean isWrite = mBluetoothGatt.writeCharacteristic(characteristic);
-                if (!isWrite) {
-
+                if (isWrite) {
+                    Log.i(TAG, "true: ");
                 }
             }
         } catch (Exception e) {
@@ -837,7 +824,7 @@ public class BluetoothLeService extends Service {
         mBluetoothGatt = null;
     }
 
-    static void closeAndDisconnect() {
+    public static void closeAndDisconnect() {
         if (mBluetoothGatt == null) {
             return;
         }
@@ -868,9 +855,6 @@ public class BluetoothLeService extends Service {
         if (mBluetoothAdapter == null) {
             return false;
         }
-        if (address == null) {
-        }
-
         if (mBluetoothDeviceAddress != null && address.equals(mBluetoothDeviceAddress) && mBluetoothGatt != null) {
             if (mBluetoothGatt.connect()) {
                 mConnectionState = STATE_CONNECTING;

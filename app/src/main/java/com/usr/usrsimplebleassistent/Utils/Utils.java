@@ -130,6 +130,7 @@ public class Utils{
      */
     public static String getSYSID(BluetoothGattCharacteristic characteristic) {
         final byte[] data = characteristic.getValue();
+
         final StringBuilder stringBuilder = new StringBuilder(data.length);
         if (data != null && data.length > 0) {
             for (byte byteChar : data)

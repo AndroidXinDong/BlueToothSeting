@@ -380,7 +380,6 @@ public class BluetoothLeService extends Service {
              * Sending lots of data is possible, but usually ends up being less efficient than classic
              * Bluetooth when trying to achieve maximum throughput.
              */
-//            System.out.println("onCharacteristicChanged -------------------> changed");
             //notify 会回调用此方法
             broadcastNotifyUpdate(characteristic);
         }
@@ -586,7 +585,7 @@ public class BluetoothLeService extends Service {
                 return (Boolean) localMethod.invoke(localBluetoothGatt);
             }
         } catch (Exception localException) {
-//            System.out.println("An exception occured while refreshing device");
+            Log.i(TAG, "refreshDeviceCache: "+localException.getMessage());
         }
         return false;
     }
@@ -601,9 +600,7 @@ public class BluetoothLeService extends Service {
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             return;
         }
-
         if (mConnectionState == STATE_CONNECTED) {
-            //  Logger.datalog(mContext.getResources().getString(R.string.dl_device_connecting));
             mBluetoothGatt.disconnect();
             mBluetoothGatt.close();
         }
@@ -671,8 +668,10 @@ public class BluetoothLeService extends Service {
             if (mBluetoothAdapter == null || mBluetoothGatt == null) {
                 return;
             } else {
+
                 byte[] valueByte = byteArray;
                 characteristic.setValue(valueByte);
+                Thread.sleep(100);
                 boolean isWrite = mBluetoothGatt.writeCharacteristic(characteristic);
                 if (isWrite) {
                     Log.i(TAG, "true: ");
@@ -718,7 +717,6 @@ public class BluetoothLeService extends Service {
      * @param enabled        If true, enable indications. False otherwise.
      */
     public static void setCharacteristicIndication(BluetoothGattCharacteristic characteristic, boolean enabled) {
-
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             return;
         }
@@ -747,7 +745,8 @@ public class BluetoothLeService extends Service {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static boolean requestMtu(int mtu) {
         if (mBluetoothGatt != null) {
-            return mBluetoothGatt.requestMtu(mtu);
+            boolean b = mBluetoothGatt.requestMtu(mtu);
+            return b;
         }
         return false;
     }
@@ -851,6 +850,11 @@ public class BluetoothLeService extends Service {
         }
     }
 
+    /**
+     * 设备重连
+     * @param address
+     * @return
+     */
     public static boolean connect(final String address) {
         if (mBluetoothAdapter == null) {
             return false;

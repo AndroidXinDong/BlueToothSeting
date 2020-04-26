@@ -470,10 +470,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         ll_ble.setVisibility(View.GONE);
         progressDialog.dismiss();
         //connect break (连接断开)
-        showDialog();
-    }
-
-    private void showDialog() {
         myApplication.setConnect(false);
         if (alarmDialog != null)
             return;
@@ -490,6 +486,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         alarmDialog.show();
     }
 
+
     /**
      * Getting the GATT Services
      * 获得服务
@@ -503,11 +500,8 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         BluetoothGattService service = null;
         for (BluetoothGattService gattService : gattServices) {
             String uuid = gattService.getUuid().toString();
-            Log.i(TAG, "prepareGattServices: "+uuid + "-----" +gattServices);
             if (uuid.equals(GattAttributes.GENERIC_ACCESS_SERVICE) || uuid.equals(GattAttributes.GENERIC_ATTRIBUTE_SERVICE))
                 continue;
-            String name = GattAttributes.lookup(uuid, "UnkonwService");
-            Log.i(TAG, "serviceName: " + name);
             service =  gattService;
         }
         List<BluetoothGattCharacteristic> characteristics = service.getCharacteristics();

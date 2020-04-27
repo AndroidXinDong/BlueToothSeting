@@ -9,12 +9,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.usr.usrsimplebleassistent.R;
 
-import me.drakeet.materialdialog.MaterialDialog;
 
-
-/**
- * Created by Administrator on 2015-07-29.
- */
 public class AnimateUtils {
 
     public static void translationY(final View view,int translationY,int duration,int startDelay){

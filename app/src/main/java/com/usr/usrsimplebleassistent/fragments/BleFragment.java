@@ -30,6 +30,7 @@ import com.usr.usrsimplebleassistent.R;
 import com.usr.usrsimplebleassistent.Utils.Constants;
 import com.usr.usrsimplebleassistent.Utils.DataUtils;
 import com.usr.usrsimplebleassistent.Utils.GattAttributes;
+import com.usr.usrsimplebleassistent.Utils.MaterialDialog;
 import com.usr.usrsimplebleassistent.Utils.SharedPreference;
 import com.usr.usrsimplebleassistent.Utils.Utils;
 import com.usr.usrsimplebleassistent.adapter.DevicesAdapter;
@@ -54,7 +55,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.drakeet.materialdialog.MaterialDialog;
 
 /**
  * create
@@ -434,6 +434,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             // Status received when connected to GATT Server
             //连接成功
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
+                Log.i(TAG, "onReceive: 连接上了");
                 //搜索服务
                 if (alarmDialog != null) {
                     alarmDialog.dismiss();
@@ -448,12 +449,14 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 et_bleName.setText(currentDevName);
                 et_machineDate.setText(Utils.GetDate());
                 myApplication.setConnect(true);
-                msgHandler.sendEmptyMessageDelayed(22, 3000);
-                msgHandler.sendEmptyMessageDelayed(23, 5000);
+                msgHandler.sendEmptyMessageDelayed(22, 2000);
+                msgHandler.sendEmptyMessageDelayed(23, 3000);
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 hander.removeCallbacks(dismssDialogRunnable);
                 progressDialog.dismiss();
-                prepareGattServices(BluetoothLeService.getSupportedGattServices());
+                for (int i = 0; i < 3; i++) {
+                    prepareGattServices(BluetoothLeService.getSupportedGattServices());
+                }
             } else if (action.equals(BluetoothLeService.ACTION_GATT_DISCONNECTED)) {
                 dissAndReconnect();
             } else if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
@@ -481,6 +484,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                     public void onClick(View v) {
                         alarmDialog.dismiss();
                         alarmDialog = null;
+                        EventBus.getDefault().post(new MessageEvent("1",false));
                     }
                 });
         alarmDialog.show();
@@ -540,8 +544,11 @@ public class BleFragment extends Fragment implements View.OnClickListener {
      */
     public void writeOption(byte[] hexString) {
         if (writeCharacteristic != null) {
+            Log.i(TAG, "writeOption: ");
             writeCharacteristic(writeCharacteristic, hexString);
         } else {
+            prepareGattServices(BluetoothLeService.getSupportedGattServices());
+            writeCharacteristic(writeCharacteristic, hexString);
             Log.i(TAG, "writeCharacteristic为空: ");
         }
 
@@ -552,6 +559,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         try {
             BluetoothLeService.writeCharacteristicGattDb(characteristic, bytes);
         } catch (NullPointerException e) {
+            Log.i(TAG, "writeCharacteristic: "+e.getMessage());
             e.printStackTrace();
         }
     }

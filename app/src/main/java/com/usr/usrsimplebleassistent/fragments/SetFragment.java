@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,7 +145,8 @@ public class SetFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        setParameter();
+        Log.i(TAG, "onResume: ");
+        setParameter("01");
     }
 
     private void initCb() {
@@ -199,23 +201,23 @@ public class SetFragment extends Fragment {
         switch (view.getId()) {
             case R.id.rBtn_set_ziwai:
                 type = "01";
-                setParameter();
+                setParameter(type);
                 break;
             case R.id.rBtn_set_kejian:
                 type = "02";
-                setParameter();
+                setParameter(type);
                 break;
             case R.id.rBtn_set_red:
                 type = "03";
-                setParameter();
+                setParameter(type);
                 break;
             case R.id.rBtn_set_red2:
                 type = "04";
-                setParameter();
+                setParameter(type);
                 break;
             case R.id.rBtn_set_red3:
                 type = "05";
-                setParameter();
+                setParameter(type);
                 break;
             case R.id.rBtn_set_harderware:
                 llSet.setVisibility(View.GONE);
@@ -313,11 +315,10 @@ public class SetFragment extends Fragment {
         }
     }
 
-
     /**
      * 设置标定参数，发送请求数据 隐藏继电器
      */
-    private void setParameter() {
+    private void setParameter(String type) {
         etBBg.setText(null);
         etBLmd.setText(null);
         etBLdbd.setText(null);
@@ -400,7 +401,6 @@ public class SetFragment extends Fragment {
                     String jidianqiResponse = DataUtils.getReadJIDIANQIResponse(message);
                     String s1 = jidianqiResponse.substring(0, 2);
                     String s2 = jidianqiResponse.substring(2, 4);
-
                     EventBus.getDefault().post(new MessageEvent(s1 + s2, false));
                     if ("01".equals(s1)) {
                         cbOne.setChecked(true);

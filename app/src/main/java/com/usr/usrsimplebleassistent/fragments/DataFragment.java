@@ -52,7 +52,7 @@ public class DataFragment extends Fragment {
     private String sendMoreParameterCMD;
     Handler handler = new Handler();
     private Runnable runable;
-    private Runnable jidianqi;
+
 
     private List<TextView> mList = new ArrayList<>();
 
@@ -91,21 +91,14 @@ public class DataFragment extends Fragment {
                     EventBus.getDefault().post(new MessageEvent(sendMoreParameterCMD, true));
                     String s1 = DataUtils.sendReadJIDIANQICMD();
                     EventBus.getDefault().post(new MessageEvent(s1, true));
-                    handler.postDelayed(this, 1000);
+                    handler.postDelayed(this, 1200);
                 }
             };
-            jidianqi = new Runnable() {
-                @Override
-                public void run() {
-                    String s1 = DataUtils.sendReadJIDIANQICMD();
-                    EventBus.getDefault().post(new MessageEvent(s1, true));
-                    handler.postDelayed(this, 3500);
-                }
-            };
-            handler.removeCallbacks(jidianqi);
+
+
             handler.removeCallbacks(runable);
             handler.post(runable);
-            handler.post(jidianqi);
+
         } catch (Exception e) {
             e.getMessage();
         }
@@ -115,7 +108,7 @@ public class DataFragment extends Fragment {
     public void onPause() {
         super.onPause();
          handler.removeCallbacks(runable);
-         handler.removeCallbacks(jidianqi);
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -134,7 +127,6 @@ public class DataFragment extends Fragment {
                 handler.post(runable);
             } else if (message.equals("stop")) {
                 handler.removeCallbacks(runable);
-                handler.removeCallbacks(jidianqi);
             } else if (message.length() == 4) {
                 String s1 = message.substring(0, 2);
                 String s2 = message.substring(2, 4);
@@ -159,7 +151,6 @@ public class DataFragment extends Fragment {
         super.onDestroy();
         EventBus.getDefault().unregister(DataFragment.this);
         handler.removeCallbacks(runable);
-        handler.removeCallbacks(jidianqi);
     }
 
 }

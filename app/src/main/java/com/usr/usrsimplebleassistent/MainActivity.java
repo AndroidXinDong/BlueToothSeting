@@ -76,14 +76,7 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
         boolean connect = mMyApplication.isConnect();
         switch (view.getId()) {
             case R.id.radiobutton1:
-                isChoose = 0;
-                if (mBleFragment == null) {
-                    mBleFragment = new BleFragment();
-                }
-                addFragment(mBleFragment);
-                if (connect) {
-                    EventBus.getDefault().post(new MessageEvent("stop", false));
-                }
+                defaultChoose(connect);
                 break;
             case R.id.radiobutton2:
                 if (connect) {
@@ -118,6 +111,17 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
 
                 break;
 
+        }
+    }
+
+    private void defaultChoose(boolean connect) {
+        isChoose = 0;
+        if (mBleFragment == null) {
+            mBleFragment = new BleFragment();
+        }
+        addFragment(mBleFragment);
+        if (connect) {
+            EventBus.getDefault().post(new MessageEvent("stop", false));
         }
     }
 
@@ -178,7 +182,14 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getMessageEvent(MessageEvent event) {
-
+        if (event != null) {
+            String message = event.getMessage();
+            if ("1".equals(message)){
+                Log.i(TAG, "getMessageEvent: "+message);
+                defaultChoose(true);
+                radiobutton1.setChecked(true);
+            }
+        }
     }
 
     @Override

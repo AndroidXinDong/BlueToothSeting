@@ -1,11 +1,6 @@
 package com.usr.usrsimplebleassistent.Utils;
 
 import java.io.UnsupportedEncodingException;
-
-/**
- * Created by shizhiyuan on 2017/5/25.
- */
-
 /**
  * 转换字符串的编码
  */

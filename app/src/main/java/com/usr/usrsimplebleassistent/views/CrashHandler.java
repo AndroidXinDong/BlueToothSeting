@@ -1,5 +1,6 @@
 package com.usr.usrsimplebleassistent.views;
 
+
 /**
  * UncaughtException处理类,
  * 当程序发生Uncaught异常的时候,
@@ -7,6 +8,7 @@ package com.usr.usrsimplebleassistent.views;
  * 并记录发送错误报告.(路径：sdcard/crash/yyyy-MM-dd-HH-mm-ss)
  */
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -33,26 +35,40 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
     public static final String TAG = "Tag";
 
-    /**系统默认的UncaughtException处理类*/
+    /**
+     * 系统默认的UncaughtException处理类
+     */
     private UncaughtExceptionHandler mExceptionHandler;
 
-    /**CrashHandler实例*/
+    /**
+     * CrashHandler实例
+     */
     private static CrashHandler INSTANCE = new CrashHandler();
 
-    /**程序的Context对象*/
+    /**
+     * 程序的Context对象
+     */
     private Context mContext;
 
-    /**用来存储设备信息和异常信息*/
+    /**
+     * 用来存储设备信息和异常信息
+     */
     private Map<String, String> mInfos = new HashMap<String, String>();
 
-    /**用于格式化日期,作为日志文件名的一部分*/
+    /**
+     * 用于格式化日期,作为日志文件名的一部分
+     */
     private DateFormat mDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 
-    /** 保证只有一个CrashHandler实例 */
+    /**
+     * 保证只有一个CrashHandler实例
+     */
     private CrashHandler() {
     }
 
-    /** 获取CrashHandler实例 ,单例模式 */
+    /**
+     * 获取CrashHandler实例 ,单例模式
+     */
     public static CrashHandler getInstance() {
         return INSTANCE;
     }
@@ -99,14 +115,14 @@ public class CrashHandler implements UncaughtExceptionHandler {
             return false;
         }
         //使用Toast来显示异常信息
-//        new Thread() {
-//            @Override
-//            public void run() {
+        new Thread() {
+            @Override
+            public void run() {
                 Looper.prepare();
                 Toast.makeText(mContext, "程序出现异常", Toast.LENGTH_LONG).show();
                 Looper.loop();
-//            }
-//        }.start();
+            }
+        }.start();
         //收集设备参数信息
         collectDeviceInfo(mContext);
         //保存日志文件
@@ -117,6 +133,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
     /**
      * 收集设备参数信息
+     *
      * @param ctx
      */
     public void collectDeviceInfo(Context ctx) {
@@ -148,7 +165,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
      * 保存错误信息到文件中
      *
      * @param ex
-     * @return  返回文件名称,便于将文件传送到服务器
+     * @return 返回文件名称, 便于将文件传送到服务器
      */
     private String saveCrashInfo2File(Throwable ex) {
         StringBuffer sb = new StringBuffer();
@@ -172,9 +189,9 @@ public class CrashHandler implements UncaughtExceptionHandler {
         try {
             long timestamp = System.currentTimeMillis();
             String time = mDateFormat.format(new Date());
-            String fileName = "firecrash-" + time + "-" + timestamp + ".txt";
+            String fileName = "scrash-" + time + "-" + timestamp + ".txt";
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                String path = "/sdcard/crash/";
+                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "fireCrash"+File.separator;
                 File dir = new File(path);
                 if (!dir.exists()) {
                     dir.mkdirs();

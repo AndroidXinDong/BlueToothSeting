@@ -113,7 +113,7 @@ public class BluetoothLeService extends Service {
                         broadcastConnectionUpdate(intentAction);
                     }
                 } else {
-                    Log.i(TAG, "state: GATT_FAILED ");
+                    Log.i(TAG, "state: GATT_FAILED " + status);
                     intentAction = GATT_STATUS_133;
                     mConnectionState = STATE_DISCONNECTED;
                     broadcastConnectionUpdate(intentAction);
@@ -526,18 +526,12 @@ public class BluetoothLeService extends Service {
                     mBundle.putString(Constants.EXTRA_DESCRIPTOR_REPORT_REFERENCE_TYPE,
                             reportReferenceValues.get(1));
                 }
-
-
             }
-
         }
         //case for OTA characteristic received
-        if (UUIDDatabase.UUID_OTA_UPDATE_CHARACTERISTIC
-                .equals(characteristic.getUuid())) {
+        if (UUIDDatabase.UUID_OTA_UPDATE_CHARACTERISTIC.equals(characteristic.getUuid())) {
             //do noting now
         }
-
-
         intent.putExtras(mBundle);
         /**
          * Sending the broad cast so that it can be received on registered
@@ -577,6 +571,12 @@ public class BluetoothLeService extends Service {
         mConnectionState = STATE_CONNECTING;
     }
 
+    /**
+     * 清理设备缓存
+     *
+     * @param gatt
+     * @return
+     */
     public static boolean refreshDeviceCache(BluetoothGatt gatt) {
         try {
             BluetoothGatt localBluetoothGatt = gatt;
@@ -585,7 +585,7 @@ public class BluetoothLeService extends Service {
                 return (Boolean) localMethod.invoke(localBluetoothGatt);
             }
         } catch (Exception localException) {
-            Log.i(TAG, "refreshDeviceCache: "+localException.getMessage());
+            Log.i(TAG, "refreshDeviceCache: " + localException.getMessage());
         }
         return false;
     }
@@ -665,6 +665,7 @@ public class BluetoothLeService extends Service {
 
     public static void writeCharacteristicGattDb(BluetoothGattCharacteristic characteristic, byte[] byteArray) {
         try {
+            int count = 0;
             if (mBluetoothAdapter == null || mBluetoothGatt == null) {
                 return;
             } else {
@@ -674,11 +675,21 @@ public class BluetoothLeService extends Service {
                 Thread.sleep(100);
                 boolean isWrite = mBluetoothGatt.writeCharacteristic(characteristic);
                 if (isWrite) {
-                    Log.i(TAG, "true: ");
+                    count = 0;
+                } else {
+                    if (count == 10) {
+                        count = 0;
+                        broadcastConnectionUpdate(GATT_STATUS_133);
+                        close();
+                        connect(reConnectAddress);
+                    }
+                    count++;
+                    Log.i(TAG, "false: "+count);
                 }
             }
         } catch (Exception e) {
             e.getMessage();
+            Log.i(TAG, "service: " + e.getMessage());
         }
 
     }
@@ -852,6 +863,7 @@ public class BluetoothLeService extends Service {
 
     /**
      * 设备重连
+     *
      * @param address
      * @return
      */

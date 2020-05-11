@@ -6,7 +6,7 @@
     android:background="#D5D5D5"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="visible">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,6 +51,271 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:padding="3dp"
+            android:text="紫外电流系数"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_purplex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text=""
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_purplex"
+            style="@style/et_style_set" />
+
+        <Button
+            android:id="@+id/btn_purplex_du"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="读取"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_purplex_write"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="写入"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setTv"
+        android:layout_margin="3dp"
+        android:background="#F1F1F1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="3dp"
+            android:text="红外电流系数"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_redx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text=""
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_redx"
+            style="@style/et_style_set" />
+
+        <Button
+            android:id="@+id/btn_redx_du"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="读取"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_redx_write"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="写入"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setTv"
+        android:layout_margin="3dp"
+        android:background="#F1F1F1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="3dp"
+            android:text="可见光电流系数"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kejianguanx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text=""
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_kejianguanx"
+            style="@style/et_style_set" />
+
+        <Button
+            android:id="@+id/btn_kejianguanx_du"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="读取"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_kejianguanx_write"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="写入"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setTv"
+        android:layout_margin="3dp"
+        android:background="#F1F1F1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="3dp"
+            android:text="前延时时长"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_before"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text=""
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_before"
+            style="@style/et_style_set" />
+
+        <Button
+            android:id="@+id/btn_before_du"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="读取"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_before_write"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="写入"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setTv"
+        android:layout_margin="3dp"
+        android:background="#F1F1F1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="3dp"
+            android:text="后延时时长"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_after"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text=""
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_after"
+            style="@style/et_style_set" />
+
+        <Button
+            android:id="@+id/btn_after_du"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="读取"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_after_write"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="写入"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setTv"
+        android:layout_margin="3dp"
+        android:background="#F1F1F1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="3dp"
             android:text="电流转换量"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -61,43 +326,33 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:padding="3dp"
             android:text=""
-            android:gravity="center"
             android:textColor="@color/red"
             android:textSize="16sp" />
 
         <EditText
             android:id="@+id/et_translate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:imeOptions="actionDone"
-            android:singleLine="true"
-            android:maxLength="10"
-            android:background="@drawable/et_shape"
-            android:padding="3dp"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            style="@style/et_style_set" />
 
         <Button
             android:id="@+id/btn_translate_du"
             android:layout_width="48dp"
             android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/btn_selector"
             android:text="读取"
-            android:layout_marginLeft="5dp"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btn_translate_write"
             android:layout_width="48dp"
             android:layout_height="@dimen/setTv"
-            android:background="@drawable/btn_selector"
-            android:text="写入"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="写入"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -124,43 +379,33 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:padding="3dp"
             android:text=""
-            android:gravity="center"
             android:textColor="@color/red"
             android:textSize="16sp" />
 
         <EditText
             android:id="@+id/et_currentElectric"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/et_shape"
-            android:padding="3dp"
-            android:imeOptions="actionDone"
-            android:singleLine="true"
-            android:maxLength="10"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            style="@style/et_style_set" />
 
         <Button
             android:id="@+id/btn_dianliu_du"
             android:layout_width="48dp"
             android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/btn_selector"
             android:text="读取"
-            android:layout_marginLeft="5dp"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btn_dianliu_write"
             android:layout_width="48dp"
             android:layout_height="@dimen/setTv"
-            android:background="@drawable/btn_selector"
-            android:text="写入"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
+            android:background="@drawable/btn_selector"
+            android:text="写入"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -194,9 +439,9 @@
             android:id="@+id/btn_jdqset"
             android:layout_width="48dp"
             android:layout_height="@dimen/setTv"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/btn_selector"
             android:text="设置"
-            android:layout_marginLeft="5dp"
             android:textColor="@color/white" />
 
         <ImageButton

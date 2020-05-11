@@ -164,9 +164,9 @@
     <item type="id" name="outTiming"></item>
 
     <array name="machineType">
-        <item>类型一</item>
-        <item>类型二</item>
-        <item>类型三</item>
+        <item>类型一:A0000001</item>
+        <item>类型二:A0000002</item>
+        <item>类型三:A0000003</item>
     </array>
 
 

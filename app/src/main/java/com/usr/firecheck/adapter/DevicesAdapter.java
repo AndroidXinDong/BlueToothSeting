@@ -2,6 +2,8 @@ package com.usr.firecheck.adapter;
 
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +46,11 @@ public class DevicesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         CellViewHolder cellViewHolder = (CellViewHolder) holder;
         cellViewHolder.itemView.setTag(position);
         MDevice mDev = list.get(position);
-        cellViewHolder.tvDevName.setText(mDev.getDevice().getName());
+        String name = mDev.getDevice().getName();
+        if (TextUtils.isEmpty(name)){
+            name = "no available name";
+        }
+        cellViewHolder.tvDevName.setText(name);
         cellViewHolder.tvDevSignal.setText(String.valueOf(mDev.getRssi())+"dBm");
         cellViewHolder.tvDevMac.setText(mDev.getDevice().getAddress());
         if (position> lastPosition){

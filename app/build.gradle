@@ -5,7 +5,7 @@ android {
     buildToolsVersion '29.0.2'
 
     defaultConfig {
-        applicationId "com.usr.usrsimplebleassistent"
+        applicationId "com.usr.firecheck"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1

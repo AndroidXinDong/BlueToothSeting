@@ -442,7 +442,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         // Status received when connected to GATT Server
         //连接成功
         if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
-            Log.i(TAG, "ACTION_GATT_CONNECTED: 连接上了");
             //搜索服务
             progressDialog.dismiss();
             BluetoothLeService.discoverServices();
@@ -456,23 +455,20 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             msgHandler.sendEmptyMessageDelayed(22, 2000);
             msgHandler.sendEmptyMessageDelayed(23, 3000);
         } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
-            Log.i(TAG, "ACTION_GATT_SERVICES_DISCOVERED: 准备");
             hander.removeCallbacks(dismssDialogRunnable);
             progressDialog.dismiss();
             for (int i = 0; i < 3; i++) {
                 prepareGattServices(BluetoothLeService.getSupportedGattServices());
             }
         } else if (action.equals(BluetoothLeService.ACTION_GATT_DISCONNECTED)) {
-            Log.i(TAG, "ACTION_GATT_DISCONNECTED: GATT断开");
             boolean connect = myApplication.isConnect();
             dissAndReconnect();
-            if (!connect){
+            if (!connect) {
                 BluetoothLeService.close();
                 BluetoothLeService.connect(BluetoothLeService.getmBluetoothDeviceAddress());
             }
 
         } else if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
-            Log.i(TAG, "ACTION_ACL_DISCONNECTED: 连接断开");
             dissAndReconnect();
             BluetoothLeService.close();
             BluetoothLeService.connect(BluetoothLeService.getmBluetoothDeviceAddress());
@@ -490,7 +486,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         }
         //connect break (连接断开)
         myApplication.setConnect(false);
-//        EventBus.getDefault().post(new MessageEvent("1",false));
 
     }
 
@@ -511,32 +506,27 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 String uuid = gattService.getUuid().toString();
                 if (uuid.equals(GattAttributes.GENERIC_ACCESS_SERVICE) || uuid.equals(GattAttributes.GENERIC_ATTRIBUTE_SERVICE))
                     continue;
-                service =  gattService;
+                service = gattService;
             }
             List<BluetoothGattCharacteristic> characteristics = service.getCharacteristics();
-            BluetoothGattCharacteristic usrVirtualCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_SERVICE), -1, -1);
+            Thread.sleep(1000);
             for (BluetoothGattCharacteristic c : characteristics) {
-                String porpertie = Utils.getPorperties(getActivity(), c);
-                if (porpertie.equals("Notify")) {
+                String sc = c.getUuid().toString();
+                if (sc.equals(GattAttributes.USR_NOTIFYCHARACTER)) {
                     notifyCharacteristic = c;
                     continue;
                 }
-                if (porpertie.equals("Write")) {
+                if (sc.equals(GattAttributes.USR_WRITECHARACTER)) {
                     writeCharacteristic = c;
-                    continue;
-                } else {
-                    notifyCharacteristic = usrVirtualCharacteristic;
-                    writeCharacteristic = usrVirtualCharacteristic;
                     continue;
                 }
             }
+            Thread.sleep(1000);
             BluetoothLeService.setCharacteristicNotification(notifyCharacteristic, true);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
 
     @Override
     public void onStop() {
@@ -554,9 +544,10 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         if (writeCharacteristic != null) {
             writeCharacteristic(writeCharacteristic, hexString);
         } else {
+            BluetoothGattCharacteristic writeCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_WRITECHARACTER),-1,-1);
             prepareGattServices(BluetoothLeService.getSupportedGattServices());
             writeCharacteristic(writeCharacteristic, hexString);
-            Log.i(TAG, "writeCharacteristic为空: ");
+            Log.i(TAG, "创建writeCharacteristic");
         }
 
     }

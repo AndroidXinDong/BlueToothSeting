@@ -10,9 +10,9 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/holo_red_dark"
         android:gravity="center"
-        android:text="火焰检测"
+        android:text="三维真火"
         android:textColor="@color/white"
         android:textSize="18sp" />
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginLeft="5dp"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/holo_red_dark"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
         android:text="版本:"
@@ -52,6 +52,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
+        app:backgroundTint="@android:color/holo_red_dark"
         android:src="@mipmap/ic_search_white_36dp"
         app:elevation="6dp"
         app:pressedTranslationZ="12dp" />

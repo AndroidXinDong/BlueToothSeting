@@ -13,6 +13,8 @@ public class GattAttributes {
      */
     //有人服务
     public static final String USR_SERVICE = "0003cdd0-0000-1000-8000-00805f9b0131";
+    public static final String USR_NOTIFYCHARACTER = "0003cdd1-0000-1000-8000-00805f9b0131";
+    public static final String USR_WRITECHARACTER = "0003cdd2-0000-1000-8000-00805f9b0131";
 
     public static final String HEART_RATE_SERVICE = "0000180d-0000-1000-8000-00805f9b34fb";
     public static final String DEVICE_INFORMATION_SERVICE = "0000180a-0000-1000-8000-00805f9b34fb";

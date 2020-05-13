@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/window_bg"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_margin="2dp"
+        android:layout_margin="1dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:weightSum="6">
@@ -23,7 +23,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="35dp"
-            android:background="@color/white" />
+            android:background="@color/black" />
 
         <RadioButton
             android:id="@+id/rBtn_set_kejian"
@@ -34,7 +34,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="35dp"
-            android:background="@color/white" />
+            android:background="@color/black" />
 
         <RadioButton
             android:id="@+id/rBtn_set_red"
@@ -44,7 +44,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="35dp"
-            android:background="@color/white" />
+            android:background="@color/black" />
 
         <RadioButton
             android:id="@+id/rBtn_set_red2"
@@ -54,7 +54,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="35dp"
-            android:background="@color/white" />
+            android:background="@color/black" />
 
         <RadioButton
             android:id="@+id/rBtn_set_red3"
@@ -64,7 +64,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="35dp"
-            android:background="@color/white" />
+            android:background="@color/black" />
 
         <RadioButton
             android:id="@+id/rBtn_set_harderware"
@@ -75,7 +75,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:background="@color/white" />
 
     <LinearLayout
@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="#D5D5D5"
+        android:background="@color/lite_blue"
         android:weightSum="4">
 
         <LinearLayout style="@style/ll_style">

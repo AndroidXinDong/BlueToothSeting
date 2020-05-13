@@ -489,16 +489,15 @@ public class SetFragment extends Fragment {
             String extendWriteResponseCode = DataUtils.EXTEND_WRITE_RESPONSE_CODE;
             String extendReadResponseCode = DataUtils.EXTEND_READ_RESPONSE_CODE;
             if (substring.equals(DataUtils.CMD_JIDIANQI_CODE)) {
+                rBtnSetHarderware.setChecked(true);
+                llSet.setVisibility(View.GONE);
+                llJidianqi.setVisibility(View.VISIBLE);
                 if (extendWriteResponseCode.equals(response)) { // 写的回应
-                    llSet.setVisibility(View.GONE);
-                    llJidianqi.setVisibility(View.VISIBLE);
                     boolean b = DataUtils.getWriteJIDIANQIResponse(message);
                     if (b) {
                         Toast.makeText(getContext(), "继电器写入成功", Toast.LENGTH_SHORT).show();
                     }
                 } else if (extendReadResponseCode.equals(response)) { // 读的回应
-                    llSet.setVisibility(View.GONE);
-                    llJidianqi.setVisibility(View.VISIBLE);
                     String jidianqiResponse = DataUtils.getReadJIDIANQIResponse(message);
                     String s1 = jidianqiResponse.substring(0, 2);
                     String s2 = jidianqiResponse.substring(2, 4);
@@ -515,7 +514,6 @@ public class SetFragment extends Fragment {
                     }
                 }
             } else if (substring.equals(DataUtils.CMD_PARAMETER_SET_CODE)) { // 参数标定
-//                hideJDQ();
                 if (extendWriteResponseCode.equals(response)) { // 写的回应
                     boolean parameterResponse = DataUtils.getWriteParameterResponse(message);
                     if (parameterResponse) {

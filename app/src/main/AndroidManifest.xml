@@ -33,6 +33,7 @@
         tool:ignore="LockedOrientationActivity">
         <activity
             android:name="com.usr.firecheck.MainActivity"
+            android:theme="@style/splashTheme"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -8,12 +8,15 @@ android {
         applicationId "com.usr.firecheck"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            buildConfigField "boolean", "LOG_DEBUG", "true" //不显示log
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true // 减小压缩包
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -24,6 +27,17 @@ android {
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
+    }
+    //修改apk 的 文件名
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def date = new Date().format("yyyy_MM_dd", TimeZone.getTimeZone("GMT+08"))
+            if (variant.buildType.name == "debug") {
+                output.outputFileName = "${date}_v${android.defaultConfig.versionName}_debug_${android.defaultConfig.versionCode}.apk"
+            } else if (variant.buildType.name == "release") {
+                output.outputFileName = "swzh-${android.defaultConfig.versionName}.apk"
+            }
+        }
     }
 }
 greendao {
@@ -38,7 +52,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-    implementation 'no.nordicsemi.android:dfu:0.6.2'
+//    implementation 'no.nordicsemi.android:dfu:0.6.2'
     implementation 'org.greenrobot:eventbus:3.1.1'
 
     implementation 'org.greenrobot:greendao:3.2.2' // add library

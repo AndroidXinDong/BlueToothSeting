@@ -1,0 +1,2030 @@
+com.usr.firecheck.fragments.DataFragment:
+    public static com.usr.firecheck.fragments.DataFragment getInstance()
+org.greenrobot.eventbus.util.ErrorDialogFragments:
+    public void <init>()
+freemarker.core.BuiltInsForMultipleTypes$is_directiveBI
+freemarker.core.BuiltInsForStringsEncoding
+freemarker.core.BuiltInsForStringsBasic$starts_withBI$BIMethod
+freemarker.ext.beans.NumberModel
+freemarker.ext.xml.Navigator$QualifiedNameOp
+freemarker.core.BuiltInsForHashes$keysBI
+org.greenrobot.greendao.rx.RxDao$16
+freemarker.core.NonBooleanException
+freemarker.ext.beans.OverloadedNumberUtil$ShortSource
+freemarker.core.BuiltInsForMultipleTypes$apiBI
+freemarker.ext.beans.OverloadedVarArgsMethods
+freemarker.template.utility.XmlEscape
+freemarker.ext.xml.Navigator$ContentOp
+freemarker.core.BuiltInsForStringsRegexp$RegexMatchModel$2
+freemarker.ext.jython.JythonSequenceModel$1
+freemarker.ext.beans.BooleanModel
+freemarker.ext.dom.PINodeModel
+freemarker.core.ListableRightUnboundedRangeModel
+org.greenrobot.eventbus.util.HasExecutionScope
+org.greenrobot.eventbus.util.ErrorDialogManager$HoneycombManagerFragment
+freemarker.core.BuiltInsForStringsEncoding$js_stringBI
+freemarker.ext.jsp.FreemarkerTag
+freemarker.template.Configuration$DefaultSoftCacheStorage
+freemarker.template.TemplateMethodModel
+freemarker.ext.beans.PrimtiveArrayBackedReadOnlyList
+freemarker.core.ArithmeticEngine$ConservativeEngine
+freemarker.core.BuiltInsForNodes$ancestorsBI
+org.greenrobot.greendao.rx.RxDao$2
+freemarker.core.NonSequenceException
+freemarker.core._UnmodifiableCompositeSet$1
+freemarker.core.BuiltInsForMultipleTypes$is_transformBI
+freemarker.ext.dom.JaxenXPathSupport$3
+freemarker.core.BuiltInsForStringsBasic$containsBI$BIMethod
+freemarker.ext.beans.DateModel
+freemarker.core.BuiltInsForSequences$seq_containsBI$BIMethodForSequence
+freemarker.template.utility.JythonRuntime$1
+freemarker.template.DefaultNonListCollectionAdapter
+freemarker.template.TemplateScalarModel
+freemarker.ext.beans.CollectionModel
+freemarker.core.ListElseContainer
+freemarker.core.CompressedBlock
+freemarker.ext.jsp.TaglibFactory$1
+freemarker.cache.ConcurrentCacheStorage
+freemarker.ext.beans.ClassIntrospector$MethodSignature
+freemarker.core.BuiltInsForMultipleTypes$stringBI$BooleanFormatter
+freemarker.template.utility.DOMNodeModel
+freemarker.core.JavaTemplateDateFormat
+com.usr.firecheck.Utils.DensityUtils
+freemarker.core.BuiltInsForMultipleTypes$namespaceBI
+freemarker.core.FMParser
+freemarker.core.DynamicKeyName
+org.greenrobot.greendao.rx.RxUtils
+freemarker.ext.beans.CollectionAdapter
+org.greenrobot.greendao.rx.RxTransaction$1
+freemarker.ext.servlet.FreemarkerServlet$InitParamValueException
+freemarker.ext.jsp.FreeMarkerPageContext
+freemarker.template.FalseTemplateBooleanModel
+freemarker.core.BuiltInsForStringsBasic$keep_afterBI$KeepAfterMethod
+org.greenrobot.greendao.rx.RxDao$21
+freemarker.core.TemplateClassResolver$3
+freemarker.core.Token
+freemarker.core.BuiltInsForDates$iso_BI$Result
+freemarker.core.CollectionAndSequence
+freemarker.template.AdapterTemplateModel
+org.greenrobot.greendao.rx.RxDao$20
+freemarker.template.ObjectWrapper
+freemarker.core.Macro
+freemarker.core.Range
+org.greenrobot.greendao.query.WhereCondition$AbstractCondition
+org.greenrobot.greendao.query.CountQuery
+freemarker.ext.jython.JythonWrapper$TemplateModelToJythonAdapter
+freemarker.ext.jdom.NodeListModel$NodeOperator
+freemarker.template.LocalizedString
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl$DebugEnvironmentModel$1
+freemarker.ext.jdom.NodeListModel$NameOp
+freemarker.core.BuiltInsForNumbers$floorBI
+freemarker.ext.beans.OverloadedNumberUtil$DoubleOrInteger
+freemarker.log.Logger
+freemarker.core.BuiltInsWithParseTimeParameters
+freemarker.ext.xml.Navigator$XPathEx
+android.support.v4.os.IResultReceiver$Stub$Proxy:
+    public java.lang.String getInterfaceDescriptor()
+freemarker.ext.jython.JythonModel$1
+freemarker.ext.jdom.NodeListModel$ContentOp
+org.greenrobot.eventbus.SubscriberMethodFinder:
+    static void clearCaches()
+    private static final int BRIDGE
+    private static final int SYNTHETIC
+    private static final int MODIFIERS_IGNORE
+    private static final int POOL_SIZE
+freemarker.core.BuiltInsForSequences$chunkBI
+freemarker.ext.jsp.JspContextModel
+freemarker.ext.jsp.TaglibFactory$FileTldLocation
+freemarker.core.NoEscapeBlock
+freemarker.ext.beans.ArgumentTypes$SpecialConversionCallableMemberDescriptor
+org.greenrobot.greendao.annotation.Generated
+freemarker.ext.xml.Navigator$AncestorOp
+freemarker.core._ConcurrentMapFactory
+freemarker.core.ReturnInstruction
+freemarker.ext.jython.JythonNumberModel$1
+freemarker.core.TrimInstruction
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl$DebugTemplateModel
+freemarker.template.DefaultArrayAdapter
+freemarker.ext.jsp.TaglibFactory$MetaInfTldSource
+freemarker.ext.beans.OverloadedNumberUtil$DoubleOrShort
+freemarker.ext.xml.Navigator$ParentOp
+freemarker.core.Configurable$SettingStringParser
+freemarker.core.BuiltInsForLoopVariables$counterBI
+freemarker.ext.beans.OverloadedNumberUtil$FloatOrByte
+freemarker.core.MethodCall
+org.greenrobot.greendao.annotation.apihint.Beta
+freemarker.template.DefaultArrayAdapter$BooleanArrayAdapter
+freemarker.ext.xml.Navigator$AncestorOrSelfOp
+org.greenrobot.greendao.annotation.ToOne
+freemarker.cache.TemplateLookupResult$PositiveTemplateLookupResult
+freemarker.ext.jsp.TaglibFactory$ServletContextJarEntryTldLocation
+freemarker.ext.jdom.NodeListModel$NamedChildrenOp
+freemarker.template.GeneralPurposeNothing
+freemarker.ext.beans.ResourceBundleModel
+freemarker.ext.beans._EnumModels
+freemarker.core.BuiltInsForStringsRegexp$replace_reBI
+freemarker.ext.beans.ArrayModel$1
+freemarker.template.utility.DateUtil$DateParseException
+freemarker.template.utility.WriteProtectable
+org.greenrobot.eventbus.meta.AbstractSubscriberInfo
+freemarker.debug.impl.RmiDebugModelImpl
+freemarker.ext.jsp.FreeMarkerJspApplicationContext
+freemarker.core.BuiltInsForDates$AbstractISOBI
+freemarker.core.BuiltInsForSequences$reverseBI$ReverseSequence
+freemarker.template.TemplateCollectionModel
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl$1
+freemarker.core.BuiltInForDate
+freemarker.core.EvalUtil
+freemarker.template.utility.StandardCompress$StandardCompressWriter
+freemarker.ext.xml.Navigator$DocumentOp
+freemarker.cache.TemplateLookupResult$1
+freemarker.ext.xml.NodeListModel$1
+freemarker.template.TemplateModel
+freemarker.core.Environment$2
+freemarker.core.BuiltInsForMultipleTypes$is_hash_exBI
+freemarker.core.BodyInstruction
+freemarker.ext.beans.OverloadedNumberUtil$IntegerBigDecimal
+org.greenrobot.greendao.rx.RxTransaction$2
+freemarker.core._SettingEvaluationEnvironment
+freemarker.ext.dom.DocumentTypeModel
+freemarker.core.ExistenceBuiltins$ExistenceBuiltIn
+freemarker.core.BooleanExpression
+freemarker.ext.jsp.TaglibFactory$LocalDtdEntityResolver
+freemarker.ext.xml._DomNavigator$DomXPathEx
+freemarker.ext.jsp.TaglibFactory$Taglib
+freemarker.core.BuiltInsForStringsRegexp$replace_reBI$ReplaceMethod
+freemarker.core.DollarVariable
+freemarker.template.utility.ObjectFactory
+freemarker.debug.impl.RmiDebugModelImpl_Stub
+freemarker.template.TemplateExceptionHandler
+org.greenrobot.greendao.rx.RxDao$15
+freemarker.cache.TemplateCache$TemplateCacheTemplateLookupContext
+freemarker.ext.jython.JythonSequenceModel$2
+com.usr.firecheck.R$layout
+freemarker.core.BuiltInsForStringsBasic$ensure_starts_withBI
+freemarker.ext.util.IdentityHashMap$Entry
+org.greenrobot.greendao.query.Join
+freemarker.template.utility.XmlEscape$1
+freemarker.ext.beans.CallableMemberDescriptor
+freemarker.template.utility.HtmlEscape$1
+freemarker.log._NullLoggerFactory
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl$DebugEnvironmentModel
+org.greenrobot.greendao.query.CountQuery$QueryData
+freemarker.core.BuiltInsForStringsRegexp$RegexMatchModel$1
+org.greenrobot.greendao.database.Database:
+    public abstract boolean inTransaction()
+    public abstract void execSQL(java.lang.String,java.lang.Object[])
+    public abstract void close()
+freemarker.core.BuiltInsForStringsEncoding$htmlBI$BIBeforeICI2d3d20
+freemarker.core.NonNumericalException
+org.greenrobot.greendao.test.AbstractDaoTestLongPk
+freemarker.cache.FileTemplateLoader$1
+freemarker.core._ErrorDescriptionBuilder$Blaming
+org.greenrobot.greendao.annotation.NotNull
+org.greenrobot.greendao.rx.RxDao$1
+freemarker.ext.jython.JythonWrapper
+freemarker.log._AvalonLoggerFactory
+freemarker.core.NonStringException
+org.greenrobot.greendao.generator.Query
+freemarker.ext.xml.Navigator$TextOp
+freemarker.ext.rhino.RhinoScriptableModel$1
+freemarker.ext.xml.Navigator$TypeOp
+org.greenrobot.greendao.async.AsyncSession:
+    private org.greenrobot.greendao.async.AsyncOperation enqueueDatabaseOperation(org.greenrobot.greendao.async.AsyncOperation$OperationType,java.lang.Object,int)
+    private org.greenrobot.greendao.async.AsyncOperation enqueueEntityOperation(org.greenrobot.greendao.async.AsyncOperation$OperationType,java.lang.Object,int)
+    private org.greenrobot.greendao.async.AsyncOperation enqueEntityOperation(org.greenrobot.greendao.async.AsyncOperation$OperationType,java.lang.Class,java.lang.Object,int)
+    public int getMaxOperationCountToMerge()
+    public void setMaxOperationCountToMerge(int)
+    public int getWaitForMergeMillis()
+    public void setWaitForMergeMillis(int)
+    public org.greenrobot.greendao.async.AsyncOperationListener getListener()
+    public void setListener(org.greenrobot.greendao.async.AsyncOperationListener)
+    public org.greenrobot.greendao.async.AsyncOperationListener getListenerMainThread()
+    public void setListenerMainThread(org.greenrobot.greendao.async.AsyncOperationListener)
+    public boolean isCompleted()
+    public void waitForCompletion()
+    public boolean waitForCompletion(int)
+    public org.greenrobot.greendao.async.AsyncOperation insert(java.lang.Object)
+    public org.greenrobot.greendao.async.AsyncOperation insert(java.lang.Object,int)
+    public varargs org.greenrobot.greendao.async.AsyncOperation insertInTx(java.lang.Class,java.lang.Object[])
+    public varargs org.greenrobot.greendao.async.AsyncOperation insertInTx(java.lang.Class,int,java.lang.Object[])
+    public org.greenrobot.greendao.async.AsyncOperation insertInTx(java.lang.Class,java.lang.Iterable)
+    public org.greenrobot.greendao.async.AsyncOperation insertInTx(java.lang.Class,java.lang.Iterable,int)
+    public org.greenrobot.greendao.async.AsyncOperation insertOrReplace(java.lang.Object)
+    public org.greenrobot.greendao.async.AsyncOperation insertOrReplace(java.lang.Object,int)
+    public varargs org.greenrobot.greendao.async.AsyncOperation insertOrReplaceInTx(java.lang.Class,java.lang.Object[])
+    public varargs org.greenrobot.greendao.async.AsyncOperation insertOrReplaceInTx(java.lang.Class,int,java.lang.Object[])
+    public org.greenrobot.greendao.async.AsyncOperation insertOrReplaceInTx(java.lang.Class,java.lang.Iterable)
+    public org.greenrobot.greendao.async.AsyncOperation insertOrReplaceInTx(java.lang.Class,java.lang.Iterable,int)
+    public org.greenrobot.greendao.async.AsyncOperation update(java.lang.Object)
+    public org.greenrobot.greendao.async.AsyncOperation update(java.lang.Object,int)
+    public varargs org.greenrobot.greendao.async.AsyncOperation updateInTx(java.lang.Class,java.lang.Object[])
+    public varargs org.greenrobot.greendao.async.AsyncOperation updateInTx(java.lang.Class,int,java.lang.Object[])
+    public org.greenrobot.greendao.async.AsyncOperation updateInTx(java.lang.Class,java.lang.Iterable)
+    public org.greenrobot.greendao.async.AsyncOperation updateInTx(java.lang.Class,java.lang.Iterable,int)
+    public org.greenrobot.greendao.async.AsyncOperation delete(java.lang.Object)
+    public org.greenrobot.greendao.async.AsyncOperation delete(java.lang.Object,int)
+    public org.greenrobot.greendao.async.AsyncOperation deleteByKey(java.lang.Object)
+    public org.greenrobot.greendao.async.AsyncOperation deleteByKey(java.lang.Object,int)
+    public varargs org.greenrobot.greendao.async.AsyncOperation deleteInTx(java.lang.Class,java.lang.Object[])
+    public varargs org.greenrobot.greendao.async.AsyncOperation deleteInTx(java.lang.Class,int,java.lang.Object[])
+    public org.greenrobot.greendao.async.AsyncOperation deleteInTx(java.lang.Class,java.lang.Iterable)
+    public org.greenrobot.greendao.async.AsyncOperation deleteInTx(java.lang.Class,java.lang.Iterable,int)
+    public org.greenrobot.greendao.async.AsyncOperation deleteAll(java.lang.Class)
+    public org.greenrobot.greendao.async.AsyncOperation deleteAll(java.lang.Class,int)
+    public org.greenrobot.greendao.async.AsyncOperation runInTx(java.lang.Runnable)
+    public org.greenrobot.greendao.async.AsyncOperation runInTx(java.lang.Runnable,int)
+    public org.greenrobot.greendao.async.AsyncOperation callInTx(java.util.concurrent.Callable)
+    public org.greenrobot.greendao.async.AsyncOperation callInTx(java.util.concurrent.Callable,int)
+    public org.greenrobot.greendao.async.AsyncOperation queryList(org.greenrobot.greendao.query.Query)
+    public org.greenrobot.greendao.async.AsyncOperation queryList(org.greenrobot.greendao.query.Query,int)
+    public org.greenrobot.greendao.async.AsyncOperation queryUnique(org.greenrobot.greendao.query.Query)
+    public org.greenrobot.greendao.async.AsyncOperation queryUnique(org.greenrobot.greendao.query.Query,int)
+    public org.greenrobot.greendao.async.AsyncOperation load(java.lang.Class,java.lang.Object)
+    public org.greenrobot.greendao.async.AsyncOperation load(java.lang.Class,java.lang.Object,int)
+    public org.greenrobot.greendao.async.AsyncOperation loadAll(java.lang.Class)
+    public org.greenrobot.greendao.async.AsyncOperation loadAll(java.lang.Class,int)
+    public org.greenrobot.greendao.async.AsyncOperation count(java.lang.Class)
+    public org.greenrobot.greendao.async.AsyncOperation count(java.lang.Class,int)
+    public org.greenrobot.greendao.async.AsyncOperation refresh(java.lang.Object)
+    public org.greenrobot.greendao.async.AsyncOperation refresh(java.lang.Object,int)
+    public int getSessionFlags()
+    public void setSessionFlags(int)
+    private int sessionFlags
+com.usr.firecheck.BLEProfileDataParserClasses.HRMParser:
+    public void <init>()
+    private static final int FIRST_BITMASK
+    private static final int FOURTH_BITMASK
+    private static final int FIFTH_BITMASK
+freemarker.debug.Debugger
+freemarker.core.Configurable$SettingValueAssignmentException
+freemarker.ext.beans.ArrayModel
+freemarker.template.TemplateNotFoundException
+freemarker.cache.TemplateNameFormat
+freemarker.cache.TemplateCache$CachedTemplate
+freemarker.debug.EnvironmentSuspendedEvent
+freemarker.core.BuiltInsForSequences$reverseBI
+freemarker.core.BuiltInsForStringsRegexp
+freemarker.ext.beans._BeansAPI$_BeansWrapperSubclassFactory
+org.greenrobot.greendao.test.AbstractDaoTestSinglePk
+org.greenrobot.eventbus.util.ExceptionToResourceMapping
+freemarker.core.BuiltInsForNumbers$abcBI
+org.greenrobot.greendao.query.LazyList
+freemarker.core._ObjectBuilderSettingEvaluationException
+freemarker.core.AttemptBlock
+com.usr.firecheck.BLEProfileDataParserClasses.BloodPressureParser:
+    public void <init>()
+freemarker.cache.SoftCacheStorage$SoftValueReference
+freemarker.template.DefaultArrayAdapter$IntArrayAdapter
+freemarker.core._ObjectBuilderSettingEvaluator
+freemarker.core.FMParser$LookaheadSuccess
+freemarker.ext.jython.JythonModel
+com.usr.firecheck.BuildConfig
+freemarker.template.SimpleSequence$SynchronizedSequence
+freemarker.core.NewBI$ConstructorFunction
+freemarker.ext.beans.JRebelClassChangeNotifier$ClassIntrospectorCacheInvalidator
+org.greenrobot.greendao.generator.PropertyType
+org.greenrobot.greendao.annotation.Index
+freemarker.template.SimpleList
+freemarker.ext.jsp.TaglibFactory$ClearMetaInfTldSource
+freemarker.core.AddConcatExpression$ConcatenatedSequence
+org.greenrobot.greendao.InternalUnitTestDaoAccess
+freemarker.core.StopInstruction
+freemarker.core.BuiltInsForSequences$firstBI
+freemarker.core.BuiltInsForHashes$valuesBI
+freemarker.ext.beans.SimpleMapModel$1
+freemarker.core.BuiltInsForNumbers$doubleBI
+freemarker.ext.jython.JythonHashModel$1
+freemarker.core.BuiltInsForStringsBasic$keep_after_lastBI
+freemarker.template.utility.Constants$EmptyIteratorModel
+freemarker.core.TemplateClassResolver$4
+freemarker.ext.dom.JaxenXPathSupport$FmEntityResolver
+freemarker.core.BuiltInsForSequences$chunkBI$BIMethod
+freemarker.ext.jdom.NodeListModel$JDOMXPathEx$NamespaceContextImpl
+freemarker.ext.util.ModelCache$ModelReference
+freemarker.ext.beans.SimpleMethodModel
+freemarker.log._NullLoggerFactory$1
+freemarker.core.BlockAssignment$CaptureOutput$1
+freemarker.core.BuiltInsWithParseTimeParameters$then_BI
+freemarker.core.BuiltInsForStringsBasic$substringBI
+freemarker.ext.jsp.TaglibFactory$SerlvetContextInputStreamFactory
+freemarker.ext.rhino.RhinoWrapper$1
+freemarker.core.FlushInstruction
+org.greenrobot.greendao.query.DeleteQuery
+freemarker.ext.dom.JaxenXPathSupport$4
+freemarker.cache.StrongCacheStorage
+com.usr.firecheck.Utils.AnimateUtils$5
+freemarker.ext.jsp.FreeMarkerPageContext$1
+freemarker.core.Environment
+freemarker.template.TemplateModelListSequence
+freemarker.cache.TemplateLookupStrategy
+freemarker.ext.beans.ArgumentTypes
+freemarker.ext.beans.OverloadedNumberUtil$BigDecimalSource
+freemarker.ext.servlet.IncludePage$1
+org.greenrobot.eventbus.EventBus:
+    public static org.greenrobot.eventbus.EventBusBuilder builder()
+    public static void clearCaches()
+    public synchronized boolean isRegistered(java.lang.Object)
+    public void cancelEventDelivery(java.lang.Object)
+    public void postSticky(java.lang.Object)
+    public java.lang.Object getStickyEvent(java.lang.Class)
+    public java.lang.Object removeStickyEvent(java.lang.Class)
+    public boolean removeStickyEvent(java.lang.Object)
+    public void removeAllStickyEvents()
+    public boolean hasSubscriberForEvent(java.lang.Class)
+freemarker.core.Comment
+org.greenrobot.eventbus.util.AsyncExecutor$RunnableEx
+freemarker.core.ElseOfList
+freemarker.cache.TemplateLookupStrategy$1
+freemarker.core.BuiltInsForLoopVariables$has_nextBI
+freemarker.debug.impl.RmiDebuggerListenerImpl
+freemarker.template.utility.NullWriter
+freemarker.debug.impl.RmiDebuggerImpl
+android.support.v4.os.ResultReceiver:
+    public void <init>(android.os.Handler)
+    public void send(int,android.os.Bundle)
+com.usr.firecheck.BLEProfileDataParserClasses.RSCParser:
+    public void <init>()
+    private static final int FIRST_BITMASK
+    public static final int SECOND_BITMASK
+    public static final int THIRD_BITMASK
+    public static final int FOURTH_BITMASK
+    public static final int FIFTH_BITMASK
+    public static final int SIXTH_BITMASK
+    public static final int SEVENTH_BITMASK
+    public static final int EIGTH_BITMASK
+freemarker.core.OptInTemplateClassResolver
+freemarker.ext.jython.JythonVersionAdapter
+freemarker.ext.jsp.SimpleTagDirectiveModel$TemplateExceptionWrapperJspException
+freemarker.template.TemplateMethodModelEx
+org.greenrobot.greendao.annotation.Keep
+freemarker.debug.impl.RmiDebuggerImpl_Stub
+freemarker.core._ObjectBuilderSettingEvaluator$BuilderExpression
+freemarker.core.BuiltInsForStringsBasic$ensure_starts_withBI$BIMethod
+org.greenrobot.greendao.query.Query:
+    public org.greenrobot.greendao.query.LazyList listLazy()
+    public org.greenrobot.greendao.query.LazyList listLazyUncached()
+    public org.greenrobot.greendao.query.CloseableListIterator listIterator()
+    public java.lang.Object uniqueOrThrow()
+    public org.greenrobot.greendao.query.Query setParameter(int,java.lang.Object)
+    public org.greenrobot.greendao.query.Query setParameter(int,java.util.Date)
+    public org.greenrobot.greendao.query.Query setParameter(int,java.lang.Boolean)
+    public org.greenrobot.greendao.rx.RxQuery __internalRxPlain()
+    public org.greenrobot.greendao.rx.RxQuery __InternalRx()
+    public synthetic bridge void setOffset(int)
+    public synthetic bridge void setLimit(int)
+    public synthetic bridge org.greenrobot.greendao.query.AbstractQueryWithLimit setParameter(int,java.lang.Object)
+    public synthetic bridge org.greenrobot.greendao.query.AbstractQuery setParameter(int,java.lang.Boolean)
+    public synthetic bridge org.greenrobot.greendao.query.AbstractQuery setParameter(int,java.util.Date)
+    public synthetic bridge org.greenrobot.greendao.query.AbstractQuery setParameter(int,java.lang.Object)
+    private volatile org.greenrobot.greendao.rx.RxQuery rxTxPlain
+    private volatile org.greenrobot.greendao.rx.RxQuery rxTxIo
+freemarker.core.Environment$1
+freemarker.ext.beans.NonPrimitiveArrayBackedReadOnlyList
+freemarker.core.BreakInstruction
+org.greenrobot.greendao.database.EncryptedDatabaseStatement:
+    public void bindNull(int)
+    public void bindBlob(int,byte[])
+    public void bindDouble(int,double)
+freemarker.ext.servlet.HttpRequestParametersHashModel$1
+freemarker.ext.jdom.NodeListModel$AllAttributesOp
+freemarker.ext.jdom.NodeListModel$AttributeXMLOutputter
+freemarker.ext.beans.OverloadedMethods$3
+freemarker.core._DelayedFTLTypeDescription
+freemarker.template.utility.SecurityUtilities
+freemarker.cache.WebappTemplateLoader
+freemarker.core._CoreAPI
+freemarker.log.SLF4JLoggerFactory$LocationUnawareSLF4JLogger
+freemarker.core.TextBlock
+freemarker.template.DefaultArrayAdapter$ObjectArrayAdapter
+freemarker.template.Version
+freemarker.core.BuiltInsForLoopVariables$1
+freemarker.template.TemplateSequenceModel
+org.greenrobot.greendao.query.QueryBuilder:
+    private void checkOrderBuilder()
+    private org.greenrobot.greendao.query.Join addJoin(java.lang.String,org.greenrobot.greendao.Property,org.greenrobot.greendao.AbstractDao,org.greenrobot.greendao.Property)
+    private varargs void orderAscOrDesc(java.lang.String,org.greenrobot.greendao.Property[])
+    private java.lang.StringBuilder createSelectBuilder()
+    private int checkAddLimit(java.lang.StringBuilder)
+    private int checkAddOffset(java.lang.StringBuilder)
+    private void checkLog(java.lang.String)
+    private void appendJoinsAndWheres(java.lang.StringBuilder,java.lang.String)
+    public org.greenrobot.greendao.query.QueryBuilder distinct()
+    public org.greenrobot.greendao.query.QueryBuilder preferLocalizedStringOrder()
+    public org.greenrobot.greendao.query.QueryBuilder stringOrderCollation(java.lang.String)
+    public varargs org.greenrobot.greendao.query.QueryBuilder where(org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition[])
+    public varargs org.greenrobot.greendao.query.QueryBuilder whereOr(org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition[])
+    public varargs org.greenrobot.greendao.query.WhereCondition or(org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition[])
+    public varargs org.greenrobot.greendao.query.WhereCondition and(org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition[])
+    public org.greenrobot.greendao.query.Join join(java.lang.Class,org.greenrobot.greendao.Property)
+    public org.greenrobot.greendao.query.Join join(org.greenrobot.greendao.Property,java.lang.Class)
+    public org.greenrobot.greendao.query.Join join(org.greenrobot.greendao.Property,java.lang.Class,org.greenrobot.greendao.Property)
+    public org.greenrobot.greendao.query.Join join(org.greenrobot.greendao.query.Join,org.greenrobot.greendao.Property,java.lang.Class,org.greenrobot.greendao.Property)
+    public varargs org.greenrobot.greendao.query.QueryBuilder orderAsc(org.greenrobot.greendao.Property[])
+    public varargs org.greenrobot.greendao.query.QueryBuilder orderDesc(org.greenrobot.greendao.Property[])
+    public org.greenrobot.greendao.query.QueryBuilder orderCustom(org.greenrobot.greendao.Property,java.lang.String)
+    public org.greenrobot.greendao.query.QueryBuilder orderRaw(java.lang.String)
+    protected java.lang.StringBuilder append(java.lang.StringBuilder,org.greenrobot.greendao.Property)
+    public org.greenrobot.greendao.query.QueryBuilder limit(int)
+    public org.greenrobot.greendao.query.QueryBuilder offset(int)
+    public org.greenrobot.greendao.query.Query build()
+    public org.greenrobot.greendao.query.CursorQuery buildCursor()
+    public org.greenrobot.greendao.query.DeleteQuery buildDelete()
+    public org.greenrobot.greendao.query.CountQuery buildCount()
+    public java.util.List list()
+    public org.greenrobot.greendao.rx.RxQuery rx()
+    public org.greenrobot.greendao.rx.RxQuery rxPlain()
+    public org.greenrobot.greendao.query.LazyList listLazy()
+    public org.greenrobot.greendao.query.LazyList listLazyUncached()
+    public org.greenrobot.greendao.query.CloseableListIterator listIterator()
+    public java.lang.Object unique()
+    public java.lang.Object uniqueOrThrow()
+    public long count()
+    private java.lang.StringBuilder orderBuilder
+    private java.lang.Integer limit
+    private java.lang.Integer offset
+    private boolean distinct
+    public static boolean LOG_SQL
+    public static boolean LOG_VALUES
+freemarker.cache.MruCacheStorage
+org.greenrobot.greendao.query.DeleteQuery$QueryData
+org.greenrobot.eventbus.meta.SubscriberMethodInfo
+freemarker.ext.beans.OverloadedNumberUtil$IntegerOrShort
+org.greenrobot.greendao.query.WhereCondition$PropertyCondition
+freemarker.ext.jdom.NodeListModel$DocumentOp
+freemarker.template.TemplateCollectionModelEx
+freemarker.ext.beans.BeanModel
+freemarker.core.NewBI
+freemarker.core.CollectionAndSequence$SequenceIterator
+org.greenrobot.greendao.database.DatabaseOpenHelper$EncryptedHelper:
+    public void onCreate(net.sqlcipher.database.SQLiteDatabase)
+    public void onUpgrade(net.sqlcipher.database.SQLiteDatabase,int,int)
+    public void onOpen(net.sqlcipher.database.SQLiteDatabase)
+freemarker.core.Environment$4
+freemarker.core.BuiltInsForMultipleTypes$has_apiBI
+freemarker.template.utility.StringUtil
+com.usr.firecheck.MyBaseActivity:
+    protected void menuHomeClick()
+freemarker.ext.beans.OverloadedNumberUtil$IntegerSource
+freemarker.core.Environment$NumberFormatKey
+freemarker.ext.beans.ReflectionCallableMemberDescriptor
+freemarker.core._SortedArraySet
+freemarker.template.DefaultListAdapter$1
+freemarker.debug.impl.DebuggerServer$DebuggerAuthProtocol
+freemarker.core.MiscUtil$1
+freemarker.core.Identifier
+freemarker.ext.ant.JythonAntTask
+freemarker.ext.beans.OverloadedMethods
+freemarker.core._ObjectBuilderSettingEvaluator$PropertyAssignmentsExpression
+freemarker.template.DefaultObjectWrapper$2
+freemarker.template.utility.DeepUnwrap
+freemarker.ext.jdom.NodeListModel$1
+freemarker.core.FMParser$JJCalls
+freemarker.core.TemplateClassResolver
+freemarker.core.ISOLikeTemplateDateFormat
+freemarker.core.BuiltInsForMultipleTypes$is_collectionBI
+freemarker.core.BoundedRangeModel
+freemarker.core.BuiltInsForMultipleTypes$stringBI$NumberFormatter
+freemarker.ext.jython.JythonNumberModel
+freemarker.debug.DebugModel
+freemarker.ext.xml.Navigator$ChildrenOp
+freemarker.ext.beans.ClassChangeNotifier
+freemarker.ext.rhino.RhinoScriptableModel
+freemarker.ext.beans.OverloadedNumberUtil$FloatOrInteger
+org.greenrobot.greendao.rx.RxDao$23
+freemarker.debug.impl.DebuggerService$NoOpDebuggerService
+freemarker.ext.beans.BeansWrapper$1
+freemarker.template.utility.ClassUtil
+freemarker.ext.beans.BeansWrapperBuilder$BeansWrapperFactory
+freemarker.ext.beans.MaybeEmptyCallableMemberDescriptor
+org.greenrobot.greendao.rx.RxDao$10
+freemarker.core.Assignment
+freemarker.ext.beans.APIModel
+freemarker.core._ArrayEnumeration
+freemarker.template.utility.ToCanonical
+freemarker.ext.servlet.InitParamParser
+freemarker.ext.dom.JaxenXPathSupport$1
+freemarker.core.BuiltInsForMultipleTypes$is_dateLikeBI
+freemarker.ext.jdom.NodeListModel$ParentOp
+freemarker.ext.xml.Navigator$NamespacePrefixOp
+freemarker.ext.servlet.ServletContextHashModel
+freemarker.ext.beans.OverloadedNumberUtil$IntegerOrSmallerInteger
+freemarker.template.TemplateException$PrintStreamStackTraceWriter
+freemarker.core.BuiltInsForNodes$node_namespaceBI
+org.greenrobot.greendao.test.AbstractDaoTestStringPk
+com.usr.firecheck.R
+freemarker.ext.servlet.HttpRequestParametersHashModel
+freemarker.core.BuiltInsForStringsBasic$split_BI$SplitMethod
+freemarker.ext.xml._JdomNavigator
+freemarker.core.BuiltInsForNodes$node_nameBI
+freemarker.ext.dom.XalanXPathSupport
+freemarker.log._CommonsLoggingLoggerFactory
+freemarker.core.BuiltInsForNumbers
+freemarker.ext.beans.UnsafeMethods
+freemarker.ext.jsp.TaglibFactory$TldParsingSAXException
+freemarker.ext.jdom.NodeListModel$AncestorOp
+freemarker.core.BuiltInsForLoopVariables
+freemarker.ext.jsp.SimpleTagDirectiveModel
+org.greenrobot.greendao.generator.QueryParam
+freemarker.ext.jsp.SimpleTagDirectiveModel$1
+freemarker.template.TemplateModelException
+freemarker.ext.jsp.FreeMarkerJspFactory$1
+freemarker.core.VisitNode
+freemarker.core.PropertySetting
+freemarker.core._CoreStringUtils
+freemarker.core.FMParserConstants
+freemarker.core.BuiltInsForSequences$sort_byBI$BIMethod
+freemarker.core.Expression
+freemarker.cache.TemplateLookupContext
+org.greenrobot.greendao.internal.SqlUtils:
+    public void <init>()
+    public static java.lang.StringBuilder appendProperty(java.lang.StringBuilder,java.lang.String,org.greenrobot.greendao.Property)
+    public static java.lang.String createSqlSelectCountStar(java.lang.String,java.lang.String)
+    public static java.lang.String escapeBlobArgument(byte[])
+    public static java.lang.String toHex(byte[])
+freemarker.core.BuiltInsForStringsBasic$word_listBI
+freemarker.core._ObjectBuilderSettingEvaluator$SettingExpression
+org.greenrobot.greendao.rx.RxDao$5
+freemarker.template.SimpleNumber
+com.usr.firecheck.Utils.AnimateUtils$4
+freemarker.ext.jdom.NodeListModel$JDOMXPathEx
+freemarker.cache.TemplateCache$TemplateKey
+freemarker.core.Environment$NestedElementTemplateDirectiveBody
+freemarker.core.BuiltInsForStringsMisc$evalBI
+freemarker.ext.jsp.TaglibFactory$JarEntryUrlTldLocation
+freemarker.cache.StringTemplateLoader$StringTemplateSource
+freemarker.core.TransformBlock
+org.greenrobot.greendao.InternalQueryDaoAccess:
+    public static org.greenrobot.greendao.internal.TableStatements getStatements(org.greenrobot.greendao.AbstractDao)
+    public java.lang.Object loadCurrent(android.database.Cursor,int,boolean)
+    public org.greenrobot.greendao.internal.TableStatements getStatements()
+freemarker.ext.beans.CharacterOrString
+freemarker.template.DefaultListAdapter$DefaultListAdapterWithCollectionSupport
+freemarker.ext.beans.ArrayModel$Iterator
+freemarker.core._MiscTemplateException
+org.greenrobot.greendao.generator.Property$PropertyBuilder
+freemarker.core.BlockAssignment
+freemarker.ext.beans.StringModel$1
+freemarker.core.BuiltInsForNodes$AncestorSequence
+freemarker.core._DelayedJoinWithComma
+com.usr.firecheck.R$style
+freemarker.template.Template
+org.greenrobot.eventbus.util.ErrorDialogManager$SupportManagerFragment:
+    public static void attachTo(android.app.Activity,java.lang.Object,boolean,android.os.Bundle)
+    public void onEventMainThread(org.greenrobot.eventbus.util.ThrowableFailureEvent)
+    protected boolean finishAfterDialog
+    protected android.os.Bundle argumentsForErrorDialog
+    private java.lang.Object executionScope
+freemarker.ext.dom.XPathSupport
+freemarker.template.TemplateException$PrintWriterStackTraceWriter
+org.greenrobot.greendao.query.CursorQuery
+freemarker.core.BuiltInsForLoopVariables$item_cycleBI
+freemarker.core.ExistenceBuiltins$defaultBI$1
+freemarker.log.SLF4JLoggerFactory$LocationAwareSLF4JLogger
+freemarker.ext.jsp.TaglibFactory$TldParserForTaglibBuilding
+freemarker.ext.jsp.TaglibMethodUtil
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl$DebugConfigurableModel
+freemarker.ext.beans.OverloadedMethodsModel
+freemarker.ext.beans.OverloadedNumberUtil$BigIntegerOrFPPrimitive
+freemarker.template.DefaultArrayAdapter$ByteArrayAdapter
+freemarker.ext.beans.StaticModel
+freemarker.ext.jdom.NodeListModel$QNameOp
+org.greenrobot.greendao.rx.RxDao$18
+freemarker.cache.FileTemplateLoader
+freemarker.cache.TemplateCache$MaybeMissingTemplate
+freemarker.core.BuiltInsForNodes$rootBI
+com.usr.firecheck.Utils.UUIDDatabase:
+    public void <init>()
+freemarker.core.HashLiteral
+org.greenrobot.greendao.rx.RxDao$17
+freemarker.core.ConditionalBlock
+org.greenrobot.eventbus.util.ThrowableFailureEvent
+freemarker.core.Environment$3
+freemarker.ext.beans.ClassIntrospectorBuilder
+com.usr.firecheck.BLEProfileDataParserClasses.RGBParser:
+    public void <init>()
+freemarker.ext.beans.BeansWrapperConfiguration
+freemarker.cache.TemplateNameFormat$Default020300
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl$DebugConfigurationModel
+freemarker.ext.util.IdentityHashMap$HashIterator
+freemarker.core.BuiltInsForStringsRegexp$RegexMatchModel$3
+freemarker.template.utility.DateUtil$TrivialCalendarFieldsToDateConverter
+freemarker.core.BuiltInsForNumbers$roundBI
+freemarker.core._DelayedOrdinal
+freemarker.core.AssignmentInstruction
+freemarker.core.NonNodeException
+org.greenrobot.greendao.annotation.apihint.Internal
+freemarker.template.DefaultObjectWrapper$1
+freemarker.cache.NullCacheStorage
+freemarker.core.MiscUtil
+freemarker.ext.xml._DomNavigator
+freemarker.core.IteratorBlock
+freemarker.core.BuiltInsForSequences$sortBI$BooleanKVPComparator
+freemarker.core.SwitchBlock
+freemarker.core.BuiltInsForStringsEncoding$urlBI
+freemarker.core.BuiltInsForMultipleTypes$is_macroBI
+freemarker.template.utility.CaptureOutput
+freemarker.core.BuiltInsForStringsRegexp$matchesBI$MatcherBuilder
+org.greenrobot.eventbus.meta.SubscriberInfo:
+    public abstract boolean shouldCheckSuperclass()
+freemarker.ext.beans.OverloadedNumberUtil$DoubleOrLong
+freemarker.template.DefaultMapAdapter
+org.greenrobot.greendao.annotation.Convert
+freemarker.log.LoggerFactory
+freemarker.core.BuiltInsForNumbers$absBI
+freemarker.core.BuiltInsForMultipleTypes$is_dateOfTypeBI
+freemarker.template.TrueTemplateBooleanModel
+freemarker.ext.dom.JaxenXPathSupport$2
+freemarker.core.BuiltInsForMultipleTypes$is_numberBI
+freemarker.core.ParameterRole
+freemarker.ext.jdom.NodeListModel$DocTypeOp
+freemarker.ext.util.ModelCache
+freemarker.debug.impl.RmiDebuggerService
+freemarker.template.utility.DateUtil$TrivialDateToISO8601CalendarFactory
+freemarker.ext.jdom.NodeListModel$NamedAttributeOp
+freemarker.cache.MruCacheStorage$MruReference
+freemarker.ext.util.WrapperTemplateModel
+freemarker.ext.beans.BeansWrapper$2
+freemarker.ext.beans.OverloadedNumberUtil$DoubleOrWholeNumber
+freemarker.ext.xml.Navigator$DocumentTypeOp
+freemarker.core.BuiltInsForSequences$seq_containsBI$BIMethodForCollection
+org.greenrobot.greendao.generator.Entity
+freemarker.core.BuiltInsForStringsRegexp$RegexMatchModel
+freemarker.template.TemplateTransformModel
+freemarker.core._ObjectBuilderSettingEvaluator$ExpressionWithParameters
+freemarker.core.BuiltInsForMultipleTypes
+org.greenrobot.greendao.rx.RxDao$3
+freemarker.core.BugException
+freemarker.core.BuiltInsForMultipleTypes$sizeBI
+freemarker.core.TokenMgrError
+freemarker.core.BuiltInsForMultipleTypes$stringBI$DateFormatter
+freemarker.template.DefaultArrayAdapter$GenericPrimitiveArrayAdapter
+freemarker.ext.beans.OverloadedNumberUtil$IntegerOrByte
+freemarker.ext.beans.OverloadedNumberUtil$ShortOrByte
+freemarker.core.NonMethodException
+freemarker.ext.servlet.HttpRequestHashModel
+freemarker.core.BuiltInsForStringsBasic$trimBI
+freemarker.core.NotExpression
+org.greenrobot.greendao.rx.RxDao$22
+freemarker.ext.rhino.RhinoFunctionModel
+freemarker.ext.beans.OverloadedNumberUtil$DoubleOrFloat
+freemarker.debug.impl.RmiDebuggerListenerImpl_Stub
+org.greenrobot.greendao.query.AbstractQueryWithLimit:
+    public org.greenrobot.greendao.query.AbstractQueryWithLimit setParameter(int,java.lang.Object)
+    public void setLimit(int)
+    public void setOffset(int)
+    public synthetic bridge org.greenrobot.greendao.query.AbstractQuery setParameter(int,java.lang.Object)
+freemarker.ext.servlet.IncludePage$CustomParamsRequest
+freemarker.template.DefaultArrayAdapter$1
+freemarker.core.HashLiteral$SequenceHash
+freemarker.template.DefaultIteratorAdapter$1
+freemarker.template.TemplateModelWithAPISupport
+com.usr.firecheck.Utils.AnimateUtils$3
+freemarker.core.BuiltInsForStringsRegexp$matchesBI
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl
+freemarker.ext.beans.CollectionAdapter$1
+freemarker.template.SimpleCollection
+freemarker.ext.xml.Navigator$AttributesOp
+freemarker.core.Case
+freemarker.core.DefaultToExpression$1
+freemarker.debug.impl.DebuggerServer
+freemarker.core.ComparisonExpression
+freemarker.ext.jython.JythonVersionAdapterHolder
+freemarker.core.EscapeBlock
+com.usr.firecheck.Utils.CRC:
+    public void <init>()
+    public static byte[] getRequestOrder(java.lang.String)
+    public static int calcCrc16(byte[],int,int,int)
+    public static byte[] hexString2Bytes(java.lang.String)
+    public static byte uniteBytes(byte,byte)
+freemarker.ext.dom.SunInternalXalanXPathSupport
+com.usr.firecheck.MainActivity_ViewBinding:
+    public void <init>(com.usr.firecheck.MainActivity)
+freemarker.template.DefaultListAdapter
+freemarker.ext.ant.UnlinkedJythonOperationsImpl
+com.usr.firecheck.BLEProfileDataParserClasses.HTMParser:
+    public void <init>()
+freemarker.core.TemplateObject
+freemarker.template.MalformedTemplateNameException
+org.greenrobot.greendao.rx.RxDao$4
+freemarker.core.BuiltIn
+com.usr.firecheck.Utils.DataUtils:
+    public void <init>()
+    public static byte[] sendWriteVersionCMD(java.lang.String)
+    public static byte[] sendReadPurpleCMD(java.lang.String)
+    public static java.lang.String getReadFloatResponse(java.lang.String)
+freemarker.cache.TemplateLookupResult$NegativeTemplateLookupResult
+freemarker.core.DefaultToExpression
+freemarker.core.BuiltInsForMultipleTypes$stringBI
+org.greenrobot.greendao.annotation.apihint.Experimental
+freemarker.ext.xml.NodeListModel
+freemarker.core.BuiltInsForMultipleTypes$cBI
+freemarker.ext.beans.ArgumentTypes$Null
+freemarker.core._DelayedGetCanonicalForm
+org.greenrobot.greendao.generator.ToManyWithJoinEntity
+freemarker.ext.beans.BeansWrapperSingletonHolder
+freemarker.ext.xml.Navigator$1
+org.greenrobot.greendao.generator.PropertyOrderList
+freemarker.core.BuiltInsForStringsBasic$ends_withBI
+freemarker.core.JavaTemplateDateFormatFactory
+freemarker.core.Include
+freemarker.core.ExistenceBuiltins$has_contentBI
+freemarker.core.BuiltInsForStringsBasic$padBI
+com.usr.firecheck.Utils.MaterialDialog$Builder:
+    public void setPositiveButton(java.lang.String,android.view.View$OnClickListener)
+    public void setNegativeButton(java.lang.String,android.view.View$OnClickListener)
+    public void setBackground(android.graphics.drawable.Drawable)
+    public void setBackgroundResource(int)
+    public void setCanceledOnTouchOutside(boolean)
+freemarker.template.TemplateModelIterator
+freemarker.ext.jsp.FreeMarkerJspFactory21
+freemarker.template.utility.StandardCompress
+freemarker.core.ListLiteral
+freemarker.cache.StatefulTemplateLoader
+freemarker.ext.jdom.NodeListModel$TypeFilter
+freemarker.ext.beans.OverloadedNumberUtil$DoubleOrIntegerOrFloat
+org.greenrobot.eventbus.EventBus$PostCallback
+com.usr.firecheck.Utils.Constants
+freemarker.core.BuiltInsForNumbers$1
+freemarker.core.Interpret
+freemarker.template.utility.CollectionUtils
+freemarker.core.UnifiedCall
+freemarker.ext.beans.BeansModelCache
+freemarker.core.ThreadInterruptionSupportTemplatePostProcessor$TemplateProcessingThreadInterruptedException
+org.greenrobot.greendao.rx.RxUtils$1
+freemarker.debug.impl.DebuggerService
+freemarker.ext.beans.MethodAppearanceFineTuner
+freemarker.ext.dom.Transform
+freemarker.core.UnknownDateTypeFormattingUnsupportedException
+freemarker.ext.jsp._FreeMarkerPageContext2$1
+freemarker.template.TemplateDirectiveBody
+org.greenrobot.greendao.rx.RxBase:
+    public rx.Scheduler getScheduler()
+    protected rx.Observable wrap(java.util.concurrent.Callable)
+    protected rx.Observable wrap(rx.Observable)
+freemarker.core.Items
+freemarker.template.utility.DOMNodeModel$AncestorByName
+freemarker.ext.beans.EnumerationModel
+freemarker.ext.jdom.NodeListModel$RegisterNamespace
+freemarker.ext.jsp.JspTagModelBase
+freemarker.cache.TemplateLoaderUtils
+com.usr.firecheck.R$mipmap
+freemarker.ext.jdom.NodeListModel$AncestorOrSelfOp
+freemarker.core.AddConcatExpression
+com.usr.firecheck.R$menu
+freemarker.core.BuiltInsForStringsBasic$chop_linebreakBI
+com.usr.firecheck.R$array
+freemarker.core._ErrorDescriptionBuilder
+freemarker.core._DelayedConversionToString
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl$DebugConfigurationModel$1
+freemarker.core.NumericalOutput
+freemarker.ext.beans.OverloadedNumberUtil$BigIntegerOrLong
+freemarker.template.utility.NullArgumentException
+freemarker.log.SLF4JLoggerFactory
+freemarker.template.TemplateExceptionHandler$4
+freemarker.template.TemplateModelAdapter
+freemarker.ext.dom.NodeModel
+freemarker.core.BuiltInsForStringsBasic$cap_firstBI
+freemarker.ext.xml.Navigator
+freemarker.core.NumericalOutput$FormatHolder
+org.greenrobot.greendao.annotation.Property
+freemarker.ext.beans.OverloadedNumberUtil
+freemarker.template.utility.Constants$1
+freemarker.ext.jython._Jython22VersionAdapter
+freemarker.core.RecoveryBlock
+freemarker.cache.MultiTemplateLoader$MultiSource
+freemarker.core.BuiltInsForStringsBasic$keep_after_lastBI$KeepAfterMethod
+freemarker.ext.dom.NodeListModel
+freemarker.core.ICIChainMember
+freemarker.core.BuiltInsForSequences
+freemarker.core.BuiltInsForMultipleTypes$is_hashBI
+freemarker.core.BuiltInsForLoopVariables$item_cycleBI$BIMethod
+org.greenrobot.greendao.annotation.ToMany
+org.greenrobot.greendao.query.LazyList$LazyIterator
+freemarker.cache.StringTemplateLoader
+freemarker.core.UnformattableDateException
+freemarker.ext.jsp.FreeMarkerJspApplicationContext$FreeMarkerELContext
+freemarker.core.BuiltInsForStringsBasic$keep_beforeBI$KeepUntilMethod
+freemarker.core.BuiltInsForMultipleTypes$dateBI$DateParser
+freemarker.core.UnifiedCall$CustomDataHolder
+freemarker.core.BuiltInsForSequences$sort_byBI
+freemarker.core.BuiltInsForHashes
+freemarker.core.BuiltInsForStringsEncoding$j_stringBI
+org.greenrobot.eventbus.util.AsyncExecutor
+org.greenrobot.greendao.query.AbstractQuery:
+    public org.greenrobot.greendao.query.AbstractQuery setParameter(int,java.lang.Object)
+    public org.greenrobot.greendao.query.AbstractQuery setParameter(int,java.util.Date)
+    public org.greenrobot.greendao.query.AbstractQuery setParameter(int,java.lang.Boolean)
+freemarker.core.ExistenceBuiltins$existsBI
+freemarker.core.UnaryPlusMinusExpression
+freemarker.template.Configuration$LegacyDefaultFileTemplateLoader
+freemarker.core.IfBlock
+freemarker.ext.beans.ClassBasedModelFactory
+freemarker.core.StringArraySequence
+org.greenrobot.greendao.rx.RxDao$12
+freemarker.ext.beans.BeansWrapper
+freemarker.core.Configurable$KeyValuePair
+freemarker.ext.beans.OverloadedMethods$DelayedCallSignatureToString
+freemarker.template.DefaultObjectWrapperBuilder$DefaultObjectWrapperFactory
+freemarker.core.FMParserTokenManager
+freemarker.core.BuiltInsForStringsBasic$uncap_firstBI
+freemarker.core.BuiltInsForStringsBasic$ensure_ends_withBI$BIMethod
+freemarker.template.DefaultArrayAdapter$DoubleArrayAdapter
+org.greenrobot.greendao.async.AsyncOperation:
+    void <init>(org.greenrobot.greendao.async.AsyncOperation$OperationType,org.greenrobot.greendao.AbstractDao,org.greenrobot.greendao.database.Database,java.lang.Object,int)
+    public java.lang.Throwable getThrowable()
+    public void setThrowable(java.lang.Throwable)
+    public org.greenrobot.greendao.async.AsyncOperation$OperationType getType()
+    public java.lang.Object getParameter()
+    public synchronized java.lang.Object getResult()
+    public long getTimeStarted()
+    public long getTimeCompleted()
+    public long getDuration()
+    public boolean isCompleted()
+    public synchronized java.lang.Object waitForCompletion()
+    public synchronized boolean waitForCompletion(int)
+    public boolean isCompletedSucessfully()
+    public int getMergedOperationsCount()
+    public int getSequenceNumber()
+    public java.lang.Exception getCreatorStacktrace()
+    final java.lang.Exception creatorStacktrace
+    int sequenceNumber
+    public static final int FLAG_MERGE_TX
+    public static final int FLAG_STOP_QUEUE_ON_EXCEPTION
+    public static final int FLAG_TRACK_CREATOR_STACKTRACE
+org.greenrobot.greendao.rx.RxQuery$2
+freemarker.core.BuiltInForNumber
+freemarker.ext.beans.OverloadedNumberUtil$LongOrByte
+freemarker.template.TemplateHashModel
+org.greenrobot.greendao.rx.RxTransaction:
+    static synthetic org.greenrobot.greendao.AbstractDaoSession access$000(org.greenrobot.greendao.rx.RxTransaction)
+    public rx.Observable run(java.lang.Runnable)
+    public rx.Observable call(java.util.concurrent.Callable)
+    public org.greenrobot.greendao.AbstractDaoSession getDaoSession()
+    public synthetic bridge rx.Scheduler getScheduler()
+freemarker.cache.TemplateLookupResult
+freemarker.template.utility.Constants$EmptySequenceModel
+freemarker.core.BuiltInsForNumbers$byteBI
+freemarker.debug.Breakpoint
+org.greenrobot.greendao.rx.RxQuery
+freemarker.template.utility.Constants
+freemarker.cache.FileTemplateLoader$4
+com.usr.firecheck.R$color
+freemarker.template.utility.ObjectConstructor
+freemarker.ext.jdom.NodeListModel$CanonicalNameOp
+org.greenrobot.greendao.annotation.JoinProperty
+freemarker.ext.util.IdentityHashMap$EmptyHashIterator
+freemarker.core.BuiltInsForStringsBasic$ensure_ends_withBI
+freemarker.ext.jdom.NodeListModel$DescendantOrSelfOp
+freemarker.ext.beans.BeansWrapper$3
+freemarker.ext.rhino.RhinoWrapper
+freemarker.ext.dom.JaxenXPathSupport
+freemarker.core.BuiltInsForStringsMisc
+freemarker.ext.jsp.TagTransformModel$BodyContentImpl
+org.greenrobot.greendao.query.CursorQuery$1
+freemarker.core.BuiltInWithParseTimeParameters
+freemarker.template.Configuration
+freemarker.debug.impl.DebuggerService$1
+freemarker.ext.beans.SequenceAdapter
+freemarker.ext.util.ModelFactory
+org.greenrobot.greendao.database.EncryptedDatabase:
+    public boolean inTransaction()
+    public void execSQL(java.lang.String,java.lang.Object[])
+    public void close()
+    public net.sqlcipher.database.SQLiteDatabase getSQLiteDatabase()
+freemarker.core.BuiltInsForStringsBasic$starts_withBI
+com.usr.firecheck.Utils.AnimateUtils
+freemarker.ext.beans.SetAdapter
+freemarker.template.TemplateNumberModel
+org.greenrobot.greendao.rx.RxDao$7
+freemarker.core.Dot
+freemarker.ext.servlet.InitParamParser$TemplatePathParsingException
+com.usr.firecheck.Utils.AnimateUtils$2
+freemarker.core.OrExpression
+freemarker.ext.jsp.TaglibFactory$WebXmlParser
+freemarker.template.utility.SecurityUtilities$1
+freemarker.core.BuiltInsForNumbers$upper_abcBI
+org.greenrobot.greendao.query.DeleteQuery$1
+freemarker.core.BuiltInsForStringsEncoding$urlBI$UrlBIResult
+com.usr.firecheck.R$id
+freemarker.ext.beans.TypeFlags
+freemarker.ext.beans.HashAdapter$1
+freemarker.core.BuiltInsForNumbers$is_infiniteBI
+freemarker.core.NonSequenceOrCollectionException
+freemarker.core.AddConcatExpression$ConcatenatedHashEx
+freemarker.template.SimpleSequence
+com.usr.firecheck.R$bool
+freemarker.template.WrappingTemplateModel
+freemarker.template.utility.NormalizeNewlines$1
+com.usr.firecheck.BlueToothLeService.BluetoothLeService$LocalBinder:
+    public com.usr.firecheck.BlueToothLeService.BluetoothLeService getService()
+org.greenrobot.greendao.async.AsyncOperationExecutor:
+    public void enqueue(org.greenrobot.greendao.async.AsyncOperation)
+    public int getMaxOperationCountToMerge()
+    public void setMaxOperationCountToMerge(int)
+    public int getWaitForMergeMillis()
+    public void setWaitForMergeMillis(int)
+    public org.greenrobot.greendao.async.AsyncOperationListener getListener()
+    public void setListener(org.greenrobot.greendao.async.AsyncOperationListener)
+    public org.greenrobot.greendao.async.AsyncOperationListener getListenerMainThread()
+    public void setListenerMainThread(org.greenrobot.greendao.async.AsyncOperationListener)
+    public synchronized boolean isCompleted()
+    public synchronized void waitForCompletion()
+    public synchronized boolean waitForCompletion(int)
+    private int lastSequenceNumber
+freemarker.ext.jdom.NodeListModel$NamedNodeOperator
+org.greenrobot.greendao.generator.ToManyBase
+freemarker.core.BuiltInsForNumbers$intBI
+freemarker.ext.jython.JythonModelCache
+freemarker.ext.beans.EmptyMemberAndArguments
+org.greenrobot.greendao.query.WhereCollector:
+    varargs void add(org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition[])
+    varargs org.greenrobot.greendao.query.WhereCondition combineWhereConditions(java.lang.String,org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition,org.greenrobot.greendao.query.WhereCondition[])
+    void addCondition(java.lang.StringBuilder,java.util.List,org.greenrobot.greendao.query.WhereCondition)
+    void checkCondition(org.greenrobot.greendao.query.WhereCondition)
+    void checkProperty(org.greenrobot.greendao.Property)
+    void appendWhereClause(java.lang.StringBuilder,java.lang.String,java.util.List)
+    boolean isEmpty()
+freemarker.template.SimpleSequence$1
+freemarker.template.utility.DateUtil
+freemarker.core._ErrorDescriptionBuilder$1
+freemarker.cache.TemplateLoader
+org.greenrobot.greendao.internal.LongHashMap:
+    public boolean containsKey(long)
+    public int size()
+    public void logStats()
+freemarker.core._TemplateModelException
+freemarker.ext.beans.MapModel
+freemarker.core.BuiltInsForStringsBasic$substringBI$1
+freemarker.core.BuiltInsForSequences$joinBI
+freemarker.core.BuiltInsForStringsBasic$split_BI
+freemarker.core._UnmodifiableCompositeSet$CompositeIterator
+freemarker.core.BuiltInsForStringsBasic$remove_endingBI
+freemarker.template.utility.UnrecognizedTimeZoneException
+freemarker.core.BuiltInsForMultipleTypes$cBI$BIBeforeICE2d3d21
+freemarker.core.ExistenceBuiltins$defaultBI$ConstantMethod
+freemarker.log._SLF4JLoggerFactory
+freemarker.core.IteratorBlock$IterationContext
+freemarker.template.DefaultArrayAdapter$FloatArrayAdapter
+freemarker.template.utility.NumberUtil
+freemarker.core.BuiltInsForStringsBasic$remove_beginningBI
+freemarker.core.AddConcatExpression$ConcatenatedHash
+freemarker.core.BuiltInsForSequences$chunkBI$ChunkedSequence$1
+freemarker.ext.beans.OverloadedNumberUtil$BigIntegerOrInteger
+freemarker.core.ExistenceBuiltins$1
+freemarker.ext.xml.NodeOperator
+freemarker.core.BodyInstruction$Context
+freemarker.ext.jsp.TaglibFactory$TldParserForTaglibUriExtraction
+freemarker.template.DefaultArrayAdapter$CharArrayAdapter
+org.greenrobot.greendao.database.DatabaseStatement:
+    public abstract void bindNull(int)
+    public abstract void bindBlob(int,byte[])
+    public abstract void bindDouble(int,double)
+freemarker.ext.beans.StaticModels
+freemarker.ext.util.IdentityHashMap$3
+freemarker.template.Configuration$1
+freemarker.ext.xml.Namespaces
+freemarker.core.FreeMarkerTree
+freemarker.ext.beans._BeansAPI
+freemarker.template.utility.NormalizeNewlines
+freemarker.debug.impl.RmiDebuggerService$TemplateReference
+freemarker.ext.beans.OverloadedNumberUtil$FloatSource
+com.usr.firecheck.Utils.ReportAttributes:
+    public void <init>()
+    public static int lookupReportValues(java.lang.String)
+    public static final java.lang.String MOUSE_REPORT_REFERENCE_STRING
+    public static final java.lang.String KEYBOARD_REPORT_REFERENCE_STRING
+    public static final java.lang.String MULTIMEDIA_REPORT_REFERENCE_STRING
+    public static final java.lang.String POWER_REPORT_REFERENCE_STRING
+    public static final java.lang.String AUDIO_REPORT_REFERENCE_CONTROL_STRING
+    public static final java.lang.String AUDIO_REPORT_REFERENCE_DATA_STRING
+    public static final java.lang.String INPUT_REPORT_TYPE_STRING
+    public static final java.lang.String OUTPUT_REPORT_TYPE_STRING
+    public static final java.lang.String FEATURE_REPORT_TYPE_STRING
+freemarker.ext.jsp._FreeMarkerPageContext2
+com.usr.firecheck.R$anim
+freemarker.core.NonListableRightUnboundedRangeModel
+freemarker.core.ReturnInstruction$Return
+freemarker.log._JULLoggerFactory
+org.greenrobot.greendao.annotation.Id
+freemarker.core.BuiltInsForMultipleTypes$is_stringBI
+freemarker.core.BuiltInsForSequences$sortBI
+org.greenrobot.greendao.generator.Index
+freemarker.core._UnexpectedTypeErrorExplainerTemplateModel
+com.usr.firecheck.Utils.ChangeCharset
+freemarker.ext.beans.OverloadedNumberUtil$BigIntegerOrPrimitive
+freemarker.debug.impl.RmiDebuggerService$1
+freemarker.core.BuiltInForHashEx
+freemarker.core.BuiltInsForSequences$sortBI$DateKVPComparator
+freemarker.template.TemplateExceptionHandler$3
+freemarker.ext.jdom.NodeListModel$NameFilter
+freemarker.ext.dom.CharacterDataNodeModel
+freemarker.core.InvalidReferenceException
+freemarker.core.Environment$5
+freemarker.cache.TemplateLookupStrategy$Default020300
+freemarker.template._TemplateAPI
+freemarker.ext.beans.OverloadedNumberUtil$FloatOrShort
+org.greenrobot.greendao.generator.ToOne
+com.usr.firecheck.R$attr
+freemarker.ext.jython._Jython20And21VersionAdapter
+org.greenrobot.eventbus.util.ErrorDialogConfig:
+    public void <init>(android.content.res.Resources,int,int)
+    public org.greenrobot.eventbus.util.ErrorDialogConfig addMapping(java.lang.Class,int)
+    public int getMessageIdForThrowable(java.lang.Throwable)
+    public void setDefaultDialogIconId(int)
+    public void setDefaultEventTypeOnDialogClosed(java.lang.Class)
+    public void disableExceptionLogging()
+    public void setTagForLoggingExceptions(java.lang.String)
+    public void setEventBus(org.greenrobot.eventbus.EventBus)
+    final android.content.res.Resources resources
+    final int defaultTitleId
+    final int defaultErrorMsgId
+    final org.greenrobot.eventbus.util.ExceptionToResourceMapping mapping
+    org.greenrobot.eventbus.EventBus eventBus
+    boolean logExceptions
+    java.lang.String tagForLoggingExceptions
+    int defaultDialogIconId
+    java.lang.Class defaultEventTypeOnDialogClosed
+org.greenrobot.eventbus.Logger$JavaLogger
+freemarker.core.BuiltInsForStringsBasic
+freemarker.core._DelayedGetMessageWithoutStackTop
+com.usr.firecheck.R$integer
+freemarker.core._UnmodifiableSet
+freemarker.ext.servlet.HttpSessionHashModel
+freemarker.core.StringLiteral
+freemarker.ext.xml._JaxenNamespaces
+org.greenrobot.greendao.DaoLog:
+    public void <init>()
+    public static boolean isLoggable(int)
+    public static java.lang.String getStackTraceString(java.lang.Throwable)
+    public static int println(int,java.lang.String)
+    public static int v(java.lang.String)
+    public static int v(java.lang.String,java.lang.Throwable)
+    public static int d(java.lang.String,java.lang.Throwable)
+    public static int w(java.lang.Throwable)
+    public static int e(java.lang.String)
+    private static final java.lang.String TAG
+    public static final int VERBOSE
+    public static final int DEBUG
+    public static final int INFO
+    public static final int WARN
+    public static final int ERROR
+    public static final int ASSERT
+freemarker.core.ArithmeticEngine
+freemarker.core.ArithmeticExpression
+freemarker.ext.jsp.TagTransformModel$TagWriter
+freemarker.core.BuiltInsForLoopVariables$indexBI
+freemarker.core.NonDateException
+freemarker.template.DefaultObjectWrapperBuilder
+org.greenrobot.eventbus.util.ErrorDialogManager:
+    public void <init>()
+    public static void attachTo(android.app.Activity)
+    public static void attachTo(android.app.Activity,boolean)
+    public static void attachTo(android.app.Activity,boolean,android.os.Bundle)
+    public static void attachTo(android.app.Activity,java.lang.Object,boolean,android.os.Bundle)
+    private static boolean isSupportActivity(android.app.Activity)
+    protected static void checkLogException(org.greenrobot.eventbus.util.ThrowableFailureEvent)
+    private static boolean isInExecutionScope(java.lang.Object,org.greenrobot.eventbus.util.ThrowableFailureEvent)
+    static synthetic boolean access$000(java.lang.Object,org.greenrobot.eventbus.util.ThrowableFailureEvent)
+    protected static final java.lang.String TAG_ERROR_DIALOG
+    protected static final java.lang.String TAG_ERROR_DIALOG_MANAGER
+    public static final java.lang.String KEY_TITLE
+    public static final java.lang.String KEY_MESSAGE
+    public static final java.lang.String KEY_FINISH_AFTER_DIALOG
+    public static final java.lang.String KEY_ICON_ID
+    public static final java.lang.String KEY_EVENT_TYPE_ON_CLOSE
+com.usr.firecheck.R$interpolator
+org.greenrobot.greendao.rx.RxQuery$3
+freemarker.core.ExistsExpression
+freemarker.ext.servlet.FreemarkerServlet$MalformedWebXmlException
+freemarker.template.TemplateException
+freemarker.core.BuiltInsForMultipleTypes$is_indexableBI
+freemarker.ext.jdom.NodeListModel$AllChildrenOp
+org.greenrobot.greendao.rx.RxDao$11
+org.greenrobot.greendao.internal.DaoConfig:
+    public void setIdentityScope(org.greenrobot.greendao.identityscope.IdentityScope)
+freemarker.core.BuiltInsForDates
+freemarker.core.Interpolation
+freemarker.ext.jdom.NodeListModel$NamespacePrefixOp
+freemarker.ext.jsp.TaglibFactory
+freemarker.core.BuiltInsForNumbers$floatBI
+freemarker.ext.beans.BeansWrapper$4
+freemarker.core.BuiltInsForStringsEncoding$urlPathBI
+freemarker.ext.beans.MaybeEmptyMemberAndArguments
+freemarker.template.utility.RichObjectWrapper
+com.usr.firecheck.Utils.AnimateUtils$1
+freemarker.cache.URLTemplateLoader
+freemarker.core._UnmodifiableCompositeSet
+freemarker.template.SerializableTemplateBooleanModel
+freemarker.ext.servlet.AllHttpScopesHashModel
+freemarker.core.Configurable$UnknownSettingException
+org.greenrobot.eventbus.util.AsyncExecutor$Builder
+freemarker.core.BuiltInsForStringsEncoding$rtfBI
+org.greenrobot.greendao.annotation.Entity
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl_Stub
+org.greenrobot.eventbus.util.AsyncExecutor$1
+org.greenrobot.greendao.query.CursorQuery$QueryData
+freemarker.core.DirectiveCallPlace
+freemarker.template.DefaultListAdapter$IteratorAdapter
+freemarker.template.DefaultObjectWrapper
+org.greenrobot.greendao.rx.RxDao$6
+freemarker.core.BlockAssignment$CaptureOutput
+freemarker.log._AvalonLoggerFactory$AvalonLogger
+org.greenrobot.greendao.query.WhereCondition$StringCondition
+freemarker.core.SimpleCharStream
+freemarker.template.utility.DateUtil$CalendarFieldsToDateConverter
+freemarker.core.BuiltInsForStringsBasic$keep_before_lastBI
+com.usr.firecheck.Utils.C2JUtils:
+    public void <init>()
+    public static java.lang.String hexString2String(java.lang.String)
+    public static byte[] hexStringToByteArray(java.lang.String)
+    public static int hexString2Decimal(java.lang.String)
+    public static byte[] getString2HexBytes(java.lang.String)
+    public static byte uniteBytes(byte,byte)
+    public static byte[] getHexBytes(java.lang.String)
+    public static boolean isRightHexStr(java.lang.String)
+    public static java.lang.String getLittleEndian(java.lang.String)
+    public static java.lang.String change(java.lang.String)
+    public static byte[] intToMinByteArray(int)
+    public static byte[] intToMin2Bytes(int)
+    public static java.lang.String str2HexStr(java.lang.String)
+    public static java.lang.String intTohexString(int)
+    public static boolean isNumeric(java.lang.String)
+freemarker.core.NonNamespaceException
+freemarker.template.utility.Constants$EmptyHashModel
+freemarker.core.BuiltInsForStringsBasic$index_ofBI
+freemarker.core.RightUnboundedRangeModel
+freemarker.template.utility.UndeclaredThrowableException
+org.greenrobot.greendao.Property:
+    public org.greenrobot.greendao.query.WhereCondition eq(java.lang.Object)
+    public org.greenrobot.greendao.query.WhereCondition notEq(java.lang.Object)
+    public org.greenrobot.greendao.query.WhereCondition like(java.lang.String)
+    public org.greenrobot.greendao.query.WhereCondition between(java.lang.Object,java.lang.Object)
+    public varargs org.greenrobot.greendao.query.WhereCondition in(java.lang.Object[])
+    public org.greenrobot.greendao.query.WhereCondition in(java.util.Collection)
+    public varargs org.greenrobot.greendao.query.WhereCondition notIn(java.lang.Object[])
+    public org.greenrobot.greendao.query.WhereCondition notIn(java.util.Collection)
+    public org.greenrobot.greendao.query.WhereCondition gt(java.lang.Object)
+    public org.greenrobot.greendao.query.WhereCondition lt(java.lang.Object)
+    public org.greenrobot.greendao.query.WhereCondition ge(java.lang.Object)
+    public org.greenrobot.greendao.query.WhereCondition le(java.lang.Object)
+    public org.greenrobot.greendao.query.WhereCondition isNull()
+    public org.greenrobot.greendao.query.WhereCondition isNotNull()
+freemarker.ext.jsp.TaglibFactory$TldLocation
+freemarker.template.EmptyMap
+org.greenrobot.greendao.generator.Property
+freemarker.core.TemplatePostProcessorException
+freemarker.core._ArrayIterator
+freemarker.log.CommonsLoggingLoggerFactory$CommonsLoggingLogger
+freemarker.core.ThreadInterruptionSupportTemplatePostProcessor$ThreadInterruptionCheck
+freemarker.core.BuiltInsForStringsEncoding$json_stringBI
+freemarker.debug.impl.DebuggerServer$1
+freemarker.core.BuiltinVariable$VarsHash
+freemarker.core.Configurable
+org.greenrobot.greendao.generator.DaoGenerator
+freemarker.core.ISOTemplateDateFormatFactory
+freemarker.template.utility.ObjectWrapperWithAPISupport
+freemarker.core.FMParser$1
+org.greenrobot.greendao.annotation.Unique
+com.usr.firecheck.Utils.Utils:
+    public void <init>()
+    public static java.lang.String ByteArrToIntStr(byte[])
+    public static boolean isRightHexStr(java.lang.String)
+    public static java.lang.String getMSB(java.lang.String)
+    public static java.lang.String BytetoBinary(byte[])
+    public static java.lang.String byteToASCII(byte[])
+    public static java.lang.String GetDateFromMilliseconds()
+    public static java.lang.String GetDateSevenDaysBack()
+    public static java.lang.String GetTimeFromMilliseconds()
+    public static java.lang.String GetTimeandDate()
+    public static void screenShotMethod(android.view.View)
+    public static boolean isTablet(android.content.Context)
+    public static final boolean checkNetwork(android.content.Context)
+    public static java.lang.String getPorperties(android.content.Context,android.bluetooth.BluetoothGattCharacteristic)
+    public static boolean getGattCharacteristicsPropertices(int,int)
+    public static int dpToPx(int)
+    public static boolean isAtCmd(java.lang.String)
+    public static java.lang.String hexStringToString2(java.lang.String)
+    public java.lang.String getTime()
+    android.content.SharedPreferences sFlowalert
+com.usr.firecheck.BLEProfileDataParserClasses.CapSenseParser:
+    public void <init>()
+freemarker.ext.ant.FreemarkerXmlTask
+freemarker.ext.beans.BeansWrapper$MethodAppearanceDecision
+freemarker.log.Logger$1
+freemarker.ext.xml.Navigator$DescendantOp
+freemarker.ext.ant.UnlinkedJythonOperations
+freemarker.ext.beans.ClassIntrospector
+freemarker.core.ParseException
+freemarker.core.RegexpHelper$PatternCacheKey
+freemarker.ext.xml.Navigator$NamespaceUriOp
+freemarker.template.utility.CaptureOutput$1
+freemarker.core.BuiltinVariable
+freemarker.core.BuiltInForLoopVariable
+freemarker.template.DefaultIteratorAdapter
+org.greenrobot.greendao.generator.ToOne$1
+com.usr.firecheck.R$string
+freemarker.cache._CacheAPI
+org.greenrobot.greendao.converter.PropertyConverter
+org.greenrobot.greendao.annotation.OrderBy
+freemarker.core.ArithmeticEngine$BigDecimalEngine
+freemarker.template.DefaultIteratorAdapter$SimpleTemplateModelIterator
+freemarker.ext.beans.MapModel$1
+freemarker.core.BuiltInsForLoopVariables$is_even_itemBI
+freemarker.ext.beans.OverloadedNumberUtil$LongOrShort
+freemarker.ext.beans.MemberAndArguments
+freemarker.core.Environment$Namespace
+freemarker.core.BuiltInsForStringsBasic$capitalizeBI
+freemarker.log._Log4jLoggerFactory$Log4jLogger
+freemarker.ext.jdom.NodeListModel
+org.greenrobot.greendao.rx.RxDao$19
+freemarker.ext.beans._MethodUtil
+freemarker.core.ThreadInterruptionSupportTemplatePostProcessor
+freemarker.ext.dom.XalanXPathSupport$1
+freemarker.ext.dom.NodeOutputter
+freemarker.template.SimpleScalar
+freemarker.ext.xml._JdomNavigator$JDOMXPathEx
+freemarker.ext.servlet.FreemarkerServlet$ConflictingInitParamsException
+freemarker.template.DefaultArrayAdapter$LongArrayAdapter
+freemarker.core.NestedContentNotSupportedException
+freemarker.core.BuiltInsForMultipleTypes$is_sequenceBI
+freemarker.cache.MruCacheStorage$MruEntry
+freemarker.core.ExistenceBuiltins$defaultBI
+freemarker.ext.beans.OverloadedNumberUtil$DoubleSource
+freemarker.core.BuiltInsForStringsBasic$keep_afterBI
+freemarker.core.BuiltInsForSequences$sortBI$LexicalKVPComparator
+freemarker.core.MixedContent
+freemarker.core.BuiltInForString
+freemarker.core.RangeModel
+freemarker.ext.beans.BeansWrapper$5
+freemarker.ext.beans.OverloadedNumberUtil$BigIntegerOrByte
+com.usr.firecheck.BLEProfileDataParserClasses.GlucoseParser:
+    public void <init>()
+    private static final int FIRST_BITMASK
+    public static final int SECOND_BITMASK
+    public static final int THIRD_BITMASK
+    public static final int FOURTH_BITMASK
+    public static final int FIFTH_BITMASK
+    public static final int SIXTH_BITMASK
+    public static final int SEVENTH_BITMASK
+    public static final int EIGTH_BITMASK
+freemarker.ext.beans.BeanModel$1
+freemarker.ext.beans.SimpleMapModel
+com.usr.firecheck.BLEProfileDataParserClasses.DescriptorParser:
+    public void <init>()
+freemarker.core.SpecialBuiltIn
+freemarker.ext.servlet.FreemarkerServlet
+freemarker.ext.beans.SingletonCustomizer
+freemarker.core.BuiltInsForNumbers$ceilingBI
+freemarker.ext.jsp.TaglibFactory$ServletContextTldLocation
+freemarker.ext.jsp._FreeMarkerPageContext1
+freemarker.ext.xml.NodeListModel$FilterByType
+freemarker.ext.jsp.FreeMarkerJspApplicationContext$FreeMarkerELContext$1
+org.greenrobot.greendao.async.AsyncDaoException
+freemarker.ext.dom.AttributeNodeModel
+freemarker.ext.jython._Jython25VersionAdapter
+org.greenrobot.greendao.rx.RxDao$14
+freemarker.core.BuiltInsForNumbers$shortBI
+org.greenrobot.greendao.test.DbTest
+freemarker.core.BuiltInForNode
+freemarker.core.BuiltInsForNumbers$longBI
+freemarker.core._DelayedToString
+freemarker.ext.util.IdentityHashMap$2
+freemarker.core.TemplateDateFormatFactory
+com.usr.firecheck.R$dimen
+freemarker.core.AndExpression
+freemarker.core.StopException
+freemarker.ext.xml.Navigator$DescendantOrSelfOp
+freemarker.template.TemplateExceptionHandler$2
+freemarker.ext.beans.OverloadedNumberUtil$NumberWithFallbackType
+freemarker.template.Template$LineTableBuilder
+freemarker.core.ExistenceBuiltins$if_existsBI
+freemarker.ext.beans.SimpleMethod
+freemarker.core.BuiltInsForMultipleTypes$is_collection_exBI
+com.usr.firecheck.R$styleable
+freemarker.core.ExistenceBuiltins
+freemarker.cache.FileTemplateLoader$2
+freemarker.cache.CacheStorageWithGetSize
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory:
+    protected void <init>(org.greenrobot.eventbus.util.ErrorDialogConfig)
+    protected java.lang.Object prepareErrorFragment(org.greenrobot.eventbus.util.ThrowableFailureEvent,boolean,android.os.Bundle)
+    protected abstract java.lang.Object createErrorFragment(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle)
+    protected java.lang.String getTitleFor(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle)
+    protected java.lang.String getMessageFor(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle)
+freemarker.template.SimpleCollection$SimpleTemplateModelIterator
+freemarker.ext.beans.MethodSorter
+org.greenrobot.greendao.generator.ContentProvider
+freemarker.core.ParentheticalExpression
+freemarker.core.BuiltInsForMultipleTypes$is_nodeBI
+freemarker.core.BuiltInsForSequences$chunkBI$ChunkedSequence
+freemarker.cache.URLTemplateSource
+freemarker.core.BuiltInsForStringsEncoding$urlPathBI$UrlPathBIResult
+org.greenrobot.greendao.rx.RxDao:
+    static synthetic org.greenrobot.greendao.AbstractDao access$000(org.greenrobot.greendao.rx.RxDao)
+    public rx.Observable loadAll()
+    public rx.Observable load(java.lang.Object)
+    public rx.Observable refresh(java.lang.Object)
+    public rx.Observable insert(java.lang.Object)
+    public rx.Observable insertInTx(java.lang.Iterable)
+    public varargs rx.Observable insertInTx(java.lang.Object[])
+    public rx.Observable insertOrReplace(java.lang.Object)
+    public rx.Observable insertOrReplaceInTx(java.lang.Iterable)
+    public varargs rx.Observable insertOrReplaceInTx(java.lang.Object[])
+    public rx.Observable save(java.lang.Object)
+    public rx.Observable saveInTx(java.lang.Iterable)
+    public varargs rx.Observable saveInTx(java.lang.Object[])
+    public rx.Observable update(java.lang.Object)
+    public rx.Observable updateInTx(java.lang.Iterable)
+    public varargs rx.Observable updateInTx(java.lang.Object[])
+    public rx.Observable delete(java.lang.Object)
+    public rx.Observable deleteByKey(java.lang.Object)
+    public rx.Observable deleteAll()
+    public rx.Observable deleteInTx(java.lang.Iterable)
+    public varargs rx.Observable deleteInTx(java.lang.Object[])
+    public rx.Observable deleteByKeyInTx(java.lang.Iterable)
+    public varargs rx.Observable deleteByKeyInTx(java.lang.Object[])
+    public rx.Observable count()
+    public org.greenrobot.greendao.AbstractDao getDao()
+    public synthetic bridge rx.Scheduler getScheduler()
+freemarker.ext.beans.OverloadedMethodsSubset
+freemarker.debug.DebuggerListener
+freemarker.ext.jsp.TaglibFactory$JarEntryTldLocation
+freemarker.ext.jsp.TagTransformModel
+freemarker.core.BuiltInsForLoopVariables$item_parityBI
+freemarker.core.RegexpHelper
+org.greenrobot.greendao.annotation.JoinEntity
+freemarker.core._ObjectBuilderSettingEvaluator$1
+freemarker.ext.beans._MethodUtil$1
+freemarker.core.ISOTemplateDateFormat
+freemarker.core.BuiltInsForDates$dateType_if_unknownBI
+freemarker.ext.jsp.JspWriterAdapter
+freemarker.core.BuiltInsForLoopVariables$is_lastBI
+freemarker.core.TemplatePostProcessor
+freemarker.core.BuiltInsForStringsBasic$remove_beginningBI$BIMethod
+freemarker.ext.util.IdentityHashMap
+freemarker.core.BuiltInsForLoopVariables$BooleanBuiltInForLoopVariable
+freemarker.template.TemplateHashModelEx
+freemarker.core.BuiltInsForStringsMisc$numberBI
+freemarker.ext.jdom.NodeListModel$TextOp
+freemarker.core.BuiltInsForSequences$seq_index_ofBI
+freemarker.core.TemplateClassResolver$1
+freemarker.ext.beans.JRebelClassChangeNotifier
+freemarker.core._DelayedShortClassName
+freemarker.template.TemplateException$StackTraceWriter
+freemarker.cache.MultiTemplateLoader
+freemarker.debug.impl.RmiDebuggedEnvironmentImpl$DebugMapModel
+freemarker.core.Expression$ReplacemenetState
+org.greenrobot.greendao.query.WhereCondition
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Support
+freemarker.ext.beans.OverloadedNumberUtil$LongOrSmallerInteger
+org.greenrobot.greendao.test.AbstractDaoSessionTest
+freemarker.core.BuiltInsForNumbers$is_nanBI
+freemarker.core.UnexpectedTypeException
+freemarker.ext.xml.Navigator$LocalNameOp
+com.usr.firecheck.Utils.DbUtil:
+    public boolean deleteTargetParameter()
+freemarker.template.SimpleDate
+freemarker.core.BuiltInsForMultipleTypes$is_enumerableBI
+freemarker.debug.impl.RmiDebuggerService$TemplateDebugInfo
+freemarker.debug.DebuggedEnvironment
+freemarker.template.SimpleHash
+freemarker.core.BuiltInsForMultipleTypes$is_methodBI
+freemarker.ext.dom.JaxenXPathSupport$5
+freemarker.core.BuiltInsForNodes$node_typeBI
+freemarker.template.utility.Constants$EmptyCollectionModel
+com.usr.firecheck.Utils.SharedPreference:
+    public void <init>()
+    public static void saveInt(android.content.Context,java.lang.String,int)
+    public static int getInt(android.content.Context,java.lang.String,int)
+    public static void saveFloat(android.content.Context,java.lang.String,float)
+    public static float getFloat(android.content.Context,java.lang.String,float)
+    public static void saveBoolean(android.content.Context,java.lang.String,boolean)
+    public static boolean getBoolean(android.content.Context,java.lang.String,boolean)
+    private static final java.lang.String FILE_NAME
+freemarker.template.utility.SecurityUtilities$3
+freemarker.ext.jsp._FreeMarkerPageContext21$2
+freemarker.core.BuiltInsForMultipleTypes$AbstractCBI
+freemarker.core.LibraryLoad
+freemarker.template.utility.UnsupportedNumberClassException
+freemarker.ext.beans.OverloadedNumberUtil$ByteSource
+com.usr.firecheck.BLEProfileDataParserClasses.CSCParser:
+    public void <init>()
+    static java.lang.String wheelCadence
+    private static final int WHEEL_CONST
+freemarker.template.TemplateDateModel
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Honeycomb
+com.usr.firecheck.Utils.GattAttributes:
+    public void <init>()
+    public static java.lang.String lookup(java.lang.String,java.lang.String)
+    public static java.lang.String lookupNameCapSense(java.lang.String,java.lang.String)
+    public static boolean lookupreqHRMCharacateristics(java.lang.String)
+    public static java.lang.String getname(java.lang.String)
+    public static final java.lang.String USR_SERVICE
+    public static final java.lang.String USR_NOTIFYCHARACTER
+    public static final java.lang.String USR_WRITECHARACTER
+    public static final java.lang.String HEART_RATE_SERVICE
+    public static final java.lang.String DEVICE_INFORMATION_SERVICE
+    public static final java.lang.String HEALTH_TEMP_SERVICE
+    public static final java.lang.String BATTERY_SERVICE
+    public static final java.lang.String IMMEDIATE_ALERT_SERVICE
+    public static final java.lang.String CAPSENSE_SERVICE
+    public static final java.lang.String CAPSENSE_SERVICE_CUSTOM
+    public static final java.lang.String RGB_LED_SERVICE
+    public static final java.lang.String RGB_LED_SERVICE_CUSTOM
+    public static final java.lang.String LINK_LOSS_SERVICE
+    public static final java.lang.String TRANSMISSION_POWER_SERVICE
+    public static final java.lang.String BLOOD_PRESSURE_SERVICE
+    public static final java.lang.String GLUCOSE_SERVICE
+    public static final java.lang.String RSC_SERVICE
+    public static final java.lang.String BAROMETER_SERVICE
+    public static final java.lang.String ACCELEROMETER_SERVICE
+    public static final java.lang.String ANALOG_TEMPERATURE_SERVICE
+    public static final java.lang.String CSC_SERVICE
+    public static final java.lang.String HUMAN_INTERFACE_DEVICE_SERVICE
+    public static final java.lang.String SCAN_PARAMETERS_SERVICE
+    public static final java.lang.String OTA_UPDATE_SERVICE
+    public static final java.lang.String ALERT_NOTIFICATION_SERVICE
+    public static final java.lang.String BODY_COMPOSITION_SERVICE
+    public static final java.lang.String BODY_MANAGEMENT_SERVICE
+    public static final java.lang.String CONTINUOUS_GLUCOSE_MONITORING_SERVICE
+    public static final java.lang.String CURRENT_TIME_SERVICE
+    public static final java.lang.String CYCLING_POWER_SERVICE
+    public static final java.lang.String ENVIRONMENTAL_SENSING_SERVICE
+    public static final java.lang.String LOCATION_NAVIGATION_SERVICE
+    public static final java.lang.String NEXT_DST_CHANGE_SERVICE
+    public static final java.lang.String PHONE_ALERT_STATUS_SERVICE
+    public static final java.lang.String REFERENCE_TIME_UPDATE_SERVICE
+    public static final java.lang.String USER_DATA_SERVICE
+    public static final java.lang.String WEIGHT_SCALE_SERVICE
+    public static final java.lang.String HEART_RATE_MEASUREMENT
+    public static final java.lang.String BODY_SENSOR_LOCATION
+    public static final java.lang.String SYSTEM_ID
+    public static final java.lang.String MODEL_NUMBER_STRING
+    public static final java.lang.String SERIAL_NUMBER_STRING
+    public static final java.lang.String FIRMWARE_REVISION_STRING
+    public static final java.lang.String HARDWARE_REVISION_STRING
+    public static final java.lang.String SOFTWARE_REVISION_STRING
+    public static final java.lang.String MANUFACTURER_NAME_STRING
+    public static final java.lang.String PNP_ID
+    public static final java.lang.String IEEE
+    public static final java.lang.String BATTERY_LEVEL
+    public static final java.lang.String HEALTH_TEMP_MEASUREMENT
+    public static final java.lang.String TEMPERATURE_TYPE
+    public static final java.lang.String GENERIC_ACCESS_SERVICE
+    public static final java.lang.String GENERIC_ATTRIBUTE_SERVICE
+    public static final java.lang.String ALERT_LEVEL
+    public static final java.lang.String TRANSMISSION_POWER_LEVEL
+    public static final java.lang.String CAPSENSE_PROXIMITY
+    public static final java.lang.String CAPSENSE_SLIDER
+    public static final java.lang.String CAPSENSE_BUTTONS
+    public static final java.lang.String CAPSENSE_PROXIMITY_CUSTOM
+    public static final java.lang.String CAPSENSE_SLIDER_CUSTOM
+    public static final java.lang.String CAPSENSE_BUTTONS_CUSTOM
+    public static final java.lang.String RGB_LED
+    public static final java.lang.String RGB_LED_CUSTOM
+    public static final java.lang.String GLUCOSE_COCNTRN
+    public static final java.lang.String BLOOD_PRESSURE_MEASUREMENT
+    public static final java.lang.String RSC_MEASUREMENT
+    public static final java.lang.String CSC_MEASUREMENT
+    public static final java.lang.String BAROMETER_DIGITAL_SENSOR
+    public static final java.lang.String BAROMETER_SENSOR_SCAN_INTERVAL
+    public static final java.lang.String BAROMETER_DATA_ACCUMULATION
+    public static final java.lang.String BAROMETER_READING
+    public static final java.lang.String BAROMETER_THRESHOLD_FOR_INDICATION
+    public static final java.lang.String ACCELEROMETER_ANALOG_SENSOR
+    public static final java.lang.String ACCELEROMETER_SENSOR_SCAN_INTERVAL
+    public static final java.lang.String ACCELEROMETER_DATA_ACCUMULATION
+    public static final java.lang.String ACCELEROMETER_READING_X
+    public static final java.lang.String ACCELEROMETER_READING_Y
+    public static final java.lang.String ACCELEROMETER_READING_Z
+    public static final java.lang.String TEMPERATURE_ANALOG_SENSOR
+    public static final java.lang.String TEMPERATURE_SENSOR_SCAN_INTERVAL
+    public static final java.lang.String TEMPERATURE_READING
+    public static final java.lang.String PROTOCOL_MODE
+    public static final java.lang.String REP0RT
+    public static final java.lang.String REPORT_MAP
+    public static final java.lang.String BOOT_KEYBOARD_INPUT_REPORT
+    public static final java.lang.String BOOT_KEYBOARD_OUTPUT_REPORT
+    public static final java.lang.String BOOT_MOUSE_INPUT_REPORT
+    public static final java.lang.String HID_CONTROL_POINT
+    public static final java.lang.String HID_INFORMATION
+    public static final java.lang.String OTA_CHARACTERISTIC
+    public static final java.lang.String CHARACTERISTIC_EXTENDED_PROPERTIES
+    public static final java.lang.String CHARACTERISTIC_USER_DESCRIPTION
+    public static final java.lang.String CLIENT_CHARACTERISTIC_CONFIG
+    public static final java.lang.String SERVER_CHARACTERISTIC_CONFIGURATION
+    public static final java.lang.String CHARACTERISTIC_PRESENTATION_FORMAT
+    public static final java.lang.String CHARACTERISTIC_AGGREGATE_FORMAT
+    public static final java.lang.String VALID_RANGE
+    public static final java.lang.String EXTERNAL_REPORT_REFERENCE
+    public static final java.lang.String REPORT_REFERENCE
+    public static final java.lang.String ENVIRONMENTAL_SENSING_CONFIGURATION
+    public static final java.lang.String ENVIRONMENTAL_SENSING_MEASUREMENT
+    public static final java.lang.String ENVIRONMENTAL_SENSING_TRIGGER_SETTING
+    private static final java.lang.String HEALTH_THERMO_SERVICE
+    private static final java.lang.String BOND_MANAGEMENT_SERVICE
+    private static final java.lang.String HEART_RATE_CONTROL_POINT
+    private static final java.lang.String TEMPERATURE_INTERMEDIATE
+    private static final java.lang.String TEMPERATURE_MEASUREMENT_INTERVAL
+    private static final java.lang.String GLUCOSE_MESUREMENT_CONTEXT
+    private static final java.lang.String GLUCOSE_FEATURE
+    private static final java.lang.String GLUCOSE_MESUREMENT
+    private static final java.lang.String RECORD_ACCESS_CONTROL_POINT
+    private static final java.lang.String BLOOD_INTERMEDIATE_CUFF_PRESSURE
+    private static final java.lang.String BLOOD_PRESSURE_FEATURE
+    private static final java.lang.String RSC_FEATURE
+    private static final java.lang.String SC_SENSOR_LOCATION
+    private static final java.lang.String SC_CONTROL_POINT
+    private static final java.lang.String CSC_FEATURE
+    private static final java.lang.String AEROBIC_HEART_RATE_LOWER_LIMIT
+    private static final java.lang.String AEROBIC_HEART_RATE_UPPER_LIMIT
+    private static final java.lang.String AGE
+    private static final java.lang.String ALERT_CATEGORY_ID
+    private static final java.lang.String ALERT_CATEGORY_ID_BIT_MASK
+    private static final java.lang.String ALERT_STATUS
+    private static final java.lang.String ANAEROBIC_HEART_RATE_LOWER_LIMIT
+    private static final java.lang.String ANAEROBIC_HEART_RATE_UPPER_LIMIT
+    private static final java.lang.String ANAEROBIC_THRESHOLD
+    private static final java.lang.String APPARENT_WIND_DIRECTION
+    private static final java.lang.String APPARENT_WIND_SPEED
+    private static final java.lang.String APPEARANCE
+    private static final java.lang.String BAROMETRIC_PRESSURE_TREND
+    private static final java.lang.String BODY_COMPOSITION_FEATURE
+    private static final java.lang.String BODY_COMPOSITION_MEASUREMENT
+    private static final java.lang.String BOND_MANAGEMENT_CONTROL_POINT
+    private static final java.lang.String BOND_MANAGEMENT_FEATURE
+    private static final java.lang.String CENTRAL_ADDRESS_RESOLUTION
+    private static final java.lang.String CGM_FEATURE
+    private static final java.lang.String CGM_MEASUREMENT
+    private static final java.lang.String CGM_SESSION_RUN_TIME
+    private static final java.lang.String CGM_SESSION_START_TIME
+    private static final java.lang.String CGM_SPECIFIC_OPS_CONTROL_POINT
+    private static final java.lang.String CGM_STATUS
+    private static final java.lang.String CYCLING_POWER_CONTROL_POINT
+    private static final java.lang.String CYCLING_POWER_FEATURE
+    private static final java.lang.String CYCLING_POWER_MEASUREMENT
+    private static final java.lang.String CYCLING_POWER_VECTOR
+    private static final java.lang.String DATABASE_CHANGE_INCREMENT
+    private static final java.lang.String DATE_OF_BIRTH
+    private static final java.lang.String DATE_OF_THRESHOLD_ASSESSMENT
+    private static final java.lang.String DATE_TIME
+    private static final java.lang.String DAY_DATE_TIME
+    private static final java.lang.String DAY_OF_WEEK
+    private static final java.lang.String DESCRIPTOR_VALUE_CHANGED
+    private static final java.lang.String DEVICE_NAME
+    private static final java.lang.String DEW_POINT
+    private static final java.lang.String DST_OFFSET
+    private static final java.lang.String ELEVATION
+    private static final java.lang.String EMAIL_ADDRESS
+    private static final java.lang.String EXACT_TIME_256
+    private static final java.lang.String FAT_BURN_HEART_RATE_LOWER_LIMIT
+    private static final java.lang.String FAT_BURN_HEART_RATE_UPPER_LIMIT
+    private static final java.lang.String FIRSTNAME
+    private static final java.lang.String FIVE_ZONE_HEART_RATE_LIMITS
+    private static final java.lang.String GENDER
+    private static final java.lang.String GUST_FACTOR
+    private static final java.lang.String HEAT_INDEX
+    private static final java.lang.String HEIGHT
+    private static final java.lang.String HEART_RATE_MAX
+    private static final java.lang.String HIP_CIRCUMFERENCE
+    private static final java.lang.String HUMIDITY
+    private static final java.lang.String INTERMEDIATE_CUFF_PRESSURE
+    private static final java.lang.String INTERMEDIATE_TEMPERATURE
+    private static final java.lang.String IRRADIANCE
+    private static final java.lang.String LANGUAGE
+    private static final java.lang.String LAST_NAME
+    private static final java.lang.String LN_CONTROL_POINT
+    private static final java.lang.String LN_FEATURE
+    private static final java.lang.String LOCAL_TIME_INFORMATION
+    private static final java.lang.String LOCATION_AND_SPEED
+    private static final java.lang.String MAGNETIC_DECLINATION
+    private static final java.lang.String MAGNETIC_FLUX_DENSITY_2D
+    private static final java.lang.String MAGNETIC_FLUX_DENSITY_3D
+    private static final java.lang.String MANUFACTURE_NAME_STRING
+    private static final java.lang.String MAXIMUM_RECOMMENDED_HEART_RATE
+    private static final java.lang.String MEASUREMENT_INTERVAL
+    private static final java.lang.String NAVIGATION
+    private static final java.lang.String NEW_ALERT
+    private static final java.lang.String PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS
+    private static final java.lang.String PERIPHERAL_PRIVACY_FLAG
+    private static final java.lang.String POLLEN_CONCENTRATION
+    private static final java.lang.String POSITION_QUALITY
+    private static final java.lang.String PRESSURE
+freemarker.core.DefaultToExpression$EmptyStringAndSequence
+freemarker.template.utility.JythonRuntime
+com.usr.firecheck.views.CrashHandler:
+    public static final java.lang.String TAG
+freemarker.template.SimpleHash$SynchronizedHash
+freemarker.core.BuiltInsForStringsBasic$index_ofBI$BIMethod
+freemarker.core._ObjectBuilderSettingEvaluator$ParameterName
+com.usr.firecheck.Utils.MaterialDialog:
+    private int dip2px(float)
+    static synthetic int access$2200(com.usr.firecheck.Utils.MaterialDialog,float)
+    public com.usr.firecheck.Utils.MaterialDialog setContentView(android.view.View)
+    public com.usr.firecheck.Utils.MaterialDialog setContentView(int)
+    public com.usr.firecheck.Utils.MaterialDialog setBackground(android.graphics.drawable.Drawable)
+    public com.usr.firecheck.Utils.MaterialDialog setBackgroundResource(int)
+    public com.usr.firecheck.Utils.MaterialDialog setTitle(int)
+    public com.usr.firecheck.Utils.MaterialDialog setTitle(java.lang.CharSequence)
+    public com.usr.firecheck.Utils.MaterialDialog setMessage(int)
+    public com.usr.firecheck.Utils.MaterialDialog setMessage(java.lang.CharSequence)
+    public com.usr.firecheck.Utils.MaterialDialog setPositiveButton(int,android.view.View$OnClickListener)
+    public android.widget.Button getPositiveButton()
+    public android.widget.Button getNegativeButton()
+    public com.usr.firecheck.Utils.MaterialDialog setPositiveButton(java.lang.String,android.view.View$OnClickListener)
+    public com.usr.firecheck.Utils.MaterialDialog setNegativeButton(int,android.view.View$OnClickListener)
+    public com.usr.firecheck.Utils.MaterialDialog setNegativeButton(java.lang.String,android.view.View$OnClickListener)
+    public com.usr.firecheck.Utils.MaterialDialog setCanceledOnTouchOutside(boolean)
+    public com.usr.firecheck.Utils.MaterialDialog setOnDismissListener(android.content.DialogInterface$OnDismissListener)
+    private android.widget.LinearLayout$LayoutParams mLayoutParams
+    private static final int BUTTON_BOTTOM
+    private static final int BUTTON_TOP
+freemarker.core.NonHashException
+freemarker.template.DefaultObjectWrapperConfiguration
+freemarker.core.BuiltInsForStringsBasic$containsBI
+freemarker.core.BuiltInsForMultipleTypes$is_booleanBI
+freemarker.ext.beans.OverloadedMethods$2
+freemarker.ext.servlet.IncludePage
+freemarker.core.BuiltInsForDates$iso_BI
+freemarker.ext.beans.HashAdapter
+freemarker.ext.beans.OverloadedNumberUtil$FloatOrWholeNumber
+freemarker.core._DelayedJQuote
+org.greenrobot.greendao.database.StandardDatabaseStatement:
+    public void bindNull(int)
+    public void bindBlob(int,byte[])
+    public void bindDouble(int,double)
+org.greenrobot.greendao.rx.RxDao$9
+freemarker.ext.jsp.TaglibFactory$ClasspathMetaInfTldSource
+freemarker.ext.beans.OverloadedNumberUtil$DoubleOrByte
+freemarker.ext.beans.OverloadedNumberUtil$BigIntegerOrDouble
+freemarker.core.DebugBreak
+freemarker.template.utility.HtmlEscape
+freemarker.core.BuiltInsForMultipleTypes$dateBI
+freemarker.core.JavaTemplateDateFormatFactory$DateFormatKey
+freemarker.ext.jsp._FreeMarkerPageContext21
+freemarker.cache.TemplateNameFormat$Default020400
+freemarker.core.CustomAttribute
+freemarker.ext.dom.ElementModel
+freemarker.ext.jython.JythonHashModel
+freemarker.ext.jsp.EventForwarding
+freemarker.core.BuiltInsForStringsBasic$lower_caseBI
+freemarker.core.BreakInstruction$Break
+com.usr.firecheck.BlueToothLeService.BluetoothLeService:
+    public static java.lang.String getmBluetoothDeviceName()
+    public static void readCharacteristic(android.bluetooth.BluetoothGattCharacteristic)
+    private static java.lang.String getHexValue(byte[])
+    public static void setCharacteristicIndication(android.bluetooth.BluetoothGattCharacteristic,boolean)
+    public static boolean getBondedState()
+    public void setReConnectAddress(java.lang.String)
+    public static final java.lang.String ACTION_GATT_CONNECTED
+    public static final java.lang.String ACTION_GATT_DISCONNECTED
+    public static final java.lang.String ACTION_GATT_DISCONNECTED_CAROUSEL
+    public static final java.lang.String ACTION_GATT_SERVICES_DISCOVERED
+    public static final java.lang.String ACTION_DATA_AVAILABLE
+    public static final java.lang.String ACTION_GATT_CHARACTERISTIC_ERROR
+    public static final java.lang.String GATT_STATUS_133
+    public static final java.lang.String ACTION_GATT_DESCRIPTORWRITE_RESULT
+    public static final java.lang.String ACTION_GATT_CHARACTERISTIC_WRITE_SUCCESS
+    public static final int STATE_DISCONNECTED
+    private static final int STATE_CONNECTING
+    private static final int STATE_CONNECTED
+freemarker.core.TemplateDateFormat
+org.greenrobot.greendao.query.CountQuery$1
+freemarker.core.BuiltInsForStringsBasic$ends_withBI$BIMethod
+freemarker.core.BuiltInsForStringsEncoding$AbstractUrlBIResult
+freemarker.core.LocalContext
+freemarker.ext.dom.NodeListModel$1
+freemarker.cache.ClassTemplateLoader
+freemarker.core.BuiltInsForSequences$seq_index_ofBI$BIMethod
+freemarker.cache.CacheStorage
+freemarker.core.Interpret$TemplateProcessorModel
+freemarker.ext.jsp.TaglibFactory$ClasspathTldLocation
+freemarker.ext.beans.EmptyCallableMemberDescriptor
+freemarker.ext.util.IdentityHashMap$1
+freemarker.template.TemplateDirectiveModel
+freemarker.core.BuiltInsForStringsBasic$keep_beforeBI
+freemarker.core.RecurseNode
+com.usr.firecheck.R$drawable
+org.greenrobot.greendao.generator.Schema
+freemarker.core.BuiltInsForLoopVariables$is_odd_itemBI
+org.greenrobot.greendao.rx.RxQuery$1
+freemarker.ext.beans.BeansWrapperBuilder
+freemarker.core.XSTemplateDateFormatFactory
+freemarker.cache.TemplateCache$1
+org.greenrobot.greendao.rx.RxDao$13
+freemarker.core.BuiltInsForSequences$sortBI$KVP
+freemarker.ext.beans.ResourceBundleModel$1
+freemarker.core.Macro$Context
+freemarker.ext.beans.HashAdapter$1$1
+freemarker.ext.beans.HashAdapter$1$1$1
+freemarker.core.Configurable$1
+freemarker.core.ListableRightUnboundedRangeModel$1
+freemarker.ext.beans.DateModel$1
+freemarker.template.utility.Collections12
+freemarker.template.TransformControl
+freemarker.core.FMParser$ParserIteratorBlockContext
+freemarker.core.BuiltInsForStringsBasic$keep_before_lastBI$KeepUntilMethod
+freemarker.core.BuiltInsForNodes$parentBI
+freemarker.core.BuiltInsWithParseTimeParameters$switch_BI
+freemarker.core._DelayedAOrAn
+freemarker.core.BuiltInsForStringsEncoding$xhtmlBI
+freemarker.core.Sep
+com.usr.firecheck.BLEProfileDataParserClasses.SensorHubParser:
+    public void <init>()
+    private static final int FIRST_BITMASK
+    public static final int SECOND_BITMASK
+    public static final int THIRD_BITMASK
+    public static final int FOURTH_BITMASK
+    public static final int FIFTH_BITMASK
+    public static final int SIXTH_BITMASK
+    public static final int SEVENTH_BITMASK
+    public static final int EIGTH_BITMASK
+freemarker.debug.DebuggerClient
+freemarker.core.FallbackInstruction
+freemarker.ext.xml._Dom4jNavigator
+freemarker.ext.beans.InvalidPropertyException
+freemarker.ext.beans.OverloadedFixArgsMethods
+org.greenrobot.greendao.annotation.Transient
+org.greenrobot.greendao.query.CloseableListIterator
+freemarker.core.Interpret$TemplateProcessorModel$1
+freemarker.log._JULLoggerFactory$JULLogger
+freemarker.core.BuiltInsForStringsBasic$padBI$BIMethod
+freemarker.ext.beans.OverloadedNumberUtil$BigIntegerOrFloat
+freemarker.template.utility.DOMNodeModel$NodeListTM
+org.greenrobot.greendao.internal.TableStatements:
+    public java.lang.String getSelectKeys()
+    private volatile java.lang.String selectKeys
+freemarker.ext.beans.OverloadedNumberUtil$BigIntegerSource
+freemarker.core.MessageUtil
+freemarker.core.NonUserDefinedDirectiveLikeException
+freemarker.ext.jsp.TaglibFactory$WebInfPerLibJarMetaInfTldSource
+freemarker.ext.jsp.FreeMarkerPageContext$TemplateHashModelExEnumeration
+freemarker.template.SimpleObjectWrapper
+freemarker.core.BuiltInsForSequences$sortBI$NumericalKVPComparator
+freemarker.cache.FileTemplateLoader$3
+freemarker.core.BuiltInsForStringsEncoding$htmlBI
+freemarker.template.Template$WrongEncodingException
+freemarker.core.BuiltInsForSequences$seq_containsBI
+freemarker.ext.beans.NumberModel$1
+freemarker.ext.beans.StringModel
+org.greenrobot.eventbus.meta.SimpleSubscriberInfo
+freemarker.ext.jdom.NodeListModel$NamespaceUriOp
+freemarker.ext.jython.JythonSequenceModel
+freemarker.core.BuiltInsForStringsBasic$upper_caseBI
+freemarker.core.ThreadInterruptionSupportTemplatePostProcessor$1
+freemarker.cache.TemplateCache
+freemarker.core.NumberLiteral
+freemarker.ext.beans.IteratorModel
+freemarker.core.BuiltInForSequence
+freemarker.ext.beans.OverloadedNumberUtil$LongOrInteger
+freemarker.core.BooleanLiteral
+freemarker.ext.dom.SunInternalXalanXPathSupport$1
+org.greenrobot.greendao.DbUtils
+freemarker.core.BuiltInsForNodes
+freemarker.ext.jsp.TaglibFactory$2
+freemarker.log.CommonsLoggingLoggerFactory
+freemarker.ext.beans.OverloadedNumberUtil$LongSource
+freemarker.cache.TemplateNameFormat$1
+freemarker.ext.jsp.FreeMarkerJspFactory2
+freemarker.core.TemplateElement
+freemarker.core._DelayedGetMessage
+freemarker.core.BuiltInsForLoopVariables$item_parity_capBI
+freemarker.core.BuiltInsForDates$iso_utc_or_local_BI
+freemarker.ext.beans.OverloadedNumberUtil$BigIntegerOrShort
+org.greenrobot.eventbus.util.ErrorDialogFragments$Honeycomb
+freemarker.ext.xml._Dom4jNavigator$Dom4jXPathEx
+freemarker.core.BuiltInsForStringsRegexp$groupsBI
+org.greenrobot.eventbus.EventBusBuilder:
+    public org.greenrobot.eventbus.EventBusBuilder logSubscriberExceptions(boolean)
+    public org.greenrobot.eventbus.EventBusBuilder logNoSubscriberMessages(boolean)
+    public org.greenrobot.eventbus.EventBusBuilder sendSubscriberExceptionEvent(boolean)
+    public org.greenrobot.eventbus.EventBusBuilder sendNoSubscriberEvent(boolean)
+    public org.greenrobot.eventbus.EventBusBuilder throwSubscriberException(boolean)
+    public org.greenrobot.eventbus.EventBusBuilder eventInheritance(boolean)
+    public org.greenrobot.eventbus.EventBusBuilder executorService(java.util.concurrent.ExecutorService)
+    public org.greenrobot.eventbus.EventBusBuilder skipMethodVerificationFor(java.lang.Class)
+    public org.greenrobot.eventbus.EventBusBuilder ignoreGeneratedIndex(boolean)
+    public org.greenrobot.eventbus.EventBusBuilder strictMethodVerification(boolean)
+    public org.greenrobot.eventbus.EventBusBuilder addIndex(org.greenrobot.eventbus.meta.SubscriberInfoIndex)
+    public org.greenrobot.eventbus.EventBusBuilder logger(org.greenrobot.eventbus.Logger)
+    public org.greenrobot.eventbus.EventBus installDefaultEventBus()
+    public org.greenrobot.eventbus.EventBus build()
+    java.util.List skipMethodVerificationForClasses
+com.usr.firecheck.R$animator
+freemarker.cache.SoftCacheStorage
+org.greenrobot.greendao.generator.ToMany
+freemarker.core.APINotSupportedTemplateException
+freemarker.core.BuiltInsForStringsMisc$booleanBI
+freemarker.template.utility.Execute
+android.support.v4.os.IResultReceiver$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_send
+freemarker.template.TemplateBooleanModel
+freemarker.template.utility.SecurityUtilities$2
+android.support.v4.app.INotificationSideChannel$Stub$Proxy:
+    public java.lang.String getInterfaceDescriptor()
+freemarker.core.TemplateClassResolver$2
+freemarker.core.XSTemplateDateFormat
+freemarker.core.BuiltInsForSequences$1
+freemarker.template.DefaultNonListCollectionAdapter$IteratorAdapter
+freemarker.core.BuiltInsForStringsBasic$lengthBI
+org.greenrobot.greendao.generator.DaoUtil
+freemarker.core.BuiltInsForSequences$joinBI$BIMethodForCollection
+freemarker.core._ObjectBuilderSettingEvaluator$NullExpression
+freemarker.ext.beans.BeansWrapper$MethodAppearanceDecisionInput
+freemarker.core.BuiltInsForNumbers$number_to_dateBI
+freemarker.ext.jsp.TaglibFactory$TaglibGettingException
+freemarker.ext.jsp.TaglibFactory$InputStreamFactory
+freemarker.template.TemplateExceptionHandler$1
+freemarker.core.BuiltInsForStringsBasic$1
+freemarker.log._Log4jLoggerFactory
+freemarker.debug.DebuggerClient$LocalDebuggerProxy
+freemarker.ext.jsp.PageContextFactory
+freemarker.core.BuiltInsForStringsRegexp$RegexMatchModel$MatchWithGroups
+freemarker.template.ObjectWrapperAndUnwrapper
+freemarker.template.utility.DateUtil$DateToISO8601CalendarFactory
+freemarker.template.SimpleHash$1
+freemarker.ext.beans.OverloadedMethods$1
+freemarker.core.ISOLikeTemplateDateFormatFactory
+freemarker.log._Log4jOverSLF4JTester
+freemarker.template.utility.OptimizerUtil
+freemarker.core.BuiltInsForSequences$lastBI
+freemarker.ext.jsp.TaglibFactory$URLWithExternalForm
+org.greenrobot.greendao.database.StandardDatabase:
+    public boolean inTransaction()
+    public void execSQL(java.lang.String,java.lang.Object[])
+    public void close()
+    public android.database.sqlite.SQLiteDatabase getSQLiteDatabase()
+freemarker.core.CallPlaceCustomDataInitializationException
+freemarker.template.DefaultArrayAdapter$ShortArrayAdapter
+org.greenrobot.greendao.rx.RxDao$8
+freemarker.template.ResourceBundleLocalizedString
+freemarker.core.BuiltInsForLoopVariables$is_firstBI
+org.greenrobot.greendao.test.AbstractDaoTest
+freemarker.core.NonExtendedHashException
+freemarker.ext.beans.CollectionModel$1
+freemarker.ext.jsp._FreeMarkerPageContext21$1
+freemarker.core.CommandLine
+freemarker.template.TemplateNodeModel
+freemarker.core.BuiltInsForNumbers$lower_abcBI
+freemarker.core.BuiltInsForNodes$childrenBI
+freemarker.ext.dom.DocumentModel
+freemarker.ext.jsp.FreeMarkerJspFactory
+freemarker.core.BuiltInsForStringsBasic$remove_endingBI$BIMethod
+freemarker.core.BuiltInsForStringsEncoding$xmlBI
+freemarker.ext.jdom.NodeListModel$DescendantOp
+com.usr.firecheck.fragments.DataFragment:
+    private java.lang.String TAG
+com.usr.firecheck.fragments.SetFragment_ViewBinding$11:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$24:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$3:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+org.greenrobot.eventbus.EventBus$1:
+    final synthetic org.greenrobot.eventbus.EventBus this$0
+com.usr.firecheck.fragments.SetFragment:
+    private java.lang.String TAG
+com.usr.firecheck.fragments.BleFragment_ViewBinding$1:
+    final synthetic com.usr.firecheck.fragments.BleFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$25:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$12:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+org.greenrobot.greendao.async.AsyncSession:
+    private final org.greenrobot.greendao.AbstractDaoSession daoSession
+    private final org.greenrobot.greendao.async.AsyncOperationExecutor executor
+com.usr.firecheck.fragments.SetFragment_ViewBinding$2:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+org.greenrobot.eventbus.EventBus:
+    public static java.lang.String TAG
+android.support.v4.os.ResultReceiver:
+    final boolean mLocal
+org.greenrobot.greendao.query.QueryBuilder:
+    private final org.greenrobot.greendao.query.WhereCollector whereCollector
+    private final java.util.List values
+    private final java.util.List joins
+    private final org.greenrobot.greendao.AbstractDao dao
+    private final java.lang.String tablePrefix
+    private java.lang.String stringOrderCollation
+com.usr.firecheck.fragments.SetFragment_ViewBinding$5:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+org.greenrobot.greendao.database.DatabaseOpenHelper$EncryptedHelper:
+    final synthetic org.greenrobot.greendao.database.DatabaseOpenHelper this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$13:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$26:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+org.greenrobot.greendao.internal.SqlUtils:
+    private static final char[] HEX_ARRAY
+com.usr.firecheck.Utils.UUIDDatabase:
+    public static final java.util.UUID UUID_HEART_RATE_SERVICE
+    public static final java.util.UUID UUID_DEVICE_INFORMATION_SERVICE
+    public static final java.util.UUID UUID_HEALTH_SERVICE
+    public static final java.util.UUID UUID_BATTERY_SERVICE
+    public static final java.util.UUID UUID_IMMEDIATE_ALERT_SERVICE
+    public static final java.util.UUID UUID_TRANSMISSION_POWER_SERVICE
+    public static final java.util.UUID UUID_RGB_LED_SERVICE
+    public static final java.util.UUID UUID_RGB_LED_SERVICE_CUSTOM
+    public static final java.util.UUID UUID_BLOOD_PRESSURE_SERVICE
+    public static final java.util.UUID UUID_BAROMETER_SERVICE
+    public static final java.util.UUID UUID_BAROMETER_DATA_ACCUMULATION
+    public static final java.util.UUID UUID_ACCELEROMETER_SERVICE
+    public static final java.util.UUID UUID_ANALOG_TEMPERATURE_SERVICE
+    public static final java.util.UUID UUID_OTA_UPDATE_SERVICE
+com.usr.firecheck.MainActivity$1:
+    final synthetic com.usr.firecheck.MainActivity this$0
+org.greenrobot.eventbus.SubscriberMethodFinder$FindState:
+    java.lang.Class subscriberClass
+com.usr.firecheck.fragments.SetFragment_ViewBinding$27:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$14:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$4:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+org.greenrobot.greendao.query.AbstractQueryWithLimit:
+    protected final int limitPosition
+    protected final int offsetPosition
+com.usr.firecheck.Utils.CRC:
+    static byte[] crc16_tab_h
+    static byte[] crc16_tab_l
+com.usr.firecheck.Utils.DataUtils:
+    public static java.lang.String CMD_PURPLE_CODE
+    public static java.lang.String CMD_RED_CODE
+    public static java.lang.String CMD_LIGHT_CODE
+org.greenrobot.greendao.rx.RxBase:
+    protected final rx.Scheduler scheduler
+com.usr.firecheck.fragments.BleFragment_ViewBinding$2:
+    final synthetic com.usr.firecheck.fragments.BleFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$7:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$15:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+org.greenrobot.greendao.async.AsyncOperation:
+    private volatile boolean completed
+org.greenrobot.greendao.rx.RxTransaction:
+    private final org.greenrobot.greendao.AbstractDaoSession daoSession
+org.greenrobot.eventbus.SubscriberExceptionEvent:
+    public final org.greenrobot.eventbus.EventBus eventBus
+com.usr.firecheck.BlueToothLeService.BluetoothLeService$LocalBinder:
+    final synthetic com.usr.firecheck.BlueToothLeService.BluetoothLeService this$0
+org.greenrobot.greendao.async.AsyncOperationExecutor:
+    private volatile boolean executorRunning
+    private static java.util.concurrent.ExecutorService executorService
+org.greenrobot.greendao.query.WhereCollector:
+    private final org.greenrobot.greendao.AbstractDao dao
+    private final java.util.List whereConditions
+    private final java.lang.String tablePrefix
+com.usr.firecheck.fragments.SetFragment_ViewBinding$20:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.Utils.ReportAttributes:
+    public static java.lang.String MICROPHONE_SYNC
+    public static java.lang.String GESTURE_ON
+com.usr.firecheck.fragments.SetFragment_ViewBinding$6:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$16:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+org.greenrobot.greendao.Property:
+    public final java.lang.String name
+com.usr.firecheck.Utils.Utils:
+    private static java.lang.String SHARED_PREF_NAME
+com.usr.firecheck.fragments.SetFragment_ViewBinding$21:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$22:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$1:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.DataModelClasses.GlucoseDataModel:
+    public int status
+    public java.util.Calendar time
+    public int timeOffset
+org.greenrobot.greendao.rx.RxDao:
+    private final org.greenrobot.greendao.AbstractDao dao
+com.usr.firecheck.fragments.SetFragment_ViewBinding$17:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+org.greenrobot.eventbus.NoSubscriberEvent:
+    public final org.greenrobot.eventbus.EventBus eventBus
+    public final java.lang.Object originalEvent
+com.usr.firecheck.Utils.DbUtil:
+    android.content.Context mContext
+com.usr.firecheck.fragments.SetFragment_ViewBinding$9:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.Utils.GattAttributes:
+    private static final java.util.HashMap attributesImageMap
+    private static final java.util.HashMap attributesCapSenseImageMap
+    public static java.lang.String AEROBIC_THRESHOLD
+com.usr.firecheck.BlueToothLeService.BluetoothLeService:
+    public boolean mBound
+    private static java.lang.String mBluetoothDeviceName
+com.usr.firecheck.fragments.SetFragment_ViewBinding$23:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$10:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.MainActivity:
+    private java.lang.String TAG
+com.usr.firecheck.fragments.SetFragment_ViewBinding$8:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$18:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.SetFragment_ViewBinding$19:
+    final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0

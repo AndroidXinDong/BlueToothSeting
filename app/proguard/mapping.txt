@@ -1,0 +1,1088 @@
+# compiler: R8
+# compiler_version: 1.6.67
+# min_api: 19
+# pg_map_id: c53504a
+# common_typos_disable
+android.support.v4.app.INotificationSideChannel -> a.a.a.a.a:
+android.support.v4.app.INotificationSideChannel$Stub -> a.a.a.a.a$a:
+android.support.v4.app.INotificationSideChannel$Stub$Proxy -> a.a.a.a.a$a$a:
+    android.os.IBinder mRemote -> a
+android.support.v4.os.IResultReceiver -> android.support.v4.os.a:
+    void send(int,android.os.Bundle) -> a
+android.support.v4.os.IResultReceiver$Stub -> android.support.v4.os.a$a:
+    android.support.v4.os.IResultReceiver asInterface(android.os.IBinder) -> a
+android.support.v4.os.IResultReceiver$Stub$Proxy -> android.support.v4.os.a$a$a:
+    android.os.IBinder mRemote -> a
+    void send(int,android.os.Bundle) -> a
+android.support.v4.os.ResultReceiver -> android.support.v4.os.ResultReceiver:
+    android.support.v4.os.IResultReceiver mReceiver -> b
+    android.os.Handler mHandler -> a
+    void onReceiveResult(int,android.os.Bundle) -> a
+android.support.v4.os.ResultReceiver$1 -> android.support.v4.os.ResultReceiver$a:
+android.support.v4.os.ResultReceiver$MyResultReceiver -> android.support.v4.os.ResultReceiver$b:
+    android.support.v4.os.ResultReceiver this$0 -> a
+    void send(int,android.os.Bundle) -> a
+android.support.v4.os.ResultReceiver$MyRunnable -> android.support.v4.os.ResultReceiver$c:
+    android.os.Bundle mResultData -> b
+    android.support.v4.os.ResultReceiver this$0 -> c
+    int mResultCode -> a
+butterknife.-$$Lambda$Unbinder$aAZZEjRDCcxQlrGZAdKWmLXqruY -> butterknife.a:
+    butterknife.-$$Lambda$Unbinder$aAZZEjRDCcxQlrGZAdKWmLXqruY INSTANCE -> a
+butterknife.Unbinder$-CC -> butterknife.b:
+    void butterknife.Unbinder.lambda$static$0() -> a
+butterknife.internal.-$$Lambda$DebouncingOnClickListener$EDavjG1Da3G8JTdFPVGk_7OErB8 -> butterknife.internal.a:
+    butterknife.internal.-$$Lambda$DebouncingOnClickListener$EDavjG1Da3G8JTdFPVGk_7OErB8 INSTANCE -> a
+butterknife.internal.DebouncingOnClickListener -> butterknife.internal.DebouncingOnClickListener:
+    void lambda$static$0() -> a
+com.usr.firecheck.BLEProfileDataParserClasses.BloodPressureParser -> com.usr.firecheck.a.a:
+    boolean BloodPressureUnitsFlagSet(byte) -> a
+    java.lang.String getDiaStolicBloodPressure(android.bluetooth.BluetoothGattCharacteristic) -> a
+    java.lang.String getDiaStolicBloodPressureUnit(android.bluetooth.BluetoothGattCharacteristic,android.content.Context) -> a
+    java.lang.String getSystolicBloodPressure(android.bluetooth.BluetoothGattCharacteristic) -> b
+    java.lang.String getSystolicBloodPressureUnit(android.bluetooth.BluetoothGattCharacteristic,android.content.Context) -> b
+com.usr.firecheck.BLEProfileDataParserClasses.CSCParser -> com.usr.firecheck.a.b:
+    java.lang.String gearRatio -> f
+    float mWheelCadence -> j
+    int mLastCrankEventTime -> l
+    int mLastCrankRevolutions -> k
+    int mLastWheelRevolutions -> h
+    int mLastWheelEventTime -> i
+    int mFirstWheelRevolutions -> g
+    java.lang.String cyclingExtraSpeed -> c
+    java.lang.String cyclingExtraDistance -> b
+    java.util.ArrayList CSCInfo -> a
+    java.lang.String cyclingCadence -> e
+    java.lang.String cyclingDistance -> d
+    java.util.ArrayList getCyclingSpeednCadence(android.bluetooth.BluetoothGattCharacteristic) -> a
+    void onCrankMeasurementReceived(int,int) -> a
+    void onWheelMeasurementReceived(int,int) -> b
+com.usr.firecheck.BLEProfileDataParserClasses.CapSenseParser -> com.usr.firecheck.a.c:
+    java.util.ArrayList getCapSenseButtons(android.bluetooth.BluetoothGattCharacteristic) -> a
+    int getCapSenseProximity(android.bluetooth.BluetoothGattCharacteristic) -> b
+    int getCapSenseSlider(android.bluetooth.BluetoothGattCharacteristic) -> c
+com.usr.firecheck.BLEProfileDataParserClasses.DescriptorParser -> com.usr.firecheck.a.d:
+    java.lang.String writableAuxillaryEnabled -> g
+    java.lang.String reliableWriteDisabled -> f
+    java.lang.String broadcastEnabled -> i
+    java.lang.String writableAuxillaryDisabled -> h
+    java.lang.String broadcastDisabled -> j
+    java.lang.String notificationEnabled -> a
+    java.lang.String indicationEnabled -> c
+    java.lang.String notificationDisabled -> b
+    java.lang.String reliableWriteEnabled -> e
+    java.lang.String indicationDisabled -> d
+    java.util.HashMap getCharacteristicExtendedProperties(android.bluetooth.BluetoothGattDescriptor) -> a
+    java.lang.String getCharacteristicPresentationFormat(android.bluetooth.BluetoothGattDescriptor) -> b
+    java.lang.String getCharacteristicUserDescription(android.bluetooth.BluetoothGattDescriptor) -> c
+    java.lang.String getClientCharacteristicConfiguration(android.bluetooth.BluetoothGattDescriptor) -> d
+    java.util.ArrayList getReportReference(android.bluetooth.BluetoothGattDescriptor) -> e
+    java.lang.String getServerCharacteristicConfiguration(android.bluetooth.BluetoothGattDescriptor) -> f
+com.usr.firecheck.BLEProfileDataParserClasses.GlucoseParser -> com.usr.firecheck.a.e:
+    java.util.ArrayList getGlucoseHealth(android.bluetooth.BluetoothGattCharacteristic) -> a
+    java.lang.String glucoseSampleLocation(int) -> a
+    java.lang.String glucoseType(int) -> b
+com.usr.firecheck.BLEProfileDataParserClasses.HRMParser -> com.usr.firecheck.a.f:
+    java.lang.String getBodySensorLocation(android.bluetooth.BluetoothGattCharacteristic) -> a
+    boolean isEEpresent(byte) -> a
+    java.lang.String getEnergyExpended(android.bluetooth.BluetoothGattCharacteristic) -> b
+    boolean isHeartRateInUINT16(byte) -> b
+    java.lang.String getHeartRate(android.bluetooth.BluetoothGattCharacteristic) -> c
+    boolean isRRintpresent(byte) -> c
+    java.util.ArrayList getRRInterval(android.bluetooth.BluetoothGattCharacteristic) -> d
+com.usr.firecheck.BLEProfileDataParserClasses.HTMParser -> com.usr.firecheck.a.g:
+    java.util.ArrayList tempInfo -> a
+    java.util.ArrayList getHealthThermo(android.bluetooth.BluetoothGattCharacteristic) -> a
+    java.lang.String getHealthThermoSensorLocation(android.bluetooth.BluetoothGattCharacteristic) -> b
+com.usr.firecheck.BLEProfileDataParserClasses.RGBParser -> com.usr.firecheck.a.h:
+    java.lang.String getRGBValue(android.bluetooth.BluetoothGattCharacteristic) -> a
+com.usr.firecheck.BLEProfileDataParserClasses.RSCParser -> com.usr.firecheck.a.i:
+    java.util.ArrayList rscInfo -> a
+    java.util.ArrayList getRunningSpeednCadence(android.bluetooth.BluetoothGattCharacteristic) -> a
+com.usr.firecheck.BLEProfileDataParserClasses.SensorHubParser -> com.usr.firecheck.a.j:
+    int getAcceleroMeterXYZReading(android.bluetooth.BluetoothGattCharacteristic) -> a
+    int getBarometerReading(android.bluetooth.BluetoothGattCharacteristic) -> b
+    int getFilterConfiguration(android.bluetooth.BluetoothGattCharacteristic) -> c
+    int getSensorScanIntervalReading(android.bluetooth.BluetoothGattCharacteristic) -> d
+    int getSensorTypeReading(android.bluetooth.BluetoothGattCharacteristic) -> e
+    float getThermometerReading(android.bluetooth.BluetoothGattCharacteristic) -> f
+    int getThresholdValue(android.bluetooth.BluetoothGattCharacteristic) -> g
+com.usr.firecheck.BlueToothLeService.BluetoothLeService -> com.usr.firecheck.BlueToothLeService.BluetoothLeService:
+    android.bluetooth.BluetoothGattCallback mGattCallback -> i
+    java.lang.String mBluetoothDeviceAddress -> f
+    android.os.IBinder mBinder -> a
+    java.lang.String TAG -> h
+    java.lang.String reConnectAddress -> j
+    int count -> k
+    android.bluetooth.BluetoothAdapter mBluetoothAdapter -> c
+    int mConnectionState -> e
+    android.bluetooth.BluetoothGatt mBluetoothGatt -> d
+    android.bluetooth.BluetoothManager mBluetoothManager -> b
+    android.content.Context mContext -> g
+    int access$002(int) -> a
+    void access$100(java.lang.String) -> a
+    void access$500(android.bluetooth.BluetoothGattCharacteristic) -> a
+    void connect(java.lang.String,java.lang.String,android.content.Context) -> a
+    boolean initialize() -> a
+    void readDescriptor(android.bluetooth.BluetoothGattDescriptor) -> a
+    boolean refreshDeviceCache(android.bluetooth.BluetoothGatt) -> a
+    void setCharacteristicNotification(android.bluetooth.BluetoothGattCharacteristic,boolean) -> a
+    void writeCharacteristicGattDb(android.bluetooth.BluetoothGattCharacteristic,byte[]) -> a
+    java.lang.String access$200() -> b
+    void broadcastConnectionUpdate(java.lang.String) -> b
+    void broadcastNotifyUpdate(android.bluetooth.BluetoothGattCharacteristic) -> b
+    boolean requestMtu(int) -> b
+    java.lang.String access$300() -> c
+    boolean connect(java.lang.String) -> c
+    android.content.Context access$400() -> d
+    void close() -> e
+    void closeAndDisconnect() -> f
+    void disconnect() -> g
+    void discoverServices() -> h
+    int getConnectionState() -> i
+    java.util.List getSupportedGattServices() -> j
+    java.lang.String getmBluetoothDeviceAddress() -> k
+com.usr.firecheck.BlueToothLeService.BluetoothLeService$1 -> com.usr.firecheck.BlueToothLeService.BluetoothLeService$a:
+com.usr.firecheck.BlueToothLeService.BluetoothLeService$LocalBinder -> com.usr.firecheck.BlueToothLeService.BluetoothLeService$b:
+com.usr.firecheck.DataModelClasses.GlucoseDataModel -> com.usr.firecheck.b.a:
+    int type -> b
+    int unit -> c
+    int sampleLocation -> a
+com.usr.firecheck.MainActivity -> com.usr.firecheck.MainActivity:
+    androidx.fragment.app.Fragment currentFragment -> h
+    android.content.BroadcastReceiver mReceiver -> i
+    androidx.fragment.app.FragmentManager mManager -> g
+    com.usr.firecheck.fragments.DataFragment mDataFragment -> e
+    com.usr.firecheck.fragments.BleFragment mBleFragment -> d
+    com.usr.firecheck.application.MyApplication mMyApplication -> b
+    int isChoose -> c
+    com.usr.firecheck.fragments.SetFragment mSetFragment -> f
+    void addFragment(androidx.fragment.app.Fragment) -> a
+    void defaultChoose(boolean) -> a
+    void initFragment() -> c
+com.usr.firecheck.MainActivity$1 -> com.usr.firecheck.MainActivity$a:
+com.usr.firecheck.MainActivity_ViewBinding -> com.usr.firecheck.MainActivity_ViewBinding:
+    com.usr.firecheck.MainActivity target -> a
+com.usr.firecheck.MyBaseActivity -> com.usr.firecheck.MyBaseActivity:
+    long end -> a
+    void bindToolBar() -> a
+    void share() -> b
+com.usr.firecheck.Utils.C2JUtils -> com.usr.firecheck.c.a:
+    java.lang.String bytesToHexString(byte[]) -> a
+    java.lang.String hex2Float(java.lang.String,int) -> a
+    java.lang.String intToMinByteArray(java.lang.String) -> a
+com.usr.firecheck.Utils.CRC -> com.usr.firecheck.c.b:
+    java.lang.String getCRC(byte[]) -> a
+com.usr.firecheck.Utils.DataUtils -> com.usr.firecheck.c.c:
+    java.lang.String CMD_ELECTRICTRANSLATE_CODE -> g
+    java.lang.String CMD_PARAMETER_SET_CODE -> f
+    java.lang.String CMD_PURPLEECLECTRIC_CODE -> i
+    java.lang.String CMD_CURRENTELECTIC_CODE -> h
+    java.lang.String CMD_LIGHTECLECTRIC_CODE -> k
+    java.lang.String CMD_REDPLEECLECTRIC_CODE -> j
+    java.lang.String CMD_AFTER_CODE -> m
+    java.lang.String CMD_BEFORE_CODE -> l
+    java.lang.String EXTEND_WRITE_CODE -> o
+    java.lang.String CMD_MODEL_CODE -> n
+    java.lang.String EXTEND_WRITE_RESPONSE_CODE -> q
+    java.lang.String EXTEND_READ_CODE -> p
+    java.lang.String HEADER -> s
+    java.lang.String EXTEND_READ_RESPONSE_CODE -> r
+    java.lang.String TAIL -> t
+    java.lang.String TAG -> a
+    java.lang.String CMD_VERSION_CODE -> c
+    java.lang.String CMD_ID_CODE -> b
+    java.lang.String CMD_JIDIANQI_CODE -> e
+    java.lang.String CMD_MOREDATA_CODE -> d
+    boolean getCmdReadModelResponse(java.lang.String) -> a
+    boolean getWriteCoefResponse(java.lang.String,java.lang.String) -> a
+    java.lang.String intToHex(int) -> a
+    java.lang.String sendReadCurrentElectric() -> a
+    boolean getCmdWriteModelResponse(java.lang.String) -> b
+    byte[] sendReadIDCMD() -> b
+    java.lang.String sendWriteCoef(java.lang.String,java.lang.String) -> b
+    int getReadCoefResponse(java.lang.String) -> c
+    java.lang.String sendReadJIDIANQICMD() -> c
+    java.lang.String getReadCurrentResponse(java.lang.String) -> d
+    java.lang.String sendReadModelCmd() -> d
+    java.lang.String getReadIDResponse(java.lang.String) -> e
+    java.lang.String sendReadTranslate() -> e
+    java.lang.String getReadJIDIANQIResponse(java.lang.String) -> f
+    byte[] sendReadVersionCMD() -> f
+    java.util.List getReadMoreFloatResponse(java.lang.String) -> g
+    java.util.HashMap getReadParameterResponse(java.lang.String) -> h
+    java.lang.String getReadTranslateResponse(java.lang.String) -> i
+    java.lang.String getReadVersionResponse(java.lang.String) -> j
+    boolean getWriteCurrentResponse(java.lang.String) -> k
+    boolean getWriteJIDIANQIResponse(java.lang.String) -> l
+    boolean getWriteParameterResponse(java.lang.String) -> m
+    boolean getWriteResponse(java.lang.String) -> n
+    boolean getWriteTranslateResponse(java.lang.String) -> o
+    boolean responseCheck(java.lang.String) -> p
+    java.lang.String sendMoreParameterCMD(java.lang.String) -> q
+    java.lang.String sendReadCoef(java.lang.String) -> r
+    java.lang.String sendReadParameter(java.lang.String) -> s
+    java.lang.String sendWriteCurrentElectric(java.lang.String) -> t
+    byte[] sendWriteIDCMD(java.lang.String) -> u
+    java.lang.String sendWriteJIDIANQICMD(java.lang.String) -> v
+    java.lang.String sendWriteModelCmd(java.lang.String) -> w
+    java.lang.String sendWriteParameter(java.lang.String) -> x
+    java.lang.String sendWriteTranslate(java.lang.String) -> y
+com.usr.firecheck.Utils.DbUtil -> com.usr.firecheck.c.d:
+    com.usr.firecheck.bean.SaveBeanDao dao -> a
+    com.usr.firecheck.bean.DaoSession mDaoSession -> b
+    boolean insertTargetParameter(com.usr.firecheck.bean.SaveBean) -> a
+    com.usr.firecheck.bean.SaveBean loadTargetParameter(long) -> a
+    boolean updateTargetParameter(com.usr.firecheck.bean.SaveBean) -> b
+com.usr.firecheck.Utils.GattAttributes -> com.usr.firecheck.c.e:
+    java.util.HashMap attributes -> b
+    java.util.HashMap attributesCapSense -> a
+    java.util.HashMap descriptorAttributes -> c
+    java.lang.String lookCharacteristicPresentationFormat(java.lang.String) -> a
+com.usr.firecheck.Utils.MaterialDialog -> com.usr.firecheck.c.f:
+    android.content.DialogInterface$OnDismissListener mOnDismissListener -> q
+    android.content.Context mContext -> b
+    int mBackgroundResId -> m
+    int mMessageResId -> h
+    boolean mHasShow -> l
+    int mTitleResId -> f
+    java.lang.CharSequence mTitle -> g
+    java.lang.CharSequence mMessage -> i
+    java.lang.String nText -> u
+    java.lang.String pText -> t
+    com.usr.firecheck.Utils.MaterialDialog$Builder mBuilder -> d
+    android.widget.Button mNegativeButton -> k
+    android.view.View mMessageContentView -> o
+    android.widget.Button mPositiveButton -> j
+    android.graphics.drawable.Drawable mBackgroundDrawable -> n
+    boolean mCancel -> a
+    android.view.View mView -> e
+    int pId -> r
+    android.view.View$OnClickListener pListener -> v
+    android.app.AlertDialog mAlertDialog -> c
+    int nId -> s
+    int mMessageContentViewResId -> p
+    android.view.View$OnClickListener nListener -> w
+    android.app.AlertDialog access$100(com.usr.firecheck.Utils.MaterialDialog) -> a
+    android.app.AlertDialog access$102(com.usr.firecheck.Utils.MaterialDialog,android.app.AlertDialog) -> a
+    boolean access$1400(com.usr.firecheck.Utils.MaterialDialog,java.lang.String) -> a
+    android.widget.Button access$302(com.usr.firecheck.Utils.MaterialDialog,android.widget.Button) -> a
+    void dismiss() -> a
+    boolean isNullOrEmpty(java.lang.String) -> a
+    void setListViewHeightBasedOnChildren(android.widget.ListView) -> a
+    com.usr.firecheck.Utils.MaterialDialog setView(android.view.View) -> a
+    int access$1000(com.usr.firecheck.Utils.MaterialDialog) -> b
+    android.widget.Button access$402(com.usr.firecheck.Utils.MaterialDialog,android.widget.Button) -> b
+    void show() -> b
+    boolean access$1100() -> c
+    int access$1200(com.usr.firecheck.Utils.MaterialDialog) -> c
+    java.lang.String access$1300(com.usr.firecheck.Utils.MaterialDialog) -> d
+    boolean isLollipop() -> d
+    java.lang.String access$1500(com.usr.firecheck.Utils.MaterialDialog) -> e
+    int access$1600(com.usr.firecheck.Utils.MaterialDialog) -> f
+    android.graphics.drawable.Drawable access$1700(com.usr.firecheck.Utils.MaterialDialog) -> g
+    android.view.View access$1800(com.usr.firecheck.Utils.MaterialDialog) -> h
+    int access$1900(com.usr.firecheck.Utils.MaterialDialog) -> i
+    android.content.Context access$200(com.usr.firecheck.Utils.MaterialDialog) -> j
+    boolean access$2000(com.usr.firecheck.Utils.MaterialDialog) -> k
+    android.content.DialogInterface$OnDismissListener access$2100(com.usr.firecheck.Utils.MaterialDialog) -> l
+    android.widget.Button access$300(com.usr.firecheck.Utils.MaterialDialog) -> m
+    android.widget.Button access$400(com.usr.firecheck.Utils.MaterialDialog) -> n
+    android.view.View access$500(com.usr.firecheck.Utils.MaterialDialog) -> o
+    int access$600(com.usr.firecheck.Utils.MaterialDialog) -> p
+    java.lang.CharSequence access$700(com.usr.firecheck.Utils.MaterialDialog) -> q
+    int access$800(com.usr.firecheck.Utils.MaterialDialog) -> r
+    java.lang.CharSequence access$900(com.usr.firecheck.Utils.MaterialDialog) -> s
+com.usr.firecheck.Utils.MaterialDialog$1 -> com.usr.firecheck.c.f$a:
+com.usr.firecheck.Utils.MaterialDialog$Builder -> com.usr.firecheck.c.f$b:
+    android.view.ViewGroup mMessageContentRoot -> b
+    android.view.Window mAlertDialogWindow -> d
+    android.widget.TextView mTitleView -> a
+    android.widget.TextView mMessageView -> c
+    com.usr.firecheck.Utils.MaterialDialog this$0 -> f
+    android.widget.LinearLayout mButtonLayout -> e
+    android.view.Window access$2300(com.usr.firecheck.Utils.MaterialDialog$Builder) -> a
+    void setContentView(int) -> a
+    void setContentView(android.view.View) -> a
+    void setMessage(java.lang.CharSequence) -> a
+    void setMessage(int) -> b
+    void setTitle(java.lang.CharSequence) -> b
+    void setView(android.view.View) -> b
+    void setTitle(int) -> c
+com.usr.firecheck.Utils.MaterialDialog$Builder$1 -> com.usr.firecheck.c.f$b$a:
+    com.usr.firecheck.Utils.MaterialDialog$Builder this$1 -> a
+com.usr.firecheck.Utils.ReportAttributes -> com.usr.firecheck.c.g:
+    java.lang.String AUDIO_REPORT_REFERENCE_DATA -> f
+    java.lang.String OUTPUT_REPORT_TYPE -> h
+    java.lang.String POWER -> j
+    java.lang.String VOLUME_MINUS -> l
+    java.lang.String CHANNEL_MINUS -> n
+    java.lang.String MICROPHONE_UP -> p
+    java.lang.String RETURN_UP -> r
+    java.lang.String LEFT_CLICK_DOWN -> t
+    java.lang.String RIGHT_CLICK_DOWN -> v
+    java.util.HashMap referenceAttributesType -> x
+    java.lang.String MOUSE_REPORT_REFERENCE -> a
+    java.lang.String MULTIMEDIA_REPORT_REFERENCE -> c
+    java.lang.String AUDIO_REPORT_REFERENCE_CONTROL -> e
+    java.lang.String INPUT_REPORT_TYPE -> g
+    java.lang.String FEATURE_REPORT_TYPE -> i
+    java.lang.String VOLUME_PLUS -> k
+    java.lang.String CHANNEL_PLUS -> m
+    java.lang.String MICROPHONE -> o
+    java.lang.String RETURN -> q
+    java.lang.String SOURCE -> s
+    java.lang.String LEFT_RIGHT_CLICK_UP -> u
+    java.util.HashMap reportvalues -> y
+    java.util.HashMap referenceAttributes -> w
+    java.lang.String KEYBOARD_REPORT_REFERENCE -> b
+    java.lang.String POWER_REPORT_REFERENCE -> d
+    java.lang.String lookupReportReferenceID(java.lang.String) -> a
+    java.lang.String lookupReportReferenceType(java.lang.String) -> b
+com.usr.firecheck.Utils.SharedPreference -> com.usr.firecheck.c.h:
+    android.content.SharedPreferences sp -> a
+    java.lang.String getString(android.content.Context,java.lang.String,java.lang.String) -> a
+    void saveString(android.content.Context,java.lang.String,java.lang.String) -> b
+com.usr.firecheck.Utils.UUIDDatabase -> com.usr.firecheck.c.i:
+    java.util.UUID UUID_ACCELEROMETER_READING_Z -> K
+    java.util.UUID UUID_FIRWARE_REVISION_STRING -> h
+    java.util.UUID UUID_ACCELEROMETER_ANALOG_SENSOR -> G
+    java.util.UUID UUID_MANUFATURE_NAME_STRING -> d
+    java.util.UUID UUID_BAROMETER_DIGITAL_SENSOR -> C
+    java.util.UUID UUID_RGB_LED_CUSTOM -> x
+    java.util.UUID UUID_CHARACTERISTIC_PRESENTATION_FORMAT -> W
+    java.util.UUID UUID_CAPSENSE_PROXIMITY_CUSTOM -> t
+    java.util.UUID UUID_CHARACTERISTIC_EXTENDED_PROPERTIES -> S
+    java.util.UUID UUID_TRANSMISSION_POWER_LEVEL -> p
+    java.util.UUID UUID_TEMPERATURE_SENSOR_SCAN_INTERVAL -> O
+    java.util.UUID UUID_HEALTH_THERMOMETER -> l
+    java.util.UUID UUID_IEEE -> k
+    java.util.UUID UUID_ACCELEROMETER_READING_Y -> J
+    java.util.UUID UUID_HARDWARE_REVISION_STRING -> g
+    java.util.UUID UUID_BAROMETER_READING -> F
+    java.util.UUID UUID_SYSTEM_ID -> c
+    java.util.UUID UUID_CSC_MEASURE -> B
+    java.util.UUID UUID_RGB_LED -> w
+    java.util.UUID UUID_REPORT_REFERENCE -> V
+    java.util.UUID UUID_CAPSENSE_BUTTONS -> s
+    java.util.UUID UUID_CLIENT_CHARACTERISTIC_CONFIG -> R
+    java.util.UUID UUID_ALERT_LEVEL -> o
+    java.util.UUID UUID_TEMPERATURE_READING -> N
+    java.util.UUID UUID_PNP_ID -> j
+    java.util.UUID UUID_ACCELEROMETER_READING_X -> I
+    java.util.UUID UUID_SERIAL_NUMBER_STRING -> f
+    java.util.UUID UUID_BAROMETER_THRESHOLD_FOR_INDICATION -> E
+    java.util.UUID UUID_BODY_SENSOR_LOCATION -> b
+    java.util.UUID UUID_RSC_MEASURE -> A
+    java.util.UUID UUID_BLOOD_PRESSURE_MEASUREMENT -> z
+    java.util.UUID UUID_CAPSENSE_BUTTONS_CUSTOM -> v
+    java.util.UUID UUID_SERVER_CHARACTERISTIC_CONFIGURATION -> U
+    java.util.UUID UUID_CAPSENSE_SLIDER -> r
+    java.util.UUID UUID_OTA_UPDATE_CHARACTERISTIC -> Q
+    java.util.UUID UUID_BATTERY_LEVEL -> n
+    java.util.UUID UUID_TEMPERATURE_ANALOG_SENSOR -> M
+    java.util.UUID UUID_SOFTWARE_REVISION_STRING -> i
+    java.util.UUID UUID_ACCELEROMETER_DATA_ACCUMULATION -> H
+    java.util.UUID UUID_MODEL_NUMBER_STRING -> e
+    java.util.UUID UUID_BAROMETER_SENSOR_SCAN_INTERVAL -> D
+    java.util.UUID UUID_HEART_RATE_MEASUREMENT -> a
+    java.util.UUID UUID_GLUCOSE -> y
+    java.util.UUID UUID_CAPSENSE_SLIDER_CUSTOM -> u
+    java.util.UUID UUID_CHARACTERISTIC_USER_DESCRIPTION -> T
+    java.util.UUID UUID_CAPSENSE_PROXIMITY -> q
+    java.util.UUID UUID_REP0RT -> P
+    java.util.UUID UUID_HEALTH_THERMOMETER_SENSOR_LOCATION -> m
+    java.util.UUID UUID_ACCELEROMETER_SENSOR_SCAN_INTERVAL -> L
+com.usr.firecheck.Utils.Utils -> com.usr.firecheck.c.j:
+    java.lang.String ByteArraytoHex(byte[]) -> a
+    java.lang.String GetDate() -> a
+    java.lang.String getAlertLevel(android.bluetooth.BluetoothGattCharacteristic) -> a
+    byte[] hexStringToByteArray(java.lang.String) -> a
+    java.lang.String GetTimeandDateUpdate() -> b
+    java.lang.String getBatteryLevel(android.bluetooth.BluetoothGattCharacteristic) -> b
+    java.lang.String hexStringToString(java.lang.String) -> b
+    java.lang.String getFirmwareRevisionString(android.bluetooth.BluetoothGattCharacteristic) -> c
+    android.content.IntentFilter makeGattUpdateIntentFilter() -> c
+    java.lang.String str2HexStr(java.lang.String) -> c
+    java.lang.String getHardwareRevisionString(android.bluetooth.BluetoothGattCharacteristic) -> d
+    java.lang.String getManufacturerNameString(android.bluetooth.BluetoothGattCharacteristic) -> e
+    java.lang.String getModelNumberString(android.bluetooth.BluetoothGattCharacteristic) -> f
+    java.lang.String getPNPID(android.bluetooth.BluetoothGattCharacteristic) -> g
+    java.lang.String getSYSID(android.bluetooth.BluetoothGattCharacteristic) -> h
+    java.lang.String getSerialNumberString(android.bluetooth.BluetoothGattCharacteristic) -> i
+    java.lang.String getSoftwareRevisionString(android.bluetooth.BluetoothGattCharacteristic) -> j
+    int getTransmissionPower(android.bluetooth.BluetoothGattCharacteristic) -> k
+com.usr.firecheck.adapter.DevicesAdapter -> com.usr.firecheck.adapter.DevicesAdapter:
+    java.util.List list -> a
+    android.content.Context context -> b
+    com.usr.firecheck.adapter.DevicesAdapter$OnItemClickListener onItemClickListener -> c
+    boolean isDelayStartAnimation -> e
+    int lastPosition -> d
+    void animatroItem(com.usr.firecheck.adapter.DevicesAdapter$CellViewHolder,int) -> a
+    void clear() -> a
+    void setDelayStartAnimation(boolean) -> a
+    void setOnItemClickListener(com.usr.firecheck.adapter.DevicesAdapter$OnItemClickListener) -> a
+com.usr.firecheck.adapter.DevicesAdapter$CellViewHolder_ViewBinding -> com.usr.firecheck.adapter.DevicesAdapter$CellViewHolder_ViewBinding:
+    com.usr.firecheck.adapter.DevicesAdapter$CellViewHolder target -> a
+com.usr.firecheck.adapter.DevicesAdapter$OnItemClickListener -> com.usr.firecheck.adapter.DevicesAdapter$a:
+    void onItemClick(android.view.View,int) -> a
+com.usr.firecheck.application.MyApplication -> com.usr.firecheck.application.MyApplication:
+    com.usr.firecheck.bean.DaoSession daoSession -> c
+    boolean isConnect -> a
+    boolean currentModel -> b
+    boolean isConnect() -> a
+    void setConnect(boolean) -> a
+    boolean isCurrentModel() -> b
+    void setCurrentModel(boolean) -> b
+    com.usr.firecheck.bean.DaoSession getDaoSession() -> c
+    void initGreenDao() -> d
+com.usr.firecheck.fragments.BleFragment -> com.usr.firecheck.fragments.BleFragment:
+    android.bluetooth.BluetoothAdapter$LeScanCallback mLeScanCallback -> o
+    java.lang.String TAG -> l
+    com.usr.firecheck.adapter.DevicesAdapter adapter -> h
+    android.bluetooth.BluetoothAdapter mBluetoothAdapter -> q
+    com.usr.firecheck.Utils.MaterialDialog progressDialog -> b
+    com.usr.firecheck.application.MyApplication myApplication -> e
+    android.os.Handler hander -> a
+    java.lang.Runnable stopScanRunnable -> m
+    android.bluetooth.BluetoothGattCharacteristic notifyCharacteristic -> i
+    java.util.List list -> g
+    android.bluetooth.BluetoothGattCharacteristic writeCharacteristic -> j
+    java.lang.String currentDevAddress -> c
+    android.os.Handler msgHandler -> k
+    android.content.BroadcastReceiver mGattUpdateReceiver -> p
+    java.lang.String currentDevName -> d
+    android.bluetooth.BluetoothAdapter mBtAdapter -> f
+    java.lang.Runnable dismssDialogRunnable -> n
+    android.bluetooth.BluetoothAdapter$LeScanCallback access$100(com.usr.firecheck.fragments.BleFragment) -> a
+    void access$800(com.usr.firecheck.fragments.BleFragment,android.bluetooth.BluetoothDevice) -> a
+    void access$900(com.usr.firecheck.fragments.BleFragment,android.content.Context,android.content.Intent) -> a
+    void connectDevice(android.bluetooth.BluetoothDevice) -> a
+    void handlerReceiver(android.content.Context,android.content.Intent) -> a
+    void onRefresh() -> a
+    void prepareGattServices(java.util.List) -> a
+    void writeCharacteristic(android.bluetooth.BluetoothGattCharacteristic,byte[]) -> a
+    void writeOption(byte[]) -> a
+    android.bluetooth.BluetoothAdapter access$000() -> b
+    com.usr.firecheck.Utils.MaterialDialog access$200(com.usr.firecheck.fragments.BleFragment) -> b
+    void access$300(com.usr.firecheck.fragments.BleFragment) -> c
+    void checkBleSupportAndInitialize() -> c
+    com.usr.firecheck.adapter.DevicesAdapter access$400(com.usr.firecheck.fragments.BleFragment) -> d
+    void disconnectDevice() -> d
+    void access$500(com.usr.firecheck.fragments.BleFragment) -> e
+    void dissAndReconnect() -> e
+    void access$600(com.usr.firecheck.fragments.BleFragment) -> f
+    void initBroadcast() -> f
+    java.util.List access$700(com.usr.firecheck.fragments.BleFragment) -> g
+    void initEvent() -> g
+    void initService() -> h
+    void initbleFragment() -> i
+    void showProgressDialog() -> j
+    void startScan() -> k
+    void stopScan() -> l
+com.usr.firecheck.fragments.BleFragment$1 -> com.usr.firecheck.fragments.BleFragment$a:
+    com.usr.firecheck.fragments.BleFragment this$0 -> a
+com.usr.firecheck.fragments.BleFragment$2 -> com.usr.firecheck.fragments.BleFragment$b:
+    com.usr.firecheck.fragments.BleFragment this$0 -> a
+com.usr.firecheck.fragments.BleFragment$3 -> com.usr.firecheck.fragments.BleFragment$c:
+    com.usr.firecheck.fragments.BleFragment this$0 -> a
+com.usr.firecheck.fragments.BleFragment$4 -> com.usr.firecheck.fragments.BleFragment$d:
+    com.usr.firecheck.fragments.BleFragment this$0 -> a
+com.usr.firecheck.fragments.BleFragment$5 -> com.usr.firecheck.fragments.BleFragment$e:
+    com.usr.firecheck.fragments.BleFragment this$0 -> a
+    void onItemClick(android.view.View,int) -> a
+com.usr.firecheck.fragments.BleFragment$6 -> com.usr.firecheck.fragments.BleFragment$f:
+    com.usr.firecheck.fragments.BleFragment this$0 -> a
+com.usr.firecheck.fragments.BleFragment$6$1 -> com.usr.firecheck.fragments.BleFragment$f$a:
+    android.bluetooth.BluetoothDevice val$device -> a
+    com.usr.firecheck.fragments.BleFragment$6 this$1 -> c
+    int val$rssi -> b
+com.usr.firecheck.fragments.BleFragment$7 -> com.usr.firecheck.fragments.BleFragment$g:
+    com.usr.firecheck.fragments.BleFragment this$0 -> a
+com.usr.firecheck.fragments.BleFragment_ViewBinding -> com.usr.firecheck.fragments.BleFragment_ViewBinding:
+    android.view.View view7f090113 -> c
+    android.view.View view7f090038 -> b
+    com.usr.firecheck.fragments.BleFragment target -> a
+com.usr.firecheck.fragments.BleFragment_ViewBinding$1 -> com.usr.firecheck.fragments.BleFragment_ViewBinding$a:
+    com.usr.firecheck.fragments.BleFragment val$target -> a
+com.usr.firecheck.fragments.BleFragment_ViewBinding$2 -> com.usr.firecheck.fragments.BleFragment_ViewBinding$b:
+    com.usr.firecheck.fragments.BleFragment val$target -> a
+com.usr.firecheck.fragments.DataFragment -> com.usr.firecheck.fragments.DataFragment:
+    java.lang.Runnable runable -> c
+    android.os.Handler handler -> b
+    java.util.List mList -> d
+    java.lang.String sendMoreParameterCMD -> a
+    java.lang.String access$000(com.usr.firecheck.fragments.DataFragment) -> a
+com.usr.firecheck.fragments.DataFragment$1 -> com.usr.firecheck.fragments.DataFragment$a:
+    com.usr.firecheck.fragments.DataFragment this$0 -> a
+com.usr.firecheck.fragments.DataFragment_ViewBinding -> com.usr.firecheck.fragments.DataFragment_ViewBinding:
+    com.usr.firecheck.fragments.DataFragment target -> a
+com.usr.firecheck.fragments.SetFragment -> com.usr.firecheck.fragments.SetFragment:
+    com.usr.firecheck.application.MyApplication mApplication -> f
+    android.os.CountDownTimer mTimer -> g
+    boolean jdqOne -> a
+    java.lang.String zlOne -> c
+    boolean jdqTwo -> b
+    com.usr.firecheck.Utils.DbUtil mDbUtil -> h
+    java.lang.String type -> e
+    java.lang.String zlTwo -> d
+    boolean access$002(com.usr.firecheck.fragments.SetFragment,boolean) -> a
+    android.os.CountDownTimer access$200(com.usr.firecheck.fragments.SetFragment) -> a
+    void dealAddParameter(boolean,boolean,int,java.lang.String) -> a
+    void dealResult(boolean,boolean,java.lang.String,android.widget.TextView,java.lang.String,java.lang.String) -> a
+    java.lang.String getIntToHex(java.lang.String) -> a
+    void hideJDQ() -> a
+    void sendMessage(android.widget.EditText,java.lang.String) -> a
+    boolean access$102(com.usr.firecheck.fragments.SetFragment,boolean) -> b
+    void handleMessage(java.lang.String) -> b
+    void initCb() -> b
+    void sendWriteOrder(android.widget.EditText,java.lang.String) -> b
+    void saveParameter() -> c
+    void setParameter(java.lang.String) -> c
+com.usr.firecheck.fragments.SetFragment$1 -> com.usr.firecheck.fragments.SetFragment$a:
+    com.usr.firecheck.fragments.SetFragment this$0 -> a
+com.usr.firecheck.fragments.SetFragment$2 -> com.usr.firecheck.fragments.SetFragment$b:
+    com.usr.firecheck.fragments.SetFragment this$0 -> a
+com.usr.firecheck.fragments.SetFragment$3 -> com.usr.firecheck.fragments.SetFragment$c:
+    com.usr.firecheck.fragments.SetFragment this$0 -> a
+com.usr.firecheck.fragments.SetFragment$4 -> com.usr.firecheck.fragments.SetFragment$d:
+    com.usr.firecheck.fragments.SetFragment this$0 -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding -> com.usr.firecheck.fragments.SetFragment_ViewBinding:
+    android.view.View view7f09002d -> x
+    android.view.View view7f090027 -> z
+    android.view.View view7f090029 -> p
+    android.view.View view7f090037 -> r
+    android.view.View view7f090034 -> t
+    android.view.View view7f090036 -> v
+    com.usr.firecheck.fragments.SetFragment target -> a
+    android.view.View view7f090030 -> i
+    android.view.View view7f090078 -> k
+    android.view.View view7f0900b4 -> m
+    android.view.View view7f09003a -> o
+    android.view.View view7f0900b1 -> c
+    android.view.View view7f090025 -> B
+    android.view.View view7f0900b0 -> e
+    android.view.View view7f09002f -> g
+    android.view.View view7f090026 -> y
+    android.view.View view7f09002a -> q
+    android.view.View view7f090033 -> s
+    android.view.View view7f090035 -> u
+    android.view.View view7f09002c -> w
+    android.view.View view7f09002e -> h
+    android.view.View view7f09002b -> j
+    android.view.View view7f0900b3 -> l
+    android.view.View view7f090039 -> n
+    android.view.View view7f090024 -> A
+    android.view.View view7f0900b5 -> b
+    android.view.View view7f0900b2 -> d
+    android.view.View view7f090028 -> f
+com.usr.firecheck.fragments.SetFragment_ViewBinding$1 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$k:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$10 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$a:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$11 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$b:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$12 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$c:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$13 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$d:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$14 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$e:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$15 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$f:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$16 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$g:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$17 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$h:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$18 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$i:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$19 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$j:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$2 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$t:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$20 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$l:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$21 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$m:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$22 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$n:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$23 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$o:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$24 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$p:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$25 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$q:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$26 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$r:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$27 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$s:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$3 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$u:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$4 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$v:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$5 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$w:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$6 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$x:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$7 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$y:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$8 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$z:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.fragments.SetFragment_ViewBinding$9 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$a0:
+    com.usr.firecheck.fragments.SetFragment val$target -> a
+com.usr.firecheck.views.CrashHandler -> com.usr.firecheck.d.a:
+    java.util.Map mInfos -> c
+    java.text.DateFormat mDateFormat -> d
+    android.content.Context mContext -> b
+    java.lang.Thread$UncaughtExceptionHandler mExceptionHandler -> a
+    com.usr.firecheck.views.CrashHandler INSTANCE -> e
+    android.content.Context access$000(com.usr.firecheck.views.CrashHandler) -> a
+    void collectDeviceInfo(android.content.Context) -> a
+    com.usr.firecheck.views.CrashHandler getInstance() -> a
+    boolean handleException(java.lang.Throwable) -> a
+    void init(android.content.Context) -> b
+    java.lang.String saveCrashInfo2File(java.lang.Throwable) -> b
+com.usr.firecheck.views.CrashHandler$1 -> com.usr.firecheck.d.a$a:
+    java.lang.Throwable val$pThrowable -> a
+    com.usr.firecheck.views.CrashHandler this$0 -> b
+org.greenrobot.eventbus.AsyncPoster -> org.greenrobot.eventbus.a:
+    org.greenrobot.eventbus.EventBus eventBus -> b
+    org.greenrobot.eventbus.PendingPostQueue queue -> a
+    void enqueue(org.greenrobot.eventbus.Subscription,java.lang.Object) -> a
+org.greenrobot.eventbus.BackgroundPoster -> org.greenrobot.eventbus.b:
+    org.greenrobot.eventbus.EventBus eventBus -> b
+    org.greenrobot.eventbus.PendingPostQueue queue -> a
+    boolean executorRunning -> c
+    void enqueue(org.greenrobot.eventbus.Subscription,java.lang.Object) -> a
+org.greenrobot.eventbus.EventBus -> org.greenrobot.eventbus.c:
+    boolean logNoSubscriberMessages -> m
+    boolean sendSubscriberExceptionEvent -> n
+    org.greenrobot.eventbus.MainThreadSupport mainThreadSupport -> e
+    boolean sendNoSubscriberEvent -> o
+    boolean eventInheritance -> p
+    java.lang.ThreadLocal currentPostingThreadState -> d
+    org.greenrobot.eventbus.SubscriberMethodFinder subscriberMethodFinder -> i
+    boolean throwSubscriberException -> k
+    org.greenrobot.eventbus.AsyncPoster asyncPoster -> h
+    boolean logSubscriberExceptions -> l
+    org.greenrobot.eventbus.Poster mainThreadPoster -> f
+    org.greenrobot.eventbus.Logger logger -> r
+    java.util.Map eventTypesCache -> u
+    java.util.Map subscriptionsByEventType -> a
+    java.util.Map typesBySubscriber -> b
+    java.util.Map stickyEvents -> c
+    java.util.concurrent.ExecutorService executorService -> j
+    org.greenrobot.eventbus.BackgroundPoster backgroundPoster -> g
+    org.greenrobot.eventbus.EventBus defaultInstance -> s
+    org.greenrobot.eventbus.EventBusBuilder DEFAULT_BUILDER -> t
+    int indexCount -> q
+    void addInterfaces(java.util.List,java.lang.Class[]) -> a
+    java.util.concurrent.ExecutorService getExecutorService() -> a
+    void handleSubscriberException(org.greenrobot.eventbus.Subscription,java.lang.Object,java.lang.Throwable) -> a
+    void invokeSubscriber(org.greenrobot.eventbus.PendingPost) -> a
+    void invokeSubscriber(org.greenrobot.eventbus.Subscription,java.lang.Object) -> a
+    java.util.List lookupAllEventTypes(java.lang.Class) -> a
+    void post(java.lang.Object) -> a
+    void postSingleEvent(java.lang.Object,org.greenrobot.eventbus.EventBus$PostingThreadState) -> a
+    boolean postSingleEventForEventType(java.lang.Object,org.greenrobot.eventbus.EventBus$PostingThreadState,java.lang.Class) -> a
+    void postToSubscription(org.greenrobot.eventbus.Subscription,java.lang.Object,boolean) -> a
+    void subscribe(java.lang.Object,org.greenrobot.eventbus.SubscriberMethod) -> a
+    void unsubscribeByEventType(java.lang.Object,java.lang.Class) -> a
+    void checkPostStickyEventToSubscription(org.greenrobot.eventbus.Subscription,java.lang.Object) -> b
+    org.greenrobot.eventbus.Logger getLogger() -> b
+    void register(java.lang.Object) -> b
+    org.greenrobot.eventbus.EventBus getDefault() -> c
+    void unregister(java.lang.Object) -> c
+    boolean isMainThread() -> d
+org.greenrobot.eventbus.EventBus$1 -> org.greenrobot.eventbus.c$a:
+org.greenrobot.eventbus.EventBus$2 -> org.greenrobot.eventbus.c$b:
+    int[] $SwitchMap$org$greenrobot$eventbus$ThreadMode -> a
+org.greenrobot.eventbus.EventBus$PostingThreadState -> org.greenrobot.eventbus.c$c:
+    java.util.List eventQueue -> a
+    org.greenrobot.eventbus.Subscription subscription -> d
+    java.lang.Object event -> e
+    boolean canceled -> f
+    boolean isPosting -> b
+    boolean isMainThread -> c
+org.greenrobot.eventbus.EventBusBuilder -> org.greenrobot.eventbus.d:
+    java.util.concurrent.ExecutorService DEFAULT_EXECUTOR_SERVICE -> m
+    org.greenrobot.eventbus.MainThreadSupport mainThreadSupport -> l
+    org.greenrobot.eventbus.Logger logger -> k
+    java.util.concurrent.ExecutorService executorService -> i
+    boolean throwSubscriberException -> e
+    java.util.List subscriberInfoIndexes -> j
+    boolean eventInheritance -> f
+    boolean ignoreGeneratedIndex -> g
+    boolean strictMethodVerification -> h
+    boolean logSubscriberExceptions -> a
+    boolean logNoSubscriberMessages -> b
+    boolean sendSubscriberExceptionEvent -> c
+    boolean sendNoSubscriberEvent -> d
+    java.lang.Object getAndroidMainLooperOrNull() -> a
+    org.greenrobot.eventbus.Logger getLogger() -> b
+    org.greenrobot.eventbus.MainThreadSupport getMainThreadSupport() -> c
+org.greenrobot.eventbus.HandlerPoster -> org.greenrobot.eventbus.e:
+    org.greenrobot.eventbus.EventBus eventBus -> c
+    int maxMillisInsideHandleMessage -> b
+    org.greenrobot.eventbus.PendingPostQueue queue -> a
+    boolean handlerActive -> d
+    void enqueue(org.greenrobot.eventbus.Subscription,java.lang.Object) -> a
+org.greenrobot.eventbus.Logger -> org.greenrobot.eventbus.f:
+    void log(java.util.logging.Level,java.lang.String) -> a
+    void log(java.util.logging.Level,java.lang.String,java.lang.Throwable) -> a
+org.greenrobot.eventbus.Logger$AndroidLogger -> org.greenrobot.eventbus.f$a:
+    java.lang.String tag -> a
+    boolean ANDROID_LOG_AVAILABLE -> b
+    boolean isAndroidLogAvailable() -> a
+    void log(java.util.logging.Level,java.lang.String) -> a
+    void log(java.util.logging.Level,java.lang.String,java.lang.Throwable) -> a
+    int mapLevel(java.util.logging.Level) -> a
+org.greenrobot.eventbus.Logger$SystemOutLogger -> org.greenrobot.eventbus.f$b:
+    void log(java.util.logging.Level,java.lang.String) -> a
+    void log(java.util.logging.Level,java.lang.String,java.lang.Throwable) -> a
+org.greenrobot.eventbus.MainThreadSupport -> org.greenrobot.eventbus.g:
+    org.greenrobot.eventbus.Poster createPoster(org.greenrobot.eventbus.EventBus) -> a
+    boolean isMainThread() -> a
+org.greenrobot.eventbus.MainThreadSupport$AndroidHandlerMainThreadSupport -> org.greenrobot.eventbus.g$a:
+    android.os.Looper looper -> a
+    org.greenrobot.eventbus.Poster createPoster(org.greenrobot.eventbus.EventBus) -> a
+    boolean isMainThread() -> a
+org.greenrobot.eventbus.NoSubscriberEvent -> org.greenrobot.eventbus.h:
+org.greenrobot.eventbus.PendingPost -> org.greenrobot.eventbus.i:
+    org.greenrobot.eventbus.Subscription subscription -> b
+    org.greenrobot.eventbus.PendingPost next -> c
+    java.util.List pendingPostPool -> d
+    java.lang.Object event -> a
+    org.greenrobot.eventbus.PendingPost obtainPendingPost(org.greenrobot.eventbus.Subscription,java.lang.Object) -> a
+    void releasePendingPost(org.greenrobot.eventbus.PendingPost) -> a
+org.greenrobot.eventbus.PendingPostQueue -> org.greenrobot.eventbus.j:
+    org.greenrobot.eventbus.PendingPost tail -> b
+    org.greenrobot.eventbus.PendingPost head -> a
+    void enqueue(org.greenrobot.eventbus.PendingPost) -> a
+    org.greenrobot.eventbus.PendingPost poll() -> a
+    org.greenrobot.eventbus.PendingPost poll(int) -> a
+org.greenrobot.eventbus.Poster -> org.greenrobot.eventbus.k:
+    void enqueue(org.greenrobot.eventbus.Subscription,java.lang.Object) -> a
+org.greenrobot.eventbus.Subscribe -> org.greenrobot.eventbus.l:
+org.greenrobot.eventbus.SubscriberExceptionEvent -> org.greenrobot.eventbus.m:
+    java.lang.Throwable throwable -> a
+    java.lang.Object causingEvent -> b
+    java.lang.Object causingSubscriber -> c
+org.greenrobot.eventbus.SubscriberMethod -> org.greenrobot.eventbus.n:
+    java.lang.String methodString -> f
+    org.greenrobot.eventbus.ThreadMode threadMode -> b
+    boolean sticky -> e
+    int priority -> d
+    java.lang.reflect.Method method -> a
+    java.lang.Class eventType -> c
+    void checkMethodString() -> a
+org.greenrobot.eventbus.SubscriberMethodFinder -> org.greenrobot.eventbus.o:
+    java.util.List subscriberInfoIndexes -> a
+    java.util.Map METHOD_CACHE -> d
+    org.greenrobot.eventbus.SubscriberMethodFinder$FindState[] FIND_STATE_POOL -> e
+    boolean strictMethodVerification -> b
+    boolean ignoreGeneratedIndex -> c
+    java.util.List findSubscriberMethods(java.lang.Class) -> a
+    void findUsingReflectionInSingleClass(org.greenrobot.eventbus.SubscriberMethodFinder$FindState) -> a
+    org.greenrobot.eventbus.SubscriberMethodFinder$FindState prepareFindState() -> a
+    java.util.List findUsingInfo(java.lang.Class) -> b
+    java.util.List getMethodsAndRelease(org.greenrobot.eventbus.SubscriberMethodFinder$FindState) -> b
+    java.util.List findUsingReflection(java.lang.Class) -> c
+    org.greenrobot.eventbus.meta.SubscriberInfo getSubscriberInfo(org.greenrobot.eventbus.SubscriberMethodFinder$FindState) -> c
+org.greenrobot.eventbus.SubscriberMethodFinder$FindState -> org.greenrobot.eventbus.o$a:
+    java.util.List subscriberMethods -> a
+    java.util.Map anyMethodByEventType -> b
+    java.lang.Class clazz -> e
+    java.util.Map subscriberClassByMethodKey -> c
+    boolean skipSuperClasses -> f
+    org.greenrobot.eventbus.meta.SubscriberInfo subscriberInfo -> g
+    java.lang.StringBuilder methodKeyBuilder -> d
+    boolean checkAdd(java.lang.reflect.Method,java.lang.Class) -> a
+    void initForSubscriber(java.lang.Class) -> a
+    void moveToSuperclass() -> a
+    boolean checkAddWithMethodSignature(java.lang.reflect.Method,java.lang.Class) -> b
+    void recycle() -> b
+org.greenrobot.eventbus.Subscription -> org.greenrobot.eventbus.p:
+    org.greenrobot.eventbus.SubscriberMethod subscriberMethod -> b
+    java.lang.Object subscriber -> a
+    boolean active -> c
+org.greenrobot.eventbus.meta.SubscriberInfo -> org.greenrobot.eventbus.q.a:
+    org.greenrobot.eventbus.SubscriberMethod[] getSubscriberMethods() -> a
+    java.lang.Class getSubscriberClass() -> b
+    org.greenrobot.eventbus.meta.SubscriberInfo getSuperSubscriberInfo() -> c
+org.greenrobot.eventbus.meta.SubscriberInfoIndex -> org.greenrobot.eventbus.q.b:
+    org.greenrobot.eventbus.meta.SubscriberInfo getSubscriberInfo(java.lang.Class) -> a
+org.greenrobot.eventbus.util.ErrorDialogConfig -> org.greenrobot.eventbus.util.a:
+    org.greenrobot.eventbus.EventBus getEventBus() -> a
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory -> org.greenrobot.eventbus.util.b:
+    org.greenrobot.eventbus.util.ErrorDialogConfig config -> a
+org.greenrobot.eventbus.util.ErrorDialogFragments -> org.greenrobot.eventbus.util.ErrorDialogFragments:
+    java.lang.Class EVENT_TYPE_ON_CLICK -> b
+    int ERROR_DIALOG_ICON -> a
+    android.app.Dialog createDialog(android.content.Context,android.os.Bundle,android.content.DialogInterface$OnClickListener) -> a
+    void handleOnClick(android.content.DialogInterface,int,android.app.Activity,android.os.Bundle) -> a
+org.greenrobot.eventbus.util.ErrorDialogManager -> org.greenrobot.eventbus.util.ErrorDialogManager:
+    org.greenrobot.eventbus.util.ErrorDialogFragmentFactory factory -> a
+org.greenrobot.eventbus.util.ErrorDialogManager$SupportManagerFragment -> org.greenrobot.eventbus.util.ErrorDialogManager$SupportManagerFragment:
+    org.greenrobot.eventbus.EventBus eventBus -> a
+    boolean skipRegisterOnNextResume -> b
+org.greenrobot.greendao.AbstractDao -> org.greenrobot.greendao.a:
+org.greenrobot.greendao.AbstractDaoMaster -> org.greenrobot.greendao.b:
+org.greenrobot.greendao.AbstractDaoSession -> org.greenrobot.greendao.c:
+org.greenrobot.greendao.DaoLog -> org.greenrobot.greendao.d:
+    int d(java.lang.String) -> a
+    int e(java.lang.String,java.lang.Throwable) -> a
+    int i(java.lang.String) -> b
+    int i(java.lang.String,java.lang.Throwable) -> b
+    int w(java.lang.String) -> c
+    int w(java.lang.String,java.lang.Throwable) -> c
+org.greenrobot.greendao.InternalQueryDaoAccess -> org.greenrobot.greendao.e:
+    org.greenrobot.greendao.AbstractDao dao -> a
+    java.util.List loadAllAndCloseCursor(android.database.Cursor) -> a
+    java.lang.Object loadUniqueAndCloseCursor(android.database.Cursor) -> b
+org.greenrobot.greendao.Property -> org.greenrobot.greendao.f:
+    java.lang.Class type -> b
+    boolean primaryKey -> c
+    int ordinal -> a
+    java.lang.String columnName -> d
+org.greenrobot.greendao.async.AsyncOperation -> org.greenrobot.greendao.async.AsyncOperation:
+    java.lang.Object result -> i
+    long timeStarted -> f
+    int mergedOperationsCount -> j
+    org.greenrobot.greendao.async.AsyncOperation$OperationType type -> a
+    java.lang.Object parameter -> d
+    long timeCompleted -> g
+    java.lang.Throwable throwable -> h
+    int flags -> e
+    org.greenrobot.greendao.AbstractDao dao -> b
+    org.greenrobot.greendao.database.Database database -> c
+    org.greenrobot.greendao.database.Database getDatabase() -> a
+    boolean isMergeableWith(org.greenrobot.greendao.async.AsyncOperation) -> a
+    boolean isFailed() -> b
+    boolean isMergeTx() -> c
+    void reset() -> d
+    void setCompleted() -> e
+org.greenrobot.greendao.async.AsyncOperation$OperationType -> org.greenrobot.greendao.async.AsyncOperation$OperationType:
+    org.greenrobot.greendao.async.AsyncOperation$OperationType[] $VALUES -> a
+org.greenrobot.greendao.async.AsyncOperationExecutor -> org.greenrobot.greendao.async.a:
+    org.greenrobot.greendao.async.AsyncOperationListener listenerMainThread -> d
+    int countOperationsEnqueued -> f
+    int countOperationsCompleted -> g
+    java.util.concurrent.BlockingQueue queue -> a
+    int waitForMergeMillis -> e
+    int maxOperationCountToMerge -> b
+    org.greenrobot.greendao.async.AsyncOperationListener listener -> c
+    android.os.Handler handlerMainThread -> h
+    void executeOperation(org.greenrobot.greendao.async.AsyncOperation) -> a
+    void mergeTxAndExecute(org.greenrobot.greendao.async.AsyncOperation,org.greenrobot.greendao.async.AsyncOperation) -> a
+    void executeOperationAndPostCompleted(org.greenrobot.greendao.async.AsyncOperation) -> b
+    void executeTransactionCallable(org.greenrobot.greendao.async.AsyncOperation) -> c
+    void executeTransactionRunnable(org.greenrobot.greendao.async.AsyncOperation) -> d
+    void handleOperationCompleted(org.greenrobot.greendao.async.AsyncOperation) -> e
+org.greenrobot.greendao.async.AsyncOperationExecutor$1 -> org.greenrobot.greendao.async.a$a:
+    int[] $SwitchMap$org$greenrobot$greendao$async$AsyncOperation$OperationType -> a
+org.greenrobot.greendao.async.AsyncOperationListener -> org.greenrobot.greendao.async.b:
+    void onAsyncOperationCompleted(org.greenrobot.greendao.async.AsyncOperation) -> a
+org.greenrobot.greendao.async.AsyncSession -> org.greenrobot.greendao.async.c:
+org.greenrobot.greendao.database.Database -> org.greenrobot.greendao.g.a:
+    void execSQL(java.lang.String) -> a
+    boolean isDbLockedByCurrentThread() -> a
+    android.database.Cursor rawQuery(java.lang.String,java.lang.String[]) -> a
+    org.greenrobot.greendao.database.DatabaseStatement compileStatement(java.lang.String) -> b
+    void endTransaction() -> b
+    void beginTransaction() -> c
+    void setTransactionSuccessful() -> d
+    java.lang.Object getRawDatabase() -> e
+org.greenrobot.greendao.database.DatabaseOpenHelper -> org.greenrobot.greendao.g.b:
+org.greenrobot.greendao.database.DatabaseOpenHelper$EncryptedHelper -> org.greenrobot.greendao.g.b$a:
+    org.greenrobot.greendao.database.Database wrap(net.sqlcipher.database.SQLiteDatabase) -> a
+org.greenrobot.greendao.database.DatabaseStatement -> org.greenrobot.greendao.g.c:
+    void bindLong(int,long) -> a
+    void bindString(int,java.lang.String) -> a
+    long simpleQueryForLong() -> a
+    void clearBindings() -> b
+    java.lang.Object getRawStatement() -> c
+    void execute() -> d
+    long executeInsert() -> e
+org.greenrobot.greendao.database.EncryptedDatabase -> org.greenrobot.greendao.g.d:
+    net.sqlcipher.database.SQLiteDatabase delegate -> a
+    void execSQL(java.lang.String) -> a
+    boolean isDbLockedByCurrentThread() -> a
+    android.database.Cursor rawQuery(java.lang.String,java.lang.String[]) -> a
+    org.greenrobot.greendao.database.DatabaseStatement compileStatement(java.lang.String) -> b
+    void endTransaction() -> b
+    void beginTransaction() -> c
+    void setTransactionSuccessful() -> d
+    java.lang.Object getRawDatabase() -> e
+org.greenrobot.greendao.database.EncryptedDatabaseStatement -> org.greenrobot.greendao.g.e:
+    net.sqlcipher.database.SQLiteStatement delegate -> a
+    void bindLong(int,long) -> a
+    void bindString(int,java.lang.String) -> a
+    long simpleQueryForLong() -> a
+    void clearBindings() -> b
+    java.lang.Object getRawStatement() -> c
+    void execute() -> d
+    long executeInsert() -> e
+org.greenrobot.greendao.database.StandardDatabase -> org.greenrobot.greendao.g.f:
+    android.database.sqlite.SQLiteDatabase delegate -> a
+    void execSQL(java.lang.String) -> a
+    boolean isDbLockedByCurrentThread() -> a
+    android.database.Cursor rawQuery(java.lang.String,java.lang.String[]) -> a
+    org.greenrobot.greendao.database.DatabaseStatement compileStatement(java.lang.String) -> b
+    void endTransaction() -> b
+    void beginTransaction() -> c
+    void setTransactionSuccessful() -> d
+    java.lang.Object getRawDatabase() -> e
+org.greenrobot.greendao.database.StandardDatabaseStatement -> org.greenrobot.greendao.g.g:
+    android.database.sqlite.SQLiteStatement delegate -> a
+    void bindLong(int,long) -> a
+    void bindString(int,java.lang.String) -> a
+    long simpleQueryForLong() -> a
+    void clearBindings() -> b
+    java.lang.Object getRawStatement() -> c
+    void execute() -> d
+    long executeInsert() -> e
+org.greenrobot.greendao.identityscope.IdentityScope -> org.greenrobot.greendao.identityscope.a:
+    java.lang.Object getNoLock(java.lang.Object) -> a
+    void putNoLock(java.lang.Object,java.lang.Object) -> a
+    void remove(java.lang.Iterable) -> a
+    void reserveRoom(int) -> a
+    void unlock() -> a
+    boolean detach(java.lang.Object,java.lang.Object) -> b
+    void lock() -> b
+org.greenrobot.greendao.identityscope.IdentityScopeLong -> org.greenrobot.greendao.identityscope.b:
+    org.greenrobot.greendao.internal.LongHashMap map -> a
+    java.util.concurrent.locks.ReentrantLock lock -> b
+    boolean detach(java.lang.Long,java.lang.Object) -> a
+    java.lang.Object get(java.lang.Long) -> a
+    java.lang.Object get2(long) -> a
+    java.lang.Object getNoLock(java.lang.Object) -> a
+    void put2(long,java.lang.Object) -> a
+    void putNoLock(java.lang.Object,java.lang.Object) -> a
+    void remove(java.lang.Iterable) -> a
+    void reserveRoom(int) -> a
+    void unlock() -> a
+    boolean detach(java.lang.Object,java.lang.Object) -> b
+    java.lang.Object get2NoLock(long) -> b
+    java.lang.Object getNoLock(java.lang.Long) -> b
+    void lock() -> b
+    void put(java.lang.Long,java.lang.Object) -> b
+    void put2NoLock(long,java.lang.Object) -> b
+    void putNoLock(java.lang.Long,java.lang.Object) -> c
+    void remove(java.lang.Long) -> c
+org.greenrobot.greendao.identityscope.IdentityScopeObject -> org.greenrobot.greendao.identityscope.c:
+    java.util.concurrent.locks.ReentrantLock lock -> b
+    java.util.HashMap map -> a
+    java.lang.Object getNoLock(java.lang.Object) -> a
+    void putNoLock(java.lang.Object,java.lang.Object) -> a
+    void remove(java.lang.Iterable) -> a
+    void reserveRoom(int) -> a
+    void unlock() -> a
+    boolean detach(java.lang.Object,java.lang.Object) -> b
+    void lock() -> b
+org.greenrobot.greendao.identityscope.IdentityScopeType -> org.greenrobot.greendao.identityscope.IdentityScopeType:
+    org.greenrobot.greendao.identityscope.IdentityScopeType[] $VALUES -> a
+org.greenrobot.greendao.internal.DaoConfig -> org.greenrobot.greendao.h.a:
+    org.greenrobot.greendao.Property[] properties -> c
+    org.greenrobot.greendao.internal.TableStatements statements -> i
+    org.greenrobot.greendao.identityscope.IdentityScope identityScope -> j
+    java.lang.String[] pkColumns -> e
+    java.lang.String[] allColumns -> d
+    java.lang.String[] nonPkColumns -> f
+    boolean keyIsNumeric -> h
+    java.lang.String tablename -> b
+    org.greenrobot.greendao.database.Database db -> a
+    org.greenrobot.greendao.Property pkProperty -> g
+    void clearIdentityScope() -> a
+    void initIdentityScope(org.greenrobot.greendao.identityscope.IdentityScopeType) -> a
+    org.greenrobot.greendao.Property[] reflectProperties(java.lang.Class) -> a
+    org.greenrobot.greendao.identityscope.IdentityScope getIdentityScope() -> b
+org.greenrobot.greendao.internal.FastCursor -> org.greenrobot.greendao.h.b:
+    android.database.CursorWindow window -> a
+    int position -> b
+    int count -> c
+org.greenrobot.greendao.internal.LongHashMap -> org.greenrobot.greendao.h.c:
+    int size -> d
+    int capacity -> b
+    org.greenrobot.greendao.internal.LongHashMap$Entry[] table -> a
+    int threshold -> c
+    void clear() -> a
+    java.lang.Object get(long) -> a
+    java.lang.Object put(long,java.lang.Object) -> a
+    void reserveRoom(int) -> a
+    java.lang.Object remove(long) -> b
+    void setCapacity(int) -> b
+org.greenrobot.greendao.internal.LongHashMap$Entry -> org.greenrobot.greendao.h.c$a:
+    java.lang.Object value -> b
+    long key -> a
+    org.greenrobot.greendao.internal.LongHashMap$Entry next -> c
+org.greenrobot.greendao.internal.SqlUtils -> org.greenrobot.greendao.h.d:
+    java.lang.StringBuilder appendColumn(java.lang.StringBuilder,java.lang.String) -> a
+    java.lang.StringBuilder appendColumn(java.lang.StringBuilder,java.lang.String,java.lang.String) -> a
+    java.lang.StringBuilder appendColumns(java.lang.StringBuilder,java.lang.String,java.lang.String[]) -> a
+    java.lang.StringBuilder appendColumns(java.lang.StringBuilder,java.lang.String[]) -> a
+    java.lang.StringBuilder appendPlaceholders(java.lang.StringBuilder,int) -> a
+    java.lang.String createSqlCount(java.lang.String) -> a
+    java.lang.String createSqlDelete(java.lang.String,java.lang.String[]) -> a
+    java.lang.String createSqlInsert(java.lang.String,java.lang.String,java.lang.String[]) -> a
+    java.lang.String createSqlSelect(java.lang.String,java.lang.String,java.lang.String[],boolean) -> a
+    java.lang.String createSqlUpdate(java.lang.String,java.lang.String[],java.lang.String[]) -> a
+    java.lang.StringBuilder appendColumnsEqValue(java.lang.StringBuilder,java.lang.String,java.lang.String[]) -> b
+    java.lang.StringBuilder appendColumnsEqualPlaceholders(java.lang.StringBuilder,java.lang.String[]) -> b
+org.greenrobot.greendao.internal.TableStatements -> org.greenrobot.greendao.h.e:
+    org.greenrobot.greendao.database.DatabaseStatement countStatement -> i
+    org.greenrobot.greendao.database.DatabaseStatement deleteStatement -> h
+    org.greenrobot.greendao.database.DatabaseStatement updateStatement -> g
+    java.lang.String selectByKey -> k
+    org.greenrobot.greendao.database.DatabaseStatement insertOrReplaceStatement -> f
+    java.lang.String selectAll -> j
+    org.greenrobot.greendao.database.DatabaseStatement insertStatement -> e
+    java.lang.String selectByRowId -> l
+    java.lang.String[] pkColumns -> d
+    java.lang.String tablename -> b
+    java.lang.String[] allColumns -> c
+    org.greenrobot.greendao.database.Database db -> a
+    org.greenrobot.greendao.database.DatabaseStatement getCountStatement() -> a
+    org.greenrobot.greendao.database.DatabaseStatement getDeleteStatement() -> b
+    org.greenrobot.greendao.database.DatabaseStatement getInsertOrReplaceStatement() -> c
+    org.greenrobot.greendao.database.DatabaseStatement getInsertStatement() -> d
+    java.lang.String getSelectAll() -> e
+    java.lang.String getSelectByKey() -> f
+    java.lang.String getSelectByRowId() -> g
+    org.greenrobot.greendao.database.DatabaseStatement getUpdateStatement() -> h
+org.greenrobot.greendao.query.AbstractQuery -> org.greenrobot.greendao.i.a:
+    java.lang.Thread ownerThread -> e
+    org.greenrobot.greendao.InternalQueryDaoAccess daoAccess -> b
+    java.lang.String[] parameters -> d
+    java.lang.String sql -> c
+    org.greenrobot.greendao.AbstractDao dao -> a
+    void checkThread() -> a
+    java.lang.String[] toStringArray(java.lang.Object[]) -> a
+org.greenrobot.greendao.query.AbstractQueryData -> org.greenrobot.greendao.i.b:
+    java.util.Map queriesForThreads -> d
+    java.lang.String sql -> a
+    org.greenrobot.greendao.AbstractDao dao -> b
+    java.lang.String[] initialValues -> c
+    org.greenrobot.greendao.query.AbstractQuery createQuery() -> a
+    org.greenrobot.greendao.query.AbstractQuery forCurrentThread(org.greenrobot.greendao.query.AbstractQuery) -> a
+    org.greenrobot.greendao.query.AbstractQuery forCurrentThread() -> b
+    void gc() -> c
+org.greenrobot.greendao.query.AbstractQueryWithLimit -> org.greenrobot.greendao.i.c:
+org.greenrobot.greendao.query.Query -> org.greenrobot.greendao.i.d:
+    org.greenrobot.greendao.query.Query$QueryData queryData -> f
+    org.greenrobot.greendao.query.Query create(org.greenrobot.greendao.AbstractDao,java.lang.String,java.lang.Object[],int,int) -> a
+    org.greenrobot.greendao.query.Query internalCreate(org.greenrobot.greendao.AbstractDao,java.lang.String,java.lang.Object[]) -> a
+    org.greenrobot.greendao.query.Query forCurrentThread() -> b
+    java.util.List list() -> c
+    java.lang.Object unique() -> d
+org.greenrobot.greendao.query.Query$1 -> org.greenrobot.greendao.i.d$a:
+org.greenrobot.greendao.query.Query$QueryData -> org.greenrobot.greendao.i.d$b:
+    int offsetPosition -> f
+    int limitPosition -> e
+    org.greenrobot.greendao.query.AbstractQuery createQuery() -> a
+    org.greenrobot.greendao.query.Query createQuery() -> a
+org.greenrobot.greendao.query.QueryBuilder -> org.greenrobot.greendao.i.e:
+    org.greenrobot.greendao.query.QueryBuilder internalCreate(org.greenrobot.greendao.AbstractDao) -> a
+org.greenrobot.greendao.query.WhereCollector -> org.greenrobot.greendao.i.f:
+org.greenrobot.greendao.rx.RxBase -> org.greenrobot.greendao.j.a:
+org.greenrobot.greendao.rx.RxDao -> org.greenrobot.greendao.j.b:
+org.greenrobot.greendao.rx.RxTransaction -> org.greenrobot.greendao.j.c:

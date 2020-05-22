@@ -160,6 +160,12 @@ public class CRC {
                 }
             }
         }
-        return Integer.toHexString(CRC).toUpperCase();
+        String s = Integer.toHexString(CRC).toUpperCase();
+        if (s.length()==3){
+            return "0".concat(s);
+        }else if (s.length() == 2){
+            return "00".concat(s);
+        }
+        return s;
     }
 }

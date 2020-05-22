@@ -492,8 +492,8 @@ freemarker.ext.beans.ClassChangeNotifier
 freemarker.ext.rhino.RhinoScriptableModel
 freemarker.ext.beans.OverloadedNumberUtil$FloatOrInteger
 org.greenrobot.greendao.rx.RxDao$23
-freemarker.debug.impl.DebuggerService$NoOpDebuggerService
 freemarker.ext.beans.BeansWrapper$1
+freemarker.debug.impl.DebuggerService$NoOpDebuggerService
 freemarker.template.utility.ClassUtil
 freemarker.ext.beans.BeansWrapperBuilder$BeansWrapperFactory
 freemarker.ext.beans.MaybeEmptyCallableMemberDescriptor

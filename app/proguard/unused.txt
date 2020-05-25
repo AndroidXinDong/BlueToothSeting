@@ -1,5 +1,3 @@
-com.usr.firecheck.fragments.DataFragment:
-    public static com.usr.firecheck.fragments.DataFragment getInstance()
 org.greenrobot.eventbus.util.ErrorDialogFragments:
     public void <init>()
 freemarker.core.BuiltInsForMultipleTypes$is_directiveBI
@@ -492,8 +490,8 @@ freemarker.ext.beans.ClassChangeNotifier
 freemarker.ext.rhino.RhinoScriptableModel
 freemarker.ext.beans.OverloadedNumberUtil$FloatOrInteger
 org.greenrobot.greendao.rx.RxDao$23
-freemarker.ext.beans.BeansWrapper$1
 freemarker.debug.impl.DebuggerService$NoOpDebuggerService
+freemarker.ext.beans.BeansWrapper$1
 freemarker.template.utility.ClassUtil
 freemarker.ext.beans.BeansWrapperBuilder$BeansWrapperFactory
 freemarker.ext.beans.MaybeEmptyCallableMemberDescriptor
@@ -1694,6 +1692,9 @@ freemarker.core.BuiltInsForStringsBasic$ends_withBI$BIMethod
 freemarker.core.BuiltInsForStringsEncoding$AbstractUrlBIResult
 freemarker.core.LocalContext
 freemarker.ext.dom.NodeListModel$1
+com.usr.firecheck.MainActivity:
+    void startAnim()
+    void stopAnim()
 freemarker.cache.ClassTemplateLoader
 freemarker.core.BuiltInsForSequences$seq_index_ofBI$BIMethod
 freemarker.cache.CacheStorage
@@ -1875,6 +1876,7 @@ freemarker.core.BuiltInsForStringsEncoding$xmlBI
 freemarker.ext.jdom.NodeListModel$DescendantOp
 com.usr.firecheck.fragments.DataFragment:
     private java.lang.String TAG
+    private java.lang.Runnable LOAD_DATA
 com.usr.firecheck.fragments.SetFragment_ViewBinding$11:
     final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
 com.usr.firecheck.fragments.SetFragment_ViewBinding$24:
@@ -1952,6 +1954,8 @@ com.usr.firecheck.Utils.DataUtils:
     public static java.lang.String CMD_PURPLE_CODE
     public static java.lang.String CMD_RED_CODE
     public static java.lang.String CMD_LIGHT_CODE
+com.usr.firecheck.fragments.BleFragment:
+    private java.lang.String TAG
 org.greenrobot.greendao.rx.RxBase:
     protected final rx.Scheduler scheduler
 com.usr.firecheck.fragments.BleFragment_ViewBinding$2:
@@ -2016,15 +2020,16 @@ com.usr.firecheck.Utils.GattAttributes:
 com.usr.firecheck.BlueToothLeService.BluetoothLeService:
     public boolean mBound
     private static java.lang.String mBluetoothDeviceName
+    private static java.lang.String TAG
 com.usr.firecheck.fragments.SetFragment_ViewBinding$23:
     final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
 com.usr.firecheck.fragments.SetFragment_ViewBinding$10:
     final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
-com.usr.firecheck.MainActivity:
-    private java.lang.String TAG
 com.usr.firecheck.fragments.SetFragment_ViewBinding$8:
     final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
 com.usr.firecheck.fragments.SetFragment_ViewBinding$18:
     final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0
+com.usr.firecheck.fragments.DataFragment$1:
+    final synthetic com.usr.firecheck.fragments.DataFragment this$0
 com.usr.firecheck.fragments.SetFragment_ViewBinding$19:
     final synthetic com.usr.firecheck.fragments.SetFragment_ViewBinding this$0

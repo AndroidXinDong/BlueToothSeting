@@ -14,13 +14,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +52,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -63,6 +63,8 @@ import butterknife.OnClick;
  **/
 public class BleFragment extends Fragment implements View.OnClickListener {
     private static BluetoothAdapter mBluetoothAdapter;
+    @BindView(R.id.spinner_ble)
+    Spinner spinnerBle;
     private Handler hander = new Handler();
     private MaterialDialog progressDialog;
     @BindView(R.id.fab_search)
@@ -80,8 +82,6 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     TextView et_machine;
     @BindView(R.id.et_bleName)
     TextView et_bleName;
-    @BindView(R.id.et_blePass)
-    TextView et_blePass;
     @BindView(R.id.et_machineDate)
     TextView et_machineDate;
     @BindView(R.id.tv_version)
@@ -165,14 +165,12 @@ public class BleFragment extends Fragment implements View.OnClickListener {
     public void setCmd() {
         boolean currentModel = myApplication.isCurrentModel();
         if (currentModel) {
-            String trim = et_machine.getText().toString().trim();
-            int length = trim.length();
-            if (length == 14) {
-                byte[] bytes = DataUtils.sendWriteIDCMD(trim);
-                writeOption(bytes);
-            } else {
-                Toast.makeText(myApplication, "请输入14位标准长度ID", Toast.LENGTH_SHORT).show();
-            }
+            String machineName = et_machine.getText().toString().trim()+",";
+            String bleName = et_bleName.getText().toString().trim()+",";
+            String date = et_machineDate.getText().toString().trim()+",";
+
+            byte[] bytes = DataUtils.sendWriteIDCMD(machineName.concat(bleName+date+type));
+            writeOption(bytes);
         } else {
             Toast.makeText(myApplication, "当前为测量模式，请切换维护模式操作", Toast.LENGTH_SHORT).show();
         }
@@ -184,12 +182,14 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         byte[] bytes = DataUtils.sendReadVersionCMD();
         writeOption(bytes);
     }
-
+    private String type;
+    private String array [];
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ble, container, false);
         ButterKnife.bind(BleFragment.this, view);
+        array = getContext().getResources().getStringArray(R.array.machineType);
         myApplication = (MyApplication) getActivity().getApplication();
         //检查蓝牙
         ll_ble.setVisibility(View.GONE);
@@ -198,6 +198,18 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         initEvent();//初始化事件
         initbleFragment();
         EventBus.getDefault().register(BleFragment.this);
+        type = array[0];
+        spinnerBle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                type = array[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         return view;
     }
 
@@ -449,11 +461,14 @@ public class BleFragment extends Fragment implements View.OnClickListener {
             fabSearch.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
             ll_ble.setVisibility(View.VISIBLE);
+            ll_ble.requestFocus();
+            ll_ble.requestFocusFromTouch();
             et_bleName.setText(currentDevName);
             et_machineDate.setText(Utils.GetDate());
             myApplication.setConnect(true);
-            msgHandler.sendEmptyMessageDelayed(22, 2000);
-            msgHandler.sendEmptyMessageDelayed(23, 3000);
+            progressDialog.show();
+            msgHandler.sendEmptyMessageDelayed(22, 1000);
+            msgHandler.sendEmptyMessageDelayed(23, 2000);
         } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
             hander.removeCallbacks(dismssDialogRunnable);
             progressDialog.dismiss();
@@ -509,7 +524,7 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                 service = gattService;
             }
             List<BluetoothGattCharacteristic> characteristics = service.getCharacteristics();
-            Thread.sleep(1000);
+            Thread.sleep(100);
             for (BluetoothGattCharacteristic c : characteristics) {
                 String sc = c.getUuid().toString();
                 if (sc.equals(GattAttributes.USR_NOTIFYCHARACTER)) {
@@ -521,8 +536,11 @@ public class BleFragment extends Fragment implements View.OnClickListener {
                     continue;
                 }
             }
-            Thread.sleep(1000);
+            Thread.sleep(100);
             BluetoothLeService.setCharacteristicNotification(notifyCharacteristic, true);
+            if (progressDialog!=null){
+                progressDialog.dismiss();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -544,10 +562,9 @@ public class BleFragment extends Fragment implements View.OnClickListener {
         if (writeCharacteristic != null) {
             writeCharacteristic(writeCharacteristic, hexString);
         } else {
-            BluetoothGattCharacteristic writeCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_WRITECHARACTER),-1,-1);
+            BluetoothGattCharacteristic writeCharacteristic = new BluetoothGattCharacteristic(UUID.fromString(GattAttributes.USR_WRITECHARACTER), -1, -1);
             prepareGattServices(BluetoothLeService.getSupportedGattServices());
             writeCharacteristic(writeCharacteristic, hexString);
-            Log.i(TAG, "创建writeCharacteristic");
         }
 
     }

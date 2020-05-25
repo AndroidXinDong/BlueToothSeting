@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:fitsSystemWindows="true">
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        style="@style/AVLoadingIndicatorView.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/white"
+        android:visibility="gone"
+        app:indicatorColor="#00aeef"
+        app:indicatorName="BallSpinFadeLoaderIndicator" />
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"

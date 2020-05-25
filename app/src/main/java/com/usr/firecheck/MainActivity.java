@@ -6,11 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -23,15 +19,21 @@ import com.usr.firecheck.bean.MessageEvent;
 import com.usr.firecheck.fragments.BleFragment;
 import com.usr.firecheck.fragments.DataFragment;
 import com.usr.firecheck.fragments.SetFragment;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MainActivity extends MyBaseActivity implements View.OnClickListener {
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView avi;
     private MyApplication mMyApplication;
     @BindView(R.id.radiobutton1)
     RadioButton radiobutton1;
@@ -60,7 +62,7 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
         if (mBleFragment == null) {
             mBleFragment = new BleFragment();
         }
-        addFragment(mBleFragment);
+        addFragment(mBleFragment, "ble");
     }
 
 
@@ -82,7 +84,7 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
                     if (mDataFragment == null) {
                         mDataFragment = new DataFragment();
                     }
-                    addFragment(mDataFragment);
+                    addFragment(mDataFragment, "data");
                     if (isChoose == 0) {
                         EventBus.getDefault().post(new MessageEvent("start", false));
                         isChoose++;
@@ -92,7 +94,6 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
                     radiobutton1.setChecked(true);
                     Toast.makeText(mMyApplication, "请连接蓝牙之后再操作", Toast.LENGTH_SHORT).show();
                 }
-
                 break;
             case R.id.radiobutton3:
                 if (connect) {
@@ -101,7 +102,7 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
                     if (mSetFragment == null) {
                         mSetFragment = new SetFragment();
                     }
-                    addFragment(mSetFragment);
+                    addFragment(mSetFragment, "set");
                 } else {
                     radiobutton1.setChecked(true);
                     radiobutton3.setChecked(false);
@@ -118,7 +119,7 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
         if (mBleFragment == null) {
             mBleFragment = new BleFragment();
         }
-        addFragment(mBleFragment);
+        addFragment(mBleFragment, "ble");
         if (connect) {
             EventBus.getDefault().post(new MessageEvent("stop", false));
         }
@@ -127,27 +128,31 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
     /**
      * fragment的切换 不通过replace的方式将fragment进行替换，禁止fragment页面重新加载
      */
-    private void addFragment(Fragment fragment) {
+    private void addFragment(Fragment fragment, String tag) {
         try {
             FragmentTransaction fragmentTransaction = mManager.beginTransaction();
             if (currentFragment == null) {
-                fragmentTransaction.add(R.id.ll_tihuan, fragment).commit();
+                fragmentTransaction.add(R.id.ll_tihuan, fragment, tag).commit();
                 currentFragment = fragment;
             }
             if (currentFragment != fragment) {
+                Fragment fragmentByTag = mManager.findFragmentByTag(tag);
                 // 先判断是否被add过
-                if (!fragment.isAdded()) {
+                if (!fragment.isAdded() && fragmentByTag == null) {
                     // 隐藏当前的fragment，add下一个到Activity中
-                    fragmentTransaction.hide(currentFragment).add(R.id.ll_tihuan, fragment).commit();
+                    fragmentTransaction.hide(currentFragment).add(R.id.ll_tihuan, fragment, tag).commit();
                 } else {
                     // 隐藏当前的fragment，显示下一个
                     fragmentTransaction.hide(currentFragment).show(fragment).commit();
                 }
                 currentFragment = fragment;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
+            Log.i(TAG, "addFragment: " + e.getMessage());
         }
+
     }
 
     private String TAG = "Tag";
@@ -187,7 +192,7 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
     public void getMessageEvent(MessageEvent event) {
         if (event != null) {
             String message = event.getMessage();
-            if ("1".equals(message)){
+            if ("1".equals(message)) {
 //                Log.i(TAG, "getMessageEvent: "+message);
                 defaultChoose(true);
                 radiobutton1.setChecked(true);
@@ -200,5 +205,17 @@ public class MainActivity extends MyBaseActivity implements View.OnClickListener
         super.onDestroy();
         unregisterReceiver(mReceiver);
         EventBus.getDefault().unregister(this);
+    }
+
+    void startAnim() {
+        avi.setVisibility(View.VISIBLE);
+        avi.show();
+
+    }
+
+    void stopAnim() {
+        avi.setVisibility(View.GONE);
+        avi.hide();
+
     }
 }

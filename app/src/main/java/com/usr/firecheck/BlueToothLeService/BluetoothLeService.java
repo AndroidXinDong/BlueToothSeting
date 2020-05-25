@@ -113,7 +113,7 @@ public class BluetoothLeService extends Service {
                         broadcastConnectionUpdate(intentAction);
                     }
                 } else {
-                    Log.i(TAG, "state: GATT_FAILED " + status);
+//                    Log.i(TAG, "state: GATT_FAILED " + status);
                     intentAction = GATT_STATUS_133;
                     mConnectionState = STATE_DISCONNECTED;
                     broadcastConnectionUpdate(intentAction);
@@ -149,7 +149,7 @@ public class BluetoothLeService extends Service {
         public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 UUID descriptorUUID = descriptor.getUuid();
-                Log.i(TAG, "onDescriptorRead: "+descriptorUUID.toString());
+//                Log.i(TAG, "onDescriptorRead: "+descriptorUUID.toString());
                 final Intent intent = new Intent(ACTION_DATA_AVAILABLE);
                 Bundle mBundle = new Bundle();
                 // Putting the byte value read for GATT Db
@@ -215,7 +215,7 @@ public class BluetoothLeService extends Service {
             // GATT Characteristic read (读操作会调用该方法)
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 UUID charUuid = characteristic.getUuid();
-                Log.i(TAG, "onCharacteristicRead: "+charUuid.toString());
+//                Log.i(TAG, "onCharacteristicRead: "+charUuid.toString());
                 final Intent intent = new Intent(ACTION_DATA_AVAILABLE);
                 Bundle mBundle = new Bundle();
                 mBundle.putByteArray(Constants.EXTRA_BYTE_VALUE, characteristic.getValue());
@@ -385,7 +385,7 @@ public class BluetoothLeService extends Service {
         @Override
         public void onMtuChanged(BluetoothGatt gatt, int mtu, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                Log.i(TAG, "onMtuChanged: 设置成功");
+//                Log.i(TAG, "onMtuChanged: 设置成功");
             }
         }
     };
@@ -583,7 +583,7 @@ public class BluetoothLeService extends Service {
                 return (Boolean) localMethod.invoke(localBluetoothGatt);
             }
         } catch (Exception localException) {
-            Log.i(TAG, "refreshDeviceCache: " + localException.getMessage());
+//            Log.i(TAG, "refreshDeviceCache: " + localException.getMessage());
         }
         return false;
     }
@@ -672,7 +672,7 @@ public class BluetoothLeService extends Service {
                 Thread.sleep(100);
                 boolean isWrite = mBluetoothGatt.writeCharacteristic(characteristic);
                 if (isWrite) {
-                    Log.i(TAG, "true: " );
+//                    Log.i(TAG, "true: " );
                     count = 0;
                 } else {
                     if (count == 5) {
@@ -680,15 +680,15 @@ public class BluetoothLeService extends Service {
 //                        broadcastConnectionUpdate(GATT_STATUS_133);
                         close();
                         connect(reConnectAddress);
-                        Log.i(TAG, "启动设备重连");
+//                        Log.i(TAG, "启动设备重连");
                     }
                     count++;
-                    Log.i(TAG, "false: " + count);
+//                    Log.i(TAG, "false: " + count);
                 }
             }
         } catch (Exception e) {
             e.getMessage();
-            Log.i(TAG, "service: " + e.getMessage());
+//            Log.i(TAG, "service: " + e.getMessage());
         }
 
     }

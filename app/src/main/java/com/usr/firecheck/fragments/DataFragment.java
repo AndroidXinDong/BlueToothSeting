@@ -51,24 +51,22 @@ public class DataFragment extends Fragment {
     private String sendMoreParameterCMD;
     Handler handler = new Handler();
     private Runnable runable;
-
-
     private List<TextView> mList = new ArrayList<>();
+    private View view;
 
     public DataFragment() {
     }
 
-    public static DataFragment getInstance() {
-        DataFragment fragment = new DataFragment();
-        Bundle bundle = new Bundle();
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
+    private Runnable LOAD_DATA = new Runnable() {
+        @Override
+        public void run() {
+            //在这里数据内容加载到Fragment上
+        }
+    };
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_data, container, false);
+        view = inflater.inflate(R.layout.fragment_data, container, false);
         ButterKnife.bind(DataFragment.this, view);
         EventBus.getDefault().register(DataFragment.this);
         mList.add(tv_purple);

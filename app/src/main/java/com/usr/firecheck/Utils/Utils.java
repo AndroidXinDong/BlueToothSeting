@@ -332,7 +332,7 @@ public class Utils{
      * @return {@link String}
      */
     public static String GetDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
 

@@ -105,10 +105,9 @@ public class DataUtils {
             String crc = CRC.getCRC(bytes).replaceAll(" ", "");
             result = HEADER + temp + crc + TAIL;
         } catch (Exception e) {
-            Log.i(TAG, "sendReadIDCMD: " + e.getMessage());
             return null;
         }
-        return result.getBytes();
+        return Utils.hexStringToByteArray(result);
     }
 
     /**
@@ -199,7 +198,7 @@ public class DataUtils {
         } catch (Exception e) {
             return null;
         }
-        return result.getBytes();
+        return Utils.hexStringToByteArray(result);
     }
 
     /**
@@ -262,11 +261,16 @@ public class DataUtils {
 
     /*****************************多数据参数读取(主要针对四字节浮点数参数读取)********************************/
     public static String sendMoreParameterCMD(String count) {
-        String temp = CMD_MOREDATA_CODE + EXTEND_READ_CODE + "0001" + count;
-        byte[] bytes = Utils.hexStringToByteArray(temp);
-        String crc = CRC.getCRC(bytes).replaceAll(" ", "");
-        String result = HEADER + temp + crc + TAIL;
-        return result;
+        try {
+            String temp = CMD_MOREDATA_CODE + EXTEND_READ_CODE + "0001" + count;
+            byte[] bytes = Utils.hexStringToByteArray(temp);
+            String crc = CRC.getCRC(bytes).replaceAll(" ", "");
+            String result = HEADER + temp + crc + TAIL;
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -588,7 +592,6 @@ public class DataUtils {
     }
 
     public static String getReadTranslateResponse(String hex){
-
         try {
             String translate = hex.substring(12, 16);
             return C2JUtils.hex2Float(translate,2);

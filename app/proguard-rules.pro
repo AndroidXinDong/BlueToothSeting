@@ -206,3 +206,5 @@ public static java.lang.String TABLENAME;
  -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
      <init>(java.lang.Throwable);
  }
+ -keep class com.wang.avi.** { *; }
+ -keep class com.wang.avi.indicators.** { *; }

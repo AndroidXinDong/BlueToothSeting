@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.6.67
 # min_api: 19
-# pg_map_id: c53504a
+# pg_map_id: 84f42ec
 # common_typos_disable
 android.support.v4.app.INotificationSideChannel -> a.a.a.a.a:
 android.support.v4.app.INotificationSideChannel$Stub -> a.a.a.a.a$a:
@@ -107,12 +107,11 @@ com.usr.firecheck.BLEProfileDataParserClasses.SensorHubParser -> com.usr.fireche
     float getThermometerReading(android.bluetooth.BluetoothGattCharacteristic) -> f
     int getThresholdValue(android.bluetooth.BluetoothGattCharacteristic) -> g
 com.usr.firecheck.BlueToothLeService.BluetoothLeService -> com.usr.firecheck.BlueToothLeService.BluetoothLeService:
-    android.bluetooth.BluetoothGattCallback mGattCallback -> i
     java.lang.String mBluetoothDeviceAddress -> f
     android.os.IBinder mBinder -> a
-    java.lang.String TAG -> h
-    java.lang.String reConnectAddress -> j
-    int count -> k
+    java.lang.String reConnectAddress -> i
+    android.bluetooth.BluetoothGattCallback mGattCallback -> h
+    int count -> j
     android.bluetooth.BluetoothAdapter mBluetoothAdapter -> c
     int mConnectionState -> e
     android.bluetooth.BluetoothGatt mBluetoothGatt -> d
@@ -120,7 +119,7 @@ com.usr.firecheck.BlueToothLeService.BluetoothLeService -> com.usr.firecheck.Blu
     android.content.Context mContext -> g
     int access$002(int) -> a
     void access$100(java.lang.String) -> a
-    void access$500(android.bluetooth.BluetoothGattCharacteristic) -> a
+    void access$400(android.bluetooth.BluetoothGattCharacteristic) -> a
     void connect(java.lang.String,java.lang.String,android.content.Context) -> a
     boolean initialize() -> a
     void readDescriptor(android.bluetooth.BluetoothGattDescriptor) -> a
@@ -131,16 +130,15 @@ com.usr.firecheck.BlueToothLeService.BluetoothLeService -> com.usr.firecheck.Blu
     void broadcastConnectionUpdate(java.lang.String) -> b
     void broadcastNotifyUpdate(android.bluetooth.BluetoothGattCharacteristic) -> b
     boolean requestMtu(int) -> b
-    java.lang.String access$300() -> c
+    android.content.Context access$300() -> c
     boolean connect(java.lang.String) -> c
-    android.content.Context access$400() -> d
-    void close() -> e
-    void closeAndDisconnect() -> f
-    void disconnect() -> g
-    void discoverServices() -> h
-    int getConnectionState() -> i
-    java.util.List getSupportedGattServices() -> j
-    java.lang.String getmBluetoothDeviceAddress() -> k
+    void close() -> d
+    void closeAndDisconnect() -> e
+    void disconnect() -> f
+    void discoverServices() -> g
+    int getConnectionState() -> h
+    java.util.List getSupportedGattServices() -> i
+    java.lang.String getmBluetoothDeviceAddress() -> j
 com.usr.firecheck.BlueToothLeService.BluetoothLeService$1 -> com.usr.firecheck.BlueToothLeService.BluetoothLeService$a:
 com.usr.firecheck.BlueToothLeService.BluetoothLeService$LocalBinder -> com.usr.firecheck.BlueToothLeService.BluetoothLeService$b:
 com.usr.firecheck.DataModelClasses.GlucoseDataModel -> com.usr.firecheck.b.a:
@@ -149,14 +147,15 @@ com.usr.firecheck.DataModelClasses.GlucoseDataModel -> com.usr.firecheck.b.a:
     int sampleLocation -> a
 com.usr.firecheck.MainActivity -> com.usr.firecheck.MainActivity:
     androidx.fragment.app.Fragment currentFragment -> h
-    android.content.BroadcastReceiver mReceiver -> i
+    java.lang.String TAG -> i
+    android.content.BroadcastReceiver mReceiver -> j
     androidx.fragment.app.FragmentManager mManager -> g
     com.usr.firecheck.fragments.DataFragment mDataFragment -> e
     com.usr.firecheck.fragments.BleFragment mBleFragment -> d
     com.usr.firecheck.application.MyApplication mMyApplication -> b
     int isChoose -> c
     com.usr.firecheck.fragments.SetFragment mSetFragment -> f
-    void addFragment(androidx.fragment.app.Fragment) -> a
+    void addFragment(androidx.fragment.app.Fragment,java.lang.String) -> a
     void defaultChoose(boolean) -> a
     void initFragment() -> c
 com.usr.firecheck.MainActivity$1 -> com.usr.firecheck.MainActivity$a:
@@ -436,26 +435,28 @@ com.usr.firecheck.application.MyApplication -> com.usr.firecheck.application.MyA
     com.usr.firecheck.bean.DaoSession getDaoSession() -> c
     void initGreenDao() -> d
 com.usr.firecheck.fragments.BleFragment -> com.usr.firecheck.fragments.BleFragment:
-    android.bluetooth.BluetoothAdapter$LeScanCallback mLeScanCallback -> o
-    java.lang.String TAG -> l
     com.usr.firecheck.adapter.DevicesAdapter adapter -> h
-    android.bluetooth.BluetoothAdapter mBluetoothAdapter -> q
+    java.lang.String type -> n
+    android.bluetooth.BluetoothAdapter mBluetoothAdapter -> r
     com.usr.firecheck.Utils.MaterialDialog progressDialog -> b
+    java.lang.String[] array -> o
     com.usr.firecheck.application.MyApplication myApplication -> e
     android.os.Handler hander -> a
-    java.lang.Runnable stopScanRunnable -> m
+    java.lang.Runnable dismssDialogRunnable -> m
+    java.lang.Runnable stopScanRunnable -> l
     android.bluetooth.BluetoothGattCharacteristic notifyCharacteristic -> i
+    android.content.BroadcastReceiver mGattUpdateReceiver -> q
     java.util.List list -> g
     android.bluetooth.BluetoothGattCharacteristic writeCharacteristic -> j
     java.lang.String currentDevAddress -> c
     android.os.Handler msgHandler -> k
-    android.content.BroadcastReceiver mGattUpdateReceiver -> p
+    android.bluetooth.BluetoothAdapter$LeScanCallback mLeScanCallback -> p
     java.lang.String currentDevName -> d
     android.bluetooth.BluetoothAdapter mBtAdapter -> f
-    java.lang.Runnable dismssDialogRunnable -> n
     android.bluetooth.BluetoothAdapter$LeScanCallback access$100(com.usr.firecheck.fragments.BleFragment) -> a
-    void access$800(com.usr.firecheck.fragments.BleFragment,android.bluetooth.BluetoothDevice) -> a
-    void access$900(com.usr.firecheck.fragments.BleFragment,android.content.Context,android.content.Intent) -> a
+    void access$1000(com.usr.firecheck.fragments.BleFragment,android.bluetooth.BluetoothDevice) -> a
+    void access$1100(com.usr.firecheck.fragments.BleFragment,android.content.Context,android.content.Intent) -> a
+    java.lang.String access$402(com.usr.firecheck.fragments.BleFragment,java.lang.String) -> a
     void connectDevice(android.bluetooth.BluetoothDevice) -> a
     void handlerReceiver(android.content.Context,android.content.Intent) -> a
     void onRefresh() -> a
@@ -466,14 +467,15 @@ com.usr.firecheck.fragments.BleFragment -> com.usr.firecheck.fragments.BleFragme
     com.usr.firecheck.Utils.MaterialDialog access$200(com.usr.firecheck.fragments.BleFragment) -> b
     void access$300(com.usr.firecheck.fragments.BleFragment) -> c
     void checkBleSupportAndInitialize() -> c
-    com.usr.firecheck.adapter.DevicesAdapter access$400(com.usr.firecheck.fragments.BleFragment) -> d
+    java.lang.String[] access$500(com.usr.firecheck.fragments.BleFragment) -> d
     void disconnectDevice() -> d
-    void access$500(com.usr.firecheck.fragments.BleFragment) -> e
+    com.usr.firecheck.adapter.DevicesAdapter access$600(com.usr.firecheck.fragments.BleFragment) -> e
     void dissAndReconnect() -> e
-    void access$600(com.usr.firecheck.fragments.BleFragment) -> f
+    void access$700(com.usr.firecheck.fragments.BleFragment) -> f
     void initBroadcast() -> f
-    java.util.List access$700(com.usr.firecheck.fragments.BleFragment) -> g
+    void access$800(com.usr.firecheck.fragments.BleFragment) -> g
     void initEvent() -> g
+    java.util.List access$900(com.usr.firecheck.fragments.BleFragment) -> h
     void initService() -> h
     void initbleFragment() -> i
     void showProgressDialog() -> j
@@ -489,18 +491,20 @@ com.usr.firecheck.fragments.BleFragment$4 -> com.usr.firecheck.fragments.BleFrag
     com.usr.firecheck.fragments.BleFragment this$0 -> a
 com.usr.firecheck.fragments.BleFragment$5 -> com.usr.firecheck.fragments.BleFragment$e:
     com.usr.firecheck.fragments.BleFragment this$0 -> a
-    void onItemClick(android.view.View,int) -> a
 com.usr.firecheck.fragments.BleFragment$6 -> com.usr.firecheck.fragments.BleFragment$f:
     com.usr.firecheck.fragments.BleFragment this$0 -> a
-com.usr.firecheck.fragments.BleFragment$6$1 -> com.usr.firecheck.fragments.BleFragment$f$a:
-    android.bluetooth.BluetoothDevice val$device -> a
-    com.usr.firecheck.fragments.BleFragment$6 this$1 -> c
-    int val$rssi -> b
+    void onItemClick(android.view.View,int) -> a
 com.usr.firecheck.fragments.BleFragment$7 -> com.usr.firecheck.fragments.BleFragment$g:
+    com.usr.firecheck.fragments.BleFragment this$0 -> a
+com.usr.firecheck.fragments.BleFragment$7$1 -> com.usr.firecheck.fragments.BleFragment$g$a:
+    android.bluetooth.BluetoothDevice val$device -> a
+    com.usr.firecheck.fragments.BleFragment$7 this$1 -> c
+    int val$rssi -> b
+com.usr.firecheck.fragments.BleFragment$8 -> com.usr.firecheck.fragments.BleFragment$h:
     com.usr.firecheck.fragments.BleFragment this$0 -> a
 com.usr.firecheck.fragments.BleFragment_ViewBinding -> com.usr.firecheck.fragments.BleFragment_ViewBinding:
     android.view.View view7f090113 -> c
-    android.view.View view7f090038 -> b
+    android.view.View view7f090039 -> b
     com.usr.firecheck.fragments.BleFragment target -> a
 com.usr.firecheck.fragments.BleFragment_ViewBinding$1 -> com.usr.firecheck.fragments.BleFragment_ViewBinding$a:
     com.usr.firecheck.fragments.BleFragment val$target -> a
@@ -511,8 +515,10 @@ com.usr.firecheck.fragments.DataFragment -> com.usr.firecheck.fragments.DataFrag
     android.os.Handler handler -> b
     java.util.List mList -> d
     java.lang.String sendMoreParameterCMD -> a
+    android.view.View view -> e
     java.lang.String access$000(com.usr.firecheck.fragments.DataFragment) -> a
 com.usr.firecheck.fragments.DataFragment$1 -> com.usr.firecheck.fragments.DataFragment$a:
+com.usr.firecheck.fragments.DataFragment$2 -> com.usr.firecheck.fragments.DataFragment$b:
     com.usr.firecheck.fragments.DataFragment this$0 -> a
 com.usr.firecheck.fragments.DataFragment_ViewBinding -> com.usr.firecheck.fragments.DataFragment_ViewBinding:
     com.usr.firecheck.fragments.DataFragment target -> a
@@ -547,34 +553,34 @@ com.usr.firecheck.fragments.SetFragment$3 -> com.usr.firecheck.fragments.SetFrag
 com.usr.firecheck.fragments.SetFragment$4 -> com.usr.firecheck.fragments.SetFragment$d:
     com.usr.firecheck.fragments.SetFragment this$0 -> a
 com.usr.firecheck.fragments.SetFragment_ViewBinding -> com.usr.firecheck.fragments.SetFragment_ViewBinding:
-    android.view.View view7f09002d -> x
-    android.view.View view7f090027 -> z
-    android.view.View view7f090029 -> p
-    android.view.View view7f090037 -> r
-    android.view.View view7f090034 -> t
-    android.view.View view7f090036 -> v
+    android.view.View view7f09002e -> x
+    android.view.View view7f090028 -> z
+    android.view.View view7f09002a -> p
+    android.view.View view7f090038 -> r
+    android.view.View view7f090035 -> t
+    android.view.View view7f090037 -> v
     com.usr.firecheck.fragments.SetFragment target -> a
-    android.view.View view7f090030 -> i
+    android.view.View view7f090031 -> i
     android.view.View view7f090078 -> k
     android.view.View view7f0900b4 -> m
-    android.view.View view7f09003a -> o
+    android.view.View view7f09003b -> o
     android.view.View view7f0900b1 -> c
-    android.view.View view7f090025 -> B
+    android.view.View view7f090026 -> B
     android.view.View view7f0900b0 -> e
-    android.view.View view7f09002f -> g
-    android.view.View view7f090026 -> y
-    android.view.View view7f09002a -> q
-    android.view.View view7f090033 -> s
-    android.view.View view7f090035 -> u
-    android.view.View view7f09002c -> w
-    android.view.View view7f09002e -> h
-    android.view.View view7f09002b -> j
+    android.view.View view7f090030 -> g
+    android.view.View view7f090027 -> y
+    android.view.View view7f09002b -> q
+    android.view.View view7f090034 -> s
+    android.view.View view7f090036 -> u
+    android.view.View view7f09002d -> w
+    android.view.View view7f09002f -> h
+    android.view.View view7f09002c -> j
     android.view.View view7f0900b3 -> l
-    android.view.View view7f090039 -> n
-    android.view.View view7f090024 -> A
+    android.view.View view7f09003a -> n
+    android.view.View view7f090025 -> A
     android.view.View view7f0900b5 -> b
     android.view.View view7f0900b2 -> d
-    android.view.View view7f090028 -> f
+    android.view.View view7f090029 -> f
 com.usr.firecheck.fragments.SetFragment_ViewBinding$1 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$k:
     com.usr.firecheck.fragments.SetFragment val$target -> a
 com.usr.firecheck.fragments.SetFragment_ViewBinding$10 -> com.usr.firecheck.fragments.SetFragment_ViewBinding$a:
